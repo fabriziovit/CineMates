@@ -64,17 +64,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(com.facebook.login.LoginResult loginResult)
             {
-                System.out.println("agsjdfhasjkdbawsjkhbdasg dauksgdja bfjahfsjkbkjflsagrfukasfjsafgllsajgdljsabjfbfajsgfs ab2313213nbjA");
+                System.out.println("OK");
             }
 
             @Override
-            public void onCancel() {
-                System.out.println("AASDADADS DFASA FFAFSFASF jA");
+            public void onCancel()
+            {
+                System.out.println("Cancellato");
             }
 
             @Override
-            public void onError(FacebookException error) {
-                System.out.println("~!!@@@!@# ab2313213nbjA");
+            public void onError(FacebookException error)
+            {
+                System.out.println("Non Funzionante");
             }
         });
 
