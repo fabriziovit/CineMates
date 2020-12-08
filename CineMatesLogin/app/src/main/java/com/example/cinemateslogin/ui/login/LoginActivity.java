@@ -32,7 +32,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
@@ -43,7 +42,7 @@ import java.util.Arrays;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private CallbackManager callbackManager;
+    private com.facebook.CallbackManager callbackManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,26 +59,24 @@ public class LoginActivity extends AppCompatActivity {
         final LoginButton facebookLogin = findViewById(R.id.login_buttonfb);
 
         callbackManager = CallbackManager.Factory.create();
-        facebookLogin.setReadPermissions(Arrays.asList("email", "public_profile"));
 
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<com.facebook.login.LoginResult>() {
+        facebookLogin.registerCallback(callbackManager, new FacebookCallback<com.facebook.login.LoginResult>() {
             @Override
             public void onSuccess(com.facebook.login.LoginResult loginResult)
             {
-
+                System.out.println("agsjdfhasjkdbawsjkhbdasg dauksgdja bfjahfsjkbkjflsagrfukasfjsafgllsajgdljsabjfbfajsgfs ab2313213nbjA");
             }
 
             @Override
             public void onCancel() {
-
+                System.out.println("AASDADADS DFASA FFAFSFASF jA");
             }
 
             @Override
             public void onError(FacebookException error) {
-
+                System.out.println("~!!@@@!@# ab2313213nbjA");
             }
         });
-
 
 
         passwordDimenticata.setPaintFlags(passwordDimenticata.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
@@ -140,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         };
+
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -175,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
