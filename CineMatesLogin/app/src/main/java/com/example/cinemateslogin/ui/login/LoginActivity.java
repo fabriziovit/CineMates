@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    AccessTokenTracker tokenTracker = new AccessTokenTracker() {
+    /*AccessTokenTracker tokenTracker = new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken)
         {
@@ -212,14 +212,14 @@ public class LoginActivity extends AppCompatActivity {
                 /*txtEmail.setText("");
                 txtName.setText("");
                 circleImageView.setImageResource(0);
-                Toast.makeText(LoginActivity.this, "Utente disconesso", Toast.LENGTH_LONG).show();*/
+                Toast.makeText(LoginActivity.this, "Utente disconesso", Toast.LENGTH_LONG).show();
             }else {
                 loaduserProfile(currentAccessToken);
             }
         }
-    };
+    };*/
 
-    private void loaduserProfile(AccessToken newAccessToken)
+   /* private void loaduserProfile(AccessToken newAccessToken)
     {
         final GraphRequest request =  GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
@@ -238,7 +238,7 @@ public class LoginActivity extends AppCompatActivity {
                     RequestOption requestOption = new RequestOption();
                     requestOption.dontAnimate();
                     Glide.with(LoginActivity.this).load(image_url).into(circleImageView);
-                    */
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -249,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
         parametres.putString("fields", "first_name,last_name,email,id");
         request.setParameters(parametres);
         request.executeAsync();
-    }
+    }*/
 
 
     private void signIn() {
