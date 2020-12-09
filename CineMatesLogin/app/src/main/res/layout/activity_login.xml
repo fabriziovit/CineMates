@@ -139,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="72dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Non hai ancora un account?"
         android:textColor="#000000"
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="72dp"
         android:clickable="true"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Registrati adesso. "
@@ -175,5 +175,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_Google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_buttonfb" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

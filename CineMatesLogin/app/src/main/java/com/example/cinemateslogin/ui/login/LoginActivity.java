@@ -5,8 +5,10 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -34,15 +37,25 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.LoginButton;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private com.facebook.CallbackManager callbackManager;
+    private static final int RC_SIGN_IN = 1;
+    GoogleSignInClient mGoogleSignInClient;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +70,25 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         final TextView passwordDimenticata = findViewById(R.id.password_textView);
         final LoginButton facebookLogin = findViewById(R.id.login_buttonfb);
+        final SignInButton googleLogin = findViewById(R.id.sign_in_Google);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         callbackManager = CallbackManager.Factory.create();
+
+        googleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(LoginActivity.this, "Hello", Toast.LENGTH_LONG).show();
+                switch (view.getId()) {
+                    case R.id.sign_in_Google:
+                        signIn();
+                        break;
+                    // ...
+                }
+            }
+        });
 
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<com.facebook.login.LoginResult>() {
             @Override
@@ -174,12 +204,6 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     AccessTokenTracker tokenTracker = new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken)
@@ -226,4 +250,44 @@ public class LoginActivity extends AppCompatActivity {
         request.setParameters(parametres);
         request.executeAsync();
     }
+
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+
+            Intent intent = new Intent(LoginActivity.this, RegistatiActivity.class);
+            startActivity(intent);
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("Errore", "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
+
+    /*private void updateUi(GoogleSignInAccount model) {
+        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        // TODO : initiate successful logged in experience
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }*/
+
 }
