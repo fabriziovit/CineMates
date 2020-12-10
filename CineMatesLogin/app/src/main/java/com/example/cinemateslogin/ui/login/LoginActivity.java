@@ -289,7 +289,5 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }*/
-
-
-    //facebook non funziona
+    
 }
