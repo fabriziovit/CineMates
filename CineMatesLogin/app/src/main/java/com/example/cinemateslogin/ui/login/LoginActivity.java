@@ -290,4 +290,6 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }*/
 
+
+    //facebook non funziona
 }
