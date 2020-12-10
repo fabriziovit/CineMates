@@ -10,11 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660cc498-6274-4bc0-80c3-4cc0a778a489" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemateslogin/ui/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemateslogin/ui/login/LoginActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,25 +254,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607531265542" />
-    <state width="1877" height="169" key="GridCell.Tab.0.bottom" timestamp="1607607321660">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="167" key="GridCell.Tab.0.bottom" timestamp="1607607736903">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1877" height="169" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607607321660" />
-    <state width="1877" height="169" key="GridCell.Tab.0.center" timestamp="1607607321660">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607607736903" />
+    <state width="1877" height="169" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607536135261" />
+    <state width="1236" height="167" key="GridCell.Tab.0.center" timestamp="1607607736901">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1877" height="169" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607607321660" />
-    <state width="1877" height="169" key="GridCell.Tab.0.left" timestamp="1607607321660">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="1877" height="169" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607536135261" />
+    <state width="1236" height="167" key="GridCell.Tab.0.left" timestamp="1607607736901">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1877" height="169" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607607321660" />
-    <state width="1877" height="169" key="GridCell.Tab.0.right" timestamp="1607607321660">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="1877" height="169" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607536135261" />
+    <state width="1236" height="167" key="GridCell.Tab.0.right" timestamp="1607607736901">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1877" height="169" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607607321660" />
-    <state x="502" y="188" key="SettingsEditor" timestamp="1607442085524">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="1877" height="169" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607536135261" />
+    <state x="284" y="0" key="SettingsEditor" timestamp="1607604413272">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="284" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607604413272" />
     <state x="502" y="188" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607442085524" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1607193810983">
       <screen x="0" y="0" width="1920" height="1040" />
