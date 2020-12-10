@@ -4,6 +4,7 @@
     <shared>
       <config>
         <device id="pixel_3a" />
+        <device id="pixel_3a_xl" />
         <device id="pixel_3" />
         <device id="pixel_3_xl" />
       </config>
@@ -22,13 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemateslogin/ui/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemateslogin/ui/login/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registati.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registati.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +70,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -90,7 +88,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-10T14:53:41.785Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-10T16:04:45.747Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -250,9 +248,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607373608169" />
-    <state x="540" y="275" key="AndroidCreateResourceFileDialog" timestamp="1607352419592">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="360" y="151" key="AndroidCreateResourceFileDialog" timestamp="1607613551983">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="360" y="151" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1607613551983" />
     <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607352419592" />
     <state x="557" y="116" key="CommitChangelistDialog2" timestamp="1607193799509">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -266,25 +265,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607531265542" />
-    <state width="1877" height="169" key="GridCell.Tab.0.bottom" timestamp="1607612996529">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="911" height="42" key="GridCell.Tab.0.bottom" timestamp="1607615287996">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607607736903" />
+    <state width="911" height="42" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607615287996" />
     <state width="1877" height="169" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607612996529" />
-    <state width="1877" height="169" key="GridCell.Tab.0.center" timestamp="1607612996529">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="911" height="42" key="GridCell.Tab.0.center" timestamp="1607615287995">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="911" height="42" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607615287995" />
     <state width="1877" height="169" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607612996529" />
-    <state width="1877" height="169" key="GridCell.Tab.0.left" timestamp="1607612996529">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="911" height="42" key="GridCell.Tab.0.left" timestamp="1607615287995">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="911" height="42" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607615287995" />
     <state width="1877" height="169" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607612996529" />
-    <state width="1877" height="169" key="GridCell.Tab.0.right" timestamp="1607612996529">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="911" height="42" key="GridCell.Tab.0.right" timestamp="1607615287996">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607607736901" />
+    <state width="911" height="42" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607615287996" />
     <state width="1877" height="169" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607612996529" />
     <state x="284" y="0" key="SettingsEditor" timestamp="1607604413272">
       <screen x="0" y="0" width="1280" height="680" />
@@ -295,9 +294,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607193810983" />
-    <state x="401" y="146" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607612012568">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607615288558">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607615288558" />
     <state x="401" y="146" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607612012568" />
     <state x="515" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1607193481551">
       <screen x="0" y="0" width="1920" height="1040" />

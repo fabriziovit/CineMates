@@ -13,23 +13,20 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ui.login.LoginActivity">
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#DB000000"
-        android:textColorLink="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+    <ImageView
+        android:id="@+id/LogoLogin"
+        android:layout_width="235dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="70dp"
+        android:contentDescription="Logo CineMates"
+        app:layout_constraintBottom_toTopOf="@+id/accedi_TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_small" />
 
     <EditText
         android:id="@+id/password"
@@ -37,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
@@ -55,32 +52,36 @@
         android:id="@+id/password_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="128dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="45dp"
         android:clickable="true"
         android:fontFamily="@font/martel_sans_semibold"
         android:text="Hai dimenticato la passsword?"
         android:textColor="#005EFF"
         app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/LogoLogin"
-        android:layout_width="235dp"
-        android:layout_height="132dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="Logo CineMates"
-        app:layout_constraintBottom_toTopOf="@+id/accedi_TextView"
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="4dp"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#DB000000"
+        android:textColorLink="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_small" />
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/accedi_TextView"
@@ -88,14 +89,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Accedi al tuo account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -105,7 +106,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/mybutton_radius"
         android:enabled="false"
         android:text="Accedi"
@@ -113,7 +114,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/login_buttonfb"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.facebook.login.widget.LoginButton
@@ -132,12 +133,12 @@
         android:id="@+id/sign_in_Google"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginEnd="120dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
@@ -157,28 +158,12 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="52dp"
-        android:clickable="true"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Registrati adesso. "
-        android:textColor="#005EFF"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
-
-    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="56dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Non hai ancora un account?"
         android:textColor="#000000"
@@ -187,5 +172,21 @@
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="56dp"
+        android:clickable="true"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Registrati adesso. "
+        android:textColor="#005EFF"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
