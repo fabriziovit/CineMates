@@ -45,8 +45,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     private com.facebook.CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
     GoogleSignInClient mGoogleSignInClient;
-
 
 
     @Override
@@ -76,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         callbackManager = CallbackManager.Factory.create();
+
+
 
         googleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,5 +288,5 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }*/
-    
+
 }
