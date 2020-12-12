@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/username_TextField"
+        android:id="@+id/email_TextField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -102,7 +102,7 @@
         android:textColorHighlight="#000000"
         android:textColorHint="#DB000000"
         android:textColorLink="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/username_TextField"
+        app:layout_constraintBottom_toTopOf="@+id/email_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

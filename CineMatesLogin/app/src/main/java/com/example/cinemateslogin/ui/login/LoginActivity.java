@@ -5,10 +5,8 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -28,13 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cinemateslogin.R;
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.widget.LoginButton;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -61,13 +55,13 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
+        final EditText usernameEditText = findViewById(R.id.email_TextField);
+        final EditText passwordEditText = findViewById(R.id.password_TextField);
+        final Button loginButton = findViewById(R.id.accedi_button);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         final TextView passwordDimenticata = findViewById(R.id.password_textView);
-        final LoginButton facebookLogin = findViewById(R.id.login_buttonfb);
-        final SignInButton googleLogin = findViewById(R.id.sign_in_Google);
+        final LoginButton facebookLogin = findViewById(R.id.fb_button);
+        final SignInButton googleLogin = findViewById(R.id.google_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -81,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Toast.makeText(LoginActivity.this, "Hello", Toast.LENGTH_LONG).show();
                 switch (view.getId()) {
-                    case R.id.sign_in_Google:
+                    case R.id.google_button:
                         signIn();
                         break;
                     // ...
