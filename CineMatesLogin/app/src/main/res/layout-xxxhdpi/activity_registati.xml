@@ -7,6 +7,23 @@
     android:background="#F0999999"
     tools:context=".ui.login.RegistatiActivity">
 
+    <EditText
+        android:id="@+id/username_TextField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="15dp"
+        android:hint="Inserisci il tuo username"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/Disponibilta_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableStart="@drawable/custom_username_icon"
+        android:textColorHint="@color/colorPrimary"
+        android:focusedByDefault="false"/>
+
     <Button
         android:id="@+id/registrati_button"
         android:layout_width="140dp"
@@ -31,20 +48,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="40dp"
         android:hint="Inserisci una nuova password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#DB000000"
-        android:textColorLink="#000000"
         app:layout_constraintBottom_toTopOf="@+id/conferma-password_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:textColorHint="@color/colorPrimary"
+        android:focusedByDefault="false"/>
 
     <EditText
         android:id="@+id/conferma-password_TextField"
@@ -52,19 +68,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="13dp"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:focusedByDefault="false"
         android:hint="Conferma la password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#DB000000"
-        android:textColorLink="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/registrati_button"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/ErrorePassword_TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -73,39 +87,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="50dp"
-        android:hint="Inserisci il tuo username"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#DB000000"
-        android:textColorLink="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/password_TextField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/email_TextField"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="40dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:textColor="#000000"
         android:textColorHighlight="#000000"
-        android:textColorHint="#DB000000"
-        android:textColorLink="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/email_TextField"
+        app:layout_constraintBottom_toTopOf="@+id/username_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:textColorHint="@color/colorPrimary"
+        android:focusedByDefault="false"/>
 
     <TextView
         android:id="@+id/registrati_TextView3"
@@ -113,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="70dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Registrati Ora!"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -127,9 +120,9 @@
         android:layout_width="242dp"
         android:layout_height="144dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="82dp"
         android:layout_marginEnd="80dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="43dp"
         android:contentDescription="Logo CineMates"
         app:layout_constraintBottom_toTopOf="@+id/registrati_TextView3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -149,5 +142,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/back_icon_foreground" />
+
+    <TextView
+        android:id="@+id/Disponibilta_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Disponibilità:"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/password_TextField"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ErrorePassword_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="42dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Le due password non corrispondono"
+        android:textColor="#CF1A21"
+        app:layout_constraintBottom_toTopOf="@+id/registrati_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/risDisponibilita_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Disponibile"
+        android:textColor="#0F8851"
+        app:layout_constraintBottom_toTopOf="@+id/password_TextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Disponibilta_TextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
