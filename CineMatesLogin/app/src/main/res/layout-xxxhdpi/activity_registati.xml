@@ -21,8 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:drawableStart="@drawable/custom_username_icon"
-        android:textColorHint="@color/colorPrimary"
-        android:focusedByDefault="false"/>
+        android:textColorHint="@color/colorPrimary" />
 
     <Button
         android:id="@+id/registrati_button"
@@ -59,8 +58,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         android:drawableStart="@drawable/custom_lock_icon"
-        android:textColorHint="@color/colorPrimary"
-        android:focusedByDefault="false"/>
+        android:textColorHint="@color/colorPrimary" />
 
     <EditText
         android:id="@+id/conferma-password_TextField"
@@ -70,7 +68,6 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="13dp"
         android:drawableStart="@drawable/custom_lock_icon"
-        android:focusedByDefault="false"
         android:hint="Conferma la password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
@@ -97,8 +94,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         android:drawableStart="@drawable/custom_email_icon"
-        android:textColorHint="@color/colorPrimary"
-        android:focusedByDefault="false"/>
+        android:textColorHint="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/registrati_TextView3"
