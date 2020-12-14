@@ -3,6 +3,7 @@ package com.example.cinemates.ui.CineMates;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.example.cinemates.R;
 
@@ -13,17 +14,16 @@ public class RegistatiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registati);
 
-        final TextView risDisponibilita = findViewById(R.id.risDisponibilita_TextView);
-        final TextView password = findViewById(R.id.password_TextField);
-        final TextView confermaPassword = findViewById(R.id.conferma_password_TextField);
-        final TextView errorePassword = findViewById(R.id.ErrorePassword_TextView);
-        final TextView username = findViewById(R.id.username_TextField);
-        final TextView email = findViewById(R.id.email_TextField);
-        final TextView disponibilita = findViewById(R.id.Disponibilta_TextView);
+        final TextView risDisponibilita = findViewById(R.id.risDisponibilita_registrati_TextView);
+        final EditText password = findViewById(R.id.password_registrati_TextField);
+        final EditText confermaPassword = findViewById(R.id.confermapssw_TextField);
+        final TextView errorePassword = findViewById(R.id.ErrorePassword_reg_TextView);
+        final EditText username = findViewById(R.id.username_registrati_TextField);
+        final EditText email = findViewById(R.id.email_registrati_TextField);
+        final TextView disponibilita = findViewById(R.id.Disponibilta_registrati_TextView);
 
         errorePassword.setVisibility(View.INVISIBLE);
         risDisponibilita.setVisibility(View.INVISIBLE);
-        disponibilita.setVisibility(View.INVISIBLE);
 
 
             confermaPassword.setOnFocusChangeListener(new View.OnFocusChangeListener(){
@@ -46,19 +46,16 @@ public class RegistatiActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     //if(QUERY USERNAME NON ESISTENTE){
-                        disponibilita.setVisibility(View.VISIBLE);
                         risDisponibilita.setVisibility(View.VISIBLE);
                         risDisponibilita.setText("Disponibile");
                         risDisponibilita.setTextColor(getResources().getColor(R.color.verdeDis));
                     /*}else{
-                        disponibilita.setVisibility(View.VISIBLE);
                         risDisponibilita.setVisibility(View.VISIBLE);
                         risDisponibilita.setText("Non Disponibile");
                         risDisponibilita.setTextColor(getResources().getColor(R.color.rossoDis));
                     }*/
                 }else{
                     risDisponibilita.setVisibility(View.INVISIBLE);
-                    disponibilita.setVisibility(View.INVISIBLE);
                 }
             }
         });

@@ -57,14 +57,14 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText usernameEditText = findViewById(R.id.email_TextField);
-        final EditText passwordEditText = findViewById(R.id.password_TextField);
-        final Button loginButton = findViewById(R.id.accedi_button);
+        final EditText usernameEditText = findViewById(R.id.email_login_TextField);
+        final EditText passwordEditText = findViewById(R.id.password_login_TextField);
+        final Button loginButton = findViewById(R.id.accedi_login_button);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-        final TextView passwordDimenticata = findViewById(R.id.password_textView);
-        final LoginButton facebookLogin = findViewById(R.id.fb_button);
-        final SignInButton googleLogin = findViewById(R.id.google_button);
-        final TextView errorePassEmail = findViewById(R.id.errore_TextView);
+        final TextView passwordDimenticata = findViewById(R.id.passwordDim_login_textView);
+        final LoginButton facebookLogin = findViewById(R.id.fb_login_button);
+        final SignInButton googleLogin = findViewById(R.id.google_login_button);
+        final TextView errorePassEmail = findViewById(R.id.errore_login_TextView);
 
         errorePassEmail.setVisibility(View.INVISIBLE);
 
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Toast.makeText(LoginActivity.this, "Hello", Toast.LENGTH_LONG).show();
                 switch (view.getId()) {
-                    case R.id.google_button:
+                    case R.id.google_login_button:
                         signIn();
                         break;
                     // ...
