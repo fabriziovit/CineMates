@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.login.RegistatiActivity">
+    tools:context=".ui.CineMates.RegistatiActivity">
 
     <EditText
         android:id="@+id/username_TextField"

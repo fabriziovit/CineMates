@@ -11,21 +11,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.CineMates.LoginActivity">
 
     <ImageView
         android:id="@+id/logo_icon"
         android:layout_width="235dp"
         android:layout_height="132dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="40dp"
         android:layout_marginEnd="80dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="Logo CineMates"
         app:layout_constraintBottom_toTopOf="@+id/accedi_TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_small" />
 
     <EditText
@@ -34,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="14dp"
         android:drawableStart="@drawable/custom_lock_icon"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
@@ -50,16 +48,16 @@
         android:id="@+id/password_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="128dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="30dp"
         android:clickable="true"
         android:fontFamily="@font/martel_sans_semibold"
         android:text="Hai dimenticato la passsword?"
         android:textColor="#005EFF"
-        app:layout_constraintBottom_toTopOf="@+id/accedi_button"
+        app:layout_constraintBottom_toTopOf="@+id/errore_emailpass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -68,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="16dp"
         android:drawableStart="@drawable/custom_email_icon"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
@@ -85,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Accedi al tuo account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -102,7 +100,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/mybutton_radius"
         android:enabled="false"
         android:text="Accedi"
@@ -131,7 +129,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toTopOf="@+id/registrati_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -165,12 +163,12 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/registrati_textView2"
+        app:layout_constraintEnd_toStartOf="@+id/registrati_textButton"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/registrati_textView2"
+        android:id="@+id/registrati_textButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -184,5 +182,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/registrati_textView" />
+
+    <TextView
+        android:id="@+id/errore_emailpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="5dp"
+        android:editable="false"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Email e/o password errate"
+        android:textColor="#CF1A21"
+        app:layout_constraintBottom_toTopOf="@+id/accedi_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

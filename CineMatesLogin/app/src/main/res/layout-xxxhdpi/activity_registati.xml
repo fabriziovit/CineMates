@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.login.RegistatiActivity">
+    tools:context=".ui.CineMates.RegistatiActivity">
 
     <EditText
         android:id="@+id/username_TextField"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Registrati Ora!"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -118,7 +118,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="82dp"
         android:layout_marginEnd="80dp"
-        android:layout_marginBottom="43dp"
+        android:layout_marginBottom="50dp"
         android:contentDescription="Logo CineMates"
         app:layout_constraintBottom_toTopOf="@+id/registrati_TextView3"
         app:layout_constraintEnd_toEndOf="parent"
