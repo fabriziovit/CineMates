@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -62,9 +64,10 @@ public class LoginActivity extends AppCompatActivity {
         final TextView passwordDimenticata = findViewById(R.id.password_textView);
         final LoginButton facebookLogin = findViewById(R.id.fb_button);
         final SignInButton googleLogin = findViewById(R.id.google_button);
-        final TextView errorePassEmail = findViewById(R.id.errore_emailpass);
+        final TextView errorePassEmail = findViewById(R.id.errore_TextView);
 
         errorePassEmail.setVisibility(View.INVISIBLE);
+
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -77,6 +80,12 @@ public class LoginActivity extends AppCompatActivity {
             errorePassEmail.setVisibility(View.VISIBLE);
         }*/
 
+        //Chiusura keyboard
+        View view = this.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
 
         googleLogin.setOnClickListener(new View.OnClickListener() {
