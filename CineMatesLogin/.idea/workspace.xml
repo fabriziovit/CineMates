@@ -21,29 +21,27 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/PasswordDimenticata.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/PasswordDimenticata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistatiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistatiActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_login.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_password_dimenticata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_password_dimenticata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_registati.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_registati.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_password_dimenticata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_password_dimenticata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_registati.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_registati.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_30" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_30" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -100,12 +98,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_XL_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-14T17:20:44.791Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-15T11:22:56.677Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.recentlyUsedThemes" value="Base.Theme.AppCompat.Light&#10;Base.V22.Theme.AppCompat.Light" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
-    <property name="project.structure.last.edited" value="Suggestions" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -266,10 +265,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="477" y="252" key="#PSD" timestamp="1607784541394">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="189" y="75" key="#PSD" timestamp="1608032458363">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="316" y="145" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1607775556618" />
+    <state x="189" y="75" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1608032458363" />
     <state x="477" y="252" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1607784541394" />
     <state x="460" y="175" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607691920106">
       <screen x="0" y="0" width="1280" height="680" />
@@ -281,10 +280,14 @@
     </state>
     <state x="360" y="151" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1607777973281" />
     <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607957090606" />
-    <state x="479" y="171" key="AndroidCreateXmlResourceDialog" timestamp="1607774967213">
+    <state x="479" y="171" key="AndroidCreateXmlResourceDialog" timestamp="1608032760908">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="479" y="171" key="AndroidCreateXmlResourceDialog/0.0.1280.680@0.0.1280.680" timestamp="1607774967213" />
+    <state x="479" y="171" key="AndroidCreateXmlResourceDialog/0.0.1280.680@0.0.1280.680" timestamp="1608032760908" />
+    <state x="221" y="46" key="AndroidThemeDialog" timestamp="1608032666625">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="46" key="AndroidThemeDialog/0.0.1280.680@0.0.1280.680" timestamp="1608032666625" />
     <state x="371" y="0" key="CommitChangelistDialog2" timestamp="1607782019219">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -328,10 +331,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607193810983" />
-    <state x="477" y="144" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607694594885">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608031589692">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607618906274" />
+    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1608031589692" />
     <state x="477" y="144" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607694594885" />
     <state x="515" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1607193481551">
       <screen x="0" y="0" width="1920" height="1040" />
