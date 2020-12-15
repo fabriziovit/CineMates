@@ -27,16 +27,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
 import com.facebook.login.widget.LoginButton;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
@@ -65,12 +62,13 @@ public class LoginActivity extends AppCompatActivity {
         final LoginButton facebookLogin = findViewById(R.id.fb_login_button);
         final SignInButton googleLogin = findViewById(R.id.google_login_button);
         final TextView errorePassEmail = findViewById(R.id.errore_login_TextView);
+        final TextView registratiButton = findViewById(R.id.registrati_login_textButton);
 
         errorePassEmail.setVisibility(View.INVISIBLE);
 
 
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         callbackManager = CallbackManager.Factory.create();
@@ -80,15 +78,14 @@ public class LoginActivity extends AppCompatActivity {
             errorePassEmail.setVisibility(View.VISIBLE);
         }*/
 
-        //Chiusura keyboard
-        View view = this.getCurrentFocus();
-        if(view != null) {
-            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
 
 
-        googleLogin.setOnClickListener(new View.OnClickListener() {
+
+        /*googleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(LoginActivity.this, "Hello", Toast.LENGTH_LONG).show();
@@ -119,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 System.out.println("Non Funzionante");
             }
-        });
+        });*/
 
 
         passwordDimenticata.setPaintFlags(passwordDimenticata.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
@@ -198,24 +195,37 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                Amplify.Auth.signIn(
+                        usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        result -> Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             }
         });
+
 
 
         passwordDimenticata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, PasswordDimenticata.class));
+                startActivity(new Intent(LoginActivity.this, PasswordDimenticataActivity.class));
+            }
+        });
+
+        registratiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegistatiActivity.class));
             }
         });
 
         /*Parte del controller:
 
 
-        */
+         */
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

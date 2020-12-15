@@ -14,6 +14,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    compileOptions{
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -31,10 +37,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.facebook.android:facebook-android-sdk:8.1.0'
-    implementation 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.3'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'com.amplifyframework:core:1.6.4'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.6.4'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.19.3'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 }

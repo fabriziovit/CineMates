@@ -3,18 +3,21 @@
     package="com.example.cinemates">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MyAmplifyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.cinemates.ui.CineMates.PasswordDimenticata"></activity>
-        <activity android:name="com.example.cinemates.ui.CineMates.RegistatiActivity" />
+        <activity android:name=".ui.CineMates.ConfermaRegistrazioneActivity"></activity>
+        <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
+        <activity android:name=".ui.CineMates.RegistatiActivity" />
         <activity
-            android:name="com.example.cinemates.ui.CineMates.LoginActivity"
+            android:name=".ui.CineMates.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

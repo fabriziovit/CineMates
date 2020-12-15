@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cinemateslogin-dev-161559-authRole",
+      "UnauthRoleArn": "arn:aws:iam::409011119604:role/amplify-cinemateslogin-dev-161559-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::409011119604:role/amplify-cinemateslogin-dev-161559-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-cinemateslogin-dev-161559-deployment",
+      "UnauthRoleName": "amplify-cinemateslogin-dev-161559-unauthRole",
+      "StackName": "amplify-cinemateslogin-dev-161559",
+      "StackId": "arn:aws:cloudformation:eu-west-1:409011119604:stack/amplify-cinemateslogin-dev-161559/71bdefe0-3ee8-11eb-80fb-061510aab3dd",
+      "AmplifyAppId": "d2oou2qt3p71av"
+    },
+    "categories": {
+      "auth": {
+        "cinemateslogin4ce1dad7": {}
+      }
+    }
+  }
+}

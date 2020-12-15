@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0999999"
+    tools:context="com.example.cinemates.ui.CineMates.ConfermaRegistrazioneActivity">
+
+    <ImageView
+        android:id="@+id/back_Conferma_button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="318dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/back_icon_foreground" />
+
+    <ImageView
+        android:id="@+id/logo_icon2"
+        android:layout_width="242dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="Logo CineMates"
+        app:layout_constraintBottom_toTopOf="@+id/registrati_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_small" />
+
+    <EditText
+        android:id="@+id/codice_Conferma_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="58dp"
+        android:ems="10"
+        android:hint="Inserisci il codice"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/usernameText_Conferma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="76dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/codice_Conferma_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/confermaAcc_Coferma_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="121dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Conferma il tuo account"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameText_Conferma"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="244dp"
+        android:background="@drawable/mybutton_radius"
+        android:text="CONFERMA"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
