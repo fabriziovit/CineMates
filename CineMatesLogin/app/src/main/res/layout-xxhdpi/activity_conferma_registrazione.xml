@@ -46,7 +46,7 @@
         android:ems="10"
         android:hint="Inserisci il codice"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/conferma_conferma_Button"
+        app:layout_constraintBottom_toTopOf="@+id/conferma_Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -56,9 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginEnd="168dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="80dp"
         android:fontFamily="@font/martel_sans_bold"
-        android:text="TextView"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/codice_Conferma_TextView"
@@ -82,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/conferma_conferma_Button"
+        android:id="@+id/conferma_Button"
         android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="126dp"

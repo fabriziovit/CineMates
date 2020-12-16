@@ -1,7 +1,6 @@
 package com.example.cinemates.ui.CineMates;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,32 +12,57 @@ import android.widget.TextView;
 
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
+import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
+import com.example.cinemates.databinding.ActivityRegistatiBinding;
 
 public class ConfermaRegistrazioneActivity extends AppCompatActivity {
+
+    private ActivityConfermaRegistrazioneBinding binding;
+    public static final String EXTRA_MAIN_TEXT = "EXTRA_MAIN_TEXT";
+    String usernameExtra = " ";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_conferma_registrazione);
+        binding = ActivityConfermaRegistrazioneBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+        ConfermaButton(binding);
+        BackButton(binding);
 
-        final EditText codiceEditText = findViewById(R.id.codice_Conferma_TextView);
-        final Button confermaButton = findViewById(R.id.conferma_conferma_Button);
-        final TextView usernameDisplay = findViewById(R.id.usernameText_Conferma);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            usernameExtra = bundle.getString(EXTRA_MAIN_TEXT);
+        binding.usernameTextConferma.setText(usernameExtra +" controlla la tua casella email");
 
-        confermaButton.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+
+        private void ConfermaButton(ActivityConfermaRegistrazioneBinding binding) {
+            binding.confermaButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Amplify.Auth.confirmSignUp(
+                            usernameExtra,
+                            binding.codiceConfermaTextView.getText().toString(),
+                            result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
+                            error -> Log.e("AuthQuickstart", error.toString())
+                    );
+                }
+            });
+        }
+
+    private void BackButton(ActivityConfermaRegistrazioneBinding binding){
+        binding.backConfermaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Amplify.Auth.confirmSignUp(
-                        //username.setText(Controller.username.getText().toString()+" controlla la tua casella email");
-                        "Momba",
-                        codiceEditText.getText().toString(),
-                        result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded": "Confirm sign up not complete"),
-                        error -> Log.e("AuthQuickstart", error.toString())
-                );
+                startActivity(new Intent(ConfermaRegistrazioneActivity.this, RegistatiActivity.class));
             }
         });
     }
 
+        //   Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
 }

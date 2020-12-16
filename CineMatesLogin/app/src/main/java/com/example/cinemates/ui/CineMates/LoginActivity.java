@@ -5,7 +5,6 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -29,6 +28,7 @@ import android.widget.Toast;
 
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
+import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.facebook.login.widget.LoginButton;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -41,30 +41,33 @@ import com.google.android.gms.tasks.Task;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
+    private ActivityLoginBinding binding;
     private com.facebook.CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
     GoogleSignInClient mGoogleSignInClient;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        final EditText usernameEditText = findViewById(R.id.email_login_TextField);
-        final EditText passwordEditText = findViewById(R.id.password_login_TextField);
-        final Button loginButton = findViewById(R.id.accedi_login_button);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
-        final TextView passwordDimenticata = findViewById(R.id.passwordDim_login_textView);
-        final LoginButton facebookLogin = findViewById(R.id.fb_login_button);
-        final SignInButton googleLogin = findViewById(R.id.google_login_button);
-        final TextView errorePassEmail = findViewById(R.id.errore_login_TextView);
-        final TextView registratiButton = findViewById(R.id.registrati_login_textButton);
+        RegistratiButton(binding);
+        LoginButton(binding);
+        PassDimenticata(binding);
 
-        errorePassEmail.setVisibility(View.INVISIBLE);
+        binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
+
+
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
+
+        binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+    }
 
 
 
@@ -77,11 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         /*if(email && password != db.email && db.password){
             errorePassEmail.setVisibility(View.VISIBLE);
         }*/
-
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
 
 
 
@@ -119,85 +117,13 @@ public class LoginActivity extends AppCompatActivity {
         });*/
 
 
-        passwordDimenticata.setPaintFlags(passwordDimenticata.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
-            @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
-                    return;
-                }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
-                }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
-                }
-            }
-        });
-
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
-            @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
-                    return;
-                }
-                loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                setResult(Activity.RESULT_OK);
-
-
-                //Complete and destroy login activity once successful
-                finish();
-
-
-            }
-        });
-
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // ignore
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // ignore
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        };
-
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
+    private void LoginButton(ActivityLoginBinding binding) {
+        binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Amplify.Auth.signIn(
-                        usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString(),
+                        binding.usernameLoginTextField.getText().toString(),
+                        binding.passwordLoginTextField.getText().toString(),
                         result -> Log.i("AuthQuickstart", result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete"),
                         error -> Log.e("AuthQuickstart", error.toString())
                 );
@@ -205,38 +131,26 @@ public class LoginActivity extends AppCompatActivity {
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             }
         });
+    }
 
-
-
-        passwordDimenticata.setOnClickListener(new View.OnClickListener() {
+    private void PassDimenticata(ActivityLoginBinding binding) {
+        binding.passwordDimLoginTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, PasswordDimenticataActivity.class));
             }
         });
+    }
 
-        registratiButton.setOnClickListener(new View.OnClickListener() {
+    private void RegistratiButton(ActivityLoginBinding binding) {
+        binding.registratiLoginTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegistatiActivity.class));
             }
         });
-
-        /*Parte del controller:
-
-
-         */
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
-
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }
 
     /*AccessTokenTracker tokenTracker = new AccessTokenTracker() {
         @Override
@@ -286,11 +200,14 @@ public class LoginActivity extends AppCompatActivity {
     }*/
 
 
+   /*
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+    }*/
 
+
+   /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
@@ -317,10 +234,10 @@ public class LoginActivity extends AppCompatActivity {
             Log.w("Errore", "signInResult:failed code=" + e.getStatusCode());
         }
     }
+    */
 
     /*private void updateUi(GoogleSignInAccount model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }*/
 

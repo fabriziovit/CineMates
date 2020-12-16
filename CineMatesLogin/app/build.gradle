@@ -27,6 +27,10 @@ android {
             manifestPlaceholders = ['redirectUriScheme': 'cinemates://easyauth.callback']
         }
     }
+
+    buildFeatures{
+        viewBinding true;
+    }
 }
 
 dependencies {

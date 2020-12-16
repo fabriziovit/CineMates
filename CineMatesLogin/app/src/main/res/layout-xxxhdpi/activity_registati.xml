@@ -35,24 +35,6 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/registrati_button"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="48dp"
-                android:background="@drawable/mybutton_radius"
-                android:enabled="false"
-                android:text="Registrati"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView" />
-
             <EditText
                 android:id="@+id/password_registrati_TextField"
                 android:layout_width="0dp"
@@ -170,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="120dp"
-                android:layout_marginBottom="13dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Le due password non corrispondono"
                 android:textColor="#CF1A21"
@@ -193,6 +175,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/Disponibilta_registrati_TextView" />
+
+            <Button
+                android:id="@+id/registrati_button"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="140dp"
+                android:background="@drawable/mybutton_radius"
+                android:text="REGISTRATI"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

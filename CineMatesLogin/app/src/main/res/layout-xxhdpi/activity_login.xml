@@ -65,15 +65,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/email_login_TextField"
+        android:id="@+id/username_login_TextField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
-        android:drawableStart="@drawable/custom_email_icon"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/custom_username_icon"
+        android:hint="Username"
         android:focusedByDefault="false"
         android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/password_login_TextField"
@@ -92,27 +91,9 @@
         android:text="Accedi al tuo account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/email_login_TextField"
+        app:layout_constraintBottom_toTopOf="@+id/username_login_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/accedi_login_button"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="45dp"
-        android:background="@drawable/mybutton_radius"
-        android:enabled="false"
-        android:text="Accedi"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/fb_login_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.facebook.login.widget.LoginButton
@@ -188,7 +169,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
+    <TextView
         android:id="@+id/errore_login_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -199,6 +180,21 @@
         android:text="Email e/o password errate"
         android:textColor="#CF1A21"
         app:layout_constraintBottom_toTopOf="@+id/accedi_login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/accedi_login_button"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/mybutton_radius"
+        android:text="Accedi"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/fb_login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
