@@ -25,7 +25,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         BackButton(binding);
-        Keyboard(binding);
+        KeyboardPassDimenticata(binding);
 
         binding.erroruserRecuperaTextView.setVisibility(View.INVISIBLE);
     }
@@ -39,12 +39,12 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         });
     }
 
-    private void Keyboard(ActivityPasswordDimenticataBinding binding) {
-        binding.containerRecupera.setOnClickListener(new View.OnClickListener() {
+    private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {
+        binding.scrollviewRecupera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.containerRecupera.getWindowToken(), 0);
+                inputMethodManager.hideSoftInputFromWindow(binding.scrollviewRecupera.getWindowToken(), 0);
             }
         });
     }

@@ -43,8 +43,10 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="52dp"
         android:ems="10"
+        android:drawableStart="@drawable/custom_codice_icon"
         android:hint="Inserisci il codice"
         android:inputType="number"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/conferma_Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -57,6 +59,7 @@
         android:layout_marginEnd="168dp"
         android:layout_marginBottom="56dp"
         android:fontFamily="@font/martel_sans_bold"
+        android:text="Utente controlla la tua email"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/codice_Conferma_TextView"

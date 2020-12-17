@@ -34,7 +34,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
         setContentView(view);
         ConfermaButton(binding);
         BackButton(binding);
-        Keyboard(binding);
+        KeyboardConferma(binding);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
@@ -68,7 +68,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
         });
     }
 
-    private void Keyboard(ActivityConfermaRegistrazioneBinding binding) {
+    private void KeyboardConferma(ActivityConfermaRegistrazioneBinding binding) {
         binding.containerConferma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

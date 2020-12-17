@@ -36,8 +36,8 @@ public class RegistatiActivity extends AppCompatActivity {
         ControlloUsername(binding);
         ControlloPassword(binding);
         RegistratiButton(binding);
-        Keyboard(binding);
-
+        KeyboardRegistrati(binding);
+        BackButton(binding);
 
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
         binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
@@ -112,12 +112,12 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-    private void Keyboard(ActivityRegistatiBinding binding) {
-        binding.containerRegistrati.setOnClickListener(new View.OnClickListener() {
+    private void KeyboardRegistrati(ActivityRegistatiBinding binding) {
+        binding.scrollviewRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.containerRegistrati.getWindowToken(), 0);
+                inputMethodManager.hideSoftInputFromWindow(binding.scrollviewRegistrati.getWindowToken(), 0);
             }
         });
     }
