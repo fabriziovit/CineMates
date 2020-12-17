@@ -18,6 +18,8 @@ import com.amazonaws.mobile.client.SignInUIOptions;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.databinding.ActivityLoginBinding;
+import com.facebook.FacebookSdk;
+import com.google.android.gms.common.SignInButton;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton(binding);
         PassDimenticata(binding);
         Keyboard(binding);
+        binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
 
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
 
@@ -48,35 +52,6 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-
-        AWSMobileClient.getInstance().initialize(this, new Callback<UserStateDetails>() {
-            @Override
-            public void onResult(UserStateDetails userStateDetails) {
-                Log.i("INIT", String.valueOf(userStateDetails.getUserState()));
-                AWSMobileClient.getInstance().showSignIn(
-                        LoginActivity.this,
-                        SignInUIOptions.builder()
-                                .nextActivity(RegistatiActivity.class)
-                                .build(),
-                        new Callback<UserStateDetails>() {
-                            @Override
-                            public void onResult(UserStateDetails result) {
-                                Log.d("Risultato", "onResult: " + result.getUserState());
-                            }
-
-                            @Override
-                            public void onError(Exception e) {
-                                Log.e("Errore", "onError: ", e);
-                            }
-                        });
-            }
-
-
-            @Override
-            public void onError(Exception e) {
-                Log.e("INIT", "Error during initialization", e);
-            }
-        });
     }
 
 

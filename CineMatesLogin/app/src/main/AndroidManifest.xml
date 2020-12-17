@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyAmplifyApp"
@@ -15,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.CineMates.AuthenticatorActivity"
+            android:label="@string/title_activity_authenticator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.CineMates.ResetPasswordActivity" />
         <activity android:name=".ui.CineMates.ConfermaRegistrazioneActivity" />
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
