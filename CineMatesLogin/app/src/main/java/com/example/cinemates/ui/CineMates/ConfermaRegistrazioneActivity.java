@@ -56,6 +56,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
                             error -> Log.e("AuthQuickstart", error.toString())
                     );
                 }
+                //Tornare al login se il risultato è corretto
             });
         }
 

@@ -2,41 +2,22 @@ package com.example.cinemates.ui.CineMates;
 
 import android.app.Activity;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.SignInUIOptions;
+import com.amazonaws.mobile.client.UserStateDetails;
 import com.amplifyframework.core.Amplify;
-import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityLoginBinding;
-import com.facebook.login.widget.LoginButton;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private com.facebook.CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
-    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,7 +48,36 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        AWSMobileClient.getInstance().initialize(this, new Callback<UserStateDetails>() {
+            @Override
+            public void onResult(UserStateDetails userStateDetails) {
+                Log.i("INIT", String.valueOf(userStateDetails.getUserState()));
+                AWSMobileClient.getInstance().showSignIn(
+                        LoginActivity.this,
+                        SignInUIOptions.builder()
+                                .nextActivity(RegistatiActivity.class)
+                                .build(),
+                        new Callback<UserStateDetails>() {
+                            @Override
+                            public void onResult(UserStateDetails result) {
+                                Log.d("Risultato", "onResult: " + result.getUserState());
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Log.e("Errore", "onError: ", e);
+                            }
+                        });
+            }
+
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("INIT", "Error during initialization", e);
+            }
+        });
     }
+
 
 
 
@@ -164,6 +173,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+}
+
+
     /*AccessTokenTracker tokenTracker = new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken)
@@ -252,5 +265,3 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }*/
-
-}

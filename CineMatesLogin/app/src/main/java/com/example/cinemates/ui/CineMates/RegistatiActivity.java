@@ -21,7 +21,7 @@ import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
 import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityRegistatiBinding;
-import com.google.android.gms.common.api.internal.ActivityLifecycleObserver;
+
 
 public class RegistatiActivity extends AppCompatActivity {
     private ActivityRegistatiBinding binding;
@@ -36,7 +36,7 @@ public class RegistatiActivity extends AppCompatActivity {
         ControlloUsername(binding);
         ControlloPassword(binding);
         RegistratiButton(binding);
-        KeyboardRegistrati(binding);
+        //KeyboardRegistrati(binding);
         BackButton(binding);
 
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
@@ -112,15 +112,15 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-    private void KeyboardRegistrati(ActivityRegistatiBinding binding) {
-        binding.scrollviewRegistrati.setOnClickListener(new View.OnClickListener() {
+    /*private void KeyboardRegistrati(ActivityRegistatiBinding binding) {
+        binding.scrollviewRegistrati.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onFocusChange(View v, boolean hasFocus) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(binding.scrollviewRegistrati.getWindowToken(), 0);
             }
         });
-    }
+    }*/
 
 
 }

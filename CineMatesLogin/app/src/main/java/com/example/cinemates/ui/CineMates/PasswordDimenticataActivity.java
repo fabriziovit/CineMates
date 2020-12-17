@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 
-import com.example.cinemates.R;
-import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
-import com.example.cinemates.databinding.ActivityLoginBinding;
+import com.amplifyframework.core.Amplify;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
 
 public class PasswordDimenticataActivity extends AppCompatActivity {
@@ -26,6 +24,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         setContentView(view);
         BackButton(binding);
         KeyboardPassDimenticata(binding);
+        ResetPassword(binding);
 
         binding.erroruserRecuperaTextView.setVisibility(View.INVISIBLE);
     }
@@ -38,6 +37,21 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void ResetPassword(ActivityPasswordDimenticataBinding binding){
+        binding.recuperaRecuperaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.resetPassword(
+                        binding.usernameRecuperaTextField.getText().toString(),
+                        result -> Log.i("AuthQuickstart", result.toString()),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+                startActivity(new Intent(PasswordDimenticataActivity.this, ResetPasswordActivity.class));
+            }
+        });
+    }
+
 
     private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {
         binding.scrollviewRecupera.setOnClickListener(new View.OnClickListener() {

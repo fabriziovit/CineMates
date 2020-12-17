@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.cinemateslogin"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -40,12 +40,22 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.facebook.android:facebook-android-sdk:8.1.0'
-    implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'com.amplifyframework:core:1.6.4'
-    implementation 'com.amplifyframework:aws-auth-cognito:1.6.4'
-    implementation 'com.amazonaws:aws-android-sdk-core:2.19.3'
+
+    implementation 'com.amplifyframework:core:1.6.7'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.6.7'
+    implementation 'com.amazonaws:aws-android-sdk-core:2.20.0'
+
+    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.20.0@aar') { transitive = true }
+
+
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation ('com.amazonaws:aws-android-sdk-auth-facebook:2.20.0@aar') { transitive = true }
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation ('com.amazonaws:aws-android-sdk-auth-ui:2.20.0@aar') { transitive = true }
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
