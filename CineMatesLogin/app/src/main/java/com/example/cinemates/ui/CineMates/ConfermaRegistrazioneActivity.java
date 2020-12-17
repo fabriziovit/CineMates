@@ -2,10 +2,12 @@ package com.example.cinemates.ui.CineMates;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
+import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
 import com.example.cinemates.databinding.ActivityRegistatiBinding;
 
@@ -31,6 +34,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
         setContentView(view);
         ConfermaButton(binding);
         BackButton(binding);
+        Keyboard(binding);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
@@ -60,6 +64,16 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ConfermaRegistrazioneActivity.this, RegistatiActivity.class));
+            }
+        });
+    }
+
+    private void Keyboard(ActivityConfermaRegistrazioneBinding binding) {
+        binding.containerConferma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(binding.containerConferma.getWindowToken(), 0);
             }
         });
     }

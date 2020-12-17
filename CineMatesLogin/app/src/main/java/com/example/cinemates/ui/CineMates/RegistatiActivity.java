@@ -3,11 +3,13 @@ package com.example.cinemates.ui.CineMates;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.ActivityNavigator;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +19,7 @@ import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
+import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityRegistatiBinding;
 import com.google.android.gms.common.api.internal.ActivityLifecycleObserver;
 
@@ -33,6 +36,7 @@ public class RegistatiActivity extends AppCompatActivity {
         ControlloUsername(binding);
         ControlloPassword(binding);
         RegistratiButton(binding);
+        Keyboard(binding);
 
 
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
@@ -107,6 +111,16 @@ public class RegistatiActivity extends AppCompatActivity {
                 }
             });
         }
+
+    private void Keyboard(ActivityRegistatiBinding binding) {
+        binding.containerRegistrati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(binding.containerRegistrati.getWindowToken(), 0);
+            }
+        });
+    }
 
 
 }

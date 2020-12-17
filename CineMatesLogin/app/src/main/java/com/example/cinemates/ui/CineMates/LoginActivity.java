@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         RegistratiButton(binding);
         LoginButton(binding);
         PassDimenticata(binding);
+        Keyboard(binding);
 
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
 
@@ -147,6 +148,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegistatiActivity.class));
+            }
+        });
+    }
+
+
+    private void Keyboard(ActivityLoginBinding binding) {
+        binding.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(binding.container.getWindowToken(), 0);
             }
         });
     }
