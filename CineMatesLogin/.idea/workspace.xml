@@ -12,39 +12,39 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I/" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="660cc498-6274-4bc0-80c3-4cc0a778a489" name="Default Changelist" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/assets/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/assets/spinner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/assets/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/assets/verify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/parameters.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/template.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_home.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_amici_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_home_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_person_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_search_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_amici.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_amici_focused.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_focused.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_person.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_person_focused.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_search_focused.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/cinemateslogin4ce1dad7-cloudformation-template.yml" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/cinemateslogin4ce1dad7-cloudformation-template.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/parameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/auth/cinemateslogin4ce1dad7/parameters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/backend-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/team-provider-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/team-provider-info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/AuthenticatorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/AuthenticatorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_home.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +89,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="resourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -109,11 +109,11 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-18T15:54:26.530Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-18T12:11:11.370Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.recentlyUsedThemes" value="Base.Theme.AppCompat.Light&#10;Base.V22.Theme.AppCompat.Light" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -125,9 +125,6 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.396260854">
-      <recent name="com.example.cinemates.ui.CineMates" />
-    </key>
     <key name="android.template.-653989842">
       <recent name="com.example.cinemateslogin" />
     </key>
@@ -137,11 +134,14 @@
     <key name="android.template.-1985149344">
       <recent name="com.example.cinemates.ui.CineMates" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.example.cinemates" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Fabrizio\AndroidStudioProjects\CineMates\CineMatesLogin\app" />
     </key>
     <key name="android.template.-839949391">
       <recent name="com.example.cinemateslogin.ui.login" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.cinemates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\gianl\StudioProjects\CineMates\CineMatesLogin\app\src\main\res\drawable" />
@@ -153,9 +153,6 @@
     </key>
     <key name="android.template.-38027907">
       <recent name="com.example.cinemateslogin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Fabrizio\AndroidStudioProjects\CineMates\CineMatesLogin\app" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -313,16 +310,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="742" y="379" width="436" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608217091131" />
-    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608306462644">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="460" y="175" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1608127000778" />
-    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608306462644" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608047778754" />
-    <state x="360" y="151" key="AndroidCreateResourceFileDialog" timestamp="1608211268319">
+    <state x="460" y="175" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608312007654">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="360" y="151" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1608211268319" />
+    <state x="460" y="175" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1608312007654" />
+    <state x="690" y="268" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608230371411" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608047778754" />
+    <state x="360" y="151" key="AndroidCreateResourceFileDialog" timestamp="1608311548230">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="360" y="151" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1608311548230" />
     <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607957090606" />
     <state x="479" y="171" key="AndroidCreateXmlResourceDialog" timestamp="1608032760908">
       <screen x="0" y="0" width="1280" height="680" />
@@ -347,29 +344,29 @@
     <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608210363244" />
     <state x="740" y="251" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608220818523" />
     <state x="740" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607703482658" />
-    <state width="1877" height="124" key="GridCell.Tab.0.bottom" timestamp="1608307082509">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="188" key="GridCell.Tab.0.bottom" timestamp="1608303979876">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="97" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608294300736" />
-    <state width="1877" height="124" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608307082509" />
+    <state width="1236" height="188" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608303979876" />
+    <state width="1877" height="232" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608230654375" />
     <state width="1877" height="169" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608058469231" />
-    <state width="1877" height="124" key="GridCell.Tab.0.center" timestamp="1608307082508">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="188" key="GridCell.Tab.0.center" timestamp="1608303979876">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="97" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608294300736" />
-    <state width="1877" height="124" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608307082508" />
+    <state width="1236" height="188" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608303979876" />
+    <state width="1877" height="232" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608230654375" />
     <state width="1877" height="169" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608058469231" />
-    <state width="1877" height="124" key="GridCell.Tab.0.left" timestamp="1608307082508">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="188" key="GridCell.Tab.0.left" timestamp="1608303979876">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="97" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608294300736" />
-    <state width="1877" height="124" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608307082508" />
+    <state width="1236" height="188" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608303979876" />
+    <state width="1877" height="232" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608230654375" />
     <state width="1877" height="169" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608058469231" />
-    <state width="1877" height="124" key="GridCell.Tab.0.right" timestamp="1608307082509">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="188" key="GridCell.Tab.0.right" timestamp="1608303979876">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="97" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608294300736" />
-    <state width="1877" height="124" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608307082509" />
+    <state width="1236" height="188" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608303979876" />
+    <state width="1877" height="232" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608230654375" />
     <state width="1877" height="169" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608058469231" />
     <state x="284" y="0" key="SettingsEditor" timestamp="1607775577195">
       <screen x="0" y="0" width="1280" height="680" />
@@ -380,11 +377,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607193810983" />
-    <state x="401" y="145" width="1200" height="802" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608298988567">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608292000248">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="267" y="95" width="800" height="524" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1608292000248" />
-    <state x="401" y="145" width="1200" height="802" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608298988567" />
     <state x="477" y="144" width="1200" height="800" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607694594885" />
     <state x="515" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1607193481551">
       <screen x="0" y="0" width="1920" height="1040" />
