@@ -1,24 +1,29 @@
 package com.example.cinemates.ui.CineMates;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
-import com.amplifyframework.auth.AuthUserAttributeKey;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
-import com.amplifyframework.core.Amplify;
+
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityRegistatiBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegistatiActivity extends AppCompatActivity {
     private ActivityRegistatiBinding binding;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,8 @@ public class RegistatiActivity extends AppCompatActivity {
         binding = ActivityRegistatiBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        mAuth = FirebaseAuth.getInstance();
 
         ControlloUsername(binding);
         ControlloPassword(binding);
@@ -36,6 +43,14 @@ public class RegistatiActivity extends AppCompatActivity {
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
         binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
         private void ControlloPassword(ActivityRegistatiBinding binding){
@@ -86,18 +101,56 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
+
+    /*private void updateUI(FirebaseUser user) {
+        hideProgressBar();
+        if (user != null) {
+            mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
+                    user.getEmail(), user.isEmailVerified()));
+            mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+
+            mBinding.emailPasswordButtons.setVisibility(View.GONE);
+            mBinding.emailPasswordFields.setVisibility(View.GONE);
+            mBinding.signedInButtons.setVisibility(View.VISIBLE);
+
+            if (user.isEmailVerified()) {
+                mBinding.verifyEmailButton.setVisibility(View.GONE);
+            } else {
+                mBinding.verifyEmailButton.setVisibility(View.VISIBLE);
+            }
+        } else {
+            mBinding.status.setText(R.string.signed_out);
+            mBinding.detail.setText(null);
+
+            mBinding.emailPasswordButtons.setVisibility(View.VISIBLE);
+            mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
+            mBinding.signedInButtons.setVisibility(View.GONE);
+        }
+    }*/
+
         private void RegistratiButton(ActivityRegistatiBinding binding){
             binding.registratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString())) {
-                        Amplify.Auth.signUp(
-                                binding.usernameRegistratiTextField.getText().toString(),
-                                binding.passwordRegistratiTextField.getText().toString(),
-                                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), binding.emailRegistratiTextField.getText().toString()).build(),
-                                result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
-                                error -> Log.e("AuthQuickStart", "Sign up failed", error)
-                        );
+                        mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
+                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            Log.d("Successo", "createUserWithEmail:success");
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            //updateUI(user);
+                                        } else {
+                                            // If sign in fails, display a message to the user.
+                                            Log.w("Errore", "createUserWithEmail:failure", task.getException());
+                                            Toast.makeText(RegistatiActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                            updateUI(null);
+                                        }
+                                        // ...
+                                    }
+                                });
                         String usernamevalue = binding.usernameRegistratiTextField.getText().toString();
                         Intent intentConferma = new Intent(RegistatiActivity.this, ConfermaRegistrazioneActivity.class);
                         intentConferma.putExtra(ConfermaRegistrazioneActivity.EXTRA_MAIN_TEXT, usernamevalue);
@@ -106,6 +159,8 @@ public class RegistatiActivity extends AppCompatActivity {
                 }
             });
         }
+
+
 
     private void KeyboardRegistrati(ActivityRegistatiBinding binding){
         binding.constraintRegistrati.setOnClickListener(new View.OnClickListener() {
@@ -120,5 +175,8 @@ public class RegistatiActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 }

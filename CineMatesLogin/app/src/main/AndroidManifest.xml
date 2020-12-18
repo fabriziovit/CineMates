@@ -13,10 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.CineMates.AuthenticatorActivity"
-            android:label="@string/title_activity_authenticator"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.CineMates.ResetPasswordActivity" />
         <activity android:name=".ui.CineMates.ConfermaRegistrazioneActivity" />
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
@@ -46,6 +42,8 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+
     </application>
 
 </manifest>

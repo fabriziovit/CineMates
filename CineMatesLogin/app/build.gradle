@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -41,20 +42,12 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation platform('com.google.firebase:firebase-bom:26.1.1')
+    implementation 'com.google.firebase:firebase-analytics'
 
-    implementation 'com.amplifyframework:core:1.6.7'
-    implementation 'com.amplifyframework:aws-auth-cognito:1.6.7'
-    implementation 'com.amazonaws:aws-android-sdk-core:2.20'
+    implementation platform('com.google.firebase:firebase-bom:26.1.1')
+    implementation 'com.google.firebase:firebase-auth'
 
-    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.20.0') { transitive = true }
-
-    implementation'com.android.support:support-v4:28.+'
-    implementation ('com.amazonaws:aws-android-sdk-auth-userpools:2.6.+@aar') { transitive = true; }
-    implementation ('com.amazonaws:aws-android-sdk-auth-facebook:2.15.0') { transitive = true }
-    implementation ('com.amazonaws:aws-android-sdk-auth-google:2.15.+@aar') { transitive = true}
-
-    implementation 'com.android.support:appcompat-v7:28.+'
-    implementation ('com.amazonaws:aws-android-sdk-auth-ui:2.15.0') { transitive = true }
     implementation 'androidx.navigation:navigation-fragment:2.3.2'
     implementation 'androidx.navigation:navigation-ui:2.3.2'
 
