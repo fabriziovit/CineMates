@@ -14,7 +14,7 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": false,
+    "defaultPasswordPolicy": true,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
@@ -46,12 +46,25 @@
         ]
     },
     "useDefault": "defaultSocial",
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+        "FacebookUserPool",
+        "GoogleUserPool"
+    ],
     "serviceName": "Cognito",
     "dependsOn": [],
     "hostedUI": true,
-    "hostedUIDomainName": "cinemateslogin387bc66d-387bc66d",
-    "authProvidersUserPool": [],
-    "hostedUIProviderMeta": "[]",
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "triggers": "{}",
+    "verificationBucketName": "cinemateslogin4ce1dad7verificationbucket",
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "hostedUIDomainName": "cinemateslogin62b5d424-62b5d424",
+    "authProvidersUserPool": [
+        "Facebook"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://localhost:3000/\"],\"LogoutURLs\":[\"https://localhost:3000/\"]}"
 }

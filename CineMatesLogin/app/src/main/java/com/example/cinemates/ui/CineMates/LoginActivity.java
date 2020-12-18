@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.IdentityProvider;
 import com.amazonaws.mobile.client.SignInUIOptions;
 import com.amazonaws.mobile.client.UserStateDetails;
 import com.amplifyframework.core.Amplify;
@@ -100,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("Non Funzionante");
             }
         });*/
-
 
     private void LoginButton(ActivityLoginBinding binding) {
         binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {

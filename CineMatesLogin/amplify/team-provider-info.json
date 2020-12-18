@@ -13,7 +13,10 @@
     },
     "categories": {
       "auth": {
-        "cinemateslogin4ce1dad7": {}
+        "cinemateslogin4ce1dad7": {
+          "googleClientId": "297059961407-rfq9uj1l8i3vkmsduqgd5h6o0346bshh.apps.googleusercontent.com",
+          "googleAndroid": "297059961407-d57fst7aqgb0gn1o9oo1sdngqamqg6ib.apps.googleusercontent.com"
+        }
       }
     }
   }

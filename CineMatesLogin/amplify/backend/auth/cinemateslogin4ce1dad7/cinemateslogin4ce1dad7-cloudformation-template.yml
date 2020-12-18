@@ -129,6 +129,30 @@ Parameters:
   hostedUI:
     Type: String
             
+  
+  userPoolGroups:
+    Type: String
+            
+  
+  adminQueries:
+    Type: String
+            
+  triggers:
+    Type: String
+  
+            
+  verificationBucketName:
+    Type: String
+  
+            
+      
+  parentStack:
+    Type: String
+        
+        
+  permissions:
+    Type: CommaDelimitedList
+      
   hostedUIDomainName:
     Type: String
   
@@ -154,6 +178,27 @@ Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 
 Resources:
+  
+  CustomMessageConfirmationBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: "Retain"
+    Properties:
+      BucketName:  !If [ShouldNotCreateEnvResources, !Ref verificationBucketName, !Join ['',[!Ref verificationBucketName, '-', !Ref env]]]
+      AccessControl: "Private"
+      WebsiteConfiguration:
+        IndexDocument: "index.html"
+        ErrorDocument: "index.html"
+      CorsConfiguration:
+        CorsRules:
+          - 
+            AllowedHeaders:
+              - "Authorization" 
+              - "Content-Length"
+            AllowedMethods:
+              - "GET"
+            AllowedOrigins:
+              - "*"
+            MaxAge: 3000
   
   
   # BEGIN SNS ROLE RESOURCE
@@ -224,6 +269,18 @@ Resources:
         SnsCallerArn: !GetAtt SNSRole.Arn
         ExternalId: cinema4ce1dad7_role_external_id
     
+  
+    
+    
+  
+    
+    
+  
+  
+   
+    
+  # Updating lambda role with permissions to Cognito
+  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
