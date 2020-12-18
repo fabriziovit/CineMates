@@ -40,8 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton(binding);
         PassDimenticata(binding);
         Keyboard(binding);
-        binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
 
+        binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
+        binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
 
 
@@ -49,8 +50,6 @@ public class LoginActivity extends AppCompatActivity {
                 result -> Log.i("AmplifyQuickstart", result.toString()),
                 error -> Log.e("AmplifyQuickstart", error.toString())
         );
-
-        binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
     }
 
@@ -144,6 +143,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(binding.container.getWindowToken(), 0);
+                binding.usernameLoginTextField.clearFocus();
+                binding.passwordLoginTextField.clearFocus();
             }
         });
     }

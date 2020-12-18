@@ -1,25 +1,19 @@
 package com.example.cinemates.ui.CineMates;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.ActivityNavigator;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.R;
-import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
-import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityRegistatiBinding;
 
 
@@ -36,7 +30,7 @@ public class RegistatiActivity extends AppCompatActivity {
         ControlloUsername(binding);
         ControlloPassword(binding);
         RegistratiButton(binding);
-        //KeyboardRegistrati(binding);
+        KeyboardRegistrati(binding);
         BackButton(binding);
 
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
@@ -66,17 +60,18 @@ public class RegistatiActivity extends AppCompatActivity {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (!hasFocus) {
-                        //if(QUERY USERNAME NON ESISTENTE){
-                        binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
-                        binding.risDisponibilitaRegistratiTextView.setText("Disponibile");
-                        binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.verdeDis));
+                        if (binding.usernameRegistratiTextField.getText().toString() != null/* && QUERY USERNAME NON ESISTENTE*/) {
+                            binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
+                            binding.risDisponibilitaRegistratiTextView.setText("Disponibile");
+                            binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.verdeDis));
                     /*}else{
                         binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
                         binding.risDisponibilitaRegistratiTextView.setText("Non Disponibile");
                         binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.rossoDis));
                     }*/
-                    } else {
-                        binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
+                        } else {
+                            binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
+                        }
                     }
                 }
             });
@@ -112,15 +107,18 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-    /*private void KeyboardRegistrati(ActivityRegistatiBinding binding) {
-        binding.scrollviewRegistrati.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    private void KeyboardRegistrati(ActivityRegistatiBinding binding){
+        binding.constraintRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.scrollviewRegistrati.getWindowToken(), 0);
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(binding.constraintRegistrati.getWindowToken(), 0);
+                binding.usernameRegistratiTextField.clearFocus();
+                binding.passwordRegistratiTextField.clearFocus();
+                binding.emailRegistratiTextField.clearFocus();
+                binding.confermapsswTextField.clearFocus();
             }
         });
-    }*/
-
+    }
 
 }

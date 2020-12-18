@@ -15,10 +15,13 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_registrati"
             android:layout_width="wrap_content"
             android:layout_height="735dp"
-            android:minHeight="735dp">
+            android:minHeight="735dp"
+            android:clickable="true">
 
             <EditText
                 android:id="@+id/username_registrati_TextField"

@@ -18,7 +18,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="745dp"
-            android:minHeight="745dp">
+            android:minHeight="745dp"
+            android:clickable="true">
 
             <EditText
                 android:id="@+id/username_registrati_TextField"

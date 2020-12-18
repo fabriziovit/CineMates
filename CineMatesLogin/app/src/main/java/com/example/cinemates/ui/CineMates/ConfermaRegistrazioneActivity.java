@@ -75,6 +75,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(binding.containerConferma.getWindowToken(), 0);
+                binding.codiceConfermaTextView.clearFocus();
             }
         });
     }

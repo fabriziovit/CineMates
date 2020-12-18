@@ -2,10 +2,12 @@ package com.example.cinemates.ui.CineMates;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.amplifyframework.core.Amplify;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
@@ -22,6 +24,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         backButton(binding);
         resetPasswordButton(binding);
+        keyboardReset(binding);
 
     }
 
@@ -47,6 +50,18 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
+            }
+        });
+    }
+
+    private void keyboardReset(ActivityResetPasswordBinding binding){
+        binding.containerReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(binding.containerReset.getWindowToken(), 0);
+                binding.passwordResetEditText.clearFocus();
+                binding.confermaPassResetEditText.clearFocus();
             }
         });
     }

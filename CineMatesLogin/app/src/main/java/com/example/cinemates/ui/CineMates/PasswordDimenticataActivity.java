@@ -54,11 +54,13 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
 
 
     private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {
-        binding.scrollviewRecupera.setOnClickListener(new View.OnClickListener() {
+        binding.constraintRecupera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.scrollviewRecupera.getWindowToken(), 0);
+                inputMethodManager.hideSoftInputFromWindow(binding.constraintRecupera.getWindowToken(), 0);
+                binding.emailRecuperaTextField.clearFocus();
+                binding.usernameRecuperaTextField.clearFocus();
             }
         });
     }
