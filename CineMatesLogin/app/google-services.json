@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "238322231139-ivlhu725loojqmc17jipe67qrc90341o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinemates",
+            "certificate_hash": "5d8b725760b32606bec5eb891ff2ac194119c0fb"
+          }
+        },
+        {
+          "client_id": "238322231139-nk63tipcq24ok2s4i39lluek7sfpnfjv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinemates",
+            "certificate_hash": "96cde233ecee192ed23eb519abe9f41bc332da0b"
+          }
+        },
+        {
           "client_id": "238322231139-50mqbmbd6h6bmq6p08s4341kdvctm131.apps.googleusercontent.com",
           "client_type": 3
         }
