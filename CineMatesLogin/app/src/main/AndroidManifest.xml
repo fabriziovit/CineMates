@@ -15,7 +15,7 @@
         <activity android:name=".ui.CineMates.ResetPasswordActivity" />
         <activity android:name=".ui.CineMates.ConfermaRegistrazioneActivity" />
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
-        <activity android:name=".ui.CineMates.RegistatiActivity" />
+        <activity android:name=".ui.CineMates.RegistratiActivity" />
         <activity android:name=".ui.CineMates.HomeActivity"/>
         <activity
             android:name=".ui.CineMates.LoginActivity"

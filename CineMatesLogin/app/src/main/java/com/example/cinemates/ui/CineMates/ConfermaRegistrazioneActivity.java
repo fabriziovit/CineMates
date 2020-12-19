@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
 import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
-import com.example.cinemates.databinding.ActivityRegistatiBinding;
+import com.example.cinemates.databinding.ActivityRegistratiBinding;
 
 public class ConfermaRegistrazioneActivity extends AppCompatActivity {
 
@@ -62,7 +62,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
         binding.backConfermaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ConfermaRegistrazioneActivity.this, RegistatiActivity.class));
+                startActivity(new Intent(ConfermaRegistrazioneActivity.this, RegistratiActivity.class));
             }
         });
     }

@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 
 import com.example.cinemates.R;
-import com.example.cinemates.databinding.ActivityRegistatiBinding;
+import com.example.cinemates.databinding.ActivityRegistratiBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,14 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class RegistatiActivity extends AppCompatActivity {
-    private ActivityRegistatiBinding binding;
+public class RegistratiActivity extends AppCompatActivity {
+    private ActivityRegistratiBinding binding;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRegistatiBinding.inflate(getLayoutInflater());
+        binding = ActivityRegistratiBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -50,7 +49,7 @@ public class RegistatiActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-        private void ControlloPassword(ActivityRegistatiBinding binding){
+        private void ControlloPassword(ActivityRegistratiBinding binding){
             binding.confermapsswTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
@@ -67,7 +66,7 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-        private void ControlloUsername(ActivityRegistatiBinding binding) {
+        private void ControlloUsername(ActivityRegistratiBinding binding) {
             binding.usernameRegistratiTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
@@ -89,16 +88,16 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-        private void BackButton(ActivityRegistatiBinding binding){
+        private void BackButton(ActivityRegistratiBinding binding){
             binding.backRegistratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(RegistatiActivity.this, LoginActivity.class));
+                    startActivity(new Intent(RegistratiActivity.this, LoginActivity.class));
                 }
             });
         }
 
-        private void RegistratiButton(ActivityRegistatiBinding binding){
+        private void RegistratiButton(ActivityRegistratiBinding binding){
             binding.registratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -111,7 +110,7 @@ public class RegistatiActivity extends AppCompatActivity {
 
 
 
-    private void KeyboardRegistrati(ActivityRegistatiBinding binding){
+    private void KeyboardRegistrati(ActivityRegistratiBinding binding){
         binding.constraintRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,18 +124,18 @@ public class RegistatiActivity extends AppCompatActivity {
         });
     }
 
-    private void Registrati(ActivityRegistatiBinding binding){
+    private void Registrati(ActivityRegistratiBinding binding){
         mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(RegistatiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(RegistatiActivity.this, LoginActivity.class);
+                            Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(RegistatiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegistratiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

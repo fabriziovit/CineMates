@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -114,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.registratiLoginTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegistatiActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegistratiActivity.class));
             }
         });
     }
