@@ -65,15 +65,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/username_login_TextField"
+        android:id="@+id/email_login_TextField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
-        android:drawableStart="@drawable/custom_username_icon"
-        android:hint="Username"
+        android:drawableStart="@drawable/custom_email_icon"
         android:focusedByDefault="false"
+        android:hint="Email"
         android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/password_login_TextField"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
         android:text="Accedi al tuo account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/username_login_TextField"
+        app:layout_constraintBottom_toTopOf="@+id/email_login_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
@@ -197,16 +197,5 @@
         app:layout_constraintBottom_toTopOf="@+id/fb_login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/tempbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginBottom="56dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/google_login_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/accedi_login_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

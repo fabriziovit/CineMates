@@ -41,10 +41,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         RegistratiButton(binding);
-        //LoginButton(binding);
+        LoginButton(binding);
         PassDimenticata(binding);
         Keyboard(binding);
-        TempButton(binding);
 
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         //updateUI(currentUser);
     }
 
-    /*private void updateUI(FirebaseUser user) {
+    private void updateUI(FirebaseUser user) {
         hideProgressBar();
         if (user != null) {
             mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
@@ -87,58 +86,9 @@ public class LoginActivity extends AppCompatActivity {
             mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
             mBinding.signedInButtons.setVisibility(View.GONE);
         }
-    }*/
+    }
 
 
-
-
-
-
-        /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        callbackManager = CallbackManager.Factory.create();
-
-        //Password ed email errati mostra scritta errorePassEmail
-        /*if(email && password != db.email && db.password){
-            errorePassEmail.setVisibility(View.VISIBLE);
-        }*/
-
-
-
-        /*googleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(LoginActivity.this, "Hello", Toast.LENGTH_LONG).show();
-                switch (view.getId()) {
-                    case R.id.google_login_button:
-                        signIn();
-                        break;
-                    // ...
-                }
-            }
-        });
-
-        facebookLogin.registerCallback(callbackManager, new FacebookCallback<com.facebook.login.LoginResult>() {
-            @Override
-            public void onSuccess(com.facebook.login.LoginResult loginResult)
-            {
-                System.out.println("OK");
-            }
-
-            @Override
-            public void onCancel()
-            {
-                System.out.println("Cancellato");
-            }
-
-            @Override
-            public void onError(FacebookException error)
-            {
-                System.out.println("Non Funzionante");
-            }
-        });*/
-/*
     private void LoginButton(ActivityLoginBinding binding) {
         binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 
     private void PassDimenticata(ActivityLoginBinding binding) {
         binding.passwordDimLoginTextView.setOnClickListener(new View.OnClickListener() {
@@ -200,17 +150,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-        private void TempButton(ActivityLoginBinding binding) {
-            binding.tempbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                }
-            });
-        }
-
-
 }
 
 
@@ -228,77 +167,3 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };*/
-
-   /* private void loaduserProfile(AccessToken newAccessToken)
-    {
-        final GraphRequest request =  GraphRequest.newMeRequest(newAccessToken, new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response)
-            {
-                try {
-                    String first_name = object.getString("first_name");
-                    String last_name = object.getString("last_name");
-                    String email = object.getString("email");
-                    String id = object.getString("id");
-                    String image_url = "https://graph.facebook.com/"+id+"/picture?type=normal";
-
-                    /*
-                    txtEmail.setText(email);
-                    txtName.setText(first_name+" "+last_name);
-                    RequestOption requestOption = new RequestOption();
-                    requestOption.dontAnimate();
-                    Glide.with(LoginActivity.this).load(image_url).into(circleImageView);
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        Bundle parametres = new Bundle();
-        parametres.putString("fields", "first_name,last_name,email,id");
-        request.setParameters(parametres);
-        request.executeAsync();
-    }*/
-
-
-   /*
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }*/
-
-
-   /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-
-            Intent intent = new Intent(LoginActivity.this, RegistatiActivity.class);
-            startActivity(intent);
-
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("Errore", "signInResult:failed code=" + e.getStatusCode());
-        }
-    }
-    */
-
-    /*private void updateUi(GoogleSignInAccount model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }*/

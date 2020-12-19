@@ -36,7 +36,7 @@ public class RegistatiActivity extends AppCompatActivity {
 
         ControlloUsername(binding);
         ControlloPassword(binding);
-        //RegistratiButton(binding);
+        RegistratiButton(binding);
         KeyboardRegistrati(binding);
         BackButton(binding);
 
@@ -102,33 +102,17 @@ public class RegistatiActivity extends AppCompatActivity {
         }
 
 
-    /*private void updateUI(FirebaseUser user) {
-        hideProgressBar();
+    private void updateUI(FirebaseUser user) {
         if (user != null) {
-            mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
-            mBinding.emailPasswordButtons.setVisibility(View.GONE);
-            mBinding.emailPasswordFields.setVisibility(View.GONE);
-            mBinding.signedInButtons.setVisibility(View.VISIBLE);
-
             if (user.isEmailVerified()) {
-                mBinding.verifyEmailButton.setVisibility(View.GONE);
-            } else {
-                mBinding.verifyEmailButton.setVisibility(View.VISIBLE);
+                startActivity(new Intent(RegistatiActivity.this, ConfermaRegistrazioneActivity.class));
+            }else{
+
             }
-        } else {
-            mBinding.status.setText(R.string.signed_out);
-            mBinding.detail.setText(null);
-
-            mBinding.emailPasswordButtons.setVisibility(View.VISIBLE);
-            mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
-            mBinding.signedInButtons.setVisibility(View.GONE);
         }
-    }*/
+    }
 
-        /*private void RegistratiButton(ActivityRegistatiBinding binding){
+        private void RegistratiButton(ActivityRegistatiBinding binding){
             binding.registratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -138,27 +122,20 @@ public class RegistatiActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            // Sign in success, update UI with the signed-in user's information
-                                            Log.d("Successo", "createUserWithEmail:success");
-                                            FirebaseUser user = mAuth.getCurrentUser();
-                                            //updateUI(user);
+                                            Toast.makeText(RegistatiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(RegistatiActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                            finish();
                                         } else {
-                                            // If sign in fails, display a message to the user.
-                                            Log.w("Errore", "createUserWithEmail:failure", task.getException());
-                                            Toast.makeText(RegistatiActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                            updateUI(null);
+                                            Toast.makeText(RegistatiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
                                         }
-                                        // ...
                                     }
                                 });
                         String usernamevalue = binding.usernameRegistratiTextField.getText().toString();
-                        Intent intentConferma = new Intent(RegistatiActivity.this, ConfermaRegistrazioneActivity.class);
-                        intentConferma.putExtra(ConfermaRegistrazioneActivity.EXTRA_MAIN_TEXT, usernamevalue);
-                        startActivity(intentConferma);
                     }
                 }
             });
-        }*/
+        }
 
 
 

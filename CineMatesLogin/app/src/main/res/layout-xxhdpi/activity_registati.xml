@@ -12,16 +12,16 @@
         android:id="@+id/scrollview_registrati"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="-53dp"
+        tools:layout_editor_absoluteY="82dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_registrati"
             android:layout_width="wrap_content"
             android:layout_height="735dp"
-            android:minHeight="735dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:minHeight="735dp">
 
             <EditText
                 android:id="@+id/username_registrati_TextField"
@@ -146,6 +146,7 @@
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Disponibilità:"
                 android:textColor="#000000"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/password_registrati_TextField"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -159,6 +160,7 @@
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Le due password non corrispondono"
                 android:textColor="#CF1A21"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/registrati_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -174,6 +176,7 @@
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Disponibile"
                 android:textColor="#0F8851"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/password_registrati_TextField"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

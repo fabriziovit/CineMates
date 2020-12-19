@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alegreya_black</item>
+        <item>@font/alegreya_sans_extrabold</item>
+        <item>@font/alegreya_sc_bold_italic</item>
+        <item>@font/el_messiri_semibold</item>
         <item>@font/martel_sans_bold</item>
+        <item>@font/philosopher</item>
+        <item>@font/philosopher_italic</item>
     </array>
 </resources>
