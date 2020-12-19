@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton(binding);
         PassDimenticata(binding);
         Keyboard(binding);
-
+        
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
@@ -59,64 +59,34 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
     }
-
-    private void updateUI(FirebaseUser user) {
-        hideProgressBar();
-        if (user != null) {
-            mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
-            mBinding.emailPasswordButtons.setVisibility(View.GONE);
-            mBinding.emailPasswordFields.setVisibility(View.GONE);
-            mBinding.signedInButtons.setVisibility(View.VISIBLE);
-
-            if (user.isEmailVerified()) {
-                mBinding.verifyEmailButton.setVisibility(View.GONE);
-            } else {
-                mBinding.verifyEmailButton.setVisibility(View.VISIBLE);
-            }
-        } else {
-            mBinding.status.setText(R.string.signed_out);
-            mBinding.detail.setText(null);
-
-            mBinding.emailPasswordButtons.setVisibility(View.VISIBLE);
-            mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
-            mBinding.signedInButtons.setVisibility(View.GONE);
-        }
-    }
-
 
     private void LoginButton(ActivityLoginBinding binding) {
         binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signInWithEmailAndPassword(binding.usernameLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d("Successo", "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    updateUI(user);
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w("Errore", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
-                                    // ...
-                                }
-
-                                // ...
-                            }
-                        });
-
+                Accedi(binding);
             }
         });
+    }
+
+    private void Accedi(ActivityLoginBinding binding){
+        mAuth.signInWithEmailAndPassword(binding.emailLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Accesso Non Riuscito", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                });
+
     }
 
     private void PassDimenticata(ActivityLoginBinding binding) {
@@ -124,6 +94,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, PasswordDimenticataActivity.class));
+            }
+        });
+    }
+
+    private void Keyboard(ActivityLoginBinding binding) {
+        binding.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(binding.container.getWindowToken(), 0);
+                binding.emailLoginTextField.clearFocus();
+                binding.passwordLoginTextField.clearFocus();
             }
         });
     }
@@ -136,20 +118,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    private void Keyboard(ActivityLoginBinding binding) {
-        binding.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.container.getWindowToken(), 0);
-                binding.usernameLoginTextField.clearFocus();
-                binding.passwordLoginTextField.clearFocus();
-            }
-        });
-    }
-
 }
 
 

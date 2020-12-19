@@ -7,34 +7,34 @@
     <item
         android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/ic_home_focused"
+        android:icon="@drawable/ic_home"
         app:cnb_backgroundColor="@color/colorIcons"
-        app:cnb_iconColor="@color/colorIcons"
-        app:cnb_textColor="@color/colorIcons"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_textColor="@color/colorPrimary"/>
 
     <item
         android:id="@+id/search"
         android:title="Ricerca"
-        android:icon="@drawable/ic_search_focused"
+        android:icon="@drawable/ic_search"
         app:cnb_backgroundColor="@color/colorIcons"
-        app:cnb_iconColor="@color/colorIcons"
-        app:cnb_textColor="@color/colorIcons"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_textColor="@color/colorPrimary"/>
 
     <item
         android:id="@+id/amici"
         android:title="Amici"
-        android:icon="@drawable/ic_amici_focused"
+        android:icon="@drawable/ic_amici"
         app:cnb_backgroundColor="@color/colorIcons"
-        app:cnb_iconColor="@color/colorIcons"
-        app:cnb_textColor="@color/colorIcons"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_textColor="@color/colorPrimary"/>
 
     <item
         android:id="@+id/profilo"
         android:title="Profilo"
-        android:icon="@drawable/ic_person_focused"
+        android:icon="@drawable/ic_person"
         app:cnb_backgroundColor="@color/colorIcons"
-        app:cnb_iconColor="@color/colorIcons"
-        app:cnb_textColor="@color/colorIcons"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_textColor="@color/colorPrimary"/>
 
 
 </menu>

@@ -12,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CineMates.HomeActivity" />
         <activity android:name=".ui.CineMates.ResetPasswordActivity" />
         <activity android:name=".ui.CineMates.ConfermaRegistrazioneActivity" />
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
         <activity android:name=".ui.CineMates.RegistatiActivity" />
+        <activity android:name=".ui.CineMates.HomeActivity"/>
         <activity
             android:name=".ui.CineMates.LoginActivity"
             android:label="@string/app_name">
@@ -26,21 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

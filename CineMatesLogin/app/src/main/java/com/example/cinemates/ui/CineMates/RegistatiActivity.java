@@ -39,10 +39,8 @@ public class RegistatiActivity extends AppCompatActivity {
         RegistratiButton(binding);
         KeyboardRegistrati(binding);
         BackButton(binding);
-
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
         binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
-
     }
 
     @Override
@@ -50,7 +48,6 @@ public class RegistatiActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
     }
 
         private void ControlloPassword(ActivityRegistatiBinding binding){
@@ -101,37 +98,12 @@ public class RegistatiActivity extends AppCompatActivity {
             });
         }
 
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            if (user.isEmailVerified()) {
-                startActivity(new Intent(RegistatiActivity.this, ConfermaRegistrazioneActivity.class));
-            }else{
-
-            }
-        }
-    }
-
         private void RegistratiButton(ActivityRegistatiBinding binding){
             binding.registratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString())) {
-                        mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
-                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(RegistatiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(RegistatiActivity.this, LoginActivity.class);
-                                            startActivity(intent);
-                                            finish();
-                                        } else {
-                                            Toast.makeText(RegistatiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-                        String usernamevalue = binding.usernameRegistratiTextField.getText().toString();
+                       Registrati(binding);
                     }
                 }
             });
@@ -151,6 +123,23 @@ public class RegistatiActivity extends AppCompatActivity {
                 binding.confermapsswTextField.clearFocus();
             }
         });
+    }
+
+    private void Registrati(ActivityRegistatiBinding binding){
+        mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegistatiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegistatiActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(RegistatiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
 

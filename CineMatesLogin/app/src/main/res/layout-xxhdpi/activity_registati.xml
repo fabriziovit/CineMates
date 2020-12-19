@@ -146,7 +146,6 @@
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Disponibilità:"
                 android:textColor="#000000"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/password_registrati_TextField"
                 app:layout_constraintStart_toStartOf="parent" />
 
