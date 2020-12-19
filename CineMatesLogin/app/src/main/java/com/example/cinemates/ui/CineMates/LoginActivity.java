@@ -41,9 +41,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         RegistratiButton(binding);
-        LoginButton(binding);
+        //LoginButton(binding);
         PassDimenticata(binding);
         Keyboard(binding);
+        TempButton(binding);
 
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -137,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println("Non Funzionante");
             }
         });*/
-
+/*
     private void LoginButton(ActivityLoginBinding binding) {
         binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     private void PassDimenticata(ActivityLoginBinding binding) {
         binding.passwordDimLoginTextView.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +201,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+        private void TempButton(ActivityLoginBinding binding) {
+            binding.tempbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                }
+            });
+        }
 
 
 }

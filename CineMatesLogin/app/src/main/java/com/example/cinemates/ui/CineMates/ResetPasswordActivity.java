@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.amplifyframework.core.Amplify;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
 import com.example.cinemates.databinding.ActivityResetPasswordBinding;
 
@@ -23,12 +22,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
         setContentView(view);
 
         backButton(binding);
-        resetPasswordButton(binding);
+        //resetPasswordButton(binding);
         keyboardReset(binding);
 
     }
 
-    private void resetPasswordButton(ActivityResetPasswordBinding binding){
+    /*private void resetPasswordButton(ActivityResetPasswordBinding binding){
         binding.resetResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +42,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 //Tornare al login se il risultato è corretto
             }
         });
-    }
+    }*/
 
     private void backButton(ActivityResetPasswordBinding binding){
         binding.backResetButton.setOnClickListener(new View.OnClickListener() {

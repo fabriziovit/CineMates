@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.amplifyframework.core.Amplify;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
 
 public class PasswordDimenticataActivity extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         setContentView(view);
         BackButton(binding);
         KeyboardPassDimenticata(binding);
-        ResetPassword(binding);
+        //ResetPassword(binding);
 
         binding.erroruserRecuperaTextView.setVisibility(View.INVISIBLE);
     }
@@ -38,7 +37,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         });
     }
 
-    private void ResetPassword(ActivityPasswordDimenticataBinding binding){
+    /*private void ResetPassword(ActivityPasswordDimenticataBinding binding){
         binding.recuperaRecuperaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +49,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
                 startActivity(new Intent(PasswordDimenticataActivity.this, ResetPasswordActivity.class));
             }
         });
-    }
+    }*/
 
 
     private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {

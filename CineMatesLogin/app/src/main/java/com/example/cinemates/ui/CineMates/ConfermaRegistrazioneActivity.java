@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.amplifyframework.core.Amplify;
-import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityConfermaRegistrazioneBinding;
 import com.example.cinemates.databinding.ActivityLoginBinding;
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
@@ -32,7 +30,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
         binding = ActivityConfermaRegistrazioneBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        ConfermaButton(binding);
+        //ConfermaButton(binding);
         BackButton(binding);
         KeyboardConferma(binding);
 
@@ -45,7 +43,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
     }
 
 
-        private void ConfermaButton(ActivityConfermaRegistrazioneBinding binding) {
+        /*private void ConfermaButton(ActivityConfermaRegistrazioneBinding binding) {
             binding.confermaButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -58,7 +56,7 @@ public class ConfermaRegistrazioneActivity extends AppCompatActivity {
                 }
                 //Tornare al login se il risultato è corretto
             });
-        }
+        }*/
 
     private void BackButton(ActivityConfermaRegistrazioneBinding binding){
         binding.backConfermaButton.setOnClickListener(new View.OnClickListener() {

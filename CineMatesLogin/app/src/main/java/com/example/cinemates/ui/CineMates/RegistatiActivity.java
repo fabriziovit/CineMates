@@ -36,7 +36,7 @@ public class RegistatiActivity extends AppCompatActivity {
 
         ControlloUsername(binding);
         ControlloPassword(binding);
-        RegistratiButton(binding);
+        //RegistratiButton(binding);
         KeyboardRegistrati(binding);
         BackButton(binding);
 
@@ -128,7 +128,7 @@ public class RegistatiActivity extends AppCompatActivity {
         }
     }*/
 
-        private void RegistratiButton(ActivityRegistatiBinding binding){
+        /*private void RegistratiButton(ActivityRegistatiBinding binding){
             binding.registratiButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -158,7 +158,7 @@ public class RegistatiActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+        }*/
 
 
 

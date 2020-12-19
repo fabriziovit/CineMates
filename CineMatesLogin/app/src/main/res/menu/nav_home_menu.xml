@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_focused"
+        app:cnb_backgroundColor="@color/colorIcons"
+        app:cnb_iconColor="@color/colorIcons"
+        app:cnb_textColor="@color/colorIcons"/>
+
+    <item
+        android:id="@+id/search"
+        android:title="Ricerca"
+        android:icon="@drawable/ic_search_focused"
+        app:cnb_backgroundColor="@color/colorIcons"
+        app:cnb_iconColor="@color/colorIcons"
+        app:cnb_textColor="@color/colorIcons"/>
+
+    <item
+        android:id="@+id/amici"
+        android:title="Amici"
+        android:icon="@drawable/ic_amici_focused"
+        app:cnb_backgroundColor="@color/colorIcons"
+        app:cnb_iconColor="@color/colorIcons"
+        app:cnb_textColor="@color/colorIcons"/>
+
+    <item
+        android:id="@+id/profilo"
+        android:title="Profilo"
+        android:icon="@drawable/ic_person_focused"
+        app:cnb_backgroundColor="@color/colorIcons"
+        app:cnb_iconColor="@color/colorIcons"
+        app:cnb_textColor="@color/colorIcons"/>
+
+
+</menu>
