@@ -14,7 +14,6 @@
     tools:context=".ui.CineMates.LoginActivity">
 
 
-
     <ImageView
         android:id="@+id/logo_icon"
         android:layout_width="235dp"
@@ -49,11 +48,11 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="4dp"
         android:drawableStart="@drawable/custom_lock_icon"
+        android:focusedByDefault="false"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
-        android:focusedByDefault="false"
         android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/passwordDim_login_textView"
         app:layout_constraintEnd_toEndOf="parent"

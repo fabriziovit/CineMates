@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.CineMates.RegistatiActivity">
+    tools:context=".ui.CineMates.RegistratiActivity">
 
     <ScrollView
         android:id="@+id/scrollview_registrati"
@@ -16,10 +16,11 @@
         tools:layout_editor_absoluteY="40dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_registrati"
             android:layout_width="match_parent"
             android:layout_height="745dp"
-            android:minHeight="745dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:minHeight="745dp">
 
             <EditText
                 android:id="@+id/username_registrati_TextField"
