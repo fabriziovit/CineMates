@@ -143,7 +143,7 @@ public class RegistratiActivity extends AppCompatActivity {
                             FirebaseUser rUser = mAuth.getCurrentUser();
                             String userId = rUser.getUid();
                             UserHelperClass userHelperClass = new UserHelperClass(userId, email, username);
-                            firebaseDatabase.getReference("users").child(userId)
+                            firebaseDatabase.getReference("users").child(userId).push()
                                 .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task){
