@@ -43,7 +43,7 @@
         android:text="Made by\nGianluca Pignieri - Fabrizio Vitale"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-        android:textColor="#2f2f2f"
+        android:textColor="#0D0D0D"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
