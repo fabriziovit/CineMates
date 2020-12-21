@@ -19,15 +19,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_splash.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_splash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_splash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SplashActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_API_30]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -38,6 +39,7 @@
       <list>
         <option value="resourceFile" />
         <option value="valueResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -57,6 +59,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-21T15:36:58.984Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CineMatesLogin" />
   </component>
   <component name="RecentsManager">
@@ -147,6 +150,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1608573671981">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608573671981" />
+    <state x="182" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608576533655">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="182" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608576533655" />
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608565374513">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -164,29 +175,57 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608557284292" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608399994453" />
-    <state width="1876" height="207" key="GridCell.Tab.0.bottom" timestamp="1608569532176">
+    <state width="1876" height="206" key="GridCell.Tab.0.bottom" timestamp="1608582021484">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608569532176" />
-    <state width="1876" height="207" key="GridCell.Tab.0.center" timestamp="1608569532176">
+    <state width="1876" height="206" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608582021484" />
+    <state width="1876" height="206" key="GridCell.Tab.0.center" timestamp="1608582021484">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="207" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608569532176" />
-    <state width="1876" height="207" key="GridCell.Tab.0.left" timestamp="1608569532176">
+    <state width="1876" height="206" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608582021484" />
+    <state width="1876" height="206" key="GridCell.Tab.0.left" timestamp="1608582021484">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="207" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608569532176" />
-    <state width="1876" height="207" key="GridCell.Tab.0.right" timestamp="1608569532176">
+    <state width="1876" height="206" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608582021484" />
+    <state width="1876" height="206" key="GridCell.Tab.0.right" timestamp="1608582021484">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="207" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608569532176" />
+    <state width="1876" height="206" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608582021484" />
+    <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1608573358377">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608573358377" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1608562347229">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1608562347229" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java</url>
+          <line>145</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java</url>
+          <line>148</line>
+          <properties method="onComplete">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

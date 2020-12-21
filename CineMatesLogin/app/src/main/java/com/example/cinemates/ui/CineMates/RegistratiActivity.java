@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -18,11 +19,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 
 public class RegistratiActivity extends AppCompatActivity {
     private ActivityRegistratiBinding binding;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class RegistratiActivity extends AppCompatActivity {
         setContentView(view);
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
         ControlloUsername(binding);
         ControlloPassword(binding);
@@ -49,64 +56,67 @@ public class RegistratiActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-        private void ControlloPassword(ActivityRegistratiBinding binding){
-            binding.confermapsswTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString()))
-                            ;
-                        else {
-                            binding.ErrorePasswordRegTextView.setVisibility(View.VISIBLE);
-                        }
-                    } else {
-                        binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
+    private void ControlloPassword(ActivityRegistratiBinding binding){
+        binding.confermapsswTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString()))
+                        ;
+                    else {
+                        binding.ErrorePasswordRegTextView.setVisibility(View.VISIBLE);
                     }
+                } else {
+                    binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
                 }
-            });
-        }
+            }
+        });
+    }
 
-        private void ControlloUsername(ActivityRegistratiBinding binding) {
-            binding.usernameRegistratiTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        if (binding.usernameRegistratiTextField.getText().toString() != null/* && QUERY USERNAME NON ESISTENTE*/) {
-                            binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
-                            binding.risDisponibilitaRegistratiTextView.setText("Disponibile");
-                            binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.verdeDis));
+    private void ControlloUsername(ActivityRegistratiBinding binding) {
+        binding.usernameRegistratiTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (binding.usernameRegistratiTextField.getText().toString() != null/* && QUERY USERNAME NON ESISTENTE*/) {
+                        binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
+                        binding.risDisponibilitaRegistratiTextView.setText("Disponibile");
+                        binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.verdeDis));
                     /*}else{
                         binding.risDisponibilitaRegistratiTextView.setVisibility(View.VISIBLE);
                         binding.risDisponibilitaRegistratiTextView.setText("Non Disponibile");
                         binding.risDisponibilitaRegistratiTextView.setTextColor(getResources().getColor(R.color.rossoDis));
                     }*/
-                        } else {
-                            binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
-                        }
+                    } else {
+                        binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
                     }
                 }
-            });
-        }
+            }
+        });
+    }
 
-        private void BackButton(ActivityRegistratiBinding binding){
-            binding.backRegistratiButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(RegistratiActivity.this, LoginActivity.class));
-                }
-            });
-        }
+    private void BackButton(ActivityRegistratiBinding binding){
+        binding.backRegistratiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistratiActivity.this, LoginActivity.class));
+            }
+        });
+    }
 
-        private void RegistratiButton(ActivityRegistratiBinding binding){
-            binding.registratiButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString())) {
-                       Registrati(binding);
-                    }
+    private void RegistratiButton(ActivityRegistratiBinding binding){
+        binding.registratiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString())) {
+                    //Get Value from all Field
+                    String email = binding.emailRegistratiTextField.getText().toString();
+                    String username = binding.usernameRegistratiTextField.getText().toString();
+                    Registrati(binding, email, username);
                 }
-            });
-        }
+            }
+        });
+    }
 
 
 
@@ -124,24 +134,30 @@ public class RegistratiActivity extends AppCompatActivity {
         });
     }
 
-    private void Registrati(ActivityRegistratiBinding binding){
+    private void Registrati(ActivityRegistratiBinding binding, String email, String username){
         mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
+                            FirebaseUser rUser = mAuth.getCurrentUser();
+                            String userId = rUser.getUid();
+                            UserHelperClass userHelperClass = new UserHelperClass(userId, email, username);
+                            firebaseDatabase.getReference("users").child(userId)
+                                .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task){
+                                        Log.d("FIRESTORE", "Task completato!");
+                                        Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
                         } else {
                             Toast.makeText(RegistratiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
-
-
-
 
 }
