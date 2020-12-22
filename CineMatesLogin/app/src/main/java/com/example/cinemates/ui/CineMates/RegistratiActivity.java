@@ -29,6 +29,7 @@ public class RegistratiActivity extends AppCompatActivity {
     private ActivityRegistratiBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class RegistratiActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("users");
 
         ControlloUsername(binding);
         ControlloPassword(binding);
@@ -137,12 +139,10 @@ public class RegistratiActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser rUser = mAuth.getCurrentUser();
-                            String userId = rUser.getUid();
                             //Get Value from all Field
                             String email = binding.emailRegistratiTextField.getText().toString();
                             String username = binding.usernameRegistratiTextField.getText().toString();
-                            DataSet(userId, email, username);
+                            DataSet(email, username);
                         } else {
                             Toast.makeText(RegistratiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
                         }
@@ -150,9 +150,11 @@ public class RegistratiActivity extends AppCompatActivity {
                 });
     }
 
-    private void DataSet(String uId, String email, String username){
+    private void DataSet(String email, String username){
+        FirebaseUser rUser = mAuth.getCurrentUser();
+        String uId = rUser.getUid();
         UserHelperClass userHelperClass = new UserHelperClass(uId, email, username);
-        firebaseDatabase.getReference("users").child(uId).push()
+        databaseReference.child(uId).child("username").push()
                 .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
