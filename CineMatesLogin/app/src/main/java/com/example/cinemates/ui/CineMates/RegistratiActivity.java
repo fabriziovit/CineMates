@@ -109,10 +109,7 @@ public class RegistratiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString())) {
-                    //Get Value from all Field
-                    String email = binding.emailRegistratiTextField.getText().toString();
-                    String username = binding.usernameRegistratiTextField.getText().toString();
-                    Registrati(binding, email, username);
+                    Registrati(binding);
                 }
             }
         });
@@ -134,7 +131,7 @@ public class RegistratiActivity extends AppCompatActivity {
         });
     }
 
-    private void Registrati(ActivityRegistratiBinding binding, String email, String username){
+    private void Registrati(ActivityRegistratiBinding binding) {
         mAuth.createUserWithEmailAndPassword(binding.emailRegistratiTextField.getText().toString(), binding.passwordRegistratiTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,22 +139,30 @@ public class RegistratiActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser rUser = mAuth.getCurrentUser();
                             String userId = rUser.getUid();
-                            UserHelperClass userHelperClass = new UserHelperClass(userId, email, username);
-                            firebaseDatabase.getReference("users").child(userId).push()
-                                .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task){
-                                        Log.d("FIRESTORE", "Task completato!");
-                                        Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                    }
-                                });
+                            //Get Value from all Field
+                            String email = binding.emailRegistratiTextField.getText().toString();
+                            String username = binding.usernameRegistratiTextField.getText().toString();
+                            DataSet(userId, email, username);
                         } else {
                             Toast.makeText(RegistratiActivity.this, "Registrazione Errata", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
+
+    private void DataSet(String uId, String email, String username){
+        UserHelperClass userHelperClass = new UserHelperClass(uId, email, username);
+        firebaseDatabase.getReference("users").child(uId).push()
+                .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d("FIRESTORE", "Task completato!");
+                Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
 }

@@ -14,11 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,26 +169,26 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608557284292" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608399994453" />
-    <state width="1876" height="206" key="GridCell.Tab.0.bottom" timestamp="1608585648683">
+    <state width="1876" height="82" key="GridCell.Tab.0.bottom" timestamp="1608649199187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="206" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608585648683" />
-    <state width="1876" height="206" key="GridCell.Tab.0.center" timestamp="1608585648683">
+    <state width="1876" height="82" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608649199187" />
+    <state width="1876" height="82" key="GridCell.Tab.0.center" timestamp="1608649199187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="206" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608585648683" />
-    <state width="1876" height="206" key="GridCell.Tab.0.left" timestamp="1608585648683">
+    <state width="1876" height="82" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608649199187" />
+    <state width="1876" height="82" key="GridCell.Tab.0.left" timestamp="1608649199187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="206" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608585648683" />
-    <state width="1876" height="206" key="GridCell.Tab.0.right" timestamp="1608585648683">
+    <state width="1876" height="82" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608649199187" />
+    <state width="1876" height="82" key="GridCell.Tab.0.right" timestamp="1608649199187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="102" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608567192944" />
-    <state width="1876" height="206" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608585648683" />
+    <state width="1876" height="82" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608649199187" />
     <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1608573358377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -201,21 +197,5 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1608562347229" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
