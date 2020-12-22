@@ -15,12 +15,19 @@ import android.widget.Toast;
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityRegistratiBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
@@ -30,6 +37,8 @@ public class RegistratiActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private FirebaseFirestore db;
+    UserHelperClass userHelperClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,8 @@ public class RegistratiActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
+        db = FirebaseFirestore.getInstance();
+        userHelperClass = new UserHelperClass();
 
         ControlloUsername(binding);
         ControlloPassword(binding);
@@ -118,7 +129,6 @@ public class RegistratiActivity extends AppCompatActivity {
     }
 
 
-
     private void KeyboardRegistrati(ActivityRegistratiBinding binding){
         binding.constraintRegistrati.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,17 +163,28 @@ public class RegistratiActivity extends AppCompatActivity {
     private void DataSet(String email, String username){
         FirebaseUser rUser = mAuth.getCurrentUser();
         String uId = rUser.getUid();
-        UserHelperClass userHelperClass = new UserHelperClass(uId, email, username);
-        databaseReference.child(uId).child("username").push()
-                .setValue(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.d("FIRESTORE", "Task completato!");
-                Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+        userHelperClass.setEmail(email);
+        userHelperClass.setUid(uId);
+        userHelperClass.setUsername(username);
+
+        db.collection("users")
+                .add(userHelperClass)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Success", "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Log.d("FIRESTORE", "Task completato!");
+                        Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Errore", "Error adding document", e);
+                    }
+                });
     }
 
 

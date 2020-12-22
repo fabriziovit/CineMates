@@ -40,6 +40,8 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -64,6 +66,13 @@ public class LoginActivity extends AppCompatActivity {
         PassDimenticata(binding);
         Keyboard(binding);
         googleButton(binding);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        System.out.println(FirebaseDatabase.getInstance());
+        DatabaseReference myRef = database.getReference("/");
+        myRef.setValue("Hello, Pene!");
+
         
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
