@@ -68,11 +68,6 @@ public class LoginActivity extends AppCompatActivity {
         googleButton(binding);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        System.out.println(FirebaseDatabase.getInstance());
-        DatabaseReference myRef = database.getReference("/");
-        myRef.setValue("Hello, Pene!");
-
         
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

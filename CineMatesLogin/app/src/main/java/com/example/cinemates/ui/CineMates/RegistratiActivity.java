@@ -168,23 +168,15 @@ public class RegistratiActivity extends AppCompatActivity {
         userHelperClass.setUsername(username);
 
         db.collection("users")
-                .add(userHelperClass)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Success", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        Log.d("FIRESTORE", "Task completato!");
-                        Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Errore", "Error adding document", e);
-                    }
-                });
+                .document(uId).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d("FIRESTORE", "Task completato!");
+                Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
