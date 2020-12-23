@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(intent);
                                 finish();

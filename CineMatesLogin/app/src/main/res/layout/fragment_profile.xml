@@ -1,18 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_profile_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ProfileFragment">
+    tools:context=".ui.CineMates.Fragment.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/logo_profile_fragment"
+        android:layout_width="316dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logo_small"
+        app:layout_constraintBottom_toTopOf="@+id/avatar_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/avatar_profile_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="59dp"
+        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_profile_fragment"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
+
     <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile"
-        android:textSize="26sp"
-        android:textColor="#ffffff"/>
+        android:id="@+id/username_profile_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/philosopher"
+        android:text="myUsername"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/email_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment"
+        app:layout_constraintTop_toBottomOf="@+id/logo_profile_fragment" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/email_profile_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="97dp"
+        android:fontFamily="@font/philosopher"
+        android:text="email@myexample.com"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment" />
+
+    <Button
+        android:id="@+id/visualizzaPreferiti_profile_fragment"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/mybutton_radius"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Visualizza Lista Preferiti"
+        app:layout_constraintBottom_toTopOf="@+id/modificaUsername_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/modificaPassword_profile_fragment"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="81dp"
+        android:background="@drawable/mybutton_radius"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Modifica Password"
+        app:layout_constraintBottom_toTopOf="@+id/logout_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/modificaUsername_profile_fragment"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/mybutton_radius"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Modifica Nome Utente"
+        app:layout_constraintBottom_toTopOf="@+id/modificaPassword_profile_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logout_profile_fragment"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="87dp"
+        android:background="@drawable/mybutton_radius_red"
+        android:text="Effettua Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

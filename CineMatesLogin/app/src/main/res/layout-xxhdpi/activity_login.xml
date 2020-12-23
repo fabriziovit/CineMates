@@ -177,6 +177,7 @@
         android:fontFamily="@font/martel_sans_bold"
         android:text="Email e/o password errate"
         android:textColor="#CF1A21"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/accedi_login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

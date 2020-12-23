@@ -8,44 +8,8 @@
     tools:context="com.example.cinemates.ui.CineMates.HomeActivity">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/scrittaLogo_TextView"
-            android:layout_width="294dp"
-            android:layout_height="71dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/philosopher"
-            android:text="CineMates"
-            android:textColor="@color/colorPrimary"
-            android:textSize="64sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="68dp"
-            android:layout_height="83dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher_foreground" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="97dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fragment_home_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

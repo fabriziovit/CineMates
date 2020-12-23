@@ -35,8 +35,6 @@ import java.util.HashMap;
 public class RegistratiActivity extends AppCompatActivity {
     private ActivityRegistratiBinding binding;
     private FirebaseAuth mAuth;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
     private FirebaseFirestore db;
     UserHelperClass userHelperClass;
 
@@ -48,8 +46,6 @@ public class RegistratiActivity extends AppCompatActivity {
         setContentView(view);
 
         mAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("users");
         db = FirebaseFirestore.getInstance();
         userHelperClass = new UserHelperClass();
 
@@ -166,13 +162,14 @@ public class RegistratiActivity extends AppCompatActivity {
         userHelperClass.setEmail(email);
         userHelperClass.setUid(uId);
         userHelperClass.setUsername(username);
+        userHelperClass.setImageUrl("default");
 
         db.collection("users")
                 .document(uId).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d("FIRESTORE", "Task completato!");
-                Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

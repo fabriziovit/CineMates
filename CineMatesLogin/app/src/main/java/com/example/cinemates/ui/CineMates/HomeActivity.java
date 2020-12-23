@@ -4,21 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.cinemates.FriendsFragment;
-import com.example.cinemates.HomeFragment;
-import com.example.cinemates.ProfileFragment;
+import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
+import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
+import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.R;
-import com.example.cinemates.SearchFragment;
+import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
 import com.example.cinemates.databinding.ActivityHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class HomeActivity extends AppCompatActivity {
@@ -46,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
             fragmentManager = getSupportFragmentManager();
             HomeFragment homeFragment = new HomeFragment();
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, homeFragment)
+                    .replace(R.id.fragment_home_container, homeFragment)
                     .commit();
         }
 
@@ -72,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(fragment!=null){
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, fragment)
+                            .replace(R.id.fragment_home_container, fragment)
                             .commit();
                 }else {
                     Log.e(TAG, "Error in creating fragment");
