@@ -13,41 +13,41 @@
         android:layout_width="316dp"
         android:layout_height="149dp"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="45dp"
         android:src="@drawable/logo_small"
         app:layout_constraintBottom_toTopOf="@+id/avatar_profile_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar_profile_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="59dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="36dp"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
         app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_profile_fragment"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@mipmap/profile_pic" />
 
     <TextView
         android:id="@+id/username_profile_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="35dp"
         android:fontFamily="@font/philosopher"
         android:text="myUsername"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/email_profile_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment"
-        app:layout_constraintTop_toBottomOf="@+id/logo_profile_fragment" />
+        app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment" />
 
     <TextView
         android:id="@+id/email_profile_fragment"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginEnd="14dp"
-        android:layout_marginBottom="97dp"
+        android:layout_marginBottom="52dp"
         android:fontFamily="@font/philosopher"
         android:text="email@myexample.com"
         android:textColor="@color/colorPrimary"

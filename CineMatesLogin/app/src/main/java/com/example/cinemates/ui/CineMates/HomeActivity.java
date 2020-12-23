@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.cinemates.databinding.FragmentProfileBinding;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
@@ -28,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,8 @@ public class HomeActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int id) {
-                Fragment fragment = null;
+                boolean isProfile = false;
+                fragment = null;
                 switch (id){
                     case R.id.main:
                         fragment = new HomeFragment();
@@ -60,14 +64,22 @@ public class HomeActivity extends AppCompatActivity {
                         fragment = new SearchFragment();
                         break;
                     case R.id.profilo:
-                        fragment = new ProfileFragment();
+                        isProfile = true;
+                        new Thread(()->{
+                            Bitmap profilePic = ProfileFragment.getBitmapFromdownload("https://better-default-discord.netlify.app/Icons/Gradient-Gray.png");
+                            fragment = new ProfileFragment(profilePic);
+                            fragmentManager = getSupportFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_home_container, fragment)
+                                    .commit();
+                        }).start();
                         break;
                     case R.id.amici:
                         fragment = new FriendsFragment();
                         break;
                 }
 
-                if(fragment!=null){
+                if(fragment!=null && !isProfile){
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_home_container, fragment)
