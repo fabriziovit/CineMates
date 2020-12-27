@@ -175,6 +175,4 @@ public class RegistratiActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

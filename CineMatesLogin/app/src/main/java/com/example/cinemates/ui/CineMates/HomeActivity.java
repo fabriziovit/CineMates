@@ -19,6 +19,7 @@ import com.example.cinemates.databinding.ActivityHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,11 +27,8 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     ChipNavigationBar bottomNav;
     FragmentManager fragmentManager;
-
-    private FirebaseUser firebaseUser;
-    private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
     Fragment fragment;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        db = FirebaseFirestore.getInstance();
 
         bottomNav =  binding.navHomeMenu;
 
@@ -67,11 +65,13 @@ public class HomeActivity extends AppCompatActivity {
                         isProfile = true;
                         new Thread(()->{
                             Bitmap profilePic = ProfileFragment.getBitmapFromdownload("https://better-default-discord.netlify.app/Icons/Gradient-Gray.png");
-                            fragment = new ProfileFragment(profilePic);
+                            String usernameText = ProfileFragment.getUsernameText(db);
+                            fragment = new ProfileFragment(profilePic, usernameText);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)
                                     .commit();
+
                         }).start();
                         break;
                     case R.id.amici:

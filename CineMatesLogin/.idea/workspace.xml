@@ -14,6 +14,10 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/UserHelperClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/UserHelperClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,11 +156,15 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="158" y="87" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1608732646896" />
-    <state x="510" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1608736212050">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1609077431415">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="510" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1608736212050" />
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608573671981" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609077431415" />
+    <state x="832" y="437" key="#com.intellij.refactoring.introduceParameter.EnclosingMethodSelectonDialog" timestamp="1609077181212">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="832" y="437" key="#com.intellij.refactoring.introduceParameter.EnclosingMethodSelectonDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609077181212" />
     <state x="182" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608576533655">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -183,37 +191,53 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608557284292" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744757497" />
-    <state width="1876" height="158" key="GridCell.Tab.0.bottom" timestamp="1608748356327">
+    <state width="1876" height="288" key="GridCell.Tab.0.bottom" timestamp="1609081196124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608740931300" />
-    <state width="1876" height="158" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608748356327" />
-    <state width="1876" height="158" key="GridCell.Tab.0.center" timestamp="1608748356327">
+    <state width="1876" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609081196124" />
+    <state width="1876" height="288" key="GridCell.Tab.0.center" timestamp="1609081196124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608740931300" />
-    <state width="1876" height="158" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608748356327" />
-    <state width="1876" height="158" key="GridCell.Tab.0.left" timestamp="1608748356327">
+    <state width="1876" height="288" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609081196124" />
+    <state width="1876" height="288" key="GridCell.Tab.0.left" timestamp="1609081196124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608740931300" />
-    <state width="1876" height="158" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608748356327" />
-    <state width="1876" height="158" key="GridCell.Tab.0.right" timestamp="1608748356327">
+    <state width="1876" height="288" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609081196124" />
+    <state width="1876" height="288" key="GridCell.Tab.0.right" timestamp="1609081196124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608740931300" />
-    <state width="1876" height="158" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608748356327" />
+    <state width="1876" height="288" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609081196124" />
     <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1608744728418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744728418" />
+    <state x="755" y="267" key="refactoring.ChangeSignatureDialog" timestamp="1609077184607">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="755" y="267" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609077184607" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1608744298858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744298858" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1608562347229">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup" timestamp="1609078726830">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1608562347229" />
+    <state x="455" y="2" width="1008" height="1037" key="search.everywhere.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609078726830" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/ProfileFragment.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
