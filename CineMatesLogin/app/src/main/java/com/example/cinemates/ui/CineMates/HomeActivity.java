@@ -62,7 +62,8 @@ public class HomeActivity extends AppCompatActivity {
                         new Thread(()->{
                             Bitmap profilePic = ProfileFragment.getBitmapFromdownload("https://better-default-discord.netlify.app/Icons/Gradient-Gray.png");
                             String usernameText = ProfileFragment.getUsernameText(db, FirebaseAuth.getInstance().getUid());
-                            fragment = new ProfileFragment(profilePic, usernameText);
+                            String emailText = ProfileFragment.getEmailText(db, FirebaseAuth.getInstance().getUid());
+                            fragment = new ProfileFragment(profilePic, usernameText, emailText);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)

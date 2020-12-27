@@ -48,9 +48,8 @@ public class ProfileFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private Bitmap bitmap;
     private String usernameText;
+    private String emailText;
     private static FirebaseFirestore db;
-    DocumentSnapshot document;
-    FirebaseAuth firebaseAuth;
 
 
     // TODO: Rename and change types of parameters
@@ -61,9 +60,10 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public ProfileFragment(Bitmap profilePic, String usernameText){
+    public ProfileFragment(Bitmap profilePic, String usernameText, String emailText){
         this.bitmap = profilePic;
         this.usernameText = usernameText;
+        this.emailText = emailText;
     }
 
     /**
@@ -102,6 +102,8 @@ public class ProfileFragment extends Fragment {
         circleImageView.setImageBitmap(bitmap);
         Button logoutbtn =  view.findViewById(R.id.logout_profile_fragment);
         TextView usernameTextView = view.findViewById(R.id.username_profile_fragment);
+        TextView emailTextView = view.findViewById(R.id.email_profile_fragment);
+        emailTextView.setText(emailText);
         usernameTextView.setText(usernameText);
         logout(logoutbtn);
         return view;
@@ -138,7 +140,6 @@ public class ProfileFragment extends Fragment {
     }
 
     public static String getUsernameText(FirebaseFirestore db , String uid) {
-        String username = "";
         final SettableFuture<DocumentSnapshot> future = SettableFuture.create();
         DocumentReference docRef = db.collection("users").document(uid);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -156,6 +157,30 @@ public class ProfileFragment extends Fragment {
               return ds.getString("username");
           else
               return "";
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String getEmailText(FirebaseFirestore db , String uid) {
+        final SettableFuture<DocumentSnapshot> future = SettableFuture.create();
+        DocumentReference docRef = db.collection("users").document(uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    future.set(document);
+                }
+            }
+        });
+        try{
+            DocumentSnapshot ds = future.get();
+            if(ds.exists())
+                return ds.getString("email");
+            else
+                return "";
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return "";
