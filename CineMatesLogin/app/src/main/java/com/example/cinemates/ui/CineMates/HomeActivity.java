@@ -1,24 +1,20 @@
 package com.example.cinemates.ui.CineMates;
 
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import com.example.cinemates.databinding.FragmentProfileBinding;
+import com.example.cinemates.R;
+import com.example.cinemates.databinding.ActivityHomeBinding;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
-import com.example.cinemates.databinding.ActivityHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -65,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
                         isProfile = true;
                         new Thread(()->{
                             Bitmap profilePic = ProfileFragment.getBitmapFromdownload("https://better-default-discord.netlify.app/Icons/Gradient-Gray.png");
-                            String usernameText = ProfileFragment.getUsernameText(db);
+                            String usernameText = ProfileFragment.getUsernameText(db, FirebaseAuth.getInstance().getUid());
                             fragment = new ProfileFragment(profilePic, usernameText);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
@@ -84,8 +80,6 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_home_container, fragment)
                             .commit();
-                }else {
-                    Log.e(TAG, "Error in creating fragment");
                 }
             }
         });

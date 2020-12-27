@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.util.concurrent.SettableFuture;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,6 +50,7 @@ public class ProfileFragment extends Fragment {
     private String usernameText;
     private static FirebaseFirestore db;
     DocumentSnapshot document;
+    FirebaseAuth firebaseAuth;
 
 
     // TODO: Rename and change types of parameters
@@ -135,26 +137,29 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    public static String getUsernameText(FirebaseFirestore db) {
+    public static String getUsernameText(FirebaseFirestore db , String uid) {
         String username = "";
-        DocumentReference docRef = db.collection("users").document(FirebaseAuth.getInstance().getUid());
+        final SettableFuture<DocumentSnapshot> future = SettableFuture.create();
+        DocumentReference docRef = db.collection("users").document(uid);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        username.concat(document.getString("username"));
-                    } else {
-                        Log.d("Errore", "No such document");
-                    }
-                } else {
-                    Log.d("Eccezione", "get failed with ", task.getException());
+                    future.set(document);
                 }
-
             }
         });
-        return username;
+        try{
+          DocumentSnapshot ds = future.get();
+          if(ds.exists())
+              return ds.getString("username");
+          else
+              return "";
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 
