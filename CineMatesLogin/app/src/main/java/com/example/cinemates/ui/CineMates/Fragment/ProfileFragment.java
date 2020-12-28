@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -91,7 +92,6 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -103,8 +103,12 @@ public class ProfileFragment extends Fragment {
         Button logoutbtn =  view.findViewById(R.id.logout_profile_fragment);
         TextView usernameTextView = view.findViewById(R.id.username_profile_fragment);
         TextView emailTextView = view.findViewById(R.id.email_profile_fragment);
+        Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_profile_fragment);
+
         emailTextView.setText(emailText);
         usernameTextView.setText(usernameText);
+
+        modificaCredenzialiBtn(modificaCredenzialiBtn);
         logout(logoutbtn);
         return view;
     }
@@ -133,8 +137,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+    }
+
+    private void modificaCredenzialiBtn(Button modificaBtn){
+        modificaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CredenzialiProfiloActivity.class));
             }
         });
     }

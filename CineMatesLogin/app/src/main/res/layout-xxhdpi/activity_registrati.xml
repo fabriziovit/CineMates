@@ -32,7 +32,7 @@
                 android:layout_marginBottom="15dp"
                 android:drawableStart="@drawable/custom_username_icon"
                 android:hint="Inserisci il tuo username"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:selectAllOnFocus="true"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/risDisponibilita_registrati_TextView"
@@ -145,7 +145,7 @@
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/martel_sans_semibold"
                 android:text="Disponibilità:"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 app:layout_constraintBottom_toTopOf="@+id/password_registrati_TextField"
                 app:layout_constraintStart_toStartOf="parent" />
 
