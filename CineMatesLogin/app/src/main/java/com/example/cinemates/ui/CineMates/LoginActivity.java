@@ -209,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Accesso Non Riuscito", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Accesso Non Riuscito, Controlla i dati!", Toast.LENGTH_SHORT).show();
                             }
                         }
 

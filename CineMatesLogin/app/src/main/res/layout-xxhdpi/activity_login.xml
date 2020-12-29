@@ -84,6 +84,7 @@
         android:drawableStart="@drawable/custom_email_icon"
         android:focusedByDefault="false"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/password_login_TextField"
         app:layout_constraintEnd_toEndOf="parent"

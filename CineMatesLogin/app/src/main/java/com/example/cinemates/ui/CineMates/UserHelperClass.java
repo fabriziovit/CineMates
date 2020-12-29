@@ -1,7 +1,7 @@
 package com.example.cinemates.ui.CineMates;
 
 import com.google.firebase.database.IgnoreExtraProperties;
-import java.util.List;
+
 import java.util.Objects;
 
 @IgnoreExtraProperties
@@ -10,18 +10,16 @@ public class UserHelperClass {
     String email;
     String username;
     String imageUrl;
-    List<String> profilo;
 
     public UserHelperClass(){
 
     }
 
-    public UserHelperClass(String uid, String email, String username, String imageUrl, List<String> profilo) {
+    public UserHelperClass(String uid, String email, String username, String imageUrl) {
         this.uid = uid;
         this.email = email;
         this.username = username;
         this.imageUrl = imageUrl;
-        this.profilo = profilo;
     }
 
     public String getEmail() {
@@ -54,14 +52,6 @@ public class UserHelperClass {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public List<String> getProfilo() {
-        return profilo;
-    }
-
-    public void setProfilo(List<String> profilo) {
-        this.profilo = profilo;
     }
 
     private String getDefinedValue(String s) {
@@ -104,12 +94,11 @@ public class UserHelperClass {
         return Objects.equals(username, userHelperClass.username)
                 && Objects.equals(uid, userHelperClass.uid)
                 && Objects.equals(email, userHelperClass.email)
-                && Objects.equals(imageUrl, userHelperClass.imageUrl)
-                && Objects.equals(profilo, userHelperClass.profilo);
+                && Objects.equals(imageUrl, userHelperClass.imageUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, username, email, imageUrl, profilo);
+        return Objects.hash(uid, username, email, imageUrl);
     }
 }

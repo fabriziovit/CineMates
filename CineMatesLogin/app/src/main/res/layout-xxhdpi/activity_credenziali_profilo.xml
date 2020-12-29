@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_credenziali"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBack"
+    tools:context=".ui.CineMates.CredenzialiProfiloActivity">
+
+    <ImageView
+        android:id="@+id/logo_icon"
+        android:layout_width="242dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginBottom="45dp"
+        android:contentDescription="Logo CineMates"
+        app:layout_constraintBottom_toTopOf="@+id/reset_credenziali_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_small" />
+
+    <Button
+        android:id="@+id/reset_credenziali_Button"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="104dp"
+        android:background="@drawable/mybutton_radius"
+        android:text="Resetta"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/password_credenziali_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="50dp"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:ems="10"
+        android:hint="Inserire la nuova password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/confermaPass_credenziali_EditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/confermaPass_credenziali_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:ems="10"
+        android:hint="Conferma la password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/errorePassword_credenziali_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/reset_credenziali_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Modifica le credenziali"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/username_credenziali_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/back_credenziali_Button"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/back_icon_foreground" />
+
+    <EditText
+        android:id="@+id/username_credenziali_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="14dp"
+        android:drawableStart="@drawable/custom_username_icon"
+        android:ems="10"
+        android:hint="Inserire il nuovo username"
+        android:inputType="text"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/Disponibilta_credenziali_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/risDisponibilita_credenziali_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="37dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Disponibile"
+        android:textColor="#0F8851"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/password_credenziali_editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Disponibilta_credenziali_TextView" />
+
+    <TextView
+        android:id="@+id/Disponibilta_credenziali_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="37dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Disponibilità:"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/password_credenziali_editText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/errorePassword_credenziali_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="31dp"
+        android:fontFamily="@font/martel_sans_semibold"
+        android:text="Le due password non corrispondono"
+        android:textColor="#CF1A21"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/reset_credenziali_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
