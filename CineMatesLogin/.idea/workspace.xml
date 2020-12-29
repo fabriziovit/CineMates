@@ -16,9 +16,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ConfermaRegistrazioneActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SplashActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SplashActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/PasswordDimenticataActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/PasswordDimenticataActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ResetPasswordActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_conferma_registrazione.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_password_dimenticata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_password_dimenticata.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_reset_password.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_conferma_registrazione.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_password_dimenticata.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_reset_password.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,14 +82,15 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\gianl\StudioProjects\CineMates\CineMatesLogin\app\src\main\res\drawable" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gianl\StudioProjects\CineMates\CineMatesLogin\app\src\main\res\mipmap" />
+      <recent name="C:\Users\Fabrizio\AndroidStudioProjects\CineMates\CineMatesLogin\app" />
     </key>
     <key name="android.template.-1234173521">
       <recent name="com.example.cinemates.ui.CineMates" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Fabrizio\AndroidStudioProjects\CineMates\CineMatesLogin\app" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gianl\StudioProjects\CineMates\CineMatesLogin\app\src\main\res\drawable" />
     </key>
   </component>
   <component name="RunManager">
@@ -177,10 +194,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="182" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608576533655" />
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608565374513">
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609254591239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1608565374513" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1609254591239" />
     <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1608563098899">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -189,35 +206,35 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="221" y="96" key="AndroidCreateResourceDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1609248482467" />
-    <state x="332" y="147" key="AndroidCreateResourceFileDialog" timestamp="1608744718584">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="221" y="96" key="AndroidCreateResourceFileDialog" timestamp="1609258188298">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="221" y="96" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1608735773789" />
+    <state x="221" y="96" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1609258188298" />
     <state x="332" y="147" key="AndroidCreateResourceFileDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744718583" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1608744757497">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="493" y="180" key="FileChooserDialogImpl" timestamp="1609259660238">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608557284292" />
+    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744757497" />
-    <state width="1236" height="57" key="GridCell.Tab.0.bottom" timestamp="1609251463382">
+    <state width="1236" height="123" key="GridCell.Tab.0.bottom" timestamp="1609262224327">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="57" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609251463382" />
+    <state width="1236" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609262224327" />
     <state width="1876" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609102218306" />
-    <state width="1236" height="57" key="GridCell.Tab.0.center" timestamp="1609251463382">
+    <state width="1236" height="123" key="GridCell.Tab.0.center" timestamp="1609262224327">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="57" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609251463382" />
+    <state width="1236" height="123" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609262224327" />
     <state width="1876" height="288" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609102218306" />
-    <state width="1236" height="57" key="GridCell.Tab.0.left" timestamp="1609251463381">
+    <state width="1236" height="123" key="GridCell.Tab.0.left" timestamp="1609262224327">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="57" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609251463381" />
+    <state width="1236" height="123" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609262224327" />
     <state width="1876" height="288" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609102218306" />
-    <state width="1236" height="57" key="GridCell.Tab.0.right" timestamp="1609251463382">
+    <state width="1236" height="123" key="GridCell.Tab.0.right" timestamp="1609262224327">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="57" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609251463382" />
+    <state width="1236" height="123" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609262224327" />
     <state width="1876" height="288" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609102218306" />
     <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1608744728418">
       <screen x="0" y="0" width="1920" height="1040" />

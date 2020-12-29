@@ -104,11 +104,11 @@ public class RegistratiActivity extends AppCompatActivity {
                 if (binding.usernameRegistratiTextField.isFocused()) {
                     binding.usernameRegistratiTextField.clearFocus();
                 }
-                    if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString()) && !binding.risDisponibilitaRegistratiTextView.getText().toString().equals("Non Disponibile") && binding.passwordRegistratiTextField.getText().length() >= 6 && binding.usernameRegistratiTextField.getText().length() > 2 && binding.emailRegistratiTextField.getText().toString() != null)
-                        Registrati(binding);
-                    else
-                        Toast.makeText(RegistratiActivity.this, "Controlla i dati inseriti!", Toast.LENGTH_SHORT).show();
-                }
+                if (binding.confermapsswTextField.getText().toString().equals(binding.passwordRegistratiTextField.getText().toString()) && !binding.risDisponibilitaRegistratiTextView.getText().toString().equals("Non Disponibile") && binding.passwordRegistratiTextField.getText().length() >= 6 && binding.usernameRegistratiTextField.getText().length() > 2 && binding.emailRegistratiTextField.getText().toString() != null){
+                    Registrati(binding);
+                }else
+                    Toast.makeText(RegistratiActivity.this, "Controlla i dati inseriti!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

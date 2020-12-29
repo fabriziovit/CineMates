@@ -111,7 +111,10 @@ public class LoginActivity extends AppCompatActivity {
         binding.accediLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Accedi(binding);
+                if (binding.emailLoginTextField.getText().length() != 0 && binding.passwordLoginTextField.getText().length() != 0)
+                    Accedi(binding);
+                else
+                    Toast.makeText(LoginActivity.this, "Inserisci email e password per accedere", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -203,15 +206,15 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Accesso Non Riuscito, Controlla i dati!", Toast.LENGTH_SHORT).show();
-                            }
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Accesso Non Riuscito, Controlla i dati!", Toast.LENGTH_SHORT).show();
                         }
+                    }
 
                 });
 

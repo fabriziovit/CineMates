@@ -1,15 +1,20 @@
 package com.example.cinemates.ui.CineMates;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.databinding.ActivityPasswordDimenticataBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PasswordDimenticataActivity extends AppCompatActivity {
 
@@ -23,9 +28,8 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         setContentView(view);
         BackButton(binding);
         KeyboardPassDimenticata(binding);
-        //ResetPassword(binding);
+        ResetPassword(binding);
 
-        binding.erroruserRecuperaTextView.setVisibility(View.INVISIBLE);
     }
 
     private void BackButton(ActivityPasswordDimenticataBinding binding){
@@ -37,29 +41,37 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         });
     }
 
-    /*private void ResetPassword(ActivityPasswordDimenticataBinding binding){
+    private void ResetPassword(ActivityPasswordDimenticataBinding binding){
         binding.recuperaRecuperaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Amplify.Auth.resetPassword(
-                        binding.usernameRecuperaTextField.getText().toString(),
-                        result -> Log.i("AuthQuickstart", result.toString()),
-                        error -> Log.e("AuthQuickstart", error.toString())
-                );
-                startActivity(new Intent(PasswordDimenticataActivity.this, ResetPasswordActivity.class));
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String emailAddress = binding.emailRecuperaTextField.getText().toString();
+
+                auth.sendPasswordResetEmail(emailAddress)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("Success", "Email sent.");
+                                    startActivity(new Intent(PasswordDimenticataActivity.this, LoginActivity.class));
+                                    Toast.makeText(PasswordDimenticataActivity.this, "Email inviata! Controlla la tua email", Toast.LENGTH_SHORT).show();
+                                }else
+                                    Toast.makeText(PasswordDimenticataActivity.this, "Controlla i dati inseriti", Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
         });
-    }*/
+    }
 
 
     private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {
-        binding.constraintRecupera.setOnClickListener(new View.OnClickListener() {
+        binding.containerRecupera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(binding.constraintRecupera.getWindowToken(), 0);
+                inputMethodManager.hideSoftInputFromWindow(binding.containerRecupera.getWindowToken(), 0);
                 binding.emailRecuperaTextField.clearFocus();
-                binding.usernameRecuperaTextField.clearFocus();
             }
         });
     }

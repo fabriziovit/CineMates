@@ -1,18 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_search_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.SearchFragment">
+    tools:context=".ui.CineMates.Fragment.SearchFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Ricerca"
-        android:textSize="26sp"
-        android:textColor="#ffffff"/>
+        android:id="@+id/scrittaLogo_fragment_search"
+        android:layout_width="294dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/philosopher"
+        android:text="CineMates"
+        android:textColor="@color/colorPrimary"
+        android:textSize="64sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/homeButton_fragment_search"
+        android:layout_width="68dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/scrittaLogo_fragment_search"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+    <View
+        android:id="@+id/divider_fragment_search"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="1px"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_search" />
+
+    <TextView
+        android:id="@+id/cercaFilm_Textview_fragmentSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="167dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Cerca Film"
+        android:textColor="@android:color/black"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_search" />
+
+    <EditText
+        android:id="@+id/search_bar_fragmentSearch"
+        android:layout_width="280dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/search_layout"
+        android:ems="10"
+        android:fontFamily="@font/martel_sans_bold"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp"
+        android:hint="Ricerca....."
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/search_button_fragmentSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cercaFilm_Textview_fragmentSearch" />
+
+    <ImageView
+        android:id="@+id/search_button_fragmentSearch"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:src="@mipmap/ic_searchbar_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search_bar_fragmentSearch"
+        app:layout_constraintTop_toBottomOf="@+id/cercaFilm_Textview_fragmentSearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultFilm_fragmentSearch"
+        android:layout_width="match_parent"
+        android:layout_height="521dp"
+        android:layout_marginTop="280dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-6dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
