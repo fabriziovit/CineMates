@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.SettableFuture;
@@ -137,6 +138,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
                 Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
@@ -200,7 +202,28 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
-    //Settare il nome utente e l'email dell'utente con chiamata dal database
+    public static String getUrlImage(FirebaseFirestore db, String uid){
+        final SettableFuture<DocumentSnapshot> future = SettableFuture.create();
+        DocumentReference docRef = db.collection("users").document(uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    future.set(document);
+                }
+            }
+        });
+        try{
+            DocumentSnapshot ds = future.get();
+            if(ds.exists())
+                return ds.getString("imageUrl");
+            else
+                return "";
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 
 }

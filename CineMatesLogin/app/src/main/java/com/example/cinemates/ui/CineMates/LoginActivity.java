@@ -2,6 +2,7 @@ package com.example.cinemates.ui.CineMates;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -34,6 +36,13 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Random;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -42,15 +51,17 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager mCallbackManager;
-
-
+    FirebaseFirestore db;
+    final static String PREFS_NAME = "AUTH";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        db = FirebaseFirestore.getInstance();
 
         RegistratiButton(binding);
         LoginButton(binding);
@@ -58,10 +69,11 @@ public class LoginActivity extends AppCompatActivity {
         Keyboard(binding);
         googleButton(binding);
 
-
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
+
+        String token = settings.getString("auth_token", null);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -73,9 +85,9 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = binding.fbLoginButton;
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        LoginButton fbloginButton = binding.fbLoginButton;
+        fbloginButton.setReadPermissions("email", "public_profile");
+        fbloginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("Accesso", "facebook:onSuccess:" + loginResult);
@@ -151,7 +163,6 @@ public class LoginActivity extends AppCompatActivity {
                 // ...
             }
         }
-
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -165,14 +176,63 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Accesso", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            //controllo se già esiste e se non esiste aggiungo al db
+                            String uid = user.getUid();
+                            CollectionReference collectionReference = db.collection("users");
+                            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    int n = 0;
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        if (uid.equals(documentSnapshot.getString("uid"))) {
+                                            n = 1;
+                                            break;
+                                        }
+                                    }
+                                    if(n == 1){
+                                        Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                    }else{
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        if (user != null) {
+                                            String uid = user.getUid();
+                                            String username = "";
+                                            String email = "";
+                                            String photoUrl = null;
+                                            final Integer random = new Random().nextInt(140);
+                                            String numero = random.toString();
+                                            for (UserInfo profile : user.getProviderData()) {
+                                                // Id of the provider (ex: google.com)
+                                                String providerId = profile.getProviderId();
+                                                photoUrl = profile.getPhotoUrl().toString();
+                                                // Name, email address, and profile photo Url
+                                                username = profile.getDisplayName().replace(" ", ".")+numero;
+                                                email = profile.getEmail();
+                                            }
+                                            UserHelperClass userHelperClass = new UserHelperClass();
+                                            userHelperClass.setEmail(email);
+                                            userHelperClass.setUid(uid);
+                                            userHelperClass.setImageUrl(photoUrl);
+                                            userHelperClass.setUsername(username+numero);
+                                            db.collection("users")
+                                                    .document(uid).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Log.d("FIRESTORE", "Task completato!");
+                                                    Toast.makeText(LoginActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Errore", "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Accesso Non Riuscito", Toast.LENGTH_LONG).show();
                         }
-
-                        // ...
                     }
                 });
     }
@@ -189,8 +249,58 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Accesso", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                            String uid = user.getUid();
+                            CollectionReference collectionReference = db.collection("users");
+                            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    int n = 0;
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        if (uid.equals(documentSnapshot.getString("uid"))) {
+                                            n = 1;
+                                            break;
+                                        }
+                                    }
+
+                                    if(n == 1){
+                                        Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                    }else{
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        if (user != null) {
+                                            String uid = user.getUid();
+                                            String username = "";
+                                            String email = "";
+                                            String photoUrl = null;
+                                            final Integer random = new Random().nextInt(140);
+                                            String numero = random.toString();
+                                            for (UserInfo profile : user.getProviderData()) {
+                                                // Id of the provider (ex: google.com)
+                                                String providerId = profile.getProviderId();
+                                                photoUrl = profile.getPhotoUrl().toString();
+                                                // Name, email address, and profile photo Url
+                                                username = profile.getDisplayName().replace(" ", ".")+numero;
+                                                email = profile.getEmail();
+                                            }
+                                            UserHelperClass userHelperClass = new UserHelperClass();
+                                            userHelperClass.setEmail(email);
+                                            userHelperClass.setUid(uid);
+                                            userHelperClass.setImageUrl(photoUrl);
+                                            userHelperClass.setUsername(username+numero);
+                                            db.collection("users")
+                                                    .document(uid).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Log.d("FIRESTORE", "Task completato!");
+                                                    Toast.makeText(LoginActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Errore", "signInWithCredential:failure", task.getException());
@@ -215,9 +325,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Accesso Non Riuscito, Controlla i dati!", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                 });
-
     }
 
     private void PassDimenticata(ActivityLoginBinding binding) {

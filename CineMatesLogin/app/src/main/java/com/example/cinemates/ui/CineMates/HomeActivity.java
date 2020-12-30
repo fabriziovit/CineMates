@@ -60,9 +60,14 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.profilo:
                         isProfile = true;
                         new Thread(()->{
-                            Bitmap profilePic = ProfileFragment.getBitmapFromdownload("https://better-default-discord.netlify.app/Icons/Gradient-Gray.png");
+                            Bitmap profilePic = null;
+                            String url = ProfileFragment.getUrlImage(db, FirebaseAuth.getInstance().getUid());
                             String usernameText = ProfileFragment.getUsernameText(db, FirebaseAuth.getInstance().getUid());
                             String emailText = ProfileFragment.getEmailText(db, FirebaseAuth.getInstance().getUid());
+                            if(url.equals("default"))
+                                profilePic = ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png");
+                            else
+                                profilePic = ProfileFragment.getBitmapFromdownload(url);
                             fragment = new ProfileFragment(profilePic, usernameText, emailText);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
