@@ -36,10 +36,71 @@
     <View
         android:id="@+id/divider_fragment_friends"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="1px"
-        android:background="?android:attr/listDivider"
+        android:layout_height="8dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_friends" />
+
+    <EditText
+        android:id="@+id/search_bar_fragmentFriends"
+        android:layout_width="280dp"
+        android:layout_height="39dp"
+        android:background="@drawable/search_layout"
+        android:ems="10"
+        android:fontFamily="@font/martel_sans_bold"
+        android:hint="Ricerca....."
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <ImageView
+        android:id="@+id/search_button_fragmentFriends"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_searchbar_foreground"
+        tools:layout_editor_absoluteX="317dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultFilm_fragmentFriends"
+        android:layout_width="match_parent"
+        android:layout_height="391dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="329dp" />
+
+    <ImageView
+        android:id="@+id/notifica_fragment_friends"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_amici"
+        tools:layout_editor_absoluteX="317dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_fragment_friends"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorIcons"
+        app:tabIndicatorColor="@color/colorIcons"
+        android:background="@color/colorPrimary"
+        tools:layout_editor_absoluteX="-4dp"
+        tools:layout_editor_absoluteY="183dp"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_fragment_friends"
+        android:layout_width="match_parent"
+        android:layout_height="391dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="329dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

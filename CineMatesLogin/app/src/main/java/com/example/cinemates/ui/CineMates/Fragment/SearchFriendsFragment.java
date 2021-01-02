@@ -6,17 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
-import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FriendsFragment#newInstance} factory method to
+ * Use the {@link SearchFriendsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FriendsFragment extends Fragment {
+public class SearchFriendsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +25,7 @@ public class FriendsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FriendsFragment() {
+    public SearchFriendsFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +35,11 @@ public class FriendsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FriendsFragment.
+     * @return A new instance of fragment SearchFriendsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FriendsFragment newInstance(String param1, String param2) {
-        FriendsFragment fragment = new FriendsFragment();
+    public static SearchFriendsFragment newInstance(String param1, String param2) {
+        SearchFriendsFragment fragment = new SearchFriendsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,14 +60,6 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabLayout_fragment_friends);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager_fragment_friends);
-        ViewPageAdapter_Fragments adapter_fragments = new ViewPageAdapter_Fragments(getParentFragmentManager());
-
-        adapter_fragments.AddFragment(new SearchFriendsFragment(), "Cerca Amici");
-        viewPager.setAdapter(adapter_fragments);
-        tabLayout.setupWithViewPager(viewPager);
 
 
         return view;
