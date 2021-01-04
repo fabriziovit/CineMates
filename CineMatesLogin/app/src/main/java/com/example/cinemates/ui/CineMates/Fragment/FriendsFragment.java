@@ -22,6 +22,9 @@ public class FriendsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,16 +64,19 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabLayout_fragment_friends);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager_fragment_friends);
-        ViewPageAdapter_Fragments adapter_fragments = new ViewPageAdapter_Fragments(getParentFragmentManager());
+        tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
+        viewPager = view.findViewById(R.id.viewPager_fragment_friends);
+        adapter = new ViewPagerAdapter(getParentFragmentManager());
 
-        adapter_fragments.AddFragment(new SearchFriendsFragment(), "Cerca Amici");
-        viewPager.setAdapter(adapter_fragments);
+        adapter.AddFragment(new YourFriendsFragment(), "Lista Amici");
+        adapter.AddFragment(new SearchFriendsFragment(), "Cerca Utenti");
+
+        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
 
         return view;
     }

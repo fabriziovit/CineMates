@@ -2,6 +2,7 @@ package com.example.cinemates.ui.CineMates;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseFirestore db;
     public PopularFilms popularFilms;
     boolean pop = false;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         db = FirebaseFirestore.getInstance();
+        final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org")
@@ -71,6 +74,14 @@ public class HomeActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             bottomNav.setItemSelected(R.id.main, true);
             fragmentManager = getSupportFragmentManager();
+            loadingDialog.startLoadingDialog();
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.dismissDialog();
+                }
+            }, 6000);
             new Thread(()-> {
                 while(!pop){}
                 homeFragment = new HomeFragment(popularFilms);
@@ -89,6 +100,14 @@ public class HomeActivity extends AppCompatActivity {
                 switch (id){
                     case R.id.main:
                         isHome = true;
+                        loadingDialog.startLoadingDialog();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismissDialog();
+                            }
+                        }, 3000);
                         new Thread(()-> {
                             while (!pop){}
                             fragment = new HomeFragment(popularFilms);
@@ -100,9 +119,25 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.search:
                         fragment = new SearchFragment();
+                        loadingDialog.startLoadingDialog();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismissDialog();
+                            }
+                        }, 3000);
                         break;
                     case R.id.profilo:
                         isProfile = true;
+                        loadingDialog.startLoadingDialog();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismissDialog();
+                            }
+                        }, 3000);
                         new Thread(()->{
                             Bitmap profilePic = null;
                             String url = ProfileFragment.getUrlImage(db, FirebaseAuth.getInstance().getUid());
@@ -121,6 +156,14 @@ public class HomeActivity extends AppCompatActivity {
                         }).start();
                         break;
                     case R.id.amici:
+                        loadingDialog.startLoadingDialog();
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadingDialog.dismissDialog();
+                            }
+                        }, 3000);
                         fragment = new FriendsFragment();
                         break;
                 }

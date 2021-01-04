@@ -36,19 +36,21 @@
     <View
         android:id="@+id/divider_fragment_home"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="1px"
-        android:background="?android:attr/listDivider"
+        android:layout_height="8dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_home" />
 
     <ListView
+        android:id="@+id/recycleView_fragment_Home"
         android:layout_width="match_parent"
         android:layout_height="631dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_home" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_home" >
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
