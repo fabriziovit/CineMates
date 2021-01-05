@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 6000);
+            }, 3000);
             new Thread(()-> {
                 while(!pop){}
                 homeFragment = new HomeFragment(popularFilms);

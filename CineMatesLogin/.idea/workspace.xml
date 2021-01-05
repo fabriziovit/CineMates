@@ -14,15 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemFriend.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/ItemFriend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/ItemUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ReclycleViewAdapter_Amico.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/ReclycleViewAdapter_Amico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ReclycleViewAdapter_Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/ReclycleViewAdapter_Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,25 +215,25 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744757497" />
-    <state width="1876" height="202" key="GridCell.Tab.0.bottom" timestamp="1609859739090">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="499" key="GridCell.Tab.0.bottom" timestamp="1609860381465">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="499" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609778901322" />
+    <state width="1236" height="499" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1609860381465" />
     <state width="1876" height="202" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609859739090" />
-    <state width="1876" height="202" key="GridCell.Tab.0.center" timestamp="1609859739089">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="499" key="GridCell.Tab.0.center" timestamp="1609860381465">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="499" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609778901322" />
+    <state width="1236" height="499" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1609860381465" />
     <state width="1876" height="202" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609859739089" />
-    <state width="1876" height="202" key="GridCell.Tab.0.left" timestamp="1609859739089">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="499" key="GridCell.Tab.0.left" timestamp="1609860381465">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="499" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609778901320" />
+    <state width="1236" height="499" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1609860381465" />
     <state width="1876" height="202" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609859739089" />
-    <state width="1876" height="202" key="GridCell.Tab.0.right" timestamp="1609859739090">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="499" key="GridCell.Tab.0.right" timestamp="1609860381465">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="499" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609778901322" />
+    <state width="1236" height="499" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1609860381465" />
     <state width="1876" height="202" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1609859739090" />
     <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1608744728418">
       <screen x="0" y="0" width="1920" height="1040" />
