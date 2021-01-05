@@ -13,7 +13,6 @@ import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.example.cinemates.ui.CineMates.friends.ReclycleViewAdapter_Utente;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +37,10 @@ public class SearchFriendsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public SearchFriendsFragment(List<ItemUser> userList){
+        this.userList = userList;
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -59,10 +62,6 @@ public class SearchFriendsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        userList = new ArrayList<>();
-        userList.add(new ItemUser("Peppe", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
-        userList.add(new ItemUser("Lercio", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
     }
 
     @Override
@@ -74,7 +73,6 @@ public class SearchFriendsFragment extends Fragment {
         ReclycleViewAdapter_Utente reclycleViewAdapter = new ReclycleViewAdapter_Utente(getContext(), userList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(reclycleViewAdapter);
-
         return view;
     }
 }

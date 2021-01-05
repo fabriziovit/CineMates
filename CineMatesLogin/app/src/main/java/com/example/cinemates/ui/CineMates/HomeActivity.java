@@ -18,9 +18,17 @@ import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
+import com.example.cinemates.ui.CineMates.friends.ItemUser;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,6 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemSelected(int id) {
                 boolean isProfile = false;
                 boolean isHome = false;
+                boolean isFriends = false;
                 fragment = null;
                 switch (id){
                     case R.id.main:
@@ -156,6 +165,7 @@ public class HomeActivity extends AppCompatActivity {
                         }).start();
                         break;
                     case R.id.amici:
+                        isFriends = true;
                         loadingDialog.startLoadingDialog();
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -164,11 +174,33 @@ public class HomeActivity extends AppCompatActivity {
                                 loadingDialog.dismissDialog();
                             }
                         }, 3000);
-                        fragment = new FriendsFragment();
+                        new Thread(()->{
+                            List<ItemUser> userList = new ArrayList<>();
+
+                            CollectionReference collectionReference = db.collection("users");
+                            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        if (!FirebaseAuth.getInstance().getCurrentUser().getUid().equals(documentSnapshot.getString("uid"))) {
+                                            if(documentSnapshot.getString("imageUrl").equals("default"))
+                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
+                                            else
+                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"))));
+                                        }
+                                    }
+                                    fragment = new FriendsFragment(userList);
+                                    fragmentManager = getSupportFragmentManager();
+                                    fragmentManager.beginTransaction()
+                                            .replace(R.id.fragment_home_container, fragment)
+                                            .commit();
+                                }
+                            });
+                        }).start();
                         break;
                 }
 
-                if(fragment!=null && !isProfile && !isHome){
+                if(fragment!=null && !isProfile && !isHome && !isFriends){
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.fragment_home_container, fragment)

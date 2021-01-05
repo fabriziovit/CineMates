@@ -200,7 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                                             String username = "";
                                             String email = "";
                                             String photoUrl = null;
-                                            final Integer random = new Random().nextInt(140);
+                                            final Integer random = new Random().nextInt(2000);
                                             String numero = random.toString();
                                             for (UserInfo profile : user.getProviderData()) {
                                                 // Id of the provider (ex: google.com)
@@ -214,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
                                             userHelperClass.setEmail(email);
                                             userHelperClass.setUid(uid);
                                             userHelperClass.setImageUrl(photoUrl);
-                                            userHelperClass.setUsername(username+numero);
+                                            userHelperClass.setUsername(username);
 
                                             Friends friends = new Friends();
 
@@ -283,7 +283,7 @@ public class LoginActivity extends AppCompatActivity {
                                             String username = "";
                                             String email = "";
                                             String photoUrl = null;
-                                            final Integer random = new Random().nextInt(140);
+                                            final Integer random = new Random().nextInt(2000);
                                             String numero = random.toString();
                                             for (UserInfo profile : user.getProviderData()) {
                                                 // Id of the provider (ex: google.com)
@@ -297,7 +297,7 @@ public class LoginActivity extends AppCompatActivity {
                                             userHelperClass.setEmail(email);
                                             userHelperClass.setUid(uid);
                                             userHelperClass.setImageUrl(photoUrl);
-                                            userHelperClass.setUsername(username+numero);
+                                            userHelperClass.setUsername(username);
 
                                             Friends friends = new Friends();
 

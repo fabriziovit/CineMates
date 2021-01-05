@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +28,7 @@ public class FriendsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    List<ItemUser> userList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -32,6 +36,10 @@ public class FriendsFragment extends Fragment {
 
     public FriendsFragment() {
         // Required empty public constructor
+    }
+
+    public FriendsFragment(List<ItemUser> userList){
+        this.userList = userList;
     }
 
     /**
@@ -66,12 +74,15 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
+
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getParentFragmentManager());
 
+
+
         adapter.AddFragment(new YourFriendsFragment(), "Lista Amici");
-        adapter.AddFragment(new SearchFriendsFragment(), "Cerca Utenti");
+        adapter.AddFragment(new SearchFriendsFragment(userList), "Cerca Utenti");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
