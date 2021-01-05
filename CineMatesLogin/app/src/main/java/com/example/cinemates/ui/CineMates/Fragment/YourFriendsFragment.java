@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ItemFriend;
-import com.example.cinemates.ui.CineMates.ReclycleViewAdapter_Amico;
+import com.example.cinemates.ui.CineMates.friends.ItemFriend;
+import com.example.cinemates.ui.CineMates.friends.ReclycleViewAdapter_Amico;
 
 import java.util.ArrayList;
 import java.util.List;

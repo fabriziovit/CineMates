@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityRegistratiBinding;
+import com.example.cinemates.ui.CineMates.friends.Friends;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -152,11 +153,19 @@ public class RegistratiActivity extends AppCompatActivity {
         userHelperClass.setUsername(username);
         userHelperClass.setImageUrl("default");
 
+        Friends friends = new Friends();
+
         db.collection("users")
                 .document(uId).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d("FIRESTORE", "Task completato!");
+                db.collection("friends").document(uId).set(friends).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d("FIRESTORE", "Task completato Friends!");
+                    }
+                });
                 Toast.makeText(RegistratiActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegistratiActivity.this, LoginActivity.class);
                 startActivity(intent);

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityLoginBinding;
+import com.example.cinemates.ui.CineMates.friends.Friends;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -214,16 +215,26 @@ public class LoginActivity extends AppCompatActivity {
                                             userHelperClass.setUid(uid);
                                             userHelperClass.setImageUrl(photoUrl);
                                             userHelperClass.setUsername(username+numero);
+
+                                            Friends friends = new Friends();
+
                                             db.collection("users")
                                                     .document(uid).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Log.d("FIRESTORE", "Task completato!");
+                                                    db.collection("friends").document(uid).set(friends).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            Log.d("FIRESTORE", "Task completato!");
+                                                        }
+                                                    });
                                                     Toast.makeText(LoginActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                     startActivity(intent);
                                                 }
                                             });
+
                                         }
                                     }
                                 }
@@ -287,11 +298,20 @@ public class LoginActivity extends AppCompatActivity {
                                             userHelperClass.setUid(uid);
                                             userHelperClass.setImageUrl(photoUrl);
                                             userHelperClass.setUsername(username+numero);
+
+                                            Friends friends = new Friends();
+
                                             db.collection("users")
                                                     .document(uid).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Log.d("FIRESTORE", "Task completato!");
+                                                    db.collection("friends").document(uid).set(friends).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            Log.d("FIRESTORE", "Task completato Friends!");
+                                                        }
+                                                    });
                                                     Toast.makeText(LoginActivity.this, "Registrazione Completata", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                                     startActivity(intent);
