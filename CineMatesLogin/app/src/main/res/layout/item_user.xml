@@ -8,7 +8,7 @@
     android:padding="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatarFriend_item_image"
+        android:id="@+id/avatarUser_item_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="1dp"
@@ -19,28 +19,12 @@
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/usernameFriend_Item_textView"
+        app:layout_constraintEnd_toStartOf="@+id/usernameUtente_Item_textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/visualizzaPreferiti_item_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Visualizza lista preferiti"
-        android:textColor="@color/colorPrimary"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/visualizzapreferiti_item_imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466" />
-
-    <TextView
-        android:id="@+id/usernameFriend_Item_textView"
+        android:id="@+id/usernameUtente_Item_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -55,8 +39,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/rapporto_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Rapporto che si ha con l'utente"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rapporto_item_imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
+
     <ImageView
-        android:id="@+id/visualizzapreferiti_item_imageView"
+        android:id="@+id/rapporto_item_imageView"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="80dp"
@@ -65,7 +65,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_listapreferiti" />
-
+        app:srcCompat="@drawable/ic_aggiungi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

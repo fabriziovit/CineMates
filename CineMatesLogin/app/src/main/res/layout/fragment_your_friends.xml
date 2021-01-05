@@ -11,7 +11,7 @@
     <EditText
         android:id="@+id/searchBar_fragment_YourFriends"
         android:layout_width="283dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="29dp"
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/searchButton_fragment_YourFriends"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="41dp"
         android:layout_marginEnd="25dp"
         android:src="@mipmap/ic_searchbar_foreground"

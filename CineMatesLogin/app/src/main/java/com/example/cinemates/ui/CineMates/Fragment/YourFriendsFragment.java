@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.ItemFriend;
-import com.example.cinemates.ui.CineMates.ReclycleViewAdapter;
+import com.example.cinemates.ui.CineMates.ReclycleViewAdapter_Amico;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +72,9 @@ public class YourFriendsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_your_friends, container, false);
 
         recyclerView = view.findViewById(R.id.recycleView_fragment_YourFriends);
-        ReclycleViewAdapter reclycleViewAdapter = new ReclycleViewAdapter(getContext(), friendList);
+        ReclycleViewAdapter_Amico reclycleViewAdapterAmico = new ReclycleViewAdapter_Amico(getContext(), friendList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(reclycleViewAdapter);
+        recyclerView.setAdapter(reclycleViewAdapterAmico);
 
         return view;
     }

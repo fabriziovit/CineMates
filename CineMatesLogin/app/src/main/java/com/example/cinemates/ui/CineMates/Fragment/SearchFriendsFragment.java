@@ -6,8 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.ItemUser;
+import com.example.cinemates.ui.CineMates.ReclycleViewAdapter_Utente;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +27,8 @@ public class SearchFriendsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private List<ItemUser> userList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -50,10 +59,10 @@ public class SearchFriendsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        userList = new ArrayList<>();
+        userList.add(new ItemUser("Peppe", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
+        userList.add(new ItemUser("Lercio", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
     }
 
     @Override
@@ -61,6 +70,10 @@ public class SearchFriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_friends, container, false);
 
+        recyclerView = view.findViewById(R.id.recycleView_fragment_SearchFriends);
+        ReclycleViewAdapter_Utente reclycleViewAdapter = new ReclycleViewAdapter_Utente(getContext(), userList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(reclycleViewAdapter);
 
         return view;
     }

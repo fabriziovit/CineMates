@@ -15,14 +15,14 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReclycleViewAdapter extends RecyclerView.Adapter<ReclycleViewAdapter.MyViewHolder> {
+public class ReclycleViewAdapter_Utente extends RecyclerView.Adapter<ReclycleViewAdapter_Utente.MyViewHolder> {
 
     Context mContext;
-    List<ItemFriend> friendsList;
+    List<ItemUser> userList;
 
-    public ReclycleViewAdapter(Context mContext, List<ItemFriend> friendsList) {
+    public ReclycleViewAdapter_Utente(Context mContext, List<ItemUser> userList) {
         this.mContext = mContext;
-        this.friendsList = friendsList;
+        this.userList = userList;
     }
 
     @NonNull
@@ -30,7 +30,7 @@ public class ReclycleViewAdapter extends RecyclerView.Adapter<ReclycleViewAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.item_friend, parent, false);
+        v = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(v);
 
 
@@ -40,14 +40,14 @@ public class ReclycleViewAdapter extends RecyclerView.Adapter<ReclycleViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.username.setText(friendsList.get(position).getUsername());
-        holder.circleImageView.setImageBitmap(friendsList.get(position).getBitmap());
+        holder.username.setText(userList.get(position).getUsername());
+        holder.circleImageView.setImageBitmap(userList.get(position).getBitmap());
 
     }
 
     @Override
     public int getItemCount() {
-        return friendsList.size();
+        return userList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,8 +57,8 @@ public class ReclycleViewAdapter extends RecyclerView.Adapter<ReclycleViewAdapte
         public MyViewHolder(View itemView){
             super(itemView);
 
-            username = itemView.findViewById(R.id.usernameFriend_Item_textView);
-            circleImageView = itemView.findViewById(R.id.avatarFriend_item_image);
+            username = itemView.findViewById(R.id.usernameUtente_Item_textView);
+            circleImageView = itemView.findViewById(R.id.avatarUser_item_image);
         }
     }
 }
