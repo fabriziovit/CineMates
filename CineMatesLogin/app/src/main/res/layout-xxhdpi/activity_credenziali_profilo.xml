@@ -78,7 +78,7 @@
         android:layout_marginBottom="48dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Modifica le credenziali"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/username_credenziali_TextView"
         app:layout_constraintEnd_toEndOf="parent"

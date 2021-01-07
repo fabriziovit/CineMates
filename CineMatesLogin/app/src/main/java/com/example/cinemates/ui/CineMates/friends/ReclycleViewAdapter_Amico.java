@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +20,13 @@ public class ReclycleViewAdapter_Amico extends RecyclerView.Adapter<ReclycleView
 
     Context mContext;
     List<ItemFriend> friendsList;
+    ReclycleViewAdapter_Amico.OnClickListener mOnClickListener;
 
-    public ReclycleViewAdapter_Amico(Context mContext, List<ItemFriend> friendsList) {
+
+    public ReclycleViewAdapter_Amico(Context mContext, List<ItemFriend> friendsList, ReclycleViewAdapter_Amico.OnClickListener mOnClickListener) {
         this.mContext = mContext;
         this.friendsList = friendsList;
+        this.mOnClickListener = mOnClickListener;
     }
 
     @NonNull
@@ -31,7 +35,7 @@ public class ReclycleViewAdapter_Amico extends RecyclerView.Adapter<ReclycleView
 
         View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.item_friend, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(v);
+        MyViewHolder myViewHolder = new MyViewHolder(v, mOnClickListener);
 
 
         return myViewHolder;
@@ -50,15 +54,35 @@ public class ReclycleViewAdapter_Amico extends RecyclerView.Adapter<ReclycleView
         return friendsList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView username;
         private CircleImageView circleImageView;
-        public MyViewHolder(View itemView){
+        private ImageView imageView;
+        private TextView textView;
+        ReclycleViewAdapter_Amico.OnClickListener onClickListener;
+
+        public MyViewHolder(View itemView, ReclycleViewAdapter_Amico.OnClickListener onClickListener){
             super(itemView);
 
             username = itemView.findViewById(R.id.usernameFriend_Item_textView);
             circleImageView = itemView.findViewById(R.id.avatarFriend_item_image);
+            textView = itemView.findViewById(R.id.visualizzaPreferiti_item_textView);
+            imageView = itemView.findViewById(R.id.visualizzapreferiti_item_imageView);
+            this.onClickListener = onClickListener;
+
+            textView.setOnClickListener(this);
+            imageView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onClickListener.OnClick(getAdapterPosition());
+        }
+    }
+
+
+    public interface OnClickListener{
+        void OnClick(int position);
     }
 }

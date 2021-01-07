@@ -10,7 +10,7 @@ public class Friends {
     public Friends(String uId) {
         this.uId = uId;
     }
-
+    
     public String getuId() {
         return uId;
     }
@@ -18,4 +18,5 @@ public class Friends {
     public void setuId(String uId) {
         this.uId = uId;
     }
+
 }

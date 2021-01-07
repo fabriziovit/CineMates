@@ -100,6 +100,7 @@
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Accedi al tuo account"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/email_login_TextField"

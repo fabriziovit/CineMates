@@ -48,12 +48,12 @@
         android:id="@+id/notifica_fragment_friends"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="317dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_amici"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Amici_textView"
         app:layout_constraintTop_toBottomOf="@+id/divider_fragment_friends" />
 
     <com.google.android.material.tabs.TabLayout
@@ -80,6 +80,30 @@
         app:layout_constraintTop_toBottomOf="@+id/tabLayout_fragment_friends">
 
     </androidx.viewpager.widget.ViewPager>
+
+    <TextView
+        android:id="@+id/Amici_textView"
+        android:layout_width="250dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:gravity="center"
+        android:text="Amicizie"
+        android:textColor="@color/colorPrimary"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_friends" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="13dp"
+        android:src="@drawable/ic_notifica"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout_fragment_friends"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

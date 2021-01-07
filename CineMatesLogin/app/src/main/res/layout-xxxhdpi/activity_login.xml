@@ -99,6 +99,7 @@
         android:text="Accedi al tuo account"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/email_login_TextField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"

@@ -25,7 +25,7 @@ import java.util.List;
  * Use the {@link YourFriendsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class YourFriendsFragment extends Fragment {
+public class YourFriendsFragment extends Fragment implements ReclycleViewAdapter_Amico.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,7 +80,7 @@ public class YourFriendsFragment extends Fragment {
         constraintLayout = view.findViewById(R.id.container_frament_yourfriends);
         recyclerView = view.findViewById(R.id.recycleView_fragment_YourFriends);
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
-        ReclycleViewAdapter_Amico reclycleViewAdapterAmico = new ReclycleViewAdapter_Amico(getContext(), friendList);
+        ReclycleViewAdapter_Amico reclycleViewAdapterAmico = new ReclycleViewAdapter_Amico(getContext(), friendList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(reclycleViewAdapterAmico);
 
@@ -99,4 +99,9 @@ public class YourFriendsFragment extends Fragment {
         });
     }
 
+    @Override
+    public void OnClick(int position) {
+        friendList.get(position);
+        //Aggiungere azione
+    }
 }
