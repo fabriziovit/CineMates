@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -118,7 +119,7 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
     public void OnClick(int position) {
         userList.get(position);
 
-        new Thread(()-> {
+        //new Thread(()-> {
             CollectionReference collectionReference = db.collection("users");
             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
@@ -128,9 +129,8 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
                         if (userList.get(position).getUsername().equals(documentSnapshot.getString("username"))) {
                             String uIdDestinatario = documentSnapshot.getString("uid");
                             String uIdMittente = mAuth.getCurrentUser().getUid();
-                            Long tsLong = System.currentTimeMillis()/1000;
-                            String ts = tsLong.toString();
-                            FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, ts);
+                            FieldValue timestamp = FieldValue.serverTimestamp();
+                            FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
                             db.collection("friend request").document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -142,6 +142,6 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
                     }
                 }
             });
-        }).start();
+        //}).start();
     }
 }

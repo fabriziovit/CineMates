@@ -1,14 +1,16 @@
 package com.example.cinemates.ui.CineMates.friends;
 
+import com.google.firebase.firestore.FieldValue;
+
 public class FriendRequest {
 
     private String uIdDestinatario;
     private String uIdMittente;
-    private String timeStamp;
+    private FieldValue timeStamp;
 
     public FriendRequest(){}
 
-    public FriendRequest(String uIdDestinatario, String uIdMittente, String timeStamp) {
+    public FriendRequest(String uIdDestinatario, String uIdMittente, FieldValue timeStamp) {
         this.uIdDestinatario = uIdDestinatario;
         this.uIdMittente = uIdMittente;
         this.timeStamp = timeStamp;
@@ -30,11 +32,11 @@ public class FriendRequest {
         this.uIdMittente = uIdMittente;
     }
 
-    public String getTimeStamp() {
+    public FieldValue getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(FieldValue timeStamp) {
         this.timeStamp = timeStamp;
     }
 }
