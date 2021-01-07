@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
         <activity android:name=".ui.CineMates.RegistratiActivity" />
-        <activity android:name=".ui.CineMates.HomeActivity" />
+        <activity android:name=".ui.CineMates.HomeActivity"
+                    android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.CineMates.CredenzialiProfiloActivity"/>
         <activity
             android:name=".ui.CineMates.LoginActivity"
@@ -33,5 +34,4 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
     </application>
-
 </manifest>

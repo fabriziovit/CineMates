@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     boolean pop = false;
     Handler handler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         bottomNav =  binding.navHomeMenu;
+
 
         if(savedInstanceState == null){
             bottomNav.setItemSelected(R.id.main, true);
