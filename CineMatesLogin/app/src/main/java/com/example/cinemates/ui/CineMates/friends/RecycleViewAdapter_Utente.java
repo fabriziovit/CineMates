@@ -16,13 +16,13 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReclycleViewAdapter_Utente extends RecyclerView.Adapter<ReclycleViewAdapter_Utente.MyViewHolder> {
+public class RecycleViewAdapter_Utente extends RecyclerView.Adapter<RecycleViewAdapter_Utente.MyViewHolder> {
 
     Context mContext;
     List<ItemUser> userList;
     OnClickListener mOnClickListener;
 
-    public ReclycleViewAdapter_Utente(Context mContext, List<ItemUser> userList, OnClickListener mOnClickListener) {
+    public RecycleViewAdapter_Utente(Context mContext, List<ItemUser> userList, OnClickListener mOnClickListener) {
         this.mContext = mContext;
         this.userList = userList;
         this.mOnClickListener = mOnClickListener;
@@ -55,7 +55,6 @@ public class ReclycleViewAdapter_Utente extends RecyclerView.Adapter<ReclycleVie
             holder.textView.setText("Amico");
             holder.imageView.setBackgroundResource(R.drawable.ic_checked);
         }
-
     }
 
     @Override

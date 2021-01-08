@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.friends.FriendRequest;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
-import com.example.cinemates.ui.CineMates.friends.ReclycleViewAdapter_Utente;
+import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +38,7 @@ import java.util.List;
  * Use the {@link SearchFriendsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapter_Utente.OnClickListener {
+public class SearchFriendsFragment extends Fragment implements RecycleViewAdapter_Utente.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,9 +97,11 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
         searchBar = view.findViewById(R.id.searchBar_fragment_SearchFriends);
         constraintLayout = view.findViewById(R.id.container_fragment_searchfriends);
         recyclerView = view.findViewById(R.id.recycleView_fragment_SearchFriends);
-        ReclycleViewAdapter_Utente reclycleViewAdapter = new ReclycleViewAdapter_Utente(getContext(), userList, this);
+        RecycleViewAdapter_Utente recycleViewAdapter = new RecycleViewAdapter_Utente(getContext(), userList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(reclycleViewAdapter);
+        recyclerView.setAdapter(recycleViewAdapter);
+
+
         Keyboard();
         return view;
     }
@@ -139,7 +141,7 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
                                         db.collection("friend request").document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(getActivity(), "RICHIESTA INVIATA CORRETTAMENTE!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), "Richista inviata correttamente!", Toast.LENGTH_SHORT).show();
                                                 userList.get(position).setRapporto(1);
                                                 //modificare rapporto e icona
                                             }

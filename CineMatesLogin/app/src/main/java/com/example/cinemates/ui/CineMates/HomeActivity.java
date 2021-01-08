@@ -191,6 +191,7 @@ public class HomeActivity extends AppCompatActivity {
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                         if (!FirebaseAuth.getInstance().getCurrentUser().getUid().equals(documentSnapshot.getString("uid"))) {
                                             if (documentSnapshot.getString("imageUrl").equals("default")) {
+                                                ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"));
                                                 DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
                                                 documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @Override
@@ -198,16 +199,19 @@ public class HomeActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"), 1));
+                                                                itemUser.setRapporto(1);
+                                                                userList.add(itemUser);
                                                             } else {
                                                                 //Controllo non presente in amici, se è presente aggiungere 2
-                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"), 0));
+                                                                itemUser.setRapporto(0);
+                                                                userList.add(itemUser);
                                                                 //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
                                                             }
                                                         }
                                                     }
                                                 });
                                             } else {
+                                                ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
                                                 DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
                                                 documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @Override
@@ -215,10 +219,12 @@ public class HomeActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), 1));
+                                                                itemUser.setRapporto(1);
+                                                                userList.add(itemUser);
                                                             } else {
                                                                 //Controllo non presente in amici, se è presente aggiungere 2
-                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), 0));
+                                                                itemUser.setRapporto(0);
+                                                                userList.add(itemUser);
                                                                 //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
                                                             }
                                                         }
@@ -227,7 +233,6 @@ public class HomeActivity extends AppCompatActivity {
                                             }
                                         }
                                     }
-
                                     fragment = new FriendsFragment(userList);
                                     fragmentManager = getSupportFragmentManager();
                                     fragmentManager.beginTransaction()

@@ -16,14 +16,14 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReclycleViewAdapter_Amico extends RecyclerView.Adapter<ReclycleViewAdapter_Amico.MyViewHolder> {
+public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAdapter_Amico.MyViewHolder> {
 
     Context mContext;
     List<ItemFriend> friendsList;
-    ReclycleViewAdapter_Amico.OnClickListener mOnClickListener;
+    RecycleViewAdapter_Amico.OnClickListener mOnClickListener;
 
 
-    public ReclycleViewAdapter_Amico(Context mContext, List<ItemFriend> friendsList, ReclycleViewAdapter_Amico.OnClickListener mOnClickListener) {
+    public RecycleViewAdapter_Amico(Context mContext, List<ItemFriend> friendsList, RecycleViewAdapter_Amico.OnClickListener mOnClickListener) {
         this.mContext = mContext;
         this.friendsList = friendsList;
         this.mOnClickListener = mOnClickListener;
@@ -60,9 +60,9 @@ public class ReclycleViewAdapter_Amico extends RecyclerView.Adapter<ReclycleView
         private CircleImageView circleImageView;
         private ImageView imageView;
         private TextView textView;
-        ReclycleViewAdapter_Amico.OnClickListener onClickListener;
+        RecycleViewAdapter_Amico.OnClickListener onClickListener;
 
-        public MyViewHolder(View itemView, ReclycleViewAdapter_Amico.OnClickListener onClickListener){
+        public MyViewHolder(View itemView, RecycleViewAdapter_Amico.OnClickListener onClickListener){
             super(itemView);
 
             username = itemView.findViewById(R.id.usernameFriend_Item_textView);
