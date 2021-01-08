@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -98,8 +100,6 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
         ReclycleViewAdapter_Utente reclycleViewAdapter = new ReclycleViewAdapter_Utente(getContext(), userList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(reclycleViewAdapter);
-
-
         Keyboard();
         return view;
     }
@@ -117,31 +117,41 @@ public class SearchFriendsFragment extends Fragment implements ReclycleViewAdapt
 
     @Override
     public void OnClick(int position) {
-        userList.get(position);
-
-        //new Thread(()-> {
-            CollectionReference collectionReference = db.collection("users");
-            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    int n = 0;
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        if (userList.get(position).getUsername().equals(documentSnapshot.getString("username"))) {
-                            String uIdDestinatario = documentSnapshot.getString("uid");
-                            String uIdMittente = mAuth.getCurrentUser().getUid();
-                            FieldValue timestamp = FieldValue.serverTimestamp();
-                            FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
-                            db.collection("friend request").document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(getActivity(), "RICHIESTA INVIATA CORRETTAMENTE!", Toast.LENGTH_SHORT).show();
+        CollectionReference collectionReference = db.collection("users");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    if (userList.get(position).getUsername().equals(documentSnapshot.getString("username"))) {
+                        String uIdDestinatario = documentSnapshot.getString("uid");
+                        String uIdMittente = mAuth.getCurrentUser().getUid();
+                        FieldValue timestamp = FieldValue.serverTimestamp();
+                        FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
+                        DocumentReference documentReference = db.collection("friend request").document(uIdDestinatario);
+                        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists() && document.getString("uIdMittente").equals(uIdMittente)) {
+                                        Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        db.collection("friend request").document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(getActivity(), "RICHIESTA INVIATA CORRETTAMENTE!", Toast.LENGTH_SHORT).show();
+                                                userList.get(position).setRapporto(1);
+                                                //modificare rapporto e icona
+                                            }
+                                        });
+                                    }
                                 }
-                            });
-                            break;
-                        }
+                            }
+                        });
+                        break;
                     }
                 }
-            });
-        //}).start();
+            }
+        });
     }
 }

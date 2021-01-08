@@ -49,7 +49,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="1dp"
         android:fontFamily="@font/martel_sans_bold"
-        android:text="Rapporto che si ha con l'utente"
+        android:text="Invia richiesta di amicizia"
         android:textColor="@color/colorPrimary"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"

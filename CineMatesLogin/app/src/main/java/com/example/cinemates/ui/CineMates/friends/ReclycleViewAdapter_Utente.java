@@ -45,6 +45,16 @@ public class ReclycleViewAdapter_Utente extends RecyclerView.Adapter<ReclycleVie
 
         holder.username.setText(userList.get(position).getUsername());
         holder.circleImageView.setImageBitmap(userList.get(position).getBitmap());
+        if(userList.get(position).getRapporto() == 0) {
+            holder.textView.setText("Invia richiesta di amicizia");
+            holder.imageView.setBackgroundResource(R.drawable.ic_aggiungi);
+        }else if(userList.get(position).getRapporto() == 1) {
+            holder.textView.setText("Richiesta inviata");
+            holder.imageView.setBackgroundResource(R.drawable.ic_attendere);
+        } else {
+            holder.textView.setText("Amico");
+            holder.imageView.setBackgroundResource(R.drawable.ic_checked);
+        }
 
     }
 
@@ -69,6 +79,8 @@ public class ReclycleViewAdapter_Utente extends RecyclerView.Adapter<ReclycleVie
             circleImageView = itemView.findViewById(R.id.avatarUser_item_image);
             textView = itemView.findViewById(R.id.rapporto_item_textView);
             imageView = itemView.findViewById(R.id.rapporto_item_imageView);
+
+
             this.onClickListener = onClickListener;
 
             textView.setOnClickListener(this);

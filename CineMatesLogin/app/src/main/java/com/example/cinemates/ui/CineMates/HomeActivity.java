@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,9 +20,13 @@ import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -185,12 +190,44 @@ public class HomeActivity extends AppCompatActivity {
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                         if (!FirebaseAuth.getInstance().getCurrentUser().getUid().equals(documentSnapshot.getString("uid"))) {
-                                            if(documentSnapshot.getString("imageUrl").equals("default"))
-                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
-                                            else
-                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"))));
+                                            if (documentSnapshot.getString("imageUrl").equals("default")) {
+                                                DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
+                                                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            DocumentSnapshot document = task.getResult();
+                                                            if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"), 1));
+                                                            } else {
+                                                                //Controllo non presente in amici, se è presente aggiungere 2
+                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"), 0));
+                                                                //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            } else {
+                                                DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
+                                                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            DocumentSnapshot document = task.getResult();
+                                                            if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), 1));
+                                                            } else {
+                                                                //Controllo non presente in amici, se è presente aggiungere 2
+                                                                userList.add(new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), 0));
+                                                                //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            }
                                         }
                                     }
+
                                     fragment = new FriendsFragment(userList);
                                     fragmentManager = getSupportFragmentManager();
                                     fragmentManager.beginTransaction()
