@@ -52,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     public PopularFilms popularFilms;
     boolean pop = false;
     Handler handler;
+    int userNumber;
 
 
     @Override
@@ -124,6 +125,7 @@ public class HomeActivity extends AppCompatActivity {
                                 loadingDialog.dismissDialog();
                             }
                         }, 3000);
+
                         new Thread(()-> {
                             while (!pop){}
                             fragment = new HomeFragment(popularFilms);
@@ -154,6 +156,7 @@ public class HomeActivity extends AppCompatActivity {
                                 loadingDialog.dismissDialog();
                             }
                         }, 3000);
+
                         new Thread(()->{
                             Bitmap profilePic = null;
                             String url = ProfileFragment.getUrlImage(db, FirebaseAuth.getInstance().getUid());
@@ -175,71 +178,82 @@ public class HomeActivity extends AppCompatActivity {
                         isFriends = true;
                         loadingDialog.startLoadingDialog();
                         handler = new Handler();
+                        String currUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
                         }, 3000);
+
                         new Thread(()->{
                             List<ItemUser> userList = new ArrayList<>();
-
                             CollectionReference collectionReference = db.collection("users");
                             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    userNumber = queryDocumentSnapshots.size();
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                        if (!FirebaseAuth.getInstance().getCurrentUser().getUid().equals(documentSnapshot.getString("uid"))) {
+                                        if (!currUser.equals(documentSnapshot.getString("uid"))) {
                                             if (documentSnapshot.getString("imageUrl").equals("default")) {
                                                 ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"));
-                                                DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
-                                                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                        if (task.isSuccessful()) {
-                                                            DocumentSnapshot document = task.getResult();
-                                                            if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                                                itemUser.setRapporto(1);
-                                                                userList.add(itemUser);
-                                                            } else {
-                                                                //Controllo non presente in amici, se è presente aggiungere 2
-                                                                itemUser.setRapporto(0);
-                                                                userList.add(itemUser);
-                                                                //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+
+                                                new Thread(()-> {
+                                                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
+                                                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                DocumentSnapshot document = task.getResult();
+                                                                if (document.exists() && document.getString("uIdMittente").equals(currUser)) {
+                                                                    itemUser.setRapporto(1);
+                                                                    userList.add(itemUser);
+                                                                } else {
+                                                                    //Controllo non presente in amici, se è presente aggiungere 2
+                                                                    itemUser.setRapporto(0);
+                                                                    userList.add(itemUser);
+                                                                    //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                });
+                                                    });
+                                                }).start();
                                             } else {
-                                                ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
-                                                DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
-                                                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                        if (task.isSuccessful()) {
-                                                            DocumentSnapshot document = task.getResult();
-                                                            if (document.exists() && document.getString("uIdMittente").equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                                                                itemUser.setRapporto(1);
-                                                                userList.add(itemUser);
-                                                            } else {
-                                                                //Controllo non presente in amici, se è presente aggiungere 2
-                                                                itemUser.setRapporto(0);
-                                                                userList.add(itemUser);
-                                                                //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+
+                                                new Thread(()->{
+                                                    ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
+                                                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
+                                                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                DocumentSnapshot document = task.getResult();
+                                                                if (document.exists() && document.getString("uIdMittente").equals(currUser)) {
+                                                                    itemUser.setRapporto(1);
+                                                                    userList.add(itemUser);
+                                                                } else {
+                                                                    //Controllo non presente in amici, se è presente aggiungere 2
+                                                                    itemUser.setRapporto(0);
+                                                                    userList.add(itemUser);
+                                                                    //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                });
+                                                    });
+                                                }).start();
                                             }
                                         }
                                     }
-                                    fragment = new FriendsFragment(userList);
-                                    fragmentManager = getSupportFragmentManager();
-                                    fragmentManager.beginTransaction()
-                                            .replace(R.id.fragment_home_container, fragment)
-                                            .commit();
                                 }
                             });
+                            while (userList.size() != userNumber-1) {
+                            }
+                            fragment = new FriendsFragment(userList);
+                            fragmentManager = getSupportFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_home_container, fragment)
+                                    .commit();
                         }).start();
                         break;
                 }
