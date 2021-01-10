@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cinemates">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,15 +29,18 @@
         </activity>
         <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
         <activity android:name=".ui.CineMates.RegistratiActivity" />
-        <activity android:name=".ui.CineMates.HomeActivity"
-                    android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.CineMates.CredenzialiProfiloActivity"/>
+        <activity
+            android:name=".ui.CineMates.HomeActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.CineMates.CredenzialiProfiloActivity" />
+        <activity android:name=".ui.CineMates.VisualizzaPreferitiActivity"/>
         <activity
             android:name=".ui.CineMates.LoginActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
     </application>
+
 </manifest>

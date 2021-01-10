@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
+import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -52,11 +53,7 @@ public class ProfileFragment extends Fragment {
     private String usernameText;
     private String emailText;
     private static FirebaseFirestore db;
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Button visualizzaPreferiti;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -89,10 +86,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
@@ -101,14 +96,16 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         CircleImageView circleImageView = view.findViewById(R.id.avatar_profile_fragment);
         circleImageView.setImageBitmap(bitmap);
-        Button logoutbtn =  view.findViewById(R.id.logout_profile_fragment);
+        Button logoutbtn =  view.findViewById(R.id.logout_button_ProfileFragment);
         TextView usernameTextView = view.findViewById(R.id.username_profile_fragment);
         TextView emailTextView = view.findViewById(R.id.email_profile_fragment);
-        Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_profile_fragment);
+        Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_button_ProfileFragment);
+        visualizzaPreferiti = view.findViewById(R.id.visualizzaPreferiti_button_ProfileFragment);
 
         emailTextView.setText(emailText);
         usernameTextView.setText(usernameText);
 
+        VisualizzaPreferiti();
         modificaCredenzialiBtn(modificaCredenzialiBtn);
         logout(logoutbtn);
         return view;
@@ -224,6 +221,15 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
             return "";
         }
+    }
+
+    private void VisualizzaPreferiti(){
+        visualizzaPreferiti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), VisualizzaPreferitiActivity.class));
+            }
+        });
     }
 
 }

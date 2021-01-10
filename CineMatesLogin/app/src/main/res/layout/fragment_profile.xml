@@ -30,7 +30,7 @@
         android:layout_marginBottom="51dp"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_profile_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_button_ProfileFragment"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@mipmap/profile_pic" />
 
@@ -61,13 +61,13 @@
         android:text="email@myexample.com"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_profile_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_button_ProfileFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment" />
 
     <Button
-        android:id="@+id/visualizzaPreferiti_profile_fragment"
+        android:id="@+id/visualizzaPreferiti_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="77dp"
@@ -76,12 +76,12 @@
         android:background="@drawable/mybutton_radius"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Visualizza Lista Preferiti"
-        app:layout_constraintBottom_toTopOf="@+id/modificaCredenziali_profile_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/modificaCredenziali_button_ProfileFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/modificaCredenziali_profile_fragment"
+        android:id="@+id/modificaCredenziali_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="77dp"
@@ -91,12 +91,12 @@
         android:fontFamily="@font/martel_sans_bold"
         android:text="Modifica Credenziali"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/logout_profile_fragment"
+        app:layout_constraintBottom_toTopOf="@+id/logout_button_ProfileFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/logout_profile_fragment"
+        android:id="@+id/logout_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="77dp"

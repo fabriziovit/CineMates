@@ -26,6 +26,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         binding = ActivityPasswordDimenticataBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
         BackButton(binding);
         KeyboardPassDimenticata(binding);
         ResetPassword(binding);

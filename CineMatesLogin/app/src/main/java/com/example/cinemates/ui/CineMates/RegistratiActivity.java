@@ -45,10 +45,10 @@ public class RegistratiActivity extends AppCompatActivity {
 
         ControlloUsername(binding);
         ControlloPassword(binding);
-
         RegistratiButton(binding);
         KeyboardRegistrati(binding);
         BackButton(binding);
+
         binding.ErrorePasswordRegTextView.setVisibility(View.INVISIBLE);
         binding.risDisponibilitaRegistratiTextView.setVisibility(View.INVISIBLE);
     }
