@@ -58,8 +58,8 @@ public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAd
 
         private TextView username;
         private CircleImageView circleImageView;
-        private ImageView imageView;
-        private TextView textView;
+        private ImageView visualizzaPreferiti_Image;
+        private TextView visualizzaPreferiti_Text;
         RecycleViewAdapter_Amico.OnClickListener onClickListener;
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Amico.OnClickListener onClickListener){
@@ -67,12 +67,12 @@ public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAd
 
             username = itemView.findViewById(R.id.usernameFriend_Item_textView);
             circleImageView = itemView.findViewById(R.id.avatarFriend_item_image);
-            textView = itemView.findViewById(R.id.visualizzaPreferiti_item_textView);
-            imageView = itemView.findViewById(R.id.visualizzapreferiti_item_imageView);
+            visualizzaPreferiti_Text = itemView.findViewById(R.id.visualizzaPreferiti_item_textView);
+            visualizzaPreferiti_Image = itemView.findViewById(R.id.visualizzapreferiti_item_imageView);
             this.onClickListener = onClickListener;
 
-            textView.setOnClickListener(this);
-            imageView.setOnClickListener(this);
+            visualizzaPreferiti_Text.setOnClickListener(this);
+            visualizzaPreferiti_Image.setOnClickListener(this);
         }
 
         @Override

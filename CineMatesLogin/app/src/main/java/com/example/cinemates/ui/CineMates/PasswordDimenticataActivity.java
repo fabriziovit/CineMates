@@ -37,9 +37,14 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         binding.backRecuperaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PasswordDimenticataActivity.this, LoginActivity.class));
+                onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void ResetPassword(ActivityPasswordDimenticataBinding binding){

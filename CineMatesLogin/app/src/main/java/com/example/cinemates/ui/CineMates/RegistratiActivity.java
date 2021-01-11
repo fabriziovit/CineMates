@@ -93,9 +93,14 @@ public class RegistratiActivity extends AppCompatActivity {
         binding.backRegistratiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistratiActivity.this, LoginActivity.class));
+                onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void RegistratiButton(ActivityRegistratiBinding binding) {

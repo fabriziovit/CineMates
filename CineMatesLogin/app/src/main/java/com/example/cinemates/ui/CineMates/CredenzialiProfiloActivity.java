@@ -174,9 +174,14 @@ public class CredenzialiProfiloActivity extends AppCompatActivity {
         binding.backCredenzialiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CredenzialiProfiloActivity.this, HomeActivity.class));
+               onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 }

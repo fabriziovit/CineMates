@@ -3,7 +3,7 @@
     package="com.example.cinemates">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.type.watch" />
 
 
