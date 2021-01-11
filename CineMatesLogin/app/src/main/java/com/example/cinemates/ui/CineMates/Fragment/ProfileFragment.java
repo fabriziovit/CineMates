@@ -288,9 +288,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            assert data != null;
-            circleImageView.setImageURI(data.getData());
-            circleImageView.setImageBitmap(bitmap);
+            /*String image = data.getData().toString();
+            System.out.println(image);
+            circleImageView.setImageBitmap(ProfileFragment.getBitmapFromdownload(image));*/
         }
     }
+
+
 }
