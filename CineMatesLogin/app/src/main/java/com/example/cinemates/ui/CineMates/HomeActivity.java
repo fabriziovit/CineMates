@@ -30,6 +30,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
@@ -53,6 +55,9 @@ public class HomeActivity extends AppCompatActivity {
     boolean pop = false;
     Handler handler;
     int userNumber;
+    private StorageReference storageRef;
+    private FirebaseStorage storage;
+    private Bitmap profilePic;
 
 
     @Override
@@ -62,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
         final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -158,7 +165,7 @@ public class HomeActivity extends AppCompatActivity {
                         }, 3000);
 
                         new Thread(()->{
-                            Bitmap profilePic = null;
+                            profilePic = null;
                             String url = ProfileFragment.getUrlImage(db, FirebaseAuth.getInstance().getUid());
                             String usernameText = ProfileFragment.getUsernameText(db, FirebaseAuth.getInstance().getUid());
                             String emailText = ProfileFragment.getEmailText(db, FirebaseAuth.getInstance().getUid());

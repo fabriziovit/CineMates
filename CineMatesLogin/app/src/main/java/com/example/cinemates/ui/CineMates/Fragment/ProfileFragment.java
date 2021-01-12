@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +29,16 @@ import com.example.cinemates.ui.CineMates.LoginActivity;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.SettableFuture;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,10 +64,13 @@ public class ProfileFragment extends Fragment {
     private Bitmap bitmap;
     private String usernameText;
     private String emailText;
-    private static FirebaseFirestore db;
+    private FirebaseFirestore db;
     private Button visualizzaPreferiti;
     private ImageView modifica;
     private CircleImageView circleImageView;
+    private FirebaseStorage storage;
+    String curUser;
+    private UploadTask uploadTask;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
 
@@ -97,7 +106,6 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
@@ -112,6 +120,9 @@ public class ProfileFragment extends Fragment {
         Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_button_ProfileFragment);
         visualizzaPreferiti = view.findViewById(R.id.visualizzaPreferiti_button_ProfileFragment);
         modifica = view.findViewById(R.id.modifica_icon_fragmentProfile);
+        curUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db  = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         emailTextView.setText(emailText);
         usernameTextView.setText(usernameText);
@@ -279,18 +290,35 @@ public class ProfileFragment extends Fragment {
                 }else{
                     Toast.makeText(getContext(), "Permesso Negato", Toast.LENGTH_SHORT).show();
                 }
-
             }
-
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            /*String image = data.getData().toString();
-            System.out.println(image);
-            circleImageView.setImageBitmap(ProfileFragment.getBitmapFromdownload(image));*/
+            Uri imageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                circleImageView.setImageBitmap(bitmap);
+                StorageReference storageRef = storage.getReference();
+                StorageReference riversRef = storageRef.child("images/" + imageUri.getLastPathSegment());
+                riversRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        riversRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                String profiloImageUrl = task.getResult().toString();
+                                System.out.println(profiloImageUrl);
+                                db.collection("users").document(curUser).update("imageUrl", profiloImageUrl);
+                            }
+                        });
+                    }
+                });
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

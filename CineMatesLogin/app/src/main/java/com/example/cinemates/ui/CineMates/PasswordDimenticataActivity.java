@@ -28,6 +28,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         setContentView(view);
 
         BackButton(binding);
+        RegistratiButton(binding);
         KeyboardPassDimenticata(binding);
         ResetPassword(binding);
 
@@ -70,7 +71,6 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         });
     }
 
-
     private void KeyboardPassDimenticata(ActivityPasswordDimenticataBinding binding) {
         binding.containerRecupera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +78,15 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(binding.containerRecupera.getWindowToken(), 0);
                 binding.emailRecuperaTextField.clearFocus();
+            }
+        });
+    }
+
+    private void RegistratiButton(ActivityPasswordDimenticataBinding binding){
+        binding.registratiRecuperaTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PasswordDimenticataActivity.this, RegistratiActivity.class));
             }
         });
     }
