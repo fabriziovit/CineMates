@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onCancel() {
                 Log.d("Cancellato", "facebook:onCancel");
                 // [START_EXCLUDE]
-                Toast.makeText(LoginActivity.this, "Accesso Cancellato", Toast.LENGTH_LONG).show();
+                //Toast.makeText(LoginActivity.this, "Accesso Cancellato", Toast.LENGTH_LONG).show();
                 // [END_EXCLUDE]
             }
 

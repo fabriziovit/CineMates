@@ -19,8 +19,10 @@
         android:src="@drawable/logo_small"
         app:layout_constraintBottom_toTopOf="@+id/avatar_profile_fragment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar_profile_fragment"
@@ -112,10 +114,10 @@
         android:id="@+id/modifica_icon_fragmentProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="441dp"
-        android:src="@drawable/ic_modifica"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="51dp"
+        android:src="@drawable/ic_modificaimmagine"
+        app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_button_ProfileFragment"
+        app:layout_constraintEnd_toStartOf="@+id/email_profile_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

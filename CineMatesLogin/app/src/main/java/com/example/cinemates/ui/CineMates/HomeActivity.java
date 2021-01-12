@@ -169,10 +169,7 @@ public class HomeActivity extends AppCompatActivity {
                             String url = ProfileFragment.getUrlImage(db, FirebaseAuth.getInstance().getUid());
                             String usernameText = ProfileFragment.getUsernameText(db, FirebaseAuth.getInstance().getUid());
                             String emailText = ProfileFragment.getEmailText(db, FirebaseAuth.getInstance().getUid());
-                            if(url.equals("default"))
-                                profilePic = ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png");
-                            else
-                                profilePic = ProfileFragment.getBitmapFromdownload(url);
+                            profilePic = ProfileFragment.getBitmapFromdownload(url);
                             fragment = new ProfileFragment(profilePic, usernameText, emailText);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
@@ -203,7 +200,7 @@ public class HomeActivity extends AppCompatActivity {
                                     userNumber = queryDocumentSnapshots.size();
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                         if (!currUser.equals(documentSnapshot.getString("uid"))) {
-                                            if (documentSnapshot.getString("imageUrl").equals("default")) {
+                                            /*if (documentSnapshot.getString("imageUrl").equals("default")) {
                                                 ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"));
 
                                                 new Thread(()-> {
@@ -226,7 +223,7 @@ public class HomeActivity extends AppCompatActivity {
                                                         }
                                                     });
                                                 }).start();
-                                            } else {
+                                            } else {*/
 
                                                 new Thread(()->{
                                                     ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
@@ -252,7 +249,7 @@ public class HomeActivity extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                }
+                                //}
                             });
                             while (userList.size() != userNumber-1) {
                             }

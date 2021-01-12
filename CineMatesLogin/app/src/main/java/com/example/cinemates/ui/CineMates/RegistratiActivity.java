@@ -156,7 +156,7 @@ public class RegistratiActivity extends AppCompatActivity {
         userHelperClass.setEmail(email);
         userHelperClass.setUid(uId);
         userHelperClass.setUsername(username);
-        userHelperClass.setImageUrl("default");
+        userHelperClass.setImageUrl("https://image.flaticon.com/icons/png/128/1077/1077114.png");
 
         Friends friends = new Friends();
 
