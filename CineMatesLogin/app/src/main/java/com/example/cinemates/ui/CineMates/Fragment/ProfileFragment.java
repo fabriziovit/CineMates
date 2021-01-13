@@ -70,7 +70,6 @@ public class ProfileFragment extends Fragment {
     private CircleImageView circleImageView;
     private FirebaseStorage storage;
     String curUser;
-    private UploadTask uploadTask;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
 
@@ -256,7 +255,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void ModificaImmagine(){
-        modifica.setOnClickListener(new View.OnClickListener() {
+        circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

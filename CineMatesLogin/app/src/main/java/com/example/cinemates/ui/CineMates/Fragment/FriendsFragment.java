@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.NotificheDialog;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,6 +31,7 @@ public class FriendsFragment extends Fragment {
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     List<ItemUser> userList;
+    private ImageView notifica;
 
     // TODO: Rename and change types of parameters
 
@@ -69,10 +72,10 @@ public class FriendsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-
+        notifica = view.findViewById(R.id.notifica_fragment_friends);
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
-        adapter = new ViewPagerAdapter(getParentFragmentManager());
+        adapter = new ViewPagerAdapter(getChildFragmentManager());
 
 
 
@@ -84,6 +87,19 @@ public class FriendsFragment extends Fragment {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
 
+        ApriNotifiche();
+        //ChiudiNotifiche();
+
         return view;
+    }
+
+    public void ApriNotifiche(){
+        notifica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                final NotificheDialog notificheDialog = new NotificheDialog(getActivity());
+                notificheDialog.startNotificheDialog();
+            }
+        });
     }
 }

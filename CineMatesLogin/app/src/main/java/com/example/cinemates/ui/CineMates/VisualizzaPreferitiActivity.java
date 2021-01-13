@@ -1,17 +1,15 @@
 package com.example.cinemates.ui.CineMates;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityVisualizzaPreferitiBinding;
-import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 
 import java.util.ArrayList;
@@ -19,10 +17,7 @@ import java.util.List;
 
 public class VisualizzaPreferitiActivity extends AppCompatActivity implements RecycleViewAdapter_Film.OnClickListener{
     private ActivityVisualizzaPreferitiBinding binding;
-    FragmentManager fragmentManager;
     private List<ItemFilm> filmList;
-    HomeFragment homeFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +54,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
         binding.homeButtonVisualizzaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeFragment = new HomeFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.container_VisualizzaPreferiti, homeFragment).commit();
+                startActivity(new Intent(VisualizzaPreferitiActivity.this, HomeActivity.class));
             }
         });
     }

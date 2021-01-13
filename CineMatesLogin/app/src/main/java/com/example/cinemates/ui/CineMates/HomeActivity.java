@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     Fragment fragment;
     HomeFragment homeFragment;
     FirebaseFirestore db;
-    public PopularFilms popularFilms;
+    private PopularFilms popularFilms;
     boolean pop = false;
     Handler handler;
     int userNumber;
@@ -200,30 +200,6 @@ public class HomeActivity extends AppCompatActivity {
                                     userNumber = queryDocumentSnapshots.size();
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                         if (!currUser.equals(documentSnapshot.getString("uid"))) {
-                                            /*if (documentSnapshot.getString("imageUrl").equals("default")) {
-                                                ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png"));
-
-                                                new Thread(()-> {
-                                                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
-                                                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                            if (task.isSuccessful()) {
-                                                                DocumentSnapshot document = task.getResult();
-                                                                if (document.exists() && document.getString("uIdMittente").equals(currUser)) {
-                                                                    itemUser.setRapporto(1);
-                                                                    userList.add(itemUser);
-                                                                } else {
-                                                                    //Controllo non presente in amici, se è presente aggiungere 2
-                                                                    itemUser.setRapporto(0);
-                                                                    userList.add(itemUser);
-                                                                    //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
-                                                                }
-                                                            }
-                                                        }
-                                                    });
-                                                }).start();
-                                            } else {*/
 
                                                 new Thread(()->{
                                                     ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
@@ -249,7 +225,6 @@ public class HomeActivity extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                //}
                             });
                             while (userList.size() != userNumber-1) {
                             }

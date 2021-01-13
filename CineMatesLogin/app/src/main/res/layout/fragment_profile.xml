@@ -112,10 +112,10 @@
 
     <ImageView
         android:id="@+id/modifica_icon_fragmentProfile"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="51dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="44dp"
         android:src="@drawable/ic_modificaimmagine"
         app:layout_constraintBottom_toTopOf="@+id/visualizzaPreferiti_button_ProfileFragment"
         app:layout_constraintEnd_toStartOf="@+id/email_profile_fragment" />

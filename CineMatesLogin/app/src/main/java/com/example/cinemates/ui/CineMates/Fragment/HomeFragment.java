@@ -35,9 +35,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public HomeFragment(PopularFilms popularFilms){
-        this.popularFilms = popularFilms;
-    }
+    public HomeFragment(PopularFilms popularFilms){ this.popularFilms = popularFilms; }
 
     /**
      * Use this factory method to create a new instance of
@@ -70,8 +68,11 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         homeButton = view.findViewById(R.id.homeButton_fragment_home);
-        for(Movie movie : popularFilms.getResults())
-            System.out.println(movie.getTitle());
+
+        new Thread(()-> {
+            for (Movie movie : popularFilms.getResults())
+                System.out.println(movie.getTitle());
+        }).start();
 
         return view;
     }
