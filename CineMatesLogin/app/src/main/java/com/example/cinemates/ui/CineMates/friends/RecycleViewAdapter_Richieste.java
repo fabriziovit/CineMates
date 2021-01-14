@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.friends;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -59,6 +59,8 @@ public class RecycleViewAdapter_Richieste extends RecyclerView.Adapter<RecycleVi
         private CircleImageView circleImageView;
         private ImageView accetta;
         private ImageView rifiuta;
+        private TextView rifiutaText;
+        private TextView accettaText;
         RecycleViewAdapter_Richieste.OnClickListener onClickListener;
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Richieste.OnClickListener onClickListener){
@@ -67,24 +69,39 @@ public class RecycleViewAdapter_Richieste extends RecyclerView.Adapter<RecycleVi
             username = itemView.findViewById(R.id.usernameRichiesta_Item_textView);
             circleImageView = itemView.findViewById(R.id.avatarRichiesta_item_image);
             accetta = itemView.findViewById(R.id.accetta_item_imageView);
+            accettaText = itemView.findViewById(R.id.accetta_item_textView);
             rifiuta = itemView.findViewById(R.id.rifiuta_item_ImageView);
+            rifiutaText = itemView.findViewById(R.id.rifiuta_item_textView);
 
-            rifiuta.setOnClickListener(this);
             accetta.setOnClickListener(this);
+            accettaText.setOnClickListener(this);
+            rifiuta.setOnClickListener(this);
+            rifiutaText.setOnClickListener(this);
             this.onClickListener = onClickListener;
-
-
         }
 
         @Override
         public void onClick(View view) {
-            onClickListener.OnClick(getAdapterPosition());
+            switch (view.getId()){
+                case R.id.accetta_item_imageView:
+                case R.id.accetta_item_textView:
+                    onClickListener.onClickAccetta(this.getLayoutPosition());
+                    break;
+                case R.id.rifiuta_item_ImageView :
+                case R.id.rifiuta_item_textView:
+                    onClickListener.onClickRifiuta(this.getLayoutPosition());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
 
+
     public interface OnClickListener{
-        void OnClick(int position);
+        void onClickAccetta(int position);
+        void onClickRifiuta(int position);
     }
 
 }

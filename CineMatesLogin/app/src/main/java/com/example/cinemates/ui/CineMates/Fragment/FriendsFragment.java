@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.NotificheDialog;
+import com.example.cinemates.ui.CineMates.friends.NotificheDialog;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.google.android.material.tabs.TabLayout;
 
@@ -76,6 +78,7 @@ public class FriendsFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getChildFragmentManager());
+        //final NotificheDialog notificheDialog = new NotificheDialog(getActivity());
 
 
 
@@ -98,8 +101,13 @@ public class FriendsFragment extends Fragment {
             @Override
             public void onClick(View view){
                 final NotificheDialog notificheDialog = new NotificheDialog(getActivity());
-                notificheDialog.startNotificheDialog();
+                showDialog(notificheDialog);
             }
         });
+    }
+
+    public void showDialog(DialogFragment dialogFragment){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        dialogFragment.show(fragmentManager, "dialog");
     }
 }

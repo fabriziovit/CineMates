@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="360dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
@@ -26,9 +26,9 @@
         android:id="@+id/usernameRichiesta_Item_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="196dp"
+        android:layout_marginEnd="173dp"
         android:layout_marginBottom="45dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Username"
@@ -45,6 +45,7 @@
         android:id="@+id/accetta_item_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="7dp"
@@ -55,6 +56,7 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/accetta_item_imageView"
         app:layout_constraintEnd_toStartOf="@+id/rifiuta_item_textView"
+        app:layout_constraintStart_toEndOf="@+id/avatarRichiesta_item_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -62,9 +64,11 @@
         android:id="@+id/accetta_item_imageView"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginStart="173dp"
         android:layout_marginEnd="57dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rifiuta_item_ImageView"
+        app:layout_constraintStart_toEndOf="@+id/avatarRichiesta_item_image"
         app:srcCompat="@drawable/ic_checked" />
 
     <TextView

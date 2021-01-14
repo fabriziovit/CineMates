@@ -4,16 +4,32 @@
     xmlns:id="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_notifiche_dialog"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="bottom"
+    android:layout_height="460dp"
+    android:layout_gravity="center"
     android:background="@color/colorBack">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Richieste_Dialog"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         id:layout_constraintBottom_toBottomOf="parent"
+        id:layout_constraintEnd_toEndOf="parent"
+        id:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/richieste_amicizia_NotificheDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Richieste di amicizia"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        id:layout_constraintBottom_toTopOf="@+id/Richieste_Dialog"
         id:layout_constraintEnd_toEndOf="parent"
         id:layout_constraintStart_toStartOf="parent"
         id:layout_constraintTop_toTopOf="parent" />
