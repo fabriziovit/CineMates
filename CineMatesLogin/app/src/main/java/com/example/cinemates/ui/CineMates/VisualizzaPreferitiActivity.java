@@ -72,7 +72,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
     public void OnClick(int position) {
         filmList.get(position);
 
-        System.out.println(" "+ position);
+        //System.out.println(" "+ position);
 
     }
 

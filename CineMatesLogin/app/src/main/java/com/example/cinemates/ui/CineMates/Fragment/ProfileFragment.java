@@ -1,7 +1,8 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
-
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,16 +22,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
-import com.example.cinemates.ui.CineMates.WarningDialog;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -54,15 +51,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProfileFragment extends Fragment implements WarningDialog.Callback{
+public class ProfileFragment extends Fragment{
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Bitmap bitmap;
@@ -73,10 +63,9 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
     private ImageView modifica;
     private CircleImageView circleImageView;
     private FirebaseStorage storage;
-    String curUser;
+    private String curUser;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
-
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -88,15 +77,6 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
         this.emailText = emailText;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -109,7 +89,6 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -161,14 +140,26 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                WarningDialog newFragment = new WarningDialog ();
-                newFragment.show(ft, "Dialog");
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                builder1.setMessage("Vuoi davvero uscire?");
+                builder1.setCancelable(true);
 
-                /*FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(), LoginActivity.class));*/
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                accetta();
+                            }
+                        });
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             }
         });
     }
@@ -272,7 +263,6 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
                         == PackageManager.PERMISSION_DENIED){
                         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         requestPermissions(permissions, PERMISSION_CODE);
-
                     }else{
                         pickImageFromGallery();
                     }
@@ -318,7 +308,6 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 String profiloImageUrl = task.getResult().toString();
-                                System.out.println(profiloImageUrl);
                                 db.collection("users").document(curUser).update("imageUrl", profiloImageUrl);
                             }
                         });
@@ -330,32 +319,10 @@ public class ProfileFragment extends Fragment implements WarningDialog.Callback{
         }
     }
 
-    @Override
-    public void onClick(View view)
-    {
-        WarningDialog dialog = new WarningDialog();
-        dialog.setTargetFragment(this, 1);
-        showDialog(dialog);
-    }
-
-
-    @Override
     public void accetta() {
-        System.out.println("SES");
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
         Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getActivity(), LoginActivity.class));
-    }
-
-    @Override
-    public void decline() {
-        WarningDialog warningDialog = new WarningDialog();
-        warningDialog.dismiss();
-    }
-
-    public void showDialog(DialogFragment dialogFragment){
-        FragmentManager fragmentManager = getParentFragmentManager();
-        dialogFragment.show(fragmentManager, "dialog");
     }
 }
