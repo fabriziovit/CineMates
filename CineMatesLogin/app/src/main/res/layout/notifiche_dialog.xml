@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androandroid="http://schemas.android.com/tools"
     xmlns:id="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container_notifiche_dialog"
+    android:id="@+id/container_warning_dialog"
     android:layout_width="match_parent"
     android:layout_height="460dp"
     android:layout_gravity="center"

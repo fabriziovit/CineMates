@@ -21,12 +21,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
+import com.example.cinemates.ui.CineMates.WarningDialog;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,7 +59,7 @@ import static android.app.Activity.RESULT_OK;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements WarningDialog.Callback{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,6 +76,7 @@ public class ProfileFragment extends Fragment {
     String curUser;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -156,10 +161,14 @@ public class ProfileFragment extends Fragment {
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                WarningDialog newFragment = new WarningDialog ();
+                newFragment.show(ft, "Dialog");
+
+                /*FirebaseAuth.getInstance().signOut();
                 LoginManager.getInstance().logOut();
                 Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));*/
             }
         });
     }
@@ -321,5 +330,32 @@ public class ProfileFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View view)
+    {
+        WarningDialog dialog = new WarningDialog();
+        dialog.setTargetFragment(this, 1);
+        showDialog(dialog);
+    }
 
+
+    @Override
+    public void accetta() {
+        System.out.println("SES");
+        FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
+        Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+    }
+
+    @Override
+    public void decline() {
+        WarningDialog warningDialog = new WarningDialog();
+        warningDialog.dismiss();
+    }
+
+    public void showDialog(DialogFragment dialogFragment){
+        FragmentManager fragmentManager = getParentFragmentManager();
+        dialogFragment.show(fragmentManager, "dialog");
+    }
 }
