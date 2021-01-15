@@ -139,7 +139,6 @@ public class RegistratiActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //Get Value from all Field
                             String email = binding.emailRegistratiTextField.getText().toString();
                             String username = binding.usernameRegistratiTextField.getText().toString();
                             DataSet(email, username);

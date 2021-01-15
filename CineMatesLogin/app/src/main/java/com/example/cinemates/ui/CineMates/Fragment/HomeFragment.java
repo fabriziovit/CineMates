@@ -4,19 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
-import com.example.cinemates.databinding.FragmentHomeBinding;
 import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
 
 public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
     private PopularFilms popularFilms;
-    private ImageView homeButton;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -45,7 +41,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        homeButton = view.findViewById(R.id.homeButton_fragment_home);
 
         new Thread(()-> {
             for (Movie movie : popularFilms.getResults())

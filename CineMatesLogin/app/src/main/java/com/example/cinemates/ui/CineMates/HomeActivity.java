@@ -104,12 +104,13 @@ public class HomeActivity extends AppCompatActivity {
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 3000);
+            }, 2000);
             new Thread(()-> {
                 while(!pop){}
-                homeFragment = new HomeFragment(popularFilms);
+                fragment = new HomeFragment(popularFilms);
+                fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_home_container, homeFragment)
+                        .replace(R.id.fragment_home_container, fragment)
                         .commit();
             }).start();
         }
@@ -131,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 3000);
+                        }, 2000);
 
                         new Thread(()-> {
                             while (!pop){}
@@ -151,7 +152,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 3000);
+                        }, 2000);
                         break;
                     case R.id.profilo:
                         isProfile = true;
@@ -162,7 +163,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 3000);
+                        }, 2000);
 
                         new Thread(()->{
                             profilePic = null;
@@ -189,7 +190,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 3000);
+                        }, 2500);
 
                         new Thread(()->{
                             List<ItemUser> userList = new ArrayList<>();

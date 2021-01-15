@@ -74,6 +74,17 @@ public class LoginActivity extends AppCompatActivity {
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
 
+
+        FirebaseUser user = mAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }else{
+            Log.d("ERRORE", "onAuthStateChanged:signed_out");
+        }
+
+
         String token = settings.getString("auth_token", null);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -98,17 +109,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 Log.d("Cancellato", "facebook:onCancel");
-                // [START_EXCLUDE]
                 //Toast.makeText(LoginActivity.this, "Accesso Cancellato", Toast.LENGTH_LONG).show();
-                // [END_EXCLUDE]
             }
 
             @Override
             public void onError(FacebookException error) {
                 Log.d("Errore", "facebook:onError", error);
-                // [START_EXCLUDE]
                 Toast.makeText(LoginActivity.this, "Accesso Non Riuscito", Toast.LENGTH_LONG).show();
-                // [END_EXCLUDE]
             }
         });
     }
@@ -150,18 +157,15 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             try {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d("Accesso", "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
                 Log.w("Errore", "Google sign in failed", e);
-                // ...
             }
         }
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
@@ -174,7 +178,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+
                             Log.d("Accesso", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             //controllo se già esiste e se non esiste aggiungo al db
@@ -338,8 +342,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Accesso Non Riuscito, Controlla i dati!", Toast.LENGTH_SHORT).show();

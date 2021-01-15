@@ -2,7 +2,7 @@ package com.example.cinemates.ui.CineMates.friends;
 
 import android.graphics.Bitmap;
 
-public class ItemUser {
+public class ItemUser{
 
     private String Username;
     private Bitmap bitmap;

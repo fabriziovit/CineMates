@@ -79,7 +79,6 @@ public class RecycleViewAdapter_Utente extends RecyclerView.Adapter<RecycleViewA
             textView = itemView.findViewById(R.id.rapporto_item_textView);
             imageView = itemView.findViewById(R.id.rapporto_item_imageView);
 
-
             this.onClickListener = onClickListener;
 
             textView.setOnClickListener(this);
@@ -95,6 +94,5 @@ public class RecycleViewAdapter_Utente extends RecyclerView.Adapter<RecycleViewA
     public interface OnClickListener{
         void OnClick(int position);
     }
-
 }
 

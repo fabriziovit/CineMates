@@ -43,8 +43,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private String mParam1;
-    private String mParam2;
 
     public SearchFriendsFragment() {
         // Required empty public constructor
@@ -123,7 +121,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 Toast.makeText(getActivity(), "Richista inviata correttamente!", Toast.LENGTH_SHORT).show();
                                                 userList.get(position).setRapporto(1);
-                                                //modificare rapporto e icona
+                                                // modficare in real time
                                             }
                                         });
                                     }
