@@ -48,25 +48,24 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
         currUser = auth.getCurrentUser().getUid();
 
         new Thread(()-> {
-            CollectionReference collectionReference = db.collection("friend request");
+            CollectionReference collectionReference = db.collection("users");
             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        if (documentSnapshot.getString("uIdDestinatario").equals(currUser)) {
-                            DocumentReference documentReference = db.collection("users").document(documentSnapshot.getString("uIdMittente"));
-                            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            richiesteList.add(new ItemRichieste(document.getString("username"), ProfileFragment.getBitmapFromdownload(document.getString("imageUrl"))));
-                                        }
+                        DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid")).collection(currUser).document(currUser);
+                        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        richiesteList.add(new ItemRichieste(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"))));
+                                        //Mostrare pallino notifica nella schermata friends fragment
                                     }
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
                 }
             });

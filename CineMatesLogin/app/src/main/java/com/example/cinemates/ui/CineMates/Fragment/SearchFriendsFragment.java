@@ -107,16 +107,13 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                         String uIdMittente = mAuth.getCurrentUser().getUid();
                         FieldValue timestamp = FieldValue.serverTimestamp();
                         FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
-
-
-
-                        DocumentReference documentReference = db.collection("friend request").document(uIdDestinatario);
+                        DocumentReference documentReference = db.collection("friend request").document(uIdMittente).collection(uIdDestinatario).document(uIdDestinatario);
                         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
-                                    if (document.exists() && document.getString("uIdMittente").equals(uIdMittente)) {
+                                    if (document.exists()) {
                                         Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
                                     }else {
                                         db.collection("friend request").document(uIdMittente).collection(uIdDestinatario).document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -131,9 +128,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                                 }
                             }
                         });
-
-
-                        
                         break;
                     }
                 }
