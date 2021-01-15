@@ -1,5 +1,6 @@
 package com.example.cinemates.ui.CineMates;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -58,6 +59,9 @@ public class HomeActivity extends AppCompatActivity {
     private StorageReference storageRef;
     private FirebaseStorage storage;
     private Bitmap profilePic;
+    private int rapporto;
+    private ItemUser itemUser;
+    Activity activity;
 
 
     @Override
@@ -104,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 2000);
+            }, 2500);
             new Thread(()-> {
                 while(!pop){}
                 fragment = new HomeFragment(popularFilms);
@@ -132,7 +136,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2000);
+                        }, 2500);
 
                         new Thread(()-> {
                             while (!pop){}
@@ -152,7 +156,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2000);
+                        }, 2500);
                         break;
                     case R.id.profilo:
                         isProfile = true;
@@ -163,7 +167,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2000);
+                        }, 2500);
 
                         new Thread(()->{
                             profilePic = null;
@@ -184,7 +188,6 @@ public class HomeActivity extends AppCompatActivity {
                         loadingDialog.startLoadingDialog();
                         handler = new Handler();
                         String currUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -194,6 +197,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         new Thread(()->{
                             List<ItemUser> userList = new ArrayList<>();
+
                             CollectionReference collectionReference = db.collection("users");
                             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -202,30 +206,38 @@ public class HomeActivity extends AppCompatActivity {
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                         if (!currUser.equals(documentSnapshot.getString("uid"))) {
 
-                                                new Thread(()->{
-                                                    ItemUser itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
-                                                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid"));
-                                                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                            if (task.isSuccessful()) {
-                                                                DocumentSnapshot document = task.getResult();
-                                                                if (document.exists() && document.getString("uIdMittente").equals(currUser)) {
-                                                                    itemUser.setRapporto(1);
-                                                                    userList.add(itemUser);
-                                                                } else {
-                                                                    //Controllo non presente in amici, se è presente aggiungere 2
-                                                                    itemUser.setRapporto(0);
-                                                                    userList.add(itemUser);
-                                                                    //altrimenti aggiunta al rapporto 0 in quanto non amici e non inviata nesdsuna richiesta
-                                                                }
+                                            new Thread(()->{
+                                                String uidDestinatario = documentSnapshot.getString("uid");
+
+                                                DocumentReference documentReference = db.collection("friend request").document(currUser).collection(uidDestinatario).document(uidDestinatario);
+                                                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            DocumentSnapshot document = task.getResult();
+                                                            if (document.exists()) {
+                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
+                                                                rapporto = 1;
+                                                                itemUser.setRapporto(rapporto);
+                                                                System.out.println("a");
+                                                                userList.add(itemUser);
+                                                                //userList.add(itemUser);
+                                                            } else {
+                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
+                                                                rapporto = 0;
+                                                                itemUser.setRapporto(rapporto);
+                                                                System.out.println("b");
+                                                                userList.add(itemUser);
                                                             }
+
                                                         }
-                                                    });
-                                                }).start();
-                                            }
+                                                    }
+                                                });
+                                            }).start();
                                         }
+
                                     }
+                                }
                             });
                             while (userList.size() != userNumber-1) {
                             }

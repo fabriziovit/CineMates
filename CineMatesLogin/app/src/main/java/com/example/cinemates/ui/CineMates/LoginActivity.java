@@ -78,12 +78,8 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-            //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
-        }else{
-            Log.d("ERRORE", "onAuthStateChanged:signed_out");
         }
-
 
         String token = settings.getString("auth_token", null);
 
@@ -109,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCancel() {
                 Log.d("Cancellato", "facebook:onCancel");
-                //Toast.makeText(LoginActivity.this, "Accesso Cancellato", Toast.LENGTH_LONG).show();
             }
 
             @Override

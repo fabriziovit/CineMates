@@ -15,6 +15,7 @@
         android:layout_height="400dp"
         id:layout_constraintBottom_toBottomOf="parent"
         id:layout_constraintEnd_toEndOf="parent"
+        id:layout_constraintHorizontal_bias="0.0"
         id:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -33,4 +34,15 @@
         id:layout_constraintEnd_toEndOf="parent"
         id:layout_constraintStart_toStartOf="parent"
         id:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/chiudi_finestra_notificheDialog"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        id:layout_constraintEnd_toEndOf="parent"
+        id:layout_constraintTop_toTopOf="parent"
+        id:srcCompat="@drawable/ic_chiudifinestra" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
