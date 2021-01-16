@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -91,16 +93,43 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
 
     @Override
     public void onClickAccetta(int position) {
-        richiesteList.get(position);
-
-        System.out.println(" "+ "accetta "+position);
+        CollectionReference collectionReference = db.collection("users");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
+                        String uIdMittente = queryDocumentSnapshot.getString("uid");
+                        db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
+                        //aggiornamento UI dialog notifiche
+                        FieldValue timestamp = FieldValue.serverTimestamp();
+                        Friends friends1 = new Friends(uIdMittente, timestamp);
+                        Friends friends2 = new Friends(currUser, timestamp);
+                        db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
+                        db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
+                        Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void onClickRifiuta(int position){
-        richiesteList.get(position);
-
-        System.out.println(" "+ "rifiuta "+position);
+        CollectionReference collectionReference = db.collection("users");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                    if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
+                        String uIdMittente = queryDocumentSnapshot.getString("uid");
+                        db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
+                        //aggiornamento UI dialog notifiche
+                        Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     public void chiudi(){

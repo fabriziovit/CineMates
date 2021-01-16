@@ -20,6 +20,7 @@ import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
+import com.example.cinemates.ui.CineMates.friends.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -63,7 +64,6 @@ public class HomeActivity extends AppCompatActivity {
     private ItemUser itemUser;
     Activity activity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +96,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         bottomNav =  binding.navHomeMenu;
-
 
         if(savedInstanceState == null){
             bottomNav.setItemSelected(R.id.main, true);
@@ -185,6 +184,8 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.amici:
                         isFriends = true;
+                        List<ItemUser> userList = new ArrayList<>();
+                        List<ItemFriend> friendList = new ArrayList<>();
                         loadingDialog.startLoadingDialog();
                         handler = new Handler();
                         String currUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -196,7 +197,34 @@ public class HomeActivity extends AppCompatActivity {
                         }, 2500);
 
                         new Thread(()->{
-                            List<ItemUser> userList = new ArrayList<>();
+                            CollectionReference collectionReference1 = db.collection("users");
+                            collectionReference1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                    new Thread(()-> {
+                                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                            String uidAmico = documentSnapshot.getString("uid");
+                                            DocumentReference documentReference = db.collection("friends").document(currUser).collection(uidAmico).document(uidAmico);
+                                            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        DocumentSnapshot document = task.getResult();
+                                                        if(document.exists()) {
+                                                            String username = documentSnapshot.getString("username");
+                                                            System.out.println(username);
+                                                            String imageUrl = documentSnapshot.getString("imageUrl");
+                                                            friendList.add(new ItemFriend(username, ProfileFragment.getBitmapFromdownload(imageUrl)));
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+                                        }
+                                    }).start();
+                                }
+                            });
 
                             CollectionReference collectionReference = db.collection("users");
                             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -208,7 +236,6 @@ public class HomeActivity extends AppCompatActivity {
 
                                             new Thread(()->{
                                                 String uidDestinatario = documentSnapshot.getString("uid");
-
                                                 DocumentReference documentReference = db.collection("friend request").document(currUser).collection(uidDestinatario).document(uidDestinatario);
                                                 documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @Override
@@ -219,29 +246,23 @@ public class HomeActivity extends AppCompatActivity {
                                                                 itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
                                                                 rapporto = 1;
                                                                 itemUser.setRapporto(rapporto);
-                                                                System.out.println("a");
                                                                 userList.add(itemUser);
-                                                                //userList.add(itemUser);
                                                             } else {
                                                                 itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
                                                                 rapporto = 0;
                                                                 itemUser.setRapporto(rapporto);
-                                                                System.out.println("b");
                                                                 userList.add(itemUser);
                                                             }
-
                                                         }
                                                     }
                                                 });
                                             }).start();
                                         }
-
                                     }
                                 }
                             });
-                            while (userList.size() != userNumber-1) {
-                            }
-                            fragment = new FriendsFragment(userList);
+                            while (userList.size() != userNumber - 1) { }
+                            fragment = new FriendsFragment(userList, friendList);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)
@@ -249,7 +270,6 @@ public class HomeActivity extends AppCompatActivity {
                         }).start();
                         break;
                 }
-
                 if(fragment!=null && !isProfile && !isHome && !isFriends){
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()

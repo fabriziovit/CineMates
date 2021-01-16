@@ -17,7 +17,6 @@ import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.friends.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amico;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amico.OnClickListener {
@@ -36,6 +35,10 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         // Required empty public constructor
     }
 
+    public YourFriendsFragment(List<ItemFriend> friendList) {
+        this.friendList = friendList;
+    }
+
     public static YourFriendsFragment newInstance(String param1, String param2) {
         YourFriendsFragment fragment = new YourFriendsFragment();
         Bundle args = new Bundle();
@@ -48,10 +51,6 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        friendList = new ArrayList<>();
-        friendList.add(new ItemFriend("SauTube", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
-        friendList.add(new ItemFriend("Giardina", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
     }
 
     @Override

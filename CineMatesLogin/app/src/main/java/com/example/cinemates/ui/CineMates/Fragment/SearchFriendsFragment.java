@@ -119,9 +119,9 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                                         db.collection("friend request").document(uIdMittente).collection(uIdDestinatario).document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(getActivity(), "Richista inviata correttamente!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), "Richiesta inviata correttamente!", Toast.LENGTH_SHORT).show();
                                                 userList.get(position).setRapporto(1);
-                                                // modficare in real time
+                                                //Modificare UI search friends
                                             }
                                         });
                                     }

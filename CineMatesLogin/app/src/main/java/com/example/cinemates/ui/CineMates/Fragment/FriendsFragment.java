@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.friends.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
 import com.example.cinemates.ui.CineMates.friends.NotificheDialog;
 import com.google.android.material.tabs.TabLayout;
@@ -24,15 +25,18 @@ public class FriendsFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
-    List<ItemUser> userList;
+    private List<ItemUser> userList;
     private ImageView notifica;
+    private List<ItemFriend> friendList;
+
 
     public FriendsFragment() {
         // Required empty public constructor
     }
 
-    public FriendsFragment(List<ItemUser> userList){
+    public FriendsFragment(List<ItemUser> userList, List<ItemFriend> friendList){
         this.userList = userList;
+        this.friendList = friendList;
     }
 
     public static FriendsFragment newInstance(String param1, String param2) {
@@ -58,7 +62,7 @@ public class FriendsFragment extends Fragment {
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        adapter.AddFragment(new YourFriendsFragment(), "Lista Amici");
+        adapter.AddFragment(new YourFriendsFragment(friendList), "Lista Amici");
         adapter.AddFragment(new SearchFriendsFragment(userList), "Cerca Utenti");
 
         viewPager.setAdapter(adapter);
