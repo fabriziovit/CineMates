@@ -19,7 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
-public class FriendsFragment extends Fragment {
+public class FriendsFragment extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private TabLayout tabLayout;
@@ -29,12 +29,11 @@ public class FriendsFragment extends Fragment {
     private ImageView notifica;
     private List<ItemFriend> friendList;
 
-
     public FriendsFragment() {
         // Required empty public constructor
     }
 
-    public FriendsFragment(List<ItemUser> userList, List<ItemFriend> friendList){
+    public FriendsFragment(List<ItemUser> userList, List<ItemFriend> friendList) {
         this.userList = userList;
         this.friendList = friendList;
     }
@@ -74,18 +73,22 @@ public class FriendsFragment extends Fragment {
         return view;
     }
 
-    public void ApriNotifiche(){
+    public void ApriNotifiche() {
         notifica.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 final NotificheDialog notificheDialog = new NotificheDialog(getActivity());
                 showDialog(notificheDialog);
             }
         });
     }
 
-    public void showDialog(DialogFragment dialogFragment){
+    public void showDialog(DialogFragment dialogFragment) {
         FragmentManager fragmentManager = getParentFragmentManager();
         dialogFragment.show(fragmentManager, "dialog");
+    }
+
+    public void update(){
+        adapter.update();
     }
 }

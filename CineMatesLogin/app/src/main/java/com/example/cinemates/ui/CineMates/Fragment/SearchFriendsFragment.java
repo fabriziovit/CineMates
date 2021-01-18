@@ -33,7 +33,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-public class SearchFriendsFragment extends Fragment implements RecycleViewAdapter_Utente.OnClickListener {
+import Intefaces.UpdateableFragmentListener;
+
+public class SearchFriendsFragment extends Fragment implements RecycleViewAdapter_Utente.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
@@ -42,7 +44,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     private EditText searchBar;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-
 
     public SearchFriendsFragment() {
         // Required empty public constructor
@@ -121,7 +122,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 Toast.makeText(getActivity(), "Richiesta inviata correttamente!", Toast.LENGTH_SHORT).show();
                                                 userList.get(position).setRapporto(1);
-                                                //Modificare UI search friends
+                                                update();
                                             }
                                         });
                                     }
@@ -133,5 +134,10 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                 }
             }
         });
+    }
+
+    @Override
+    public void update() {
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }

@@ -30,13 +30,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificheDialog extends DialogFragment implements RecycleViewAdapter_Richieste.OnClickListener {
+import Intefaces.UpdateableFragmentListener;
+
+public class NotificheDialog extends DialogFragment implements RecycleViewAdapter_Richieste.OnClickListener, UpdateableFragmentListener {
 
     Activity activity;
     private List<ItemRichieste> richiesteList;
     ImageView chiudiFinestra;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
+    RecyclerView recyclerView;
     private String currUser;
 
     public NotificheDialog(){}
@@ -76,7 +79,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                 @Override
                 public void run() {
                     RecycleViewAdapter_Richieste recycleViewAdapterRichieste = new RecycleViewAdapter_Richieste(getActivity(), richiesteList, NotificheDialog.this);
-                    RecyclerView recyclerView = view.findViewById(R.id.Richieste_Dialog);
+                    recyclerView = view.findViewById(R.id.Richieste_Dialog);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(recycleViewAdapterRichieste);
                 }
@@ -101,12 +104,12 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                     if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
                         String uIdMittente = queryDocumentSnapshot.getString("uid");
                         db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
-                        //aggiornamento UI dialog notifiche
                         FieldValue timestamp = FieldValue.serverTimestamp();
                         Friends friends1 = new Friends(uIdMittente, timestamp);
                         Friends friends2 = new Friends(currUser, timestamp);
                         db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
                         db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
+                        update();
                         Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -124,7 +127,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                     if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
                         String uIdMittente = queryDocumentSnapshot.getString("uid");
                         db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
-                        //aggiornamento UI dialog notifiche
+                        update();
                         Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -139,5 +142,10 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                 getDialog().dismiss();
             }
         });
+    }
+
+    @Override
+    public void update() {
+        //update della recycler view
     }
 }

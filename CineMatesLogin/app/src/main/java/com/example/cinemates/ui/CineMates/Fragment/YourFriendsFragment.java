@@ -19,7 +19,9 @@ import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amico;
 
 import java.util.List;
 
-public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amico.OnClickListener {
+import Intefaces.UpdateableFragmentListener;
+
+public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amico.OnClickListener, UpdateableFragmentListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -85,5 +87,10 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     public void OnClick(int position) {
         friendList.get(position);
         //Aggiungere azione
+    }
+
+    @Override
+    public void update() {
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }
