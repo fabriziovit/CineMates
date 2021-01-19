@@ -42,9 +42,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     private EditText searchBar;
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
-
-    private String mParam1;
-    private String mParam2;
+    private Activity activity;
 
     public YourFriendsFragment() {
         // Required empty public constructor
@@ -145,8 +143,8 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                         String uidUser = firebaseAuth.getCurrentUser().getUid();
                         db.collection("friends").document(uIdDestinatario).collection(uidUser).document(uidUser).delete();
                         db.collection("friends").document(uidUser).collection(uIdDestinatario).document(uIdDestinatario).delete();
+                        break;
                     }
-                    break;
                 }
             }
         });

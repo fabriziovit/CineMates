@@ -117,14 +117,13 @@ public class HomeActivity extends AppCompatActivity {
                         .commit();
             }).start();
         }
-
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int id) {
+                fragment = null;
                 boolean isProfile = false;
                 boolean isHome = false;
                 boolean isFriends = false;
-                fragment = null;
                 switch (id){
                     case R.id.main:
                         isHome = true;
