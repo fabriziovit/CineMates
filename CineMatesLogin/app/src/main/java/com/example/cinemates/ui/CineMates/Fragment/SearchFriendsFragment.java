@@ -98,6 +98,44 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
     @Override
     public void OnClick(int position) {
+
+        if(userList.get(position).getRapporto() == 1){
+            Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
+        }else if(userList.get(position).getRapporto() == 2){
+            Toast.makeText(getActivity(), "Siete già amici!", Toast.LENGTH_SHORT).show();
+        }else{
+            CollectionReference collectionReference = db.collection("users");
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        if (userList.get(position).getUsername().equals(documentSnapshot.getString("username"))) {
+                            String uIdDestinatario = documentSnapshot.getString("uid");
+                            String uIdMittente = mAuth.getCurrentUser().getUid();
+                            FieldValue timestamp = FieldValue.serverTimestamp();
+                            FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
+                            DocumentReference documentReference = db.collection("friend request").document(uIdMittente).collection(uIdDestinatario).document(uIdDestinatario);
+                            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    db.collection("friend request").document(uIdMittente).collection(uIdDestinatario).document(uIdDestinatario).set(friendRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getActivity(), "Richiesta inviata correttamente!", Toast.LENGTH_SHORT).show();
+                                            userList.get(position).setRapporto(1);
+                                            update();
+                                        }
+                                    });
+                                }
+                            });
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+
+        /*
         CollectionReference collectionReference = db.collection("users");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -133,7 +171,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                     }
                 }
             }
-        });
+        });*/
     }
 
     @Override

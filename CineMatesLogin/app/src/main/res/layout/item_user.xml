@@ -51,16 +51,17 @@
         android:fontFamily="@font/martel_sans_bold"
         android:text="Invia richiesta di amicizia"
         android:textColor="@color/colorPrimary"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rapporto_item_imageView"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/avatarUser_item_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/rapporto_item_imageView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="1dp"

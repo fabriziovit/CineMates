@@ -25,18 +25,19 @@
         android:id="@+id/visualizzaPreferiti_item_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="1dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Visualizza lista preferiti"
         android:textColor="@color/colorPrimary"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/visualizzapreferiti_item_imageView"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/avatarFriend_item_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/rimuoviamico_item_imageView" />
 
     <TextView
         android:id="@+id/usernameFriend_Item_textView"
@@ -59,15 +60,25 @@
 
     <ImageView
         android:id="@+id/visualizzapreferiti_item_imageView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rimuoviamico_item_imageView"
         app:srcCompat="@drawable/ic_listapreferiti" />
+
+    <ImageView
+        android:id="@+id/rimuoviamico_item_imageView"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_rimuoviamico" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,13 +47,13 @@ public class RecycleViewAdapter_Utente extends RecyclerView.Adapter<RecycleViewA
         holder.circleImageView.setImageBitmap(userList.get(position).getBitmap());
         if(userList.get(position).getRapporto() == 0) {
             holder.textView.setText("Invia richiesta di amicizia");
-            holder.imageView.setBackgroundResource(R.drawable.ic_aggiungi);
+            holder.imageView.setImageResource(R.drawable.ic_aggiungi);
         }else if(userList.get(position).getRapporto() == 1) {
             holder.textView.setText("Richiesta inviata");
-            holder.imageView.setBackgroundResource(R.drawable.ic_attendere);
+            holder.imageView.setImageResource(R.drawable.ic_attendere);
         } else {
             holder.textView.setText("Amico");
-            holder.imageView.setBackgroundResource(R.drawable.ic_checked);
+            holder.imageView.setImageResource(R.drawable.ic_checked);
         }
     }
 

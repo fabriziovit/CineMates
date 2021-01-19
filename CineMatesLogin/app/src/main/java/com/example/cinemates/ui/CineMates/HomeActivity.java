@@ -213,7 +213,6 @@ public class HomeActivity extends AppCompatActivity {
                                                         DocumentSnapshot document = task.getResult();
                                                         if(document.exists()) {
                                                             String username = documentSnapshot.getString("username");
-                                                            System.out.println(username);
                                                             String imageUrl = documentSnapshot.getString("imageUrl");
                                                             friendList.add(new ItemFriend(username, ProfileFragment.getBitmapFromdownload(imageUrl)));
                                                         }
@@ -261,6 +260,14 @@ public class HomeActivity extends AppCompatActivity {
                                     }
                                 }
                             });
+                            while (userList.size() != userNumber - 1) { }
+                            for(int i=0;i<userList.size(); i++){
+                                for(int j=0; j<friendList.size();j++) {
+                                    if (friendList.get(j).getUsername() == userList.get(i).getUsername()){
+                                        userList.get(i).setRapporto(2);
+                                    }
+                                }
+                            }
                             while (userList.size() != userNumber - 1) { }
                             fragment = new FriendsFragment(userList, friendList);
                             fragmentManager = getSupportFragmentManager();

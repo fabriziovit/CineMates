@@ -16,6 +16,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
+
 public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAdapter_Amico.MyViewHolder> {
 
     Context mContext;
@@ -60,6 +62,7 @@ public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAd
         private CircleImageView circleImageView;
         private ImageView visualizzaPreferiti_Image;
         private TextView visualizzaPreferiti_Text;
+        private ImageView rimuoviAmicoImageview;
         RecycleViewAdapter_Amico.OnClickListener onClickListener;
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Amico.OnClickListener onClickListener){
@@ -69,20 +72,32 @@ public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAd
             circleImageView = itemView.findViewById(R.id.avatarFriend_item_image);
             visualizzaPreferiti_Text = itemView.findViewById(R.id.visualizzaPreferiti_item_textView);
             visualizzaPreferiti_Image = itemView.findViewById(R.id.visualizzapreferiti_item_imageView);
+            rimuoviAmicoImageview = itemView.findViewById(R.id.rimuoviamico_item_imageView);
             this.onClickListener = onClickListener;
 
+            rimuoviAmicoImageview.setOnClickListener(this);
             visualizzaPreferiti_Text.setOnClickListener(this);
             visualizzaPreferiti_Image.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onClickListener.OnClick(getAdapterPosition());
+            switch (view.getId()){
+                case R.id.visualizzapreferiti_item_imageView:
+                case R.id.visualizzaPreferiti_item_textView:
+                    onClickListener.onClickPreferiti(this.getLayoutPosition());
+                    break;
+                case R.id.rimuoviamico_item_imageView:
+                    onClickListener.onClickRimuoviAmico(this.getLayoutPosition());
+                default:
+                    break;
+            }
         }
     }
 
-
     public interface OnClickListener{
-        void OnClick(int position);
+        void onClickPreferiti(int position);
+        void onClickRimuoviAmico(int position);
     }
+
 }
