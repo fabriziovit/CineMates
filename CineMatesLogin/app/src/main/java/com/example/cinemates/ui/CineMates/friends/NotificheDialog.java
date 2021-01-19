@@ -41,6 +41,19 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
     private FirebaseAuth auth;
     RecyclerView recyclerView;
     private String currUser;
+    //private DialogInterface.OnDismissListener onDismissListener;
+
+    /*public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
+    }*/
 
     public NotificheDialog(){}
 

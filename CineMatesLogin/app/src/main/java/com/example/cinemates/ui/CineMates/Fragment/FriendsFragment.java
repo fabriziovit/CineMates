@@ -28,6 +28,7 @@ public class FriendsFragment extends Fragment{
     private List<ItemUser> userList;
     private ImageView notifica;
     private List<ItemFriend> friendList;
+    NotificheDialog d = new NotificheDialog();
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -69,6 +70,8 @@ public class FriendsFragment extends Fragment{
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
         ApriNotifiche();
+        update();
+        //WhenDismiss();
 
         return view;
     }
@@ -87,6 +90,15 @@ public class FriendsFragment extends Fragment{
         FragmentManager fragmentManager = getParentFragmentManager();
         dialogFragment.show(fragmentManager, "dialog");
     }
+
+    /*public void WhenDismiss(){
+        d.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                adapter.update();
+            }
+        });
+    }*/
 
     public void update(){
         adapter.update();

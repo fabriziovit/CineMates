@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import Intefaces.UpdateableFragmentListener;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import Intefaces.UpdateableFragmentListener;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     private final List<Fragment> fragmentList = new ArrayList<>();

@@ -108,7 +108,6 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
 
     @Override
     public void onClickRimuoviAmico(int position){
-        //rimuovi amico
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage("Vuoi davvero rimuovere "+friendList.get(position).getUsername()+" dagli amici?");
         builder1.setCancelable(true);
@@ -118,6 +117,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         rimuoviAmico(position);
+                        friendList.remove(position);
                         update();
                         Toast.makeText(getActivity(), "Amico rimosso!", Toast.LENGTH_SHORT).show();
                     }
