@@ -21,12 +21,8 @@ import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.example.cinemates.ui.CineMates.friends.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amico;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -132,8 +128,13 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     }
 
     public void rimuoviAmico(int position){
-        String username = friendList.get(position).getUsername();
-        CollectionReference collectionReference = db.collection("users");
+        //String username = friendList.get(position).getUsername();
+        String uIdDestinatario = friendList.get(position).getUid();
+        String uidUserAuth = firebaseAuth.getCurrentUser().getUid();
+        db.collection("friends").document(uIdDestinatario).collection(uidUserAuth).document(uidUserAuth).delete();
+        db.collection("friends").document(uidUserAuth).collection(uIdDestinatario).document(uIdDestinatario).delete();
+
+        /*CollectionReference collectionReference = db.collection("users");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -147,7 +148,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                     }
                 }
             }
-        });
+        });*/
     }
 
     @Override

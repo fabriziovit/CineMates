@@ -41,6 +41,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
     private FirebaseAuth auth;
     RecyclerView recyclerView;
     private String currUser;
+    boolean pop = false;
     //private DialogInterface.OnDismissListener onDismissListener;
 
     /*public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
@@ -138,7 +139,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
                     if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
-                        String uIdMittente = queryDocumentSnapshot.getString("uid");
+                        String uIdMittente = queryDocumentSnapshot.getString("uid");;
                         db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
                         update();
                         Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();

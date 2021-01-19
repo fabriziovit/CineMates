@@ -7,6 +7,7 @@ public class ItemUser{
     private String Username;
     private Bitmap bitmap;
     private int rapporto; //0 non amici, 1 richiesta di amicizia inviata, 2 amici
+    private String uid;
 
     public ItemUser(){
     }
@@ -38,5 +39,13 @@ public class ItemUser{
 
     public void setRapporto(int rapporto) {
         this.rapporto = rapporto;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

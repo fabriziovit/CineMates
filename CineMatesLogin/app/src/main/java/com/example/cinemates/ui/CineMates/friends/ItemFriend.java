@@ -6,7 +6,7 @@ public class ItemFriend {
 
     private String Username;
     private Bitmap bitmap;
-
+    private String uid;
 
     public ItemFriend(){
     }
@@ -30,5 +30,13 @@ public class ItemFriend {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }
