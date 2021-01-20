@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/colorBack">
+    android:id="@+id/cardView_item_Film"
+    android:layout_width="190dp"
+    android:layout_height="330dp"
+    android:layout_marginStart="2dp"
+    app:cardBackgroundColor="@color/colorBack"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:adjustViewBounds="true">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
+    <ImageView
+        android:id="@+id/locandinaFilm_item_imageView"
+        android:layout_width="170dp"
+        android:layout_height="270dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp"
-        android:background="@color/colorBack">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/profile_pic"
+        android:adjustViewBounds="true"/>
 
-        <ImageView
-            android:id="@+id/locandinaFilm_item_imageView"
-            android:layout_width="170dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/profile_pic" />
-
-        <TextView
-            android:id="@+id/titoloFilm_item_textView"
-            android:layout_width="120dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/martel_sans_bold"
-            android:text="Titolo"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/titoloFilm_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:layout_gravity="top"
+        android:text="Titolo del film"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.cardview.widget.CardView>
