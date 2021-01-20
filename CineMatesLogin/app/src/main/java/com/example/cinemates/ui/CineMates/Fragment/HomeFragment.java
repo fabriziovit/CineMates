@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
@@ -54,7 +54,10 @@ public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.On
 
         recyclerViewFilm = view.findViewById(R.id.recycleView_fragment_Home);
         RecycleViewAdapter_Film recycleViewAdapter_film = new RecycleViewAdapter_Film(getContext(), films, this);
-        recyclerViewFilm.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
+
+        recyclerViewFilm.setLayoutManager(gridLayoutManager);
         recyclerViewFilm.setAdapter(recycleViewAdapter_film);
         return view;
     }

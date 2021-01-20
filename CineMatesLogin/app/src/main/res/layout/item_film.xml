@@ -2,123 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/colorBack">
 
-
-    <ImageView
-        android:id="@+id/locandinaFilm_item_imageView"
-        android:layout_width="170dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="24dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/profile_pic" />
+        tools:layout_editor_absoluteY="0dp"
+        android:background="@color/colorBack">
 
-    <TextView
-        android:id="@+id/titoloFilm_item_textView"
-        android:layout_width="120dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Titolo"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/locandinaFilm_item_imageView"
+            android:layout_width="170dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/profile_pic" />
 
-    <TextView
-        android:id="@+id/registaFilm_item_textView"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="44dp"
-        android:text="Regista"
-        android:fontFamily="@font/martel_sans_bold"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/titoloFilm_item_textView" />
-
-    <TextView
-        android:id="@+id/genereFilm_item_textView"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="44dp"
-        android:text="Genere"
-        android:fontFamily="@font/martel_sans_bold"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/registaFilm_item_textView" />
-
-    <ImageView
-        android:id="@+id/stellaFilm_item_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/genereFilm_item_textView"
-        app:srcCompat="@drawable/ic_stella" />
-
-    <TextView
-        android:id="@+id/votoFilm_item_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="113dp"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="10 / 10"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stellaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/genereFilm_item_textView" />
-
-    <TextView
-        android:id="@+id/rimuoviFilm_item_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="33dp"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Rimuovi dalla lista"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/votoFilm_item_textView" />
-
-    <ImageView
-        android:id="@+id/rimuoviFilm_item_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/rimuoviFilm_item_textView"
-        app:layout_constraintTop_toBottomOf="@+id/votoFilm_item_textView"
-        app:srcCompat="@drawable/ic_rimuovi" />
-
-    <TextView
-        android:id="@+id/annoFilm_item_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="26dp"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="(data)"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/titoloFilm_item_textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/titoloFilm_item_textView"
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/martel_sans_bold"
+            android:text="Titolo"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
