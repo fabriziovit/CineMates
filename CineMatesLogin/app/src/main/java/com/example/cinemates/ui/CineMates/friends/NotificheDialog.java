@@ -40,21 +40,9 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     RecyclerView recyclerView;
+    RecycleViewAdapter_Richieste recycleViewAdapterRichieste;
     private String currUser;
     boolean pop = false;
-    //private DialogInterface.OnDismissListener onDismissListener;
-
-    /*public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
-    }*/
 
     public NotificheDialog(){}
 
@@ -92,7 +80,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    RecycleViewAdapter_Richieste recycleViewAdapterRichieste = new RecycleViewAdapter_Richieste(getActivity(), richiesteList, NotificheDialog.this);
+                    recycleViewAdapterRichieste = new RecycleViewAdapter_Richieste(getActivity(), richiesteList, NotificheDialog.this);
                     recyclerView = view.findViewById(R.id.Richieste_Dialog);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(recycleViewAdapterRichieste);
@@ -123,6 +111,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                         Friends friends2 = new Friends(currUser, timestamp);
                         db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
                         db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
+                        richiesteList.remove(position);
                         update();
                         Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
                     }
@@ -141,6 +130,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                     if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
                         String uIdMittente = queryDocumentSnapshot.getString("uid");;
                         db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
+                        richiesteList.remove(position);
                         update();
                         Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
                     }
@@ -160,6 +150,6 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
 
     @Override
     public void update() {
-        //update della recycler view
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }

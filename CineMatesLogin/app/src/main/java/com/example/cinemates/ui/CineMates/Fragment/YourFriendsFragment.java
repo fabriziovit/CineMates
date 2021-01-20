@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.example.cinemates.ui.CineMates.friends.ItemFriend;
-import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amico;
+import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amici;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,11 +28,11 @@ import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
-public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amico.OnClickListener, UpdateableFragmentListener {
+public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amici.OnClickListener, UpdateableFragmentListener {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView_Amici;
     private List<ItemFriend> friendList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
@@ -71,11 +71,11 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         View view = inflater.inflate(R.layout.fragment_your_friends, container, false);
 
         constraintLayout = view.findViewById(R.id.container_frament_yourfriends);
-        recyclerView = view.findViewById(R.id.recycleView_fragment_YourFriends);
+        recyclerView_Amici = view.findViewById(R.id.recycleView_fragment_YourFriends);
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
-        RecycleViewAdapter_Amico recycleViewAdapterAmico = new RecycleViewAdapter_Amico(getContext(), friendList, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(recycleViewAdapterAmico);
+        RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(getContext(), friendList, this);
+        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
 
         Keyboard();
         return view;
@@ -153,6 +153,6 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
 
     @Override
     public void update() {
-        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView_Amici.getAdapter().notifyDataSetChanged();
     }
 }

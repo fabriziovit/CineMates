@@ -16,13 +16,13 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecycleViewAdapter_Utente extends RecyclerView.Adapter<RecycleViewAdapter_Utente.MyViewHolder> {
+public class RecycleViewAdapter_Utenti extends RecyclerView.Adapter<RecycleViewAdapter_Utenti.MyViewHolder> {
 
     Context mContext;
     List<ItemUser> userList;
     OnClickListener mOnClickListener;
 
-    public RecycleViewAdapter_Utente(Context mContext, List<ItemUser> userList, OnClickListener mOnClickListener) {
+    public RecycleViewAdapter_Utenti(Context mContext, List<ItemUser> userList, OnClickListener mOnClickListener) {
         this.mContext = mContext;
         this.userList = userList;
         this.mOnClickListener = mOnClickListener;

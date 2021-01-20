@@ -18,14 +18,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 
-public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAdapter_Amico.MyViewHolder> {
+public class RecycleViewAdapter_Amici extends RecyclerView.Adapter<RecycleViewAdapter_Amici.MyViewHolder> {
 
     Context mContext;
     List<ItemFriend> friendsList;
-    RecycleViewAdapter_Amico.OnClickListener mOnClickListener;
+    RecycleViewAdapter_Amici.OnClickListener mOnClickListener;
 
 
-    public RecycleViewAdapter_Amico(Context mContext, List<ItemFriend> friendsList, RecycleViewAdapter_Amico.OnClickListener mOnClickListener) {
+    public RecycleViewAdapter_Amici(Context mContext, List<ItemFriend> friendsList, RecycleViewAdapter_Amici.OnClickListener mOnClickListener) {
         this.mContext = mContext;
         this.friendsList = friendsList;
         this.mOnClickListener = mOnClickListener;
@@ -63,9 +63,9 @@ public class RecycleViewAdapter_Amico extends RecyclerView.Adapter<RecycleViewAd
         private ImageView visualizzaPreferiti_Image;
         private TextView visualizzaPreferiti_Text;
         private ImageView rimuoviAmicoImageview;
-        RecycleViewAdapter_Amico.OnClickListener onClickListener;
+        RecycleViewAdapter_Amici.OnClickListener onClickListener;
 
-        public MyViewHolder(View itemView, RecycleViewAdapter_Amico.OnClickListener onClickListener){
+        public MyViewHolder(View itemView, RecycleViewAdapter_Amici.OnClickListener onClickListener){
             super(itemView);
 
             username = itemView.findViewById(R.id.usernameFriend_Item_textView);

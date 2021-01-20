@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.friends.FriendRequest;
 import com.example.cinemates.ui.CineMates.friends.ItemUser;
-import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Utente;
+import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Utenti;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,10 +31,10 @@ import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
-public class SearchFriendsFragment extends Fragment implements RecycleViewAdapter_Utente.OnClickListener, UpdateableFragmentListener {
+public class SearchFriendsFragment extends Fragment implements RecycleViewAdapter_Utenti.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView_Utenti;
     private List<ItemUser> userList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
@@ -72,10 +72,10 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
         searchBar = view.findViewById(R.id.searchBar_fragment_SearchFriends);
         constraintLayout = view.findViewById(R.id.container_fragment_searchfriends);
-        recyclerView = view.findViewById(R.id.recycleView_fragment_SearchFriends);
-        RecycleViewAdapter_Utente recycleViewAdapter = new RecycleViewAdapter_Utente(getContext(), userList, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(recycleViewAdapter);
+        recyclerView_Utenti = view.findViewById(R.id.recycleView_fragment_SearchFriends);
+        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), userList, this);
+        recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView_Utenti.setAdapter(recycleViewAdapter);
 
         Keyboard();
         return view;
@@ -137,6 +137,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
     @Override
     public void update() {
-        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView_Utenti.getAdapter().notifyDataSetChanged();
     }
 }

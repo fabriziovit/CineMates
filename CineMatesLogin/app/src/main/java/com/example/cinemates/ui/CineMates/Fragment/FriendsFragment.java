@@ -26,9 +26,8 @@ public class FriendsFragment extends Fragment{
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     private List<ItemUser> userList;
-    private ImageView notifica;
     private List<ItemFriend> friendList;
-    NotificheDialog d = new NotificheDialog();
+    private ImageView notifica;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -60,18 +59,16 @@ public class FriendsFragment extends Fragment{
         notifica = view.findViewById(R.id.notifica_fragment_friends);
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
-        adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
 
         adapter.AddFragment(new YourFriendsFragment(friendList), "Lista Amici");
         adapter.AddFragment(new SearchFriendsFragment(userList), "Cerca Utenti");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
+        TabLayout();
         ApriNotifiche();
         update();
-        //WhenDismiss();
 
         return view;
     }
@@ -91,16 +88,29 @@ public class FriendsFragment extends Fragment{
         dialogFragment.show(fragmentManager, "dialog");
     }
 
-    /*public void WhenDismiss(){
-        d.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                adapter.update();
-            }
-        });
-    }*/
-
     public void update(){
         adapter.update();
+    }
+
+    public void TabLayout(){
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
+                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
+                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
+                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
+            }
+        });
     }
 }
