@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityHomeBinding;
+import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiService;
 import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
@@ -63,9 +64,11 @@ public class HomeActivity extends AppCompatActivity {
     private int rapporto;
     private ItemUser itemUser;
     Activity activity;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ArrayList<ItemFilm> films = new ArrayList<>();
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -86,6 +89,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {
                 popularFilms = response.body();
+                for (Movie movie : popularFilms.getResults())
+                    films.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
                 pop = true;
             }
 
@@ -108,9 +114,10 @@ public class HomeActivity extends AppCompatActivity {
                     loadingDialog.dismissDialog();
                 }
             }, 2500);
+
             new Thread(()-> {
                 while(!pop){}
-                fragment = new HomeFragment(popularFilms);
+                fragment = new HomeFragment(popularFilms, films);
                 fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_home_container, fragment)
@@ -138,7 +145,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         new Thread(()-> {
                             while (!pop){}
-                            fragment = new HomeFragment(popularFilms);
+                            fragment = new HomeFragment(popularFilms, films);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)

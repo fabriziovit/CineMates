@@ -42,15 +42,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_home" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_fragment_Home"
         android:layout_width="match_parent"
-        android:layout_height="631dp"
+        android:layout_height="610dp"
+        android:layout_gravity="bottom"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_home" >
-
-    </ListView>
+        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

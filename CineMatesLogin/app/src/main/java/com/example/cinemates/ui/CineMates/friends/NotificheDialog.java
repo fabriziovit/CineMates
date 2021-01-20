@@ -1,6 +1,9 @@
 package com.example.cinemates.ui.CineMates.friends;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,13 +45,15 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
     RecyclerView recyclerView;
     RecycleViewAdapter_Richieste recycleViewAdapterRichieste;
     private String currUser;
-    boolean pop = false;
+    private Dialog dialog;
 
     public NotificheDialog(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.notifiche_dialog, container);
+        dialog = getDialog();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         richiesteList = new ArrayList<>();
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -98,45 +103,52 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
 
     @Override
     public void onClickAccetta(int position) {
-        CollectionReference collectionReference = db.collection("users");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-                    if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
-                        String uIdMittente = queryDocumentSnapshot.getString("uid");
-                        db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
-                        FieldValue timestamp = FieldValue.serverTimestamp();
-                        Friends friends1 = new Friends(uIdMittente, timestamp);
-                        Friends friends2 = new Friends(currUser, timestamp);
-                        db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
-                        db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
-                        richiesteList.remove(position);
-                        update();
-                        Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
+        new Thread(()-> {
+            CollectionReference collectionReference = db.collection("users");
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                        if (richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))) {
+                            String uIdMittente = queryDocumentSnapshot.getString("uid");
+                            db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
+                            FieldValue timestamp = FieldValue.serverTimestamp();
+                            Friends friends1 = new Friends(uIdMittente, timestamp);
+                            Friends friends2 = new Friends(currUser, timestamp);
+                            db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
+                            db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
+                            Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
+                            richiesteList.remove(position);
+                            update();
+                            break;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }).start();
     }
 
     @Override
     public void onClickRifiuta(int position){
-        CollectionReference collectionReference = db.collection("users");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-                    if(richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))){
-                        String uIdMittente = queryDocumentSnapshot.getString("uid");;
-                        db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
-                        richiesteList.remove(position);
-                        update();
-                        Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
+        new Thread(()-> {
+            CollectionReference collectionReference = db.collection("users");
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                        if (richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))) {
+                            String uIdMittente = queryDocumentSnapshot.getString("uid");
+                            ;
+                            db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
+                            Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
+                            richiesteList.remove(position);
+                            update();
+                            break;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }).start();
     }
 
     public void chiudi(){

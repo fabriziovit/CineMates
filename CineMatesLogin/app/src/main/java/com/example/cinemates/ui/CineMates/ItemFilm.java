@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class ItemFilm {
 
-    private String nome;
+    private String titolo;
     private String anno;
     private String genere;
     private String regista;
@@ -12,8 +12,8 @@ public class ItemFilm {
     private Bitmap bitmap;
 
 
-    public ItemFilm(String nome, String anno, String genere, String regista, String voto, Bitmap filmPic) {
-        this.nome = nome;
+    public ItemFilm(String titolo, String anno, String genere, String regista, String voto, Bitmap filmPic) {
+        this.titolo = titolo;
         this.anno = anno;
         this.genere = genere;
         this.regista = regista;
@@ -21,12 +21,17 @@ public class ItemFilm {
         this.bitmap = filmPic;
     }
 
+    public ItemFilm(String titolo,  Bitmap filmPic) {
+        this.titolo = titolo;
+        this.bitmap = filmPic;
+    }
+
     public String getNome() {
-        return nome;
+        return titolo;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.titolo = nome;
     }
 
     public String getAnno() {

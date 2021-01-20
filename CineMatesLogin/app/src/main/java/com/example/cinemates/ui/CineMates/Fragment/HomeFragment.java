@@ -6,13 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
+import com.example.cinemates.ui.CineMates.ItemFilm;
+import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
 
-public class HomeFragment extends Fragment {
+import java.util.ArrayList;
+
+public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener {
     private PopularFilms popularFilms;
+    private ArrayList<ItemFilm> films;
+    private RecyclerView recyclerViewFilm;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -21,7 +28,10 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public HomeFragment(PopularFilms popularFilms){ this.popularFilms = popularFilms; }
+    public HomeFragment(PopularFilms popularFilms, ArrayList<ItemFilm> films){
+        this.popularFilms = popularFilms;
+        this.films = films;
+    }
 
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
@@ -42,10 +52,15 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        new Thread(()-> {
-            for (Movie movie : popularFilms.getResults())
-                System.out.println(movie.getTitle());
-        }).start();
+        recyclerViewFilm = view.findViewById(R.id.recycleView_fragment_Home);
+        RecycleViewAdapter_Film recycleViewAdapter_film = new RecycleViewAdapter_Film(getContext(), films, this);
+        recyclerViewFilm.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewFilm.setAdapter(recycleViewAdapter_film);
         return view;
+    }
+
+    @Override
+    public void OnClick(int position) {
+
     }
 }

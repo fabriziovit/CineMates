@@ -29,25 +29,21 @@ public class RecycleViewAdapter_Film extends RecyclerView.Adapter<RecycleViewAda
     @NonNull
     @Override
     public RecycleViewAdapter_Film.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.item_film, parent, false);
         RecycleViewAdapter_Film.MyViewHolder myViewHolder = new RecycleViewAdapter_Film.MyViewHolder(v, mOnClickListener);
-
 
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         holder.titolo.setText(filmList.get(position).getNome());
-        holder.anno.setText(filmList.get(position).getAnno());
-        holder.regista.setText(filmList.get(position).getRegista());
-        holder.genere.setText(filmList.get(position).getGenere());
-        holder.voto.setText(filmList.get(position).getVoto());
+        //holder.anno.setText(filmList.get(position).getAnno());
+        //holder.regista.setText(filmList.get(position).getRegista());
+        //holder.genere.setText(filmList.get(position).getGenere());
+        //holder.voto.setText(filmList.get(position).getVoto());
         holder.filmPic.setImageBitmap(filmList.get(position).getBitmap());
-
     }
 
     @Override
@@ -56,7 +52,6 @@ public class RecycleViewAdapter_Film extends RecyclerView.Adapter<RecycleViewAda
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
 
         private TextView titolo;
         private TextView anno;

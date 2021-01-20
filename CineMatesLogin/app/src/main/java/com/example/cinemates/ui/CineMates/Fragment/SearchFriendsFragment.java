@@ -69,7 +69,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_friends, container, false);
-
         searchBar = view.findViewById(R.id.searchBar_fragment_SearchFriends);
         constraintLayout = view.findViewById(R.id.container_fragment_searchfriends);
         recyclerView_Utenti = view.findViewById(R.id.recycleView_fragment_SearchFriends);
@@ -100,13 +99,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         }else if(userList.get(position).getRapporto() == 2){
             Toast.makeText(getActivity(), "Siete già amici!", Toast.LENGTH_SHORT).show();
         }else{
-            /*CollectionReference collectionReference = db.collection("users");
-            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        if (userList.get(position).getUsername().equals(documentSnapshot.getString("username"))) {
-                            String uIdDestinatario = documentSnapshot.getString("uid");*/
             String uIdDestinatario = userList.get(position).getUid();
             String uIdMittente = mAuth.getCurrentUser().getUid();
             FieldValue timestamp = FieldValue.serverTimestamp();
@@ -122,13 +114,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                             userList.get(position).setRapporto(1);
                             update();
                         }
-                                    /* });
-                                }
-                           });
-                            break;
-                        }
-                    }*/
-                        //}
                     });
                 }
             });
