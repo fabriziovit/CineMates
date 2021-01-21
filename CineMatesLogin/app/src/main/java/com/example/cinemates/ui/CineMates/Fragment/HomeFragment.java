@@ -1,28 +1,27 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
 import com.example.cinemates.ui.CineMates.ItemFilm;
-import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
-import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener {
-    private PopularFilms popularFilms;
-    private ArrayList<ItemFilm> films;
-    private RecyclerView recyclerViewFilm;
+public class HomeFragment extends Fragment{
+    private ArrayList<ItemFilm> filmsPopular;
+    private ArrayList<ItemFilm> filmsUpcoming;
+    private ArrayList<ItemFilm> filmsNowplaying;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -31,9 +30,10 @@ public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.On
         // Required empty public constructor
     }
 
-    public HomeFragment(PopularFilms popularFilms, ArrayList<ItemFilm> films){
-        this.popularFilms = popularFilms;
-        this.films = films;
+    public HomeFragment(ArrayList<ItemFilm> filmsPopular, ArrayList<ItemFilm> filmsUpcoming, ArrayList<ItemFilm> filmsNowplaying){
+        this.filmsPopular = filmsPopular;
+        this.filmsNowplaying = filmsNowplaying;
+        this.filmsUpcoming = filmsUpcoming;
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -55,24 +55,22 @@ public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.On
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerViewFilm = view.findViewById(R.id.recycleView_fragment_Home);
-        RecycleViewAdapter_Film recycleViewAdapter_film = new RecycleViewAdapter_Film(getContext(), films, this);
+        tabLayout = view.findViewById(R.id.tabLayout_fragment_home);
+        viewPager = view.findViewById(R.id.viewPager_fragment_home);
+        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
 
 
-        recyclerViewFilm.setHasFixedSize(true);
-        recyclerViewFilm.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.HORIZONTAL));
-        recyclerViewFilm.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.VERTICAL));
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
+        adapter.AddFragment(new PopularFilmsFragment(filmsPopular), "Popolari");
+        adapter.AddFragment(new NowPlayingFilmsFragment(filmsNowplaying), "Al cinema");
+        adapter.AddFragment(new UpcomingFilmsFragment(filmsUpcoming), "In uscita");
 
-        recyclerViewFilm.setLayoutManager(gridLayoutManager);
-        recyclerViewFilm.setAdapter(recycleViewAdapter_film);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.ic_popolare);
+        Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.ic_ticket);
+        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.ic_calendario);
+
         return view;
     }
 
-    @Override
-    public void OnClick(int position) {
-        startActivity(new Intent(getActivity(), SchedaFilmActivity.class));
-    }
 }

@@ -31,7 +31,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/scrittaLogo_fragment_home"
+        app:layout_constraintStart_toEndOf="@id/scrittaLogo_fragment_friends"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_foreground" />
 

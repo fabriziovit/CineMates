@@ -15,8 +15,12 @@ import androidx.fragment.app.FragmentManager;
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityHomeBinding;
 import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
-import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiService;
+import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiNowPlaying;
+import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiPopular;
+import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiUpcoming;
+import com.example.cinemates.ui.CineMates.ApiMovie.NowPlayingFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
+import com.example.cinemates.ui.CineMates.ApiMovie.UpComingFilms;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
@@ -55,6 +59,8 @@ public class HomeActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private FirebaseFirestore db;
     private PopularFilms popularFilms;
+    private UpComingFilms upComingFilms;
+    private NowPlayingFilms nowPlayingFilms;
     private boolean pop = false;
     private Handler handler;
     private int userNumber;
@@ -64,11 +70,12 @@ public class HomeActivity extends AppCompatActivity {
     private int rapporto;
     private ItemUser itemUser;
     Activity activity;
-    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ArrayList<ItemFilm> films = new ArrayList<>();
+        ArrayList<ItemFilm> filmsPopular = new ArrayList<>();
+        ArrayList<ItemFilm> filmsUpcoming = new ArrayList<>();
+        ArrayList<ItemFilm> filmsNowplaying = new ArrayList<>();
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -83,14 +90,49 @@ public class HomeActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MoviesApiService moviesApiService = retrofit.create(MoviesApiService.class);
-        Call<PopularFilms> call = moviesApiService.movieList();
-        call.enqueue(new Callback<PopularFilms>() {
+        MoviesApiNowPlaying moviesApiNowPlaying = retrofit.create(MoviesApiNowPlaying.class);
+        Call<NowPlayingFilms> callNp = moviesApiNowPlaying.movieList();
+        callNp.enqueue(new Callback<NowPlayingFilms>() {
+            @Override
+            public void onResponse(Call<NowPlayingFilms> call, Response<NowPlayingFilms> response) {
+                HomeActivity.this.nowPlayingFilms = response.body();
+                for (Movie movie : HomeActivity.this.nowPlayingFilms.getResults())
+                    filmsNowplaying.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+            }
+
+            @Override
+            public void onFailure(Call<NowPlayingFilms> call, Throwable t) {
+                Log.e("Errore", "Errore nel caricamento delle api.");
+            }
+        });
+
+        MoviesApiUpcoming moviesApiUpcoming = retrofit.create(MoviesApiUpcoming.class);
+        Call<UpComingFilms> callUp = moviesApiUpcoming.movieList();
+        callUp.enqueue(new Callback<UpComingFilms>() {
+            @Override
+            public void onResponse(Call<UpComingFilms> call, Response<UpComingFilms> response) {
+                HomeActivity.this.upComingFilms = response.body();
+                for (Movie movie : HomeActivity.this.upComingFilms.getResults())
+                    filmsUpcoming.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+            }
+
+            @Override
+            public void onFailure(Call<UpComingFilms> call, Throwable t) {
+                Log.e("Errore", "Errore nel caricamento delle api.");
+            }
+        });
+
+
+        MoviesApiPopular moviesApiPopular = retrofit.create(MoviesApiPopular.class);
+        Call<PopularFilms> callPop = moviesApiPopular.movieList();
+        callPop.enqueue(new Callback<PopularFilms>() {
             @Override
             public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {
-                popularFilms = response.body();
-                for (Movie movie : popularFilms.getResults())
-                    films.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                HomeActivity.this.popularFilms = response.body();
+                for (Movie movie : HomeActivity.this.popularFilms.getResults())
+                    filmsPopular.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
                             "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
                 pop = true;
             }
@@ -113,11 +155,10 @@ public class HomeActivity extends AppCompatActivity {
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 2500);
-
+            }, 3000);
             new Thread(()-> {
                 while(!pop){}
-                fragment = new HomeFragment(popularFilms, films);
+                fragment = new HomeFragment(filmsPopular, filmsUpcoming, filmsNowplaying);
                 fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_home_container, fragment)
@@ -141,11 +182,11 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2500);
+                        }, 3000);
 
                         new Thread(()-> {
                             while (!pop){}
-                            fragment = new HomeFragment(popularFilms, films);
+                            fragment = new HomeFragment(filmsPopular, filmsUpcoming, filmsNowplaying);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)
@@ -172,7 +213,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void run() {
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2500);
+                        }, 3000);
 
                         new Thread(()->{
                             profilePic = null;

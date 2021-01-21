@@ -33,24 +33,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_foreground" />
 
-    <View
-        android:id="@+id/divider_fragment_home"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_fragment_home"
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="65dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_home" />
+        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_home"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorIcons"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorIcons" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_fragment_Home"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="560dp"
-        android:layout_gravity="bottom"
-        android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_home" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_fragment_home">
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
