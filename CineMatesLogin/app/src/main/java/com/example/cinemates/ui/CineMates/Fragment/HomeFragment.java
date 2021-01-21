@@ -1,11 +1,13 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +15,7 @@ import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.ApiMovie.PopularFilms;
 import com.example.cinemates.ui.CineMates.ItemFilm;
 import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
+import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 
 import java.util.ArrayList;
 
@@ -55,6 +58,12 @@ public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.On
         recyclerViewFilm = view.findViewById(R.id.recycleView_fragment_Home);
         RecycleViewAdapter_Film recycleViewAdapter_film = new RecycleViewAdapter_Film(getContext(), films, this);
 
+
+        recyclerViewFilm.setHasFixedSize(true);
+        recyclerViewFilm.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.HORIZONTAL));
+        recyclerViewFilm.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
 
         recyclerViewFilm.setLayoutManager(gridLayoutManager);
@@ -64,6 +73,6 @@ public class HomeFragment extends Fragment implements RecycleViewAdapter_Film.On
 
     @Override
     public void OnClick(int position) {
-
+        startActivity(new Intent(getActivity(), SchedaFilmActivity.class));
     }
 }

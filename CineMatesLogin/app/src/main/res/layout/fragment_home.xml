@@ -16,7 +16,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/philosopher"
         android:text="CineMates"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorIcons"
         android:textSize="64sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_fragment_Home"
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="560dp"
         android:layout_gravity="bottom"
         android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"

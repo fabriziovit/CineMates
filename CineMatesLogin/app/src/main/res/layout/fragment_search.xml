@@ -16,7 +16,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="@font/philosopher"
         android:text="CineMates"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorIcons"
         android:textSize="64sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

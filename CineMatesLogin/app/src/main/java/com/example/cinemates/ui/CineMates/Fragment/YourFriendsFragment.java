@@ -70,7 +70,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_your_friends, container, false);
 
-        constraintLayout = view.findViewById(R.id.container_frament_yourfriends);
+        constraintLayout = view.findViewById(R.id.container_fragment_yourfriends);
         recyclerView_Amici = view.findViewById(R.id.recycleView_fragment_YourFriends);
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
         RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(getContext(), friendList, this);

@@ -9,7 +9,7 @@
     tools:context=".ui.CineMates.Fragment.YourFriendsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_frament_yourfriends"
+        android:id="@+id/container_fragment_yourfriends"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
