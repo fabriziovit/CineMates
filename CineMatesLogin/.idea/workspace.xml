@@ -32,15 +32,15 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/MoviesApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/MoviesApiPopular.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/MoviesApiUpcoming.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/MoviesApiUpcoming.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_scheda_film.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_now_playing_films.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_now_playing_films.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_popular_films.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_popular_films.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upcoming_films.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upcoming_films.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,6 +233,7 @@
         <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="19" key="#Inspections" timestamp="1609604958091">
@@ -248,11 +249,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="376" y="143" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1609250035225" />
-    <state x="510" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1611242454020">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1611326571876">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="510" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1611242454020" />
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611155661870" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611326571876" />
     <state x="832" y="437" key="#com.intellij.refactoring.introduceParameter.EnclosingMethodSelectonDialog" timestamp="1609077181212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -298,26 +299,26 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610644869465" />
-    <state width="1236" height="11" key="GridCell.Tab.0.bottom" timestamp="1611244845930">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.bottom" timestamp="1611330286487">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="11" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1611244845930" />
-    <state width="1876" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611159718398" />
-    <state width="1236" height="11" key="GridCell.Tab.0.center" timestamp="1611244845930">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
+    <state width="1876" height="294" key="GridCell.Tab.0.center" timestamp="1611330286487">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="11" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1611244845930" />
-    <state width="1876" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611159718398" />
-    <state width="1236" height="11" key="GridCell.Tab.0.left" timestamp="1611244845929">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
+    <state width="1876" height="294" key="GridCell.Tab.0.left" timestamp="1611330286487">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="11" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1611244845929" />
-    <state width="1876" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611159718398" />
-    <state width="1236" height="11" key="GridCell.Tab.0.right" timestamp="1611244845930">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
+    <state width="1876" height="294" key="GridCell.Tab.0.right" timestamp="1611330286487">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="11" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1611244845930" />
-    <state width="1876" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611159718398" />
+    <state width="1876" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1610276793017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

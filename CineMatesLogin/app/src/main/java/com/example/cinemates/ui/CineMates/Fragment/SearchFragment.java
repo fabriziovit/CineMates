@@ -2,6 +2,7 @@ package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,36 @@ import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
+import com.example.cinemates.ui.CineMates.ApiMovie.MovieResearch;
+import com.example.cinemates.ui.CineMates.ApiMovie.SearchMovieApi;
+import com.example.cinemates.ui.CineMates.ItemFilm;
+import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
 
-public class SearchFragment extends Fragment {
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private EditText SearchField;
-    private ImageView SearchButton;
-    private RecyclerView FilmList;
+    private EditText searchField;
+    private ImageView searchButton;
+    private RecyclerView recyclerView;
     private ConstraintLayout constraintLayout;
+    private MovieResearch movieResearch;
+    private ArrayList<ItemFilm> searchedMovie;
+    private boolean pop = false;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -47,11 +66,12 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        SearchField = view.findViewById(R.id.search_bar_fragmentSearch);
+        searchField = view.findViewById(R.id.search_bar_fragmentSearch);
         constraintLayout = view.findViewById(R.id.container_fragment_search);
-        SearchButton = view.findViewById(R.id.search_button_fragmentSearch);
-        FilmList = view.findViewById(R.id.resultFilm_fragmentSearch);
+        searchButton = view.findViewById(R.id.search_button_fragmentSearch);
+        recyclerView = view.findViewById(R.id.resultFilm_fragmentSearch);
 
+        searchFilm();
         Keyboard();
 
         return view;
@@ -63,8 +83,58 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
-                SearchField.clearFocus();
+                searchField.clearFocus();
             }
         });
+    }
+
+    private void searchFilm(){
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchedMovie = new ArrayList<>();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api.themoviedb.org")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                new Thread(()->{
+                    SearchMovieApi searchMovieApi = retrofit.create(SearchMovieApi.class);
+                    Call<MovieResearch> call = searchMovieApi.movieList("3/search/movie?api_key=03941baf012eb2cd38196f9df8751df6&query="+searchField.getText().toString());
+                    call.enqueue(new Callback<MovieResearch>() {
+                        @Override
+                        public void onResponse(Call<MovieResearch> call, Response<MovieResearch> response) {
+                            movieResearch = response.body();
+                            for (Movie movie : movieResearch.getResults()) {
+                                searchedMovie.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                                        "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+                                System.out.println(movie.getTitle());
+                                pop = true;
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<MovieResearch> call, Throwable t) {
+                            Log.e("Errore", "Errore nel caricamento delle api.");
+                        }
+                    });
+                }).start();
+                //while (!pop){}
+                System.out.println("ciao");
+                RecycleViewAdapter_Film recycleViewAdapterFilm = new RecycleViewAdapter_Film(getContext(), searchedMovie, SearchFragment.this::OnClick);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                        DividerItemDecoration.HORIZONTAL));
+                recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                        DividerItemDecoration.VERTICAL));
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(gridLayoutManager);
+                recyclerView.setAdapter(recycleViewAdapterFilm);
+            }
+        });
+    }
+
+    @Override
+    public void OnClick(int position) {
+
     }
 }

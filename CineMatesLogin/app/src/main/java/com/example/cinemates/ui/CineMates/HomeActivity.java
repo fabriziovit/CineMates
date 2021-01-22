@@ -140,6 +140,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PopularFilms> call, Throwable t) {
                 Log.e("Errore", "Errore nel caricamento delle api.");
+                pop = true;
             }
         });
 

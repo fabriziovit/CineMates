@@ -11,7 +11,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_fragment_upcomingFilms"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="510dp"
         android:layout_gravity="bottom"
         android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
