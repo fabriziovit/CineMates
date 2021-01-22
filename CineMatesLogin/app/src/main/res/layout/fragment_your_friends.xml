@@ -23,7 +23,7 @@
             android:background="@drawable/search_layout"
             android:ems="10"
             android:fontFamily="@font/martel_sans_bold"
-            android:hint="Ricerca"
+            android:hint="cerca amici"
             android:inputType="textPersonName"
             android:paddingLeft="15dp"
             android:paddingTop="5dp"
