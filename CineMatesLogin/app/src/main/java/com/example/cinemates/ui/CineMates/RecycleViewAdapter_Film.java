@@ -38,7 +38,7 @@ public class RecycleViewAdapter_Film extends RecyclerView.Adapter<RecycleViewAda
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.titolo.setText(filmList.get(position).getNome());
+        holder.titolo.setText(filmList.get(position).getTitolo());
         holder.filmPic.setImageBitmap(filmList.get(position).getBitmap());
     }
 
@@ -55,7 +55,6 @@ public class RecycleViewAdapter_Film extends RecyclerView.Adapter<RecycleViewAda
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Film.OnClickListener onClickListener){
             super(itemView);
-
             titolo = itemView.findViewById(R.id.titoloFilm_item_textView);
             filmPic = itemView.findViewById(R.id.locandinaFilm_item_imageView);
             this.onClickListener = onClickListener;

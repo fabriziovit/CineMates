@@ -2,7 +2,9 @@ package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.example.cinemates.ui.CineMates.ItemFilm;
 import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
 import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import Intefaces.UpdateableFragmentListener;
@@ -38,7 +41,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
     private EditText searchField;
     private ImageView searchButton;
     private RecyclerView recyclerView;
@@ -63,7 +65,6 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -145,7 +146,15 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.
 
     @Override
     public void OnClick(int position) {
-        startActivity(new Intent(getActivity(), SchedaFilmActivity.class));
+        Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
+        i.putExtra("titolo", searchedMovie.get(position).getTitolo());
+        Bitmap bitmap = searchedMovie.get(position).getBitmap();
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        i.putExtra("poster", temp);
+        startActivity(i);
     }
 
     @Override

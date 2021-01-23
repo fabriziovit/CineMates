@@ -33,10 +33,15 @@
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_friends.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_your_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_your_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/NowPlayingFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/NowPlayingFilmsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/PopularFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/PopularFilmsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/UpcomingFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/UpcomingFilmsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemFilm.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemFilm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RecycleViewAdapter_Film.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RecycleViewAdapter_Film.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,26 +301,26 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610644869465" />
-    <state width="1236" height="16" key="GridCell.Tab.0.bottom" timestamp="1611334495087">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.bottom" timestamp="1611417257595">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="16" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1611334495087" />
-    <state width="1876" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
-    <state width="1236" height="16" key="GridCell.Tab.0.center" timestamp="1611334495087">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611417257595" />
+    <state width="1876" height="294" key="GridCell.Tab.0.center" timestamp="1611417257595">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="16" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1611334495087" />
-    <state width="1876" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
-    <state width="1236" height="16" key="GridCell.Tab.0.left" timestamp="1611334495087">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611417257595" />
+    <state width="1876" height="294" key="GridCell.Tab.0.left" timestamp="1611417257595">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="16" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1611334495087" />
-    <state width="1876" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
-    <state width="1236" height="16" key="GridCell.Tab.0.right" timestamp="1611334495087">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1876" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611417257595" />
+    <state width="1876" height="294" key="GridCell.Tab.0.right" timestamp="1611417257595">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="16" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1611334495087" />
-    <state width="1876" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611330286487" />
+    <state width="1876" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611417257595" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1610276793017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -355,6 +360,49 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/VisualizzaPreferitiActivity.java</url>
           <line>56</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/YourFriendsFragment.java</url>
+          <line>106</line>
+          <properties class="com.example.cinemates.ui.CineMates.Fragment.YourFriendsFragment" method="onClickRimuoviAmico">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

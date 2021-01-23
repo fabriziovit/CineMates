@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,21 +25,21 @@ import com.example.cinemates.ui.CineMates.friends.RecycleViewAdapter_Amici;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
 public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_Amici.OnClickListener, UpdateableFragmentListener {
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView_Amici;
     private List<ItemFriend> friendList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
+    private ImageView searchButton;
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
-    private Activity activity;
 
     public YourFriendsFragment() {
         // Required empty public constructor
@@ -73,11 +74,13 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         constraintLayout = view.findViewById(R.id.container_fragment_yourfriends);
         recyclerView_Amici = view.findViewById(R.id.recycleView_fragment_YourFriends);
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
+        searchButton = view.findViewById(R.id.searchButton_fragment_YourFriends);
         RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(getContext(), friendList, this);
         recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
 
         Keyboard();
+        cercaAmici();
         return view;
     }
 
@@ -128,27 +131,51 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     }
 
     public void rimuoviAmico(int position){
-        //String username = friendList.get(position).getUsername();
         String uIdDestinatario = friendList.get(position).getUid();
         String uidUserAuth = firebaseAuth.getCurrentUser().getUid();
         db.collection("friends").document(uIdDestinatario).collection(uidUserAuth).document(uidUserAuth).delete();
         db.collection("friends").document(uidUserAuth).collection(uIdDestinatario).document(uIdDestinatario).delete();
+    }
 
-        /*CollectionReference collectionReference = db.collection("users");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    public void cercaAmici(){
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    if (username.equals(documentSnapshot.getString("username"))) {
-                        String uIdDestinatario = documentSnapshot.getString("uid");
-                        String uidUser = firebaseAuth.getCurrentUser().getUid();
-                        db.collection("friends").document(uIdDestinatario).collection(uidUser).document(uidUser).delete();
-                        db.collection("friends").document(uidUser).collection(uIdDestinatario).document(uIdDestinatario).delete();
-                        break;
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+                searchBar.clearFocus();
+                List<ItemFriend> searchList = new ArrayList<>();
+                String ricerca = searchBar.getText().toString().toLowerCase();
+                if(ricerca.length() != 0) {
+                    for (int i = 0; i < friendList.size(); i++) {
+                        String username = friendList.get(i).getUsername().toLowerCase();
+                        if (username.contains(ricerca)) {
+                            ItemFriend newFriend = new ItemFriend(friendList.get(i).getUsername(), friendList.get(i).getBitmap());
+                            newFriend.setUid(friendList.get(i).getUid());
+                            searchList.add(newFriend);
+                        }
                     }
+                    if(searchList.size() != 0) {
+                        RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
+                        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                        update();
+                    }else{
+                        RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
+                        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                        update();
+                        Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), friendList, YourFriendsFragment.this);
+                    recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                    update();
+                    Toast.makeText(getContext(), "Nessun paramtrro di ricerca inserito!", Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
     }
 
     @Override

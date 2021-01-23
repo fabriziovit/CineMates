@@ -26,7 +26,7 @@ public class ItemFilm {
         this.bitmap = filmPic;
     }
 
-    public String getNome() {
+    public String getTitolo() {
         return titolo;
     }
 

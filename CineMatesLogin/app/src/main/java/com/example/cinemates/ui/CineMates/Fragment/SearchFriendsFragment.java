@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
@@ -38,6 +40,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     private List<ItemUser> userList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
+    private ImageView searchButton;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
@@ -70,6 +73,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_friends, container, false);
         searchBar = view.findViewById(R.id.searchBar_fragment_SearchFriends);
+        searchButton = view.findViewById(R.id.searchButton_fragment_SearchFriends);
         constraintLayout = view.findViewById(R.id.container_fragment_searchfriends);
         recyclerView_Utenti = view.findViewById(R.id.recycleView_fragment_SearchFriends);
         RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), userList, this);
@@ -77,6 +81,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         recyclerView_Utenti.setAdapter(recycleViewAdapter);
 
         Keyboard();
+        cercaUtenti();
         return view;
     }
 
@@ -93,7 +98,6 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
     @Override
     public void OnClick(int position) {
-
         if(userList.get(position).getRapporto() == 1){
             Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
         }else if(userList.get(position).getRapporto() == 2){
@@ -118,6 +122,48 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                 }
             });
         }
+    }
+
+    public void cercaUtenti(){
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+                searchBar.clearFocus();
+                List<ItemUser> searchList = new ArrayList<>();
+                String ricerca = searchBar.getText().toString().toLowerCase();
+                if(ricerca.length() != 0) {
+                    for (int i = 0; i < userList.size(); i++) {
+                        String username = userList.get(i).getUsername().toLowerCase();
+                        if (username.contains(ricerca)) {
+                            ItemUser userSearch = new ItemUser(userList.get(i).getUsername(), userList.get(i).getBitmap());
+                            userSearch.setUid(userList.get(i).getUid());
+                            userSearch.setRapporto(userList.get(i).getRapporto());
+                            searchList.add(userSearch);
+                        }
+                    }
+                    if(searchList.size() != 0) {
+                        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
+                        recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView_Utenti.setAdapter(recycleViewAdapter);
+                        update();
+                    }else{
+                        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
+                        recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView_Utenti.setAdapter(recycleViewAdapter);
+                        update();
+                        Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), userList, SearchFriendsFragment.this);
+                    recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView_Utenti.setAdapter(recycleViewAdapter);
+                    update();
+                    Toast.makeText(getContext(), "Nessun paramtrro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
