@@ -38,6 +38,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView_Utenti;
     private List<ItemUser> userList;
+    private List<ItemUser> searchList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
     private ImageView searchButton;
@@ -50,6 +51,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
     public SearchFriendsFragment(List<ItemUser> userList){
         this.userList = userList;
+        this.searchList = userList;
     }
 
     public static SearchFriendsFragment newInstance(String param1, String param2) {
@@ -76,7 +78,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         searchButton = view.findViewById(R.id.searchButton_fragment_SearchFriends);
         constraintLayout = view.findViewById(R.id.container_fragment_searchfriends);
         recyclerView_Utenti = view.findViewById(R.id.recycleView_fragment_SearchFriends);
-        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), userList, this);
+        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, this);
         recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView_Utenti.setAdapter(recycleViewAdapter);
 
@@ -98,12 +100,12 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
 
     @Override
     public void OnClick(int position) {
-        if(userList.get(position).getRapporto() == 1){
+        if(searchList.get(position).getRapporto() == 1){
             Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
-        }else if(userList.get(position).getRapporto() == 2){
+        }else if(searchList.get(position).getRapporto() == 2){
             Toast.makeText(getActivity(), "Siete già amici!", Toast.LENGTH_SHORT).show();
         }else{
-            String uIdDestinatario = userList.get(position).getUid();
+            String uIdDestinatario = searchList.get(position).getUid();
             String uIdMittente = mAuth.getCurrentUser().getUid();
             FieldValue timestamp = FieldValue.serverTimestamp();
             FriendRequest friendRequest = new FriendRequest(uIdDestinatario, uIdMittente, timestamp);
@@ -115,7 +117,12 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getActivity(), "Richiesta inviata correttamente!", Toast.LENGTH_SHORT).show();
-                            userList.get(position).setRapporto(1);
+                            searchList.get(position).setRapporto(1);
+                            String username = searchList.get(position).getUsername();
+                            for(ItemUser itemUser : userList){
+                                if(username.equals(itemUser.getUsername()))
+                                    itemUser.setRapporto(1);
+                            }
                             update();
                         }
                     });
@@ -131,7 +138,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
                 searchBar.clearFocus();
-                List<ItemUser> searchList = new ArrayList<>();
+                searchList = new ArrayList<>();
                 String ricerca = searchBar.getText().toString().toLowerCase();
                 if(ricerca.length() != 0) {
                     for (int i = 0; i < userList.size(); i++) {
@@ -156,7 +163,8 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                         Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), userList, SearchFriendsFragment.this);
+                    searchList = userList;
+                    RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
                     recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView_Utenti.setAdapter(recycleViewAdapter);
                     update();

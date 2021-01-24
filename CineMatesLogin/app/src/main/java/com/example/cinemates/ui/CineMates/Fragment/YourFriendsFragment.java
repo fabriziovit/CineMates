@@ -35,6 +35,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView_Amici;
     private List<ItemFriend> friendList;
+    private List<ItemFriend> searchList;
     private ConstraintLayout constraintLayout;
     private EditText searchBar;
     private ImageView searchButton;
@@ -47,6 +48,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
 
     public YourFriendsFragment(List<ItemFriend> friendList) {
         this.friendList = friendList;
+        this.searchList = friendList;
     }
 
     public static YourFriendsFragment newInstance(String param1, String param2) {
@@ -75,7 +77,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         recyclerView_Amici = view.findViewById(R.id.recycleView_fragment_YourFriends);
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
         searchButton = view.findViewById(R.id.searchButton_fragment_YourFriends);
-        RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(getContext(), friendList, this);
+        RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(getContext(), searchList, this);
         recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
 
@@ -106,7 +108,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     @Override
     public void onClickRimuoviAmico(int position){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage("Vuoi davvero rimuovere "+friendList.get(position).getUsername()+" dagli amici?");
+        builder1.setMessage("Vuoi davvero rimuovere "+searchList.get(position).getUsername()+" dagli amici?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -114,7 +116,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         rimuoviAmico(position);
-                        friendList.remove(position);
+                        searchList.remove(position);
                         update();
                         Toast.makeText(getActivity(), "Amico rimosso!", Toast.LENGTH_SHORT).show();
                     }
@@ -131,7 +133,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     }
 
     public void rimuoviAmico(int position){
-        String uIdDestinatario = friendList.get(position).getUid();
+        String uIdDestinatario = searchList.get(position).getUid();
         String uidUserAuth = firebaseAuth.getCurrentUser().getUid();
         db.collection("friends").document(uIdDestinatario).collection(uidUserAuth).document(uidUserAuth).delete();
         db.collection("friends").document(uidUserAuth).collection(uIdDestinatario).document(uIdDestinatario).delete();
@@ -141,10 +143,10 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                searchList = new ArrayList<>();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
                 searchBar.clearFocus();
-                List<ItemFriend> searchList = new ArrayList<>();
                 String ricerca = searchBar.getText().toString().toLowerCase();
                 if(ricerca.length() != 0) {
                     for (int i = 0; i < friendList.size(); i++) {
@@ -168,7 +170,8 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                         Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), friendList, YourFriendsFragment.this);
+                    searchList = friendList;
+                    RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
                     recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
                     update();
