@@ -49,7 +49,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider_schedaFilm"
         app:srcCompat="@mipmap/back_icon_foreground" />
@@ -59,11 +59,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="180dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Titolo del film"
+        android:ellipsize="marquee"
         android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backButton_schedaFilm"
         app:layout_constraintTop_toBottomOf="@+id/divider_schedaFilm" />
 
@@ -71,7 +75,7 @@
         android:id="@+id/locandinaFilm_schedaFilm"
         android:layout_width="170dp"
         android:layout_height="300dp"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titoloFIlm_schedaFilm"
@@ -80,29 +84,27 @@
 
     <TextView
         android:id="@+id/registaFilm_schedaFilm_textView"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="134dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Regista:"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
         app:layout_constraintTop_toBottomOf="@+id/titoloFIlm_schedaFilm" />
 
     <TextView
         android:id="@+id/genereFilm_schedaFilm_textView"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="134dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Genere:"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
         app:layout_constraintTop_toBottomOf="@+id/registaFilm_schedaFilm_textView" />
 
@@ -110,8 +112,10 @@
         android:id="@+id/stella_schedaFilm_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/votoApp_textView"
         app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
         app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_textView"
         app:srcCompat="@drawable/ic_stella" />
@@ -121,10 +125,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="110dp"
+        android:layout_marginEnd="121dp"
         android:fontFamily="@font/martel_sans_bold"
         android:text="/10"
         android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_textView" />
 
@@ -151,4 +156,84 @@
         app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
         app:layout_constraintTop_toBottomOf="@+id/aggiungiFilm_schedaFilm_textView"
         app:srcCompat="@drawable/ic_add_film" />
+
+    <TextView
+        android:id="@+id/nomeRegistaFilm_schedaFilm_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="62dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Nome_Regista"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/registaFilm_schedaFilm_textView"
+        app:layout_constraintTop_toBottomOf="@+id/titoloFIlm_schedaFilm" />
+
+    <TextView
+        android:id="@+id/nomeGenereFilm_schedaFilm_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Genere_Film"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/genereFilm_schedaFilm_textView"
+        app:layout_constraintTop_toBottomOf="@+id/nomeRegistaFilm_schedaFilm_textView" />
+
+    <TextView
+        android:id="@+id/votoApp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="2dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="10"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/maxVotoFilm_schedaFilm_textView"
+        app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_textView" />
+
+    <TextView
+        android:id="@+id/trama_schedaFilm_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="334dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Trama: "
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locandinaFilm_schedaFilm" />
+
+    <TextView
+        android:id="@+id/tramaFilm_schedaFilm_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:gravity="top|left"
+        android:lines="5"
+        android:minLines="5"
+        android:scrollHorizontally="false"
+        android:maxLines="8"
+        android:scrollbars="vertical"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trama_schedaFilm_textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
                 HomeActivity.this.nowPlayingFilms = response.body();
                 for (Movie movie : HomeActivity.this.nowPlayingFilms.getResults())
                     filmsNowplaying.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
             }
 
             @Override
@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
                 HomeActivity.this.upComingFilms = response.body();
                 for (Movie movie : HomeActivity.this.upComingFilms.getResults())
                     filmsUpcoming.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
             }
 
             @Override
@@ -133,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
                 HomeActivity.this.popularFilms = response.body();
                 for (Movie movie : HomeActivity.this.popularFilms.getResults())
                     filmsPopular.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
                 pop = true;
             }
 

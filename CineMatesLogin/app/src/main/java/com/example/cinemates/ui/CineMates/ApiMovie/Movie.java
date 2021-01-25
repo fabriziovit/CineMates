@@ -7,8 +7,6 @@ public class Movie {
     private int id;
     @SerializedName("title")
     private String title;
-    //@SerializedName("genre_ids")
-    //ArrayList<Integer> genre_ids;
     @SerializedName("poster_path")
     private String poster_path;
 

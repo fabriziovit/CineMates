@@ -2,9 +2,7 @@ package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +26,6 @@ import com.example.cinemates.ui.CineMates.ItemFilm;
 import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
 import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import Intefaces.UpdateableFragmentListener;
@@ -115,7 +112,7 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.
                                 movieResearch = response.body();
                                 for (Movie movie : movieResearch.getResults()) {
                                     searchedMovie.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path())));
+                                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
                                     update();
                                     pop = true;
                                 }
@@ -147,13 +144,7 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.
     @Override
     public void OnClick(int position) {
         Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra("titolo", searchedMovie.get(position).getTitolo());
-        Bitmap bitmap = searchedMovie.get(position).getBitmap();
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
-        i.putExtra("poster", temp);
+        i.putExtra("id", searchedMovie.get(position).getId());
         startActivity(i);
     }
 

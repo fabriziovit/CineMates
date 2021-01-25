@@ -1,9 +1,7 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +18,6 @@ import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class NowPlayingFilmsFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener{
@@ -74,13 +71,7 @@ public class NowPlayingFilmsFragment extends Fragment implements RecycleViewAdap
     @Override
     public void OnClick(int position) {
         Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra("titolo", filmList.get(position).getTitolo());
-        Bitmap bitmap = filmList.get(position).getBitmap();
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp=Base64.encodeToString(b, Base64.DEFAULT);
-        i.putExtra("poster", temp);
+        i.putExtra("id", filmList.get(position).getId());
         startActivity(i);
     }
 }
