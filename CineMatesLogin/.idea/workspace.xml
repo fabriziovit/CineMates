@@ -33,15 +33,8 @@
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ApiMovie/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/NowPlayingFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/NowPlayingFilmsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/PopularFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/PopularFilmsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/UpcomingFilmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/UpcomingFilmsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemFilm.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ItemFilm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_film.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +55,9 @@
       <list>
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
-        <option value="resourceFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -288,10 +281,10 @@
     </state>
     <state x="221" y="96" key="AndroidCreateResourceDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1610983922795" />
     <state x="332" y="147" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610477505235" />
-    <state x="221" y="96" key="AndroidCreateResourceFileDialog" timestamp="1611239144708">
+    <state x="221" y="96" key="AndroidCreateResourceFileDialog" timestamp="1611659461489">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="221" y="96" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1611239144708" />
+    <state x="221" y="96" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1611659461489" />
     <state x="332" y="147" key="AndroidCreateResourceFileDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611153019967" />
     <state x="438" y="87" key="AndroidProcessChooserDialog" timestamp="1609767375678">
       <screen x="0" y="0" width="1280" height="680" />
@@ -302,25 +295,25 @@
     </state>
     <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610644869465" />
-    <state width="1236" height="238" key="GridCell.Tab.0.bottom" timestamp="1611593536986">
+    <state width="1236" height="2" key="GridCell.Tab.0.bottom" timestamp="1611663600252">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="238" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1611593536986" />
+    <state width="1236" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1611663600252" />
     <state width="1876" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611506989051" />
-    <state width="1236" height="238" key="GridCell.Tab.0.center" timestamp="1611593536986">
+    <state width="1236" height="2" key="GridCell.Tab.0.center" timestamp="1611663600252">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="238" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1611593536986" />
+    <state width="1236" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1611663600252" />
     <state width="1876" height="294" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611506989051" />
-    <state width="1236" height="238" key="GridCell.Tab.0.left" timestamp="1611593536986">
+    <state width="1236" height="2" key="GridCell.Tab.0.left" timestamp="1611663600252">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="238" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1611593536986" />
+    <state width="1236" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1611663600252" />
     <state width="1876" height="294" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611506989051" />
-    <state width="1236" height="238" key="GridCell.Tab.0.right" timestamp="1611593536986">
+    <state width="1236" height="2" key="GridCell.Tab.0.right" timestamp="1611663600252">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="238" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1611593536986" />
+    <state width="1236" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1611663600252" />
     <state width="1876" height="294" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611506989051" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1610276793017">
       <screen x="0" y="0" width="1280" height="680" />
