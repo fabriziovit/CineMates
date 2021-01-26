@@ -88,6 +88,7 @@ public class SchedaFilmActivity extends AppCompatActivity {
                         generi = genere.getNome();
                     else
                         generi = generi+", "+genere.getNome();
+
                 }
                 binding.titoloFIlmSchedaFilm.setText(detailedMovie.getTitle()+" ("+detailedMovie.getRelease_date().substring(0,4)+")");
                 binding.nomeGenereFilmSchedaFilmTextView.setText(generi);
@@ -113,7 +114,6 @@ public class SchedaFilmActivity extends AppCompatActivity {
             public void onClick(View view) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(binding.containerSchedaFilm.getWindowToken(), 0);
-                //binding..clearFocus();
             }
         });
     }
@@ -126,5 +126,4 @@ public class SchedaFilmActivity extends AppCompatActivity {
             }
         });
     }
-
 }
