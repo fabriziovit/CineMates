@@ -6,7 +6,9 @@
     android:layout_width="69dp"
     android:layout_height="50dp"
     style="@style/Widget.MaterialComponents.Chip.Action"
-    app:chipBackgroundColor="@color/colorIcons"
+    android:clickable="false"
+    android:textColor="@android:color/black"
+    app:chipBackgroundColor="@color/biancoGhiaccio"
     android:text="Genere">
 
 </com.google.android.material.chip.Chip>

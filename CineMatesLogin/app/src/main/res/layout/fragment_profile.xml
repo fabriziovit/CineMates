@@ -68,7 +68,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/avatar_profile_fragment" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/visualizzaPreferiti_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
@@ -79,11 +79,12 @@
         android:fontFamily="@font/martel_sans_bold"
         android:textColor="@color/colorPrimary"
         android:text="Visualizza Lista Preferiti"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/modificaCredenziali_button_ProfileFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/modificaCredenziali_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
@@ -94,20 +95,21 @@
         android:textColor="@color/colorPrimary"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Modifica Credenziali"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/logout_button_ProfileFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout_button_ProfileFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="77dp"
         android:layout_marginEnd="77dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="134dp"
         android:background="@drawable/mybutton_radius_red"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="134dp"
+        android:textSize="15sp"
         android:text="Effettua Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -109,6 +109,7 @@ public class SchedaFilmActivity extends AppCompatActivity {
 
         Keyboard(binding);
         BackButton(binding);
+        Preferiti(binding);
     }
 
     private void Keyboard(ActivitySchedaFilmBinding binding) {
@@ -126,6 +127,16 @@ public class SchedaFilmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+    }
+
+    private void Preferiti(ActivitySchedaFilmBinding binding){
+        binding.aggiungiPreferitiSchefaFilmImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //query per aggiungere il film ai preferiti
+                binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
             }
         });
     }

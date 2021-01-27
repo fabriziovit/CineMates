@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,11 +59,6 @@ public class UpcomingFilmsFragment extends Fragment implements RecycleViewAdapte
         View view = inflater.inflate(R.layout.fragment_upcoming_films, container, false);
         recyclerView_Film = view.findViewById(R.id.recycleView_fragment_upcomingFilms);
         RecycleViewAdapter_Film recycleViewAdapter_film = new RecycleViewAdapter_Film(getContext(), filmList, this);
-        recyclerView_Film.setHasFixedSize(true);
-        recyclerView_Film.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.HORIZONTAL));
-        recyclerView_Film.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.VERTICAL));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
         recyclerView_Film.setLayoutManager(gridLayoutManager);
         recyclerView_Film.setAdapter(recycleViewAdapter_film);
