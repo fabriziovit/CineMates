@@ -66,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifica_fragment_friends"
         app:tabGravity="fill"
+        app:tabIconTint="@color/colorIcons"
         app:tabIndicatorColor="@color/colorIcons"
         app:tabMode="fixed"
         app:tabTextColor="@color/colorIcons" />

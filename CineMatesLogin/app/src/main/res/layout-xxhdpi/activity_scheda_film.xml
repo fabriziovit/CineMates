@@ -110,46 +110,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/titoloFIlm_schedaFilm" />
 
             <TextView
-                android:id="@+id/genereFilm_schedaFilm_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/martel_sans_bold"
-                android:text="Genere:"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
-                app:layout_constraintTop_toBottomOf="@+id/registaFilm_schedaFilm_textView" />
-
-            <TextView
-                android:id="@+id/nomeGenereFilm_schedaFilm_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="80dp"
-                android:fontFamily="@font/martel_sans_bold"
-                android:text="Genere_Film"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/genereFilm_schedaFilm_textView"
-                app:layout_constraintTop_toBottomOf="@+id/nomeRegistaFilm_schedaFilm_textView"
-                app:layout_constraintWidth_percent="0.38" />
-
-            <TextView
                 android:id="@+id/aggiungiFilm_schedaFilm_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="33dp"
                 android:fontFamily="@font/martel_sans_bold"
                 android:text="Aggiungi alla lista preferiti"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
-                app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_textView" />
+                app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_chipGroup" />
 
             <ImageView
                 android:id="@+id/aggiungiFilm_schedaFilm_imageView"
@@ -186,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/martel_sans_bold"
                 android:text="Trama"
@@ -194,7 +164,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/locandinaFilm_schedaFilm" />
+                app:layout_constraintTop_toBottomOf="@+id/aggiungiFilm_schedaFilm_imageView" />
 
             <LinearLayout
                 android:id="@+id/tramaRectangle_schedaFilm"
@@ -256,6 +226,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recensioni_schedaFilm_textView" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/genereFilm_schedaFilm_chipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toEndOf="@+id/locandinaFilm_schedaFilm"
+                app:layout_constraintTop_toBottomOf="@+id/registaFilm_schedaFilm_textView"
+                app:layout_constraintWidth_percent="0.48">
+
+            </com.google.android.material.chip.ChipGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

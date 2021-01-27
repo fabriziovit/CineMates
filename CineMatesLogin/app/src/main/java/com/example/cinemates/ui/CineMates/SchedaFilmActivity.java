@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
 import com.example.cinemates.ui.CineMates.ApiMovie.CreditsMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.CreditsMovieApi;
@@ -17,6 +19,7 @@ import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
 import com.example.cinemates.ui.CineMates.ApiMovie.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,8 @@ public class SchedaFilmActivity extends AppCompatActivity {
     private ArrayList<Crew> crewlist;
     private String regista;
     private String generi;
+    private Chip chip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,16 +87,14 @@ public class SchedaFilmActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
                 detailedMovie = response.body();
+                LayoutInflater inflater = LayoutInflater.from(SchedaFilmActivity.this);
                 generelist = detailedMovie.getGenere();
                 for(Genere genere: generelist){
-                    if(generi == null)
-                        generi = genere.getNome();
-                    else
-                        generi = generi+", "+genere.getNome();
-
+                    chip = (Chip)inflater.inflate(R.layout.item_chip, null, false);
+                    chip.setText(genere.getNome());
+                    binding.genereFilmSchedaFilmChipGroup.addView(chip);
                 }
                 binding.titoloFIlmSchedaFilm.setText(detailedMovie.getTitle()+" ("+detailedMovie.getRelease_date().substring(0,4)+")");
-                binding.nomeGenereFilmSchedaFilmTextView.setText(generi);
                 binding.tramaFilmSchedaFilmTextView.setText(detailedMovie.getOverview());
                 binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" +detailedMovie.getPoster_path()));
             }

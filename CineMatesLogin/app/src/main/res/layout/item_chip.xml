@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chip_item"
+    android:layout_width="69dp"
+    android:layout_height="50dp"
+    style="@style/Widget.MaterialComponents.Chip.Action"
+    app:chipBackgroundColor="@color/colorIcons"
+    android:text="Genere">
+
+</com.google.android.material.chip.Chip>

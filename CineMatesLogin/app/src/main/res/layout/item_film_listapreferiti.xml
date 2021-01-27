@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titoloFilm_item_textView" />
 
     <TextView
-        android:id="@+id/genereFilm_item_textView"
+        android:id="@+id/genereFilm_schedaFilm_chipGroup"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
@@ -64,7 +64,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@+id/locandinaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/genereFilm_item_textView"
+        app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_chipGroup"
         app:srcCompat="@drawable/ic_stella" />
 
     <TextView
@@ -79,7 +79,7 @@
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/stellaFilm_item_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/genereFilm_item_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/genereFilm_schedaFilm_chipGroup" />
 
     <TextView
         android:id="@+id/rimuoviFilm_item_textView"
