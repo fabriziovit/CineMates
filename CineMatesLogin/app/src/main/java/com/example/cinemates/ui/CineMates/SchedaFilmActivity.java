@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
@@ -22,20 +23,23 @@ import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import Intefaces.UpdateableFragmentListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SchedaFilmActivity extends AppCompatActivity {
+public class SchedaFilmActivity extends AppCompatActivity implements RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener {
     private ActivitySchedaFilmBinding binding;
     private int id;
     private DetailedMovie detailedMovie;
     private CreditsMovie creditsMovie;
     private ArrayList<Genere> generelist;
     private ArrayList<Crew> crewlist;
+    private List<ItemRecensione> recensioniList;
     private String regista;
     private String generi;
     private Chip chip;
@@ -47,8 +51,11 @@ public class SchedaFilmActivity extends AppCompatActivity {
         binding = ActivitySchedaFilmBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        recensioniList = new ArrayList<>();
 
         binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
+        recensioniList.add(new ItemRecensione("HotBabe", "Ciao sono a 1 km da te, vieni quando vuoi....", "9.5", ProfileFragment.getBitmapFromdownload("https://icons.iconarchive.com/icons/lajonard/movie-folder/128/XXX-icon.png")));
+        recensioniList.add(new ItemRecensione("Gigi", "Ciao sono un coglione", "6", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -106,6 +113,9 @@ public class SchedaFilmActivity extends AppCompatActivity {
         });
 
 
+        RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(this, recensioniList, this);
+        binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(this));
+        binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
 
         Keyboard(binding);
         BackButton(binding);
@@ -139,5 +149,15 @@ public class SchedaFilmActivity extends AppCompatActivity {
                 binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
             }
         });
+    }
+
+    @Override
+    public void update() {
+        binding.recycleViewRecensioniSchedaFilm.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnClick(int position) {
+        recensioniList.get(position);
     }
 }

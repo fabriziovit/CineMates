@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="253dp"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatarRecensione_item_imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@mipmap/profile_pic"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/usernameRecensione_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="204dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Username"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/votoRecensione_item_textView"
+        app:layout_constraintStart_toEndOf="@+id/avatarRecensione_item_imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/votoRecensione_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="9"
+        android:textColor="@color/colorPrimary"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/recensioneRectangle_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rectangle_with_circular_border"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameRecensione_item_textView"
+        app:layout_constraintWidth_percent="0.99">
+
+        <TextView
+            android:id="@+id/recensioneFilm_item_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="@font/martel_sans_bold"
+            android:gravity="top|left"
+            android:lines="5"
+            android:maxLines="8"
+            android:minLines="5"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recensioneRectangle_item" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
