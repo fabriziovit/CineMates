@@ -15,7 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityLoginBinding;
-import com.example.cinemates.ui.CineMates.friends.Friends;
+import com.example.cinemates.ui.CineMates.friends.model.Friends;
+import com.example.cinemates.ui.CineMates.model.UserHelperClass;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -118,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
@@ -202,10 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                                             final Integer random = new Random().nextInt(2000);
                                             String numero = random.toString();
                                             for (UserInfo profile : user.getProviderData()) {
-                                                // Id of the provider (ex: google.com)
-                                                String providerId = profile.getProviderId();
                                                 photoUrl = profile.getPhotoUrl().toString();
-                                                // Name, email address, and profile photo Url
                                                 username = profile.getDisplayName().replace(" ", ".")+numero;
                                                 email = profile.getEmail();
                                             }
@@ -239,7 +236,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w("Errore", "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Accesso Non Riuscito", Toast.LENGTH_LONG).show();
                         }
@@ -256,7 +252,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d("Accesso", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             String uid = user.getUid();
@@ -285,10 +280,7 @@ public class LoginActivity extends AppCompatActivity {
                                             final Integer random = new Random().nextInt(2000);
                                             String numero = random.toString();
                                             for (UserInfo profile : user.getProviderData()) {
-                                                // Id of the provider (ex: google.com)
-                                                String providerId = profile.getProviderId();
                                                 photoUrl = profile.getPhotoUrl().toString();
-                                                // Name, email address, and profile photo Url
                                                 username = profile.getDisplayName().replace(" ", ".")+numero;
                                                 email = profile.getEmail();
                                             }
@@ -321,7 +313,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w("Errore", "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }

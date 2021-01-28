@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ItemFilm;
-import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film;
 import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;

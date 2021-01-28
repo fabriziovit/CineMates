@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.friends.model.Friends;
+import com.example.cinemates.ui.CineMates.friends.model.ItemRichieste;
+import com.example.cinemates.ui.CineMates.friends.viewModel.RecycleViewAdapter_Richieste;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

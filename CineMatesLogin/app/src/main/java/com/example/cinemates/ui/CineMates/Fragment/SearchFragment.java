@@ -14,16 +14,15 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.Movie;
-import com.example.cinemates.ui.CineMates.ApiMovie.MovieResearch;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
 import com.example.cinemates.ui.CineMates.ApiMovie.SearchMovieApi;
-import com.example.cinemates.ui.CineMates.ItemFilm;
-import com.example.cinemates.ui.CineMates.RecycleViewAdapter_Film;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_SearchFilm;
 import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener, UpdateableFragmentListener {
+public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_SearchFilm.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText searchField;
@@ -126,15 +125,10 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film.
                             }
                         });
                     }).start();
-                    RecycleViewAdapter_Film recycleViewAdapterFilm = new RecycleViewAdapter_Film(getContext(), searchedMovie, SearchFragment.this::OnClick);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
-                            DividerItemDecoration.HORIZONTAL));
-                    recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
-                            DividerItemDecoration.VERTICAL));
+                    RecycleViewAdapter_Film_SearchFilm recycleViewAdapter_film_searchFilm = new RecycleViewAdapter_Film_SearchFilm(getContext(), searchedMovie, SearchFragment.this);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(gridLayoutManager);
-                    recyclerView.setAdapter(recycleViewAdapterFilm);
+                    recyclerView.setAdapter(recycleViewAdapter_film_searchFilm);
                 } else
                     Toast.makeText(getContext(), "Nessun parametro di ricerca!", Toast.LENGTH_SHORT).show();
             }

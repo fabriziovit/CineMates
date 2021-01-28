@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.databinding.ActivityVisualizzaPreferitiBinding;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
 import java.util.List;

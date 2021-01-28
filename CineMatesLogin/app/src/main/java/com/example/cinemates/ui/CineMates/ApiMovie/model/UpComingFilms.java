@@ -1,15 +1,16 @@
-package com.example.cinemates.ui.CineMates.ApiMovie;
+package com.example.cinemates.ui.CineMates.ApiMovie.model;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
-public class MovieResearch {
+public class UpComingFilms {
     @SerializedName("results")
     ArrayList<Movie> results;
 
-    public MovieResearch(){}
+    public UpComingFilms(){}
 
-    public MovieResearch(ArrayList<Movie> results) {
+    public UpComingFilms(ArrayList<Movie> results) {
         this.results = results;
     }
 

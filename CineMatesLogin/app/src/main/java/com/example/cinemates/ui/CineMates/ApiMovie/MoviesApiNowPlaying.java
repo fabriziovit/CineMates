@@ -1,5 +1,7 @@
 package com.example.cinemates.ui.CineMates.ApiMovie;
 
+import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 

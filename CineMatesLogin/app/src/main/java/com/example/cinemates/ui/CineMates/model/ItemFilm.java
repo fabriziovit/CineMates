@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.model;
 
 import android.graphics.Bitmap;
 

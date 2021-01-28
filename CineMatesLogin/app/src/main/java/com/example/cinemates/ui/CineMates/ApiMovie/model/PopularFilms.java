@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.ApiMovie;
+package com.example.cinemates.ui.CineMates.ApiMovie.model;
 
 import com.google.gson.annotations.SerializedName;
 

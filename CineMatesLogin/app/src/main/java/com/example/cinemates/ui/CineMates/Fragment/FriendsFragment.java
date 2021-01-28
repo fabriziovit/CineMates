@@ -12,8 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.friends.ItemFriend;
-import com.example.cinemates.ui.CineMates.friends.ItemUser;
+import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
+import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
 import com.example.cinemates.ui.CineMates.friends.NotificheDialog;
 import com.google.android.material.tabs.TabLayout;
 

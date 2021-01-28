@@ -1,6 +1,7 @@
 package com.example.cinemates.ui.CineMates;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -8,19 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.CreditsMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.CreditsMovieApi;
-import com.example.cinemates.ui.CineMates.ApiMovie.Crew;
-import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
-import com.example.cinemates.ui.CineMates.ApiMovie.Genere;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.CreditsMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.Crew;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
+import com.example.cinemates.ui.CineMates.model.ItemRecensione;
+import com.example.cinemates.ui.CineMates.model.ReviewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.stepstone.apprating.AppRatingDialog;
+import com.stepstone.apprating.listener.RatingDialogListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +51,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SchedaFilmActivity extends AppCompatActivity implements RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener {
+public class SchedaFilmActivity extends AppCompatActivity implements RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
     private ActivitySchedaFilmBinding binding;
     private int id;
     private DetailedMovie detailedMovie;
@@ -41,21 +60,21 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private ArrayList<Crew> crewlist;
     private List<ItemRecensione> recensioniList;
     private String regista;
-    private String generi;
     private Chip chip;
-
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    boolean pop = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         binding = ActivitySchedaFilmBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         recensioniList = new ArrayList<>();
-
         binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
-        recensioniList.add(new ItemRecensione("HotBabe", "Ciao sono a 1 km da te, vieni quando vuoi....", "9.5", ProfileFragment.getBitmapFromdownload("https://icons.iconarchive.com/icons/lajonard/movie-folder/128/XXX-icon.png")));
-        recensioniList.add(new ItemRecensione("Gigi", "Ciao sono un coglione", "6", ProfileFragment.getBitmapFromdownload("https://image.flaticon.com/icons/png/128/1077/1077114.png")));
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -112,14 +131,45 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             }
         });
 
-
-        RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(this, recensioniList, this);
-        binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(this));
-        binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
+        CollectionReference collectionReference1 = db.collection("users");
+        collectionReference1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    DocumentReference documentReference = db.collection("reviews").document(String.valueOf(detailedMovie.getId())).collection(String.valueOf(detailedMovie.getId()))
+                            .document(documentSnapshot.getString("uid"));
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Bitmap profilePic = ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"));
+                                    String username = documentSnapshot.getString("username");
+                                    recensioniList.add(new ItemRecensione(username, document.getString("review"), profilePic));
+                                    System.out.println(recensioniList.size());
+                                }
+                            }
+                        }
+                    });
+                }
+                update();
+            }
+        });
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(recensioniList.size());
+                    RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
+                    binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));
+                    binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
+                }
+            });
 
         Keyboard(binding);
         BackButton(binding);
         Preferiti(binding);
+        recensioneButton(binding);
     }
 
     private void Keyboard(ActivitySchedaFilmBinding binding) {
@@ -160,4 +210,54 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     public void OnClick(int position) {
         recensioniList.get(position);
     }
+
+    public void recensioneButton(ActivitySchedaFilmBinding binding){
+        binding.recensionebittonebuttone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
+    }
+
+    public void showDialog(){
+        new AppRatingDialog.Builder()
+                .setPositiveButtonText("Invia")
+                .setNegativeButtonText("Cancella")
+                .setNumberOfStars(5)
+                .setDefaultRating(1)
+                .setTitle("Recensisci "+detailedMovie.getTitle())
+                .setDescription("Seleziona il punteggio e scrivi la tua recensione")
+                .setCommentInputEnabled(true)
+                .setStarColor(R.color.colorIcons)
+                .setNoteDescriptionTextColor(R.color.colorBack)
+                .setTitleTextColor(R.color.colorPrimary)
+                .setDescriptionTextColor(R.color.colorBack)
+                .setHint("Scrivi la tua recensione qui...")
+                .setHintTextColor(R.color.hintColorText)
+                .setCommentTextColor(R.color.colorPrimary)
+                .setCommentBackgroundColor(R.color.griogioChiaro)
+                .setWindowAnimation(R.style.MyDialogFadeAnimation)
+                .setCancelable(false)
+                .setCanceledOnTouchOutside(false)
+                .create(SchedaFilmActivity.this)
+                .show();
+    }
+
+    @Override
+    public void onNegativeButtonClicked() {
+    }
+
+    @Override
+    public void onNeutralButtonClicked() {
+    }
+
+    @Override
+    public void onPositiveButtonClicked(int i, @NotNull String s) {
+        String currUser = auth.getCurrentUser().getUid();
+        ReviewModel reviewModel = new ReviewModel(currUser, s, i);
+        db.collection("reviews").document(String.valueOf(detailedMovie.getId())).collection(String.valueOf(detailedMovie.getId())).document(currUser).set(reviewModel);
+        //update();
+    }
+
 }

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ItemFilm;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

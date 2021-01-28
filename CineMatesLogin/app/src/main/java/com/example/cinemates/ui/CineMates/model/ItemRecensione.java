@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.model;
 
 import android.graphics.Bitmap;
 
@@ -6,13 +6,13 @@ public class ItemRecensione {
 
     private String username;
     private String recensione;
-    private String voto;
+    private int voto;
     private Bitmap bitmap;
 
-    public ItemRecensione(String username, String recensione, String voto, Bitmap bitmap) {
+    public ItemRecensione(String username, String recensione, Bitmap bitmap) {
         this.username = username;
         this.recensione = recensione;
-        this.voto = voto;
+        //this.voto = voto;
         this.bitmap = bitmap;
     }
 
@@ -32,11 +32,11 @@ public class ItemRecensione {
         this.recensione = recensione;
     }
 
-    public String getVoto() {
+    public int getVoto() {
         return voto;
     }
 
-    public void setVoto(String voto) {
+    public void setVoto(int voto) {
         this.voto = voto;
     }
 

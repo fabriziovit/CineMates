@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.adapter;
 
 import android.content.Context;
 import android.text.method.ScrollingMovementMethod;
@@ -11,14 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.model.ItemRecensione;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleViewAdapter_Recensioni.MyViewHolder>{
-
-
     Context mContext;
     List<ItemRecensione> recensioniList;
     RecycleViewAdapter_Recensioni.OnClickListener mOnClickListener;
@@ -44,9 +43,8 @@ public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleV
     public void onBindViewHolder(@NonNull RecycleViewAdapter_Recensioni.MyViewHolder holder, int position) {
         holder.username.setText(recensioniList.get(position).getUsername());
         holder.circleImageView.setImageBitmap(recensioniList.get(position).getBitmap());
-        holder.voto.setText(recensioniList.get(position).getVoto());
+        //holder.voto.setText(recensioniList.get(position).getVoto());
         holder.recensione.setText(recensioniList.get(position).getRecensione());
-
     }
 
     @Override

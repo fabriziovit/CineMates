@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.friends;
+package com.example.cinemates.ui.CineMates.friends.model;
 
 import com.google.firebase.firestore.FieldValue;
 

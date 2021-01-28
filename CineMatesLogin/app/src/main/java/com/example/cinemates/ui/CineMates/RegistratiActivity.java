@@ -13,7 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityRegistratiBinding;
-import com.example.cinemates.ui.CineMates.friends.Friends;
+import com.example.cinemates.ui.CineMates.friends.model.Friends;
+import com.example.cinemates.ui.CineMates.model.UserHelperClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

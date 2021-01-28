@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.friends;
+package com.example.cinemates.ui.CineMates.friends.viewModel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
 
 import java.util.List;
 

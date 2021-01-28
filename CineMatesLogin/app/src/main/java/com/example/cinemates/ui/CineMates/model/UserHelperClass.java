@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

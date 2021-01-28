@@ -22,8 +22,6 @@ public class SplashActivity extends AppCompatActivity {
         Transizione(binding);
     }
 
-
-
     private void Transizione(ActivitySplashBinding binding){
 
         binding.motionLayout.addTransitionListener(new MotionLayout.TransitionListener() {

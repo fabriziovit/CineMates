@@ -31,6 +31,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="13sp"
         app:layout_constraintEnd_toStartOf="@+id/votoRecensione_item_textView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/avatarRecensione_item_imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
