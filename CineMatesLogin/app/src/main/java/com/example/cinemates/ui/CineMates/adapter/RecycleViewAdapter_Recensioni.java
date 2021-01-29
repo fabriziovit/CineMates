@@ -43,7 +43,8 @@ public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleV
     public void onBindViewHolder(@NonNull RecycleViewAdapter_Recensioni.MyViewHolder holder, int position) {
         holder.username.setText(recensioniList.get(position).getUsername());
         holder.circleImageView.setImageBitmap(recensioniList.get(position).getBitmap());
-        //holder.voto.setText(recensioniList.get(position).getVoto());
+        String voto = String.valueOf(recensioniList.get(position).getVoto());
+        holder.voto.setText(voto);
         holder.recensione.setText(recensioniList.get(position).getRecensione());
     }
 

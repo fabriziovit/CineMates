@@ -93,7 +93,7 @@
                 android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/titoloFIlm_schedaFilm"
-                app:srcCompat="@mipmap/profile_pic" />
+                app:srcCompat="@mipmap/movie_default" />
 
 
             <TextView

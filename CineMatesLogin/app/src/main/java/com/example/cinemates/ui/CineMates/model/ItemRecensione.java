@@ -8,6 +8,15 @@ public class ItemRecensione {
     private String recensione;
     private int voto;
     private Bitmap bitmap;
+    private String uid;
+
+    public ItemRecensione(String username, String recensione, int voto, Bitmap bitmap, String uid) {
+        this.username = username;
+        this.recensione = recensione;
+        this.voto = voto;
+        this.bitmap = bitmap;
+        this.uid = uid;
+    }
 
     public ItemRecensione(String username, String recensione, Bitmap bitmap) {
         this.username = username;
@@ -46,5 +55,13 @@ public class ItemRecensione {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

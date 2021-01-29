@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_small" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reset_credenziali_Button"
         android:layout_width="140dp"
         android:layout_height="40dp"
