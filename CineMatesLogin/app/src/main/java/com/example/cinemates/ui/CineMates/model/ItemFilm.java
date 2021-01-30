@@ -22,7 +22,7 @@ public class ItemFilm {
         this.bitmap = filmPic;
     }
 
-    public ItemFilm(String titolo,  Bitmap filmPic, int id) {
+    public ItemFilm(String titolo, Bitmap filmPic, int id) {
         this.titolo = titolo;
         this.bitmap = filmPic;
         this.id = id;

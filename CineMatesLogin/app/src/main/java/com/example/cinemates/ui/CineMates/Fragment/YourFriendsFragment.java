@@ -99,10 +99,10 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
 
     @Override
     public void onClickPreferiti(int position) {
-        //friendList.get(position);
-        //visualizza preferiti passandogli l'username della position
-        //da fixare con i relativi film
-        startActivity(new Intent(getActivity(), VisualizzaPreferitiActivity.class));
+        Intent i = new Intent(getActivity(), VisualizzaPreferitiActivity.class);
+        i.putExtra("username", searchList.get(position).getUsername());
+        i.putExtra("proprietario", false);
+        startActivity(i);
     }
 
     @Override

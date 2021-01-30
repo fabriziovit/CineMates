@@ -249,7 +249,9 @@ public class ProfileFragment extends Fragment{
         visualizzaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), VisualizzaPreferitiActivity.class));
+                Intent i = new Intent(getActivity(), VisualizzaPreferitiActivity.class);
+                i.putExtra("proprietario", true);
+                startActivity(i);
             }
         });
     }

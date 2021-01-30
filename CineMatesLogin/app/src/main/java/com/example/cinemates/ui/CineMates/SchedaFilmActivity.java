@@ -24,6 +24,7 @@ import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
+import com.example.cinemates.ui.CineMates.model.PreferitiModel;
 import com.example.cinemates.ui.CineMates.model.ReviewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -68,6 +69,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private int cont;
     private int somma;
     private double mediaPunteggio;
+    private int preferiti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +83,16 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         recensioniList = new ArrayList<>();
         cont = 0;
         somma = 0;
+        preferiti = 0;
         binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
 
+        //Prendo l'id del film dalla scheda da cui provengo
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getInt("id");
         }
+
+        //Controllo dettagli film
         new Thread(()-> {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://api.themoviedb.org")
@@ -141,6 +147,24 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             });
         }).start();
 
+        //Controllo lista preferiti
+        new Thread(()-> {
+            DocumentReference documentReference = db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id));
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
+                            preferiti = 1;
+                            binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
+                        }
+                    }
+                }
+            });
+        }).start();
+
+        //Controllo recensioni
         new Thread(()-> {
             CollectionReference collectionReference1 = db.collection("users");
             collectionReference1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -206,7 +230,33 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         binding.aggiungiPreferitiSchefaFilmImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //query per aggiungere il film ai preferiti
+
+                //Controllo lista preferiti
+                new Thread(()-> {
+                    DocumentReference documentReference = db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id));
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                DocumentSnapshot document = task.getResult();
+                                if(document.exists()){
+                                    preferiti = 1;
+                                    binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
+                                }else
+                                    preferiti = 0;
+                            }
+                        }
+                    });
+                }).start();
+
+                if(preferiti == 0){
+                    PreferitiModel preferitiModel = new PreferitiModel(currUser, id);
+                    db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id)).set(preferitiModel);
+                    binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
+                }else{
+                    db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id)).delete();
+                    binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite_border);
+                }
             }
         });
     }
@@ -273,8 +323,10 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                     //somma = somma- itemRecensione.getvoto();
                     //somma = somma + i;
                     itemRecensione.setVoto(i);
-                    update();
                 }
+                RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
+                binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));
+                binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
                 //mediaPunteggio = somma/cont
                 //setText
             }

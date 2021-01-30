@@ -45,18 +45,20 @@
 
     <TextView
         android:id="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="3dp"
         android:fontFamily="@font/martel_sans_bold"
-        android:text="Lista Preferiti"
+        android:text="La tua lista preferiti"
         android:textColor="@color/colorPrimary"
-        android:textSize="32sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backButton_VisualizzaPreferiti"
-        app:layout_constraintTop_toBottomOf="@+id/divider_VisualizzaPreferiti" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_VisualizzaPreferiti"
+        app:layout_constraintWidth_percent="0.8" />
 
     <EditText
         android:id="@+id/search_bar_VisualizzaPreferiti"
@@ -105,8 +107,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Film_VisualizzaPreferiti"
         android:layout_width="match_parent"
-        android:layout_height="433dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="495dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_VisualizzaPreferiti">
