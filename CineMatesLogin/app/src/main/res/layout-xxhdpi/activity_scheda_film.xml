@@ -226,7 +226,7 @@
                 app:tint="@color/biancoGhiaccio" />
 
             <ImageView
-                android:id="@+id/recensionebittonebuttone"
+                android:id="@+id/recensione_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="110dp"

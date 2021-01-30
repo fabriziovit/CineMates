@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
@@ -207,12 +206,6 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         binding.aggiungiPreferitiSchefaFilmImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (binding.aggiungiPreferitiSchefaFilmImageView.getDrawable().getConstantState().equals(ContextCompat.getDrawable(SchedaFilmActivity.this, R.drawable.ic_favorite_border).getConstantState())) {
-                    binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite);
-
-                } else if(binding.aggiungiPreferitiSchefaFilmImageView.getDrawable().getConstantState().equals(ContextCompat.getDrawable(SchedaFilmActivity.this, R.drawable.ic_favorite).getConstantState())){
-                    binding.aggiungiPreferitiSchefaFilmImageView.setImageResource(R.drawable.ic_favorite_border);
-                }
                 //query per aggiungere il film ai preferiti
             }
         });
@@ -229,7 +222,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     }
 
     public void recensioneButton(ActivitySchedaFilmBinding binding){
-        binding.recensionebittonebuttone.setOnClickListener(new View.OnClickListener() {
+        binding.recensioneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog();
