@@ -136,8 +136,10 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                         chip.setText(genere.getNome());
                         binding.genereFilmSchedaFilmChipGroup.addView(chip);
                     }
+                    float voto = detailedMovie.getVote_average()/2;
                     binding.titoloFIlmSchedaFilm.setText(detailedMovie.getTitle() + " (" + detailedMovie.getRelease_date().substring(0, 4) + ")");
                     binding.tramaFilmSchedaFilmTextView.setText(detailedMovie.getOverview());
+                    binding.percentualeVotoSchedaFilmTextView.setText(String.format("%.1f", voto));
                     binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()));
                 }
 

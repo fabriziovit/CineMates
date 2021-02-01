@@ -18,15 +18,18 @@ public class DetailedMovie {
     private String overview;
     @SerializedName("release_date")
     private String release_date;
+    @SerializedName("vote_average")
+    private float vote_average;
 
 
-    public DetailedMovie(int id, String poster_path, String title, ArrayList<Genere> genere, String overview, String release_date) {
+    public DetailedMovie(int id, String poster_path, String title, ArrayList<Genere> genere, String overview, String release_date, float vote_average) {
         this.id = id;
         this.poster_path = poster_path;
         this.title = title;
         this.genere = genere;
         this.overview = overview;
         this.release_date = release_date;
+        this.vote_average = vote_average;
     }
 
     public int getId() {
@@ -75,5 +78,13 @@ public class DetailedMovie {
 
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
+    }
+
+    public float getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(float vote_average) {
+        this.vote_average = vote_average;
     }
 }
