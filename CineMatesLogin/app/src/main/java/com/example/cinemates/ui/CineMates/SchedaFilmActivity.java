@@ -64,7 +64,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private Chip chip;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-    private boolean presente = false;
+    private boolean presente;
     private String currUser;
     private int cont;
     private int somma;
@@ -81,6 +81,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         View view = binding.getRoot();
         setContentView(view);
         recensioniList = new ArrayList<>();
+        presente = false;
         cont = 0;
         somma = 0;
         preferiti = 0;
@@ -342,6 +343,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                         //cont++
                         //mediaPunteggio = somma/cont;
                         //setText
+                        presente = true;
                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
                         binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));
                         binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);

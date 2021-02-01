@@ -168,7 +168,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                     recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView_Utenti.setAdapter(recycleViewAdapter);
                     update();
-                    Toast.makeText(getContext(), "Nessun paramtrro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -175,7 +175,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                     recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
                     update();
-                    Toast.makeText(getContext(), "Nessun paramtrro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

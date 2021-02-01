@@ -94,7 +94,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resultFilm_fragmentSearch"
         android:layout_width="match_parent"
-        android:layout_height="435dp"
+        android:layout_height="430dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
