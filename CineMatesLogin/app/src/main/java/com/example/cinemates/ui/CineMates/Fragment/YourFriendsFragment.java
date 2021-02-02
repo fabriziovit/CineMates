@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
+import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
 import com.example.cinemates.ui.CineMates.friends.viewModel.RecycleViewAdapter_Amici;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,14 +42,18 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     private ImageView searchButton;
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
+    private ViewPagerAdapter adapter;
+    private List<ItemUser> userList;
 
     public YourFriendsFragment() {
         // Required empty public constructor
     }
 
-    public YourFriendsFragment(List<ItemFriend> friendList) {
+    public YourFriendsFragment(List<ItemFriend> friendList, List<ItemUser> userList, ViewPagerAdapter adapter) {
         this.friendList = friendList;
         this.searchList = friendList;
+        this.userList = userList;
+        this.adapter = adapter;
     }
 
     public static YourFriendsFragment newInstance(String param1, String param2) {
@@ -115,9 +120,14 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        for(ItemUser itemUser: userList){
+                            if(searchList.get(position).getUid().equals(itemUser.getUid()))
+                                itemUser.setRapporto(0);
+                        }
                         rimuoviAmico(position);
                         searchList.remove(position);
                         update();
+                        adapter.update();
                         Toast.makeText(getActivity(), "Amico rimosso!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -152,8 +162,7 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
                     for (int i = 0; i < friendList.size(); i++) {
                         String username = friendList.get(i).getUsername().toLowerCase();
                         if (username.contains(ricerca)) {
-                            ItemFriend newFriend = new ItemFriend(friendList.get(i).getUsername(), friendList.get(i).getBitmap());
-                            newFriend.setUid(friendList.get(i).getUid());
+                            ItemFriend newFriend = new ItemFriend(friendList.get(i).getUsername(), friendList.get(i).getBitmap(), friendList.get(i).getUid());
                             searchList.add(newFriend);
                         }
                     }

@@ -18,8 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.Fragment.ViewPagerAdapter;
 import com.example.cinemates.ui.CineMates.friends.model.Friends;
+import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemRichieste;
+import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
 import com.example.cinemates.ui.CineMates.friends.viewModel.RecycleViewAdapter_Richieste;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,8 +52,18 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
     RecycleViewAdapter_Richieste recycleViewAdapterRichieste;
     private String currUser;
     private Dialog dialog;
+    private ViewPagerAdapter adapter;
+    private List<ItemFriend> friendList;
+    private List<ItemUser> userList;
 
     public NotificheDialog(){}
+
+    public NotificheDialog(Activity myActivity, List<ItemFriend> friendList, List<ItemUser> userList, ViewPagerAdapter adapter){
+        activity = myActivity;
+        this.friendList = friendList;
+        this.userList = userList;
+        this.adapter = adapter;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -100,10 +113,6 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
         return view;
     }
 
-    public NotificheDialog(Activity myActivity){
-        activity = myActivity;
-    }
-
     @Override
     public void onClickAccetta(int position) {
         new Thread(()-> {
@@ -118,6 +127,12 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                             FieldValue timestamp = FieldValue.serverTimestamp();
                             Friends friends1 = new Friends(uIdMittente, timestamp);
                             Friends friends2 = new Friends(currUser, timestamp);
+                            ItemFriend addFriend = new ItemFriend(richiesteList.get(position).getUsername(), richiesteList.get(position).getBitmap(), uIdMittente);
+                            friendList.add(addFriend);
+                            for(ItemUser itemUser: userList){
+                                if(uIdMittente.equals(itemUser.getUid()))
+                                    itemUser.setRapporto(2);
+                            }
                             db.collection("friends").document(currUser).collection(uIdMittente).document(uIdMittente).set(friends1);
                             db.collection("friends").document(uIdMittente).collection(currUser).document(currUser).set(friends2);
                             Toast.makeText(getActivity(), "Richiesta accettata!", Toast.LENGTH_SHORT).show();
@@ -158,6 +173,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
         chiudiFinestra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                adapter.update();
                 getDialog().dismiss();
             }
         });

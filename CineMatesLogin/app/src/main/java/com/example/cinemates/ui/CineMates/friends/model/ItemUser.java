@@ -12,9 +12,11 @@ public class ItemUser{
     public ItemUser(){
     }
 
-    public ItemUser(String username, Bitmap profilePic){
+    public ItemUser(String username, Bitmap profilePic, String uid, int rapporto){
         this.bitmap = profilePic;
         this.Username = username;
+        this.uid = uid;
+        this.rapporto = rapporto;
     }
 
     public String getUsername() {

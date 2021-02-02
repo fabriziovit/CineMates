@@ -144,9 +144,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
                     for (int i = 0; i < userList.size(); i++) {
                         String username = userList.get(i).getUsername().toLowerCase();
                         if (username.contains(ricerca)) {
-                            ItemUser userSearch = new ItemUser(userList.get(i).getUsername(), userList.get(i).getBitmap());
-                            userSearch.setUid(userList.get(i).getUid());
-                            userSearch.setRapporto(userList.get(i).getRapporto());
+                            ItemUser userSearch = new ItemUser(userList.get(i).getUsername(), userList.get(i).getBitmap(), userList.get(i).getUid(), userList.get(i).getRapporto());
                             searchList.add(userSearch);
                         }
                     }

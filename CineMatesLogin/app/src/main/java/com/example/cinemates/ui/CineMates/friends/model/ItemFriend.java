@@ -11,9 +11,10 @@ public class ItemFriend {
     public ItemFriend(){
     }
 
-    public ItemFriend(String username, Bitmap profilePic){
+    public ItemFriend(String username, Bitmap profilePic, String uid){
         this.bitmap = profilePic;
         this.Username = username;
+        this.uid = uid;
     }
 
     public String getUsername() {

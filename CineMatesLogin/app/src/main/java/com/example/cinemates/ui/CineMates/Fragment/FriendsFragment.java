@@ -61,7 +61,7 @@ public class FriendsFragment extends Fragment{
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
 
-        adapter.AddFragment(new YourFriendsFragment(friendList), "Lista Amici");
+        adapter.AddFragment(new YourFriendsFragment(friendList, userList, adapter), "Lista Amici");
         adapter.AddFragment(new SearchFriendsFragment(userList), "Cerca Utenti");
 
         viewPager.setAdapter(adapter);
@@ -77,7 +77,7 @@ public class FriendsFragment extends Fragment{
         notifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final NotificheDialog notificheDialog = new NotificheDialog(getActivity());
+                final NotificheDialog notificheDialog = new NotificheDialog(getActivity(), friendList, userList, adapter);
                 showDialog(notificheDialog);
             }
         });

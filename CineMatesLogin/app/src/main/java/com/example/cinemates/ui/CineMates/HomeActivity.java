@@ -265,8 +265,7 @@ public class HomeActivity extends AppCompatActivity {
                                                         if(document.exists()) {
                                                             String username = documentSnapshot.getString("username");
                                                             String imageUrl = documentSnapshot.getString("imageUrl");
-                                                            ItemFriend friend = new ItemFriend(username, ProfileFragment.getBitmapFromdownload(imageUrl));
-                                                            friend.setUid(documentSnapshot.getString("uid"));
+                                                            ItemFriend friend = new ItemFriend(username, ProfileFragment.getBitmapFromdownload(imageUrl), documentSnapshot.getString("uid"));
                                                             friendList.add(friend);
                                                         }
                                                     }
@@ -294,16 +293,12 @@ public class HomeActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists()) {
-                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
                                                                 rapporto = 1;
-                                                                itemUser.setRapporto(rapporto);
-                                                                itemUser.setUid(documentSnapshot.getString("uid"));
+                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"), rapporto);
                                                                 userList.add(itemUser);
                                                             } else {
-                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")));
                                                                 rapporto = 0;
-                                                                itemUser.setRapporto(rapporto);
-                                                                itemUser.setUid(documentSnapshot.getString("uid"));
+                                                                itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"), rapporto);
                                                                 userList.add(itemUser);
                                                             }
                                                         }
