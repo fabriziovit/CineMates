@@ -187,11 +187,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                                         Bitmap profilePic = ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"));
                                         String username = documentSnapshot.getString("username");
                                         int voto = document.getLong("star").intValue();
-                                        //int somma = somma+voto;
-                                        //cont++
-                                        //double mediaPunteggio = somma/cont;
                                         recensioniList.add(new ItemRecensione(username, document.getString("review"), voto, profilePic, documentSnapshot.getId()));
-                                        //setText di voto medio con mediaPunteggio
                                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
                                         binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));
                                         binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
@@ -323,15 +319,11 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             for(ItemRecensione itemRecensione : recensioniList){
                 if(itemRecensione.getUid().equals(currUser)){
                     itemRecensione.setRecensione(s);
-                    //somma = somma- itemRecensione.getvoto();
-                    //somma = somma + i;
                     itemRecensione.setVoto(i);
                 }
                 RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
                 binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));
                 binding.recycleViewRecensioniSchedaFilm.setAdapter(recycleViewAdapterRecensioni);
-                //mediaPunteggio = somma/cont
-                //setText
             }
         }else{
             DocumentReference documentReference = db.collection("users").document(currUser);
@@ -341,10 +333,6 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                     if(task.isSuccessful()){
                         DocumentSnapshot documentSnapshot = task.getResult();
                         recensioniList.add(new ItemRecensione(documentSnapshot.getString("username"), s, i, ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid")));
-                        //somma=+i;
-                        //cont++
-                        //mediaPunteggio = somma/cont;
-                        //setText
                         presente = true;
                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(SchedaFilmActivity.this, recensioniList, SchedaFilmActivity.this);
                         binding.recycleViewRecensioniSchedaFilm.setLayoutManager(new LinearLayoutManager(SchedaFilmActivity.this));

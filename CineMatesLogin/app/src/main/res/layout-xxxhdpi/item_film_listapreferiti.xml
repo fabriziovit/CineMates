@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView_item_Film"
+    android:layout_width="190dp"
+    android:layout_height="310dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="8dp"
+    android:adjustViewBounds="true"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        android:id="@+id/rimuoviDaLista_TextView_listaPreferiti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:fontFamily="@font/martel_sans_bold"
+        android:text="Rimuovi dalla lista"
+        android:textColor="@color/biancoGhiaccio"
+        android:layout_marginBottom="2dp"
+        android:textSize="12sp"/>
+
+    <ImageView
+        android:id="@+id/rimuoviDaLista_ImageView_listaPreferiti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_remove_2"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="10dp"/>
+
+
+    <ImageView
+        android:id="@+id/locandinaFilm_item_imageView"
+        android:layout_width="170dp"
+        android:layout_height="230dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/profile_pic" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/titoloFilm_item_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/alegreya_sc_bold_italic"
+            android:gravity="center"
+            android:textColor="@color/biancoGhiaccio"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

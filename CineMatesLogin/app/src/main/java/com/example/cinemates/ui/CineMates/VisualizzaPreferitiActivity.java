@@ -63,7 +63,8 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
             if(!proprietario) {
                 username = extras.getString("username");
                 binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("Lista preferiti di "+username);
-            }
+            }else
+                binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("La tua lista preferiti");
         }
 
         if(proprietario){

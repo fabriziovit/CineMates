@@ -24,14 +24,13 @@
 
     <TextView
         android:id="@+id/usernameRichiesta_Item_textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="173dp"
+        android:layout_marginEnd="39dp"
         android:layout_marginBottom="45dp"
         android:fontFamily="@font/martel_sans_bold"
-        android:text="Username"
         android:textColor="@color/colorPrimary"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +38,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/avatarRichiesta_item_image"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent="0.6" />
 
     <TextView
         android:id="@+id/accetta_item_textView"

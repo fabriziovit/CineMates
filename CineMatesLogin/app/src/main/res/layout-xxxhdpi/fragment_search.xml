@@ -2,15 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_VisualizzaPreferiti"
+    android:id="@+id/container_fragment_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.VisualizzaPreferitiActivity">
-
+    tools:context=".ui.CineMates.Fragment.SearchFragment" >
 
     <TextView
-        android:id="@+id/scrittaLogo_VisualizzaPreferiti"
+        android:id="@+id/scrittaLogo_fragment_search"
         android:layout_width="294dp"
         android:layout_height="83dp"
         android:layout_marginStart="16dp"
@@ -23,96 +22,85 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/homeButton_VisualizzaPreferiti"
+        android:id="@+id/homeButton_fragment_search"
         android:layout_width="68dp"
         android:layout_height="83dp"
         android:layout_marginStart="11dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/scrittaLogo_VisualizzaPreferiti"
+        app:layout_constraintStart_toEndOf="@+id/scrittaLogo_fragment_search"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_foreground" />
 
     <View
-        android:id="@+id/divider_VisualizzaPreferiti"
+        android:id="@+id/divider_fragment_search"
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_VisualizzaPreferiti" />
+        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_fragment_search" />
 
     <TextView
-        android:id="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti"
-        android:layout_width="0dp"
+        android:id="@+id/cercaFilm_Textview_fragmentSearch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="167dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginEnd="167dp"
         android:fontFamily="@font/martel_sans_bold"
+        android:text="Cerca Film"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/backButton_VisualizzaPreferiti"
-        app:layout_constraintTop_toBottomOf="@+id/divider_VisualizzaPreferiti"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_fragment_search" />
 
     <EditText
-        android:id="@+id/search_bar_VisualizzaPreferiti"
+        android:id="@+id/search_bar_fragmentSearch"
         android:layout_width="280dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/search_layout"
         android:ems="10"
         android:fontFamily="@font/martel_sans_bold"
-        android:hint="Ricerca....."
+        android:hint="cerca film"
         android:inputType="textPersonName"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:paddingRight="15dp"
         android:paddingBottom="5dp"
-        android:textColorHint="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/search_button_VisualizzaPreferiti"
+        app:layout_constraintEnd_toStartOf="@+id/search_button_fragmentSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
+        app:layout_constraintTop_toBottomOf="@+id/cercaFilm_Textview_fragmentSearch" />
 
     <ImageView
-        android:id="@+id/search_button_VisualizzaPreferiti"
+        android:id="@+id/search_button_fragmentSearch"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:src="@mipmap/ic_searchbar_foreground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_bar_VisualizzaPreferiti"
-        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
-
-    <ImageView
-        android:id="@+id/backButton_VisualizzaPreferiti"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_VisualizzaPreferiti"
-        app:srcCompat="@mipmap/back_icon_foreground" />
+        app:layout_constraintStart_toEndOf="@+id/search_bar_fragmentSearch"
+        app:layout_constraintTop_toBottomOf="@+id/cercaFilm_Textview_fragmentSearch" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Film_VisualizzaPreferiti"
+        android:id="@+id/resultFilm_fragmentSearch"
         android:layout_width="match_parent"
-        android:layout_height="509dp"
+        android:layout_height="445dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar_VisualizzaPreferiti">
+        app:layout_constraintTop_toBottomOf="@+id/search_bar_fragmentSearch">
 
     </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
