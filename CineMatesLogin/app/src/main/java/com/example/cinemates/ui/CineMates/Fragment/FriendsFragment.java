@@ -27,15 +27,18 @@ public class FriendsFragment extends Fragment{
     private ViewPagerAdapter adapter;
     private List<ItemUser> userList;
     private List<ItemFriend> friendList;
-    private ImageView notifica;
+    private ImageView bottoneNotifica;
+    private ImageView indicatoreNotifica;
+    private boolean notifiche;
 
     public FriendsFragment() {
         // Required empty public constructor
     }
 
-    public FriendsFragment(List<ItemUser> userList, List<ItemFriend> friendList) {
+    public FriendsFragment(List<ItemUser> userList, List<ItemFriend> friendList, boolean notifiche) {
         this.userList = userList;
         this.friendList = friendList;
+        this.notifiche = notifiche;
     }
 
     public static FriendsFragment newInstance(String param1, String param2) {
@@ -56,10 +59,15 @@ public class FriendsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
-        notifica = view.findViewById(R.id.notifica_fragment_friends);
+        bottoneNotifica = view.findViewById(R.id.notifica_fragment_friends);
+        indicatoreNotifica = view.findViewById(R.id.indicatore_notifica_friendsFragment);
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        if(notifiche)
+            indicatoreNotifica.setVisibility(View.VISIBLE);
+        else
+            indicatoreNotifica.setVisibility(View.INVISIBLE);
 
         adapter.AddFragment(new YourFriendsFragment(friendList, userList, adapter), "Lista Amici");
         adapter.AddFragment(new SearchFriendsFragment(userList), "Cerca Utenti");
@@ -74,9 +82,10 @@ public class FriendsFragment extends Fragment{
     }
 
     public void ApriNotifiche() {
-        notifica.setOnClickListener(new View.OnClickListener() {
+        bottoneNotifica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                indicatoreNotifica.setVisibility(View.INVISIBLE);
                 final NotificheDialog notificheDialog = new NotificheDialog(getActivity(), friendList, userList, adapter);
                 showDialog(notificheDialog);
             }

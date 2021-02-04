@@ -14,10 +14,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityHomeBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiNowPlaying;
 import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiPopular;
 import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiUpcoming;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.UpComingFilms;
@@ -65,11 +65,14 @@ public class HomeActivity extends AppCompatActivity {
     private boolean pop = false;
     private Handler handler;
     private int userNumber;
+    private FirebaseAuth auth;
     private StorageReference storageRef;
     private FirebaseStorage storage;
     private Bitmap profilePic;
     private int rapporto;
+    private String currUser;
     private ItemUser itemUser;
+    private boolean notifiche = false;
     Activity activity;
 
     @Override
@@ -81,10 +84,33 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+        currUser = auth.getCurrentUser().getUid();
         final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
+
+        CollectionReference collectionReference = db.collection("users");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid")).collection(currUser).document(currUser);
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    notifiche = true;
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org")
@@ -246,8 +272,6 @@ public class HomeActivity extends AppCompatActivity {
                         }, 2500);
 
                         new Thread(()->{
-
-                            //new Thread(()->{
                             CollectionReference collectionReference1 = db.collection("users");
                             collectionReference1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -318,7 +342,7 @@ public class HomeActivity extends AppCompatActivity {
                                 }
                             }
                             while (userList.size() != userNumber - 1) { }
-                            fragment = new FriendsFragment(userList, friendList);
+                            fragment = new FriendsFragment(userList, friendList, notifiche);
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)
@@ -334,5 +358,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 }
