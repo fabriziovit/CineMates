@@ -37,7 +37,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class VisualizzaPreferitiActivity extends AppCompatActivity implements RecycleViewAdapter_Film_ListaPreferiti.OnClickListener, UpdateableFragmentListener {
     private ActivityVisualizzaPreferitiBinding binding;
     private List<ItemFilm> preferitiList;
-    private boolean proprietario;
     private String username;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -59,49 +58,9 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            proprietario = extras.getBoolean("proprietario");
-            if(!proprietario) {
                 username = extras.getString("username");
                 binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("Lista preferiti di "+username);
-            }else
-                binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("La tua lista preferiti");
         }
-
-        if(proprietario){
-            new Thread(()-> {
-                CollectionReference collectionReference = db.collection("favorites").document(currUser).collection(currUser);
-                collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                            Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl("https://api.themoviedb.org")
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
-
-                            DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
-                            Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/"+documentSnapshot.getLong("idFilm")+"?api_key=03941baf012eb2cd38196f9df8751df6");
-                            call.enqueue(new Callback<DetailedMovie>() {
-                                @Override
-                                public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
-                                    detailedMovie = response.body();
-                                    preferitiList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185"+detailedMovie.getPoster_path()), detailedMovie.getId()));
-                                    searchList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185"+detailedMovie.getPoster_path()), detailedMovie.getId()));
-                                    RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, proprietario);
-                                    binding.FilmVisualizzaPreferiti.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2 , GridLayoutManager.VERTICAL, false));
-                                    binding.FilmVisualizzaPreferiti.setAdapter(recycleViewAdapter_film_listaPreferiti);
-                                }
-
-                                @Override
-                                public void onFailure(Call<DetailedMovie> call, Throwable t) {
-                                    Log.e("ERRORE", "caricamento Api non riuscito");
-                                }
-                            });
-                        }
-                    }
-                });
-            }).start();
-        }else{
 
             new Thread(()-> {
                 CollectionReference collectionReference = db.collection("users");
@@ -131,9 +90,9 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
                                                         detailedMovie = response.body();
                                                         preferitiList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
                                                         searchList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-                                                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, proprietario);
-                                                        binding.FilmVisualizzaPreferiti.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                                                        binding.FilmVisualizzaPreferiti.setAdapter(recycleViewAdapter_film_listaPreferiti);
+                                                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, false);
+                                                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                                                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti);
                                                     }
 
                                                     @Override
@@ -150,7 +109,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
                     }
                 });
             }).start();
-        }
+
         Keyboard(binding);
         HomeButton(binding);
         BackButton(binding);
@@ -209,7 +168,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
 
     @Override
     public void update() {
-        binding.FilmVisualizzaPreferiti.getAdapter().notifyDataSetChanged();
+        binding.filmVisualizzaPreferitiRecycleView.getAdapter().notifyDataSetChanged();
     }
 
     public void SearchButton(ActivityVisualizzaPreferitiBinding binding){
@@ -230,22 +189,22 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
                         }
                     }
                     if(searchList.size() != 0) {
-                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, proprietario);
-                        binding.FilmVisualizzaPreferiti.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                        binding.FilmVisualizzaPreferiti.setAdapter(recycleViewAdapter_film_listaPreferiti);
+                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, false);
+                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti);
                         update();
                     }else{
-                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, proprietario);
-                        binding.FilmVisualizzaPreferiti.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                        binding.FilmVisualizzaPreferiti.setAdapter(recycleViewAdapter_film_listaPreferiti);
+                        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, false);
+                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti);
                         update();
                         Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun film trovato con quel titolo!", Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     searchList = preferitiList;
-                    RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, proprietario);
-                    binding.FilmVisualizzaPreferiti.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                    binding.FilmVisualizzaPreferiti.setAdapter(recycleViewAdapter_film_listaPreferiti);
+                    RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this, false);
+                    binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                    binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti);
                     update();
                     Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
                 }

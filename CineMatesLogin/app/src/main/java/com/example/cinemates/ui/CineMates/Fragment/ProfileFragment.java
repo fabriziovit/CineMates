@@ -26,8 +26,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
+import com.example.cinemates.ui.CineMates.ListeUtenteActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
-import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment{
         TextView usernameTextView = view.findViewById(R.id.username_profile_fragment);
         TextView emailTextView = view.findViewById(R.id.email_profile_fragment);
         Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_button_ProfileFragment);
-        visualizzaPreferiti = view.findViewById(R.id.visualizzaPreferiti_button_ProfileFragment);
+        visualizzaPreferiti = view.findViewById(R.id.visualizzaListe_button_ProfileFragment);
         modifica = view.findViewById(R.id.modifica_icon_fragmentProfile);
         curUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db  = FirebaseFirestore.getInstance();
@@ -249,8 +249,7 @@ public class ProfileFragment extends Fragment{
         visualizzaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), VisualizzaPreferitiActivity.class);
-                i.putExtra("proprietario", true);
+                Intent i = new Intent(getActivity(), ListeUtenteActivity.class);
                 startActivity(i);
             }
         });

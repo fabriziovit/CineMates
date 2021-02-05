@@ -106,7 +106,6 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
     public void onClickPreferiti(int position) {
         Intent i = new Intent(getActivity(), VisualizzaPreferitiActivity.class);
         i.putExtra("username", searchList.get(position).getUsername());
-        i.putExtra("proprietario", false);
         startActivity(i);
     }
 

@@ -8,6 +8,17 @@
     tools:context=".ui.CineMates.SchedaFilmActivity"
     android:background="@color/colorBack">
 
+
+    <ImageView
+        android:id="@+id/backButton_schedaFilm"
+        android:layout_width="55dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/back_icon_foreground" />
+
     <TextView
         android:id="@+id/scrittaLogo_schedaFilm"
         android:layout_width="wrap_content"
@@ -264,15 +275,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/backButton_schedaFilm"
-        android:layout_width="55dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="22dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/back_icon_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

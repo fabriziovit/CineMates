@@ -60,7 +60,7 @@
         app:layout_constraintWidth_percent="0.8" />
 
     <EditText
-        android:id="@+id/search_bar_VisualizzaPreferiti"
+        android:id="@+id/searchBar_preferitiFragment"
         android:layout_width="280dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
@@ -77,12 +77,12 @@
         android:paddingBottom="5dp"
         android:textColorHint="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/search_button_VisualizzaPreferiti"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton_preferitiFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
 
     <ImageView
-        android:id="@+id/search_button_VisualizzaPreferiti"
+        android:id="@+id/searchButton_preferitiFragment"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
@@ -90,7 +90,7 @@
         android:layout_marginEnd="40dp"
         android:src="@mipmap/ic_searchbar_foreground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_bar_VisualizzaPreferiti"
+        app:layout_constraintStart_toEndOf="@+id/searchBar_preferitiFragment"
         app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
 
     <ImageView
@@ -104,14 +104,14 @@
         app:srcCompat="@mipmap/back_icon_foreground" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Film_VisualizzaPreferiti"
+        android:id="@+id/film_preferitiFragment_recycleView"
         android:layout_width="match_parent"
         android:layout_height="509dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar_VisualizzaPreferiti">
+        app:layout_constraintTop_toBottomOf="@+id/searchBar_preferitiFragment">
 
     </androidx.recyclerview.widget.RecyclerView>
 
