@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +71,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private int somma;
     private double mediaPunteggio;
     private int preferiti;
+    private int daVedere;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         cont = 0;
         somma = 0;
         preferiti = 0;
+        daVedere = 0;
         binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
 
         //Prendo l'id del film dalla scheda da cui provengo
@@ -150,6 +153,22 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             });
         }).start();
 
+        new Thread(()-> {
+            DocumentReference documentReference = db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id));
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
+                            daVedere = 1;
+                            binding.davedereImageViewSchedaFilm.setImageResource(R.drawable.ic_davedere);
+                        }
+                    }
+                }
+            });
+        }).start();
+
         //Controllo lista preferiti
         new Thread(()-> {
             DocumentReference documentReference = db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id));
@@ -200,6 +219,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             });
         }).start();
 
+        daVedereClick(binding);
         Keyboard(binding);
         BackButton(binding);
         Preferiti(binding);
@@ -221,6 +241,44 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+    }
+
+
+    private void daVedereClick(ActivitySchedaFilmBinding binding){
+        binding.davedereImageViewSchedaFilm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Controllo lista da vedere
+                new Thread(()-> {
+                    DocumentReference documentReference = db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id));
+                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if(task.isSuccessful()){
+                                DocumentSnapshot document = task.getResult();
+                                if(document.exists()){
+                                    daVedere = 1;
+                                    binding.davedereImageViewSchedaFilm.setImageResource(R.drawable.ic_davedere);
+                                }else
+                                    preferiti = 0;
+                            }
+                        }
+                    });
+                }).start();
+
+                if(daVedere == 0){
+                    PreferitiModel preferitiModel = new PreferitiModel(currUser, id);
+                    db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id)).set(preferitiModel);
+                    binding.davedereImageViewSchedaFilm.setImageResource(R.drawable.ic_davedere);
+                    Toast.makeText(SchedaFilmActivity.this, "Film aggiunto alla lista \"da vedere\"", Toast.LENGTH_SHORT).show();
+                }else{
+                    db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id)).delete();
+                    binding.davedereImageViewSchedaFilm.setImageResource(R.drawable.ic_davedere_nonpresente);
+                    Toast.makeText(SchedaFilmActivity.this, "Film rimosso dalla lista \"da vedere\"", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
