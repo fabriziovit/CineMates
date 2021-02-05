@@ -15,14 +15,14 @@ import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.List;
 
-public class RecycleViewAdapter_Film_ListaPreferiti extends RecyclerView.Adapter<RecycleViewAdapter_Film_ListaPreferiti.MyViewHolder> {
+public class RecycleViewAdapter_Film_ListaPreferiti_Amico extends RecyclerView.Adapter<RecycleViewAdapter_Film_ListaPreferiti_Amico.MyViewHolder> {
 
     Context mContext;
     List<ItemFilm> filmList;
-    RecycleViewAdapter_Film_ListaPreferiti.OnClickListener mOnClickListener;
+    RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener mOnClickListener;
     boolean proprietario;
 
-    public RecycleViewAdapter_Film_ListaPreferiti(Context mContext, List<ItemFilm> filmList, RecycleViewAdapter_Film_ListaPreferiti.OnClickListener mOnClickListener){
+    public RecycleViewAdapter_Film_ListaPreferiti_Amico(Context mContext, List<ItemFilm> filmList, RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener mOnClickListener){
         this.mContext = mContext;
         this.filmList = filmList;
         this.mOnClickListener = mOnClickListener;
@@ -31,10 +31,10 @@ public class RecycleViewAdapter_Film_ListaPreferiti extends RecyclerView.Adapter
 
     @NonNull
     @Override
-    public RecycleViewAdapter_Film_ListaPreferiti.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecycleViewAdapter_Film_ListaPreferiti_Amico.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.item_film_listapreferiti, parent, false);
-        RecycleViewAdapter_Film_ListaPreferiti.MyViewHolder myViewHolder = new RecycleViewAdapter_Film_ListaPreferiti.MyViewHolder(v, mOnClickListener);
+        v = LayoutInflater.from(mContext).inflate(R.layout.item_film_listapreferiti_amico, parent, false);
+        RecycleViewAdapter_Film_ListaPreferiti_Amico.MyViewHolder myViewHolder = new RecycleViewAdapter_Film_ListaPreferiti_Amico.MyViewHolder(v, mOnClickListener);
 
         return myViewHolder;
     }
@@ -56,41 +56,25 @@ public class RecycleViewAdapter_Film_ListaPreferiti extends RecyclerView.Adapter
         private ImageView filmPic;
         private ImageView rimuoviDaLista;
         private TextView rimuoviText;
-        RecycleViewAdapter_Film_ListaPreferiti.OnClickListener onClickListener;
+        RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener onClickListener;
 
-        public MyViewHolder(View itemView, RecycleViewAdapter_Film_ListaPreferiti.OnClickListener onClickListener){
+        public MyViewHolder(View itemView, RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener onClickListener){
             super(itemView);
             titolo = itemView.findViewById(R.id.titoloFilm_item_textView);
             filmPic = itemView.findViewById(R.id.locandinaFilm_item_imageView);
-            rimuoviDaLista = itemView.findViewById(R.id.rimuoviDaLista_ImageView_listaPreferiti);
-            rimuoviText = itemView.findViewById(R.id.rimuoviDaLista_TextView_listaPreferiti);
 
             titolo.setOnClickListener(this);
             filmPic.setOnClickListener(this);
-            rimuoviText.setOnClickListener(this);
-            rimuoviDaLista.setOnClickListener(this);
             this.onClickListener = onClickListener;
         }
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.locandinaFilm_item_imageView:
-                case R.id.titoloFilm_item_textView:
-                    onClickListener.OnClickScheda(this.getLayoutPosition());
-                    break;
-                case R.id.rimuoviDaLista_TextView_listaPreferiti:
-                case R.id.rimuoviDaLista_ImageView_listaPreferiti:
-                    onClickListener.OnClickRimuovi(this.getLayoutPosition());
-                    break;
-                default:
-                    break;
-            }
+            onClickListener.OnClickScheda(this.getLayoutPosition());
         }
     }
 
     public interface OnClickListener{
         void OnClickScheda(int position);
-        void OnClickRimuovi(int position);
     }
 }

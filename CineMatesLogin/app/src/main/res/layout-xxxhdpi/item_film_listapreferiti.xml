@@ -9,7 +9,7 @@
     android:layout_marginStart="8dp"
     android:adjustViewBounds="true"
     android:orientation="vertical"
-    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardBackgroundColor="@color/colorBack"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
+        android:gravity="left"
         android:fontFamily="@font/martel_sans_bold"
         android:text="Rimuovi dalla lista"
         android:textColor="@color/biancoGhiaccio"

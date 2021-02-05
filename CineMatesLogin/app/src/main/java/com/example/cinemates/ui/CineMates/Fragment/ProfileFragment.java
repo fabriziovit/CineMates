@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,18 +26,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
+import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.ListeUtenteActivity;
 import com.example.cinemates.ui.CineMates.LoginActivity;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.SettableFuture;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -45,9 +52,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -66,6 +80,9 @@ public class ProfileFragment extends Fragment{
     private String curUser;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
+    private List<ItemFilm> filmPreferiti;
+    private List<ItemFilm> filmDavedere;
+    private DetailedMovie detailedMovie;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -106,6 +123,70 @@ public class ProfileFragment extends Fragment{
         curUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db  = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
+        filmPreferiti = new ArrayList<>();
+        filmDavedere = new ArrayList<>();
+
+
+        new Thread(() -> {
+            CollectionReference collectionReference = db.collection("favorites").document(curUser).collection(curUser);
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("https://api.themoviedb.org")
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
+                        Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + documentSnapshot.getLong("idFilm") + "?api_key=03941baf012eb2cd38196f9df8751df6");
+                        call.enqueue(new Callback<DetailedMovie>() {
+                            @Override
+                            public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
+                                detailedMovie = response.body();
+                                filmPreferiti.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<DetailedMovie> call, Throwable t) {
+                                Log.e("ERRORE", "caricamento Api non riuscito");
+                            }
+                        });
+                    }
+                }
+            });
+        }).start();
+
+        new Thread(() -> {
+            CollectionReference collectionReference = db.collection("da vedere").document(curUser).collection(curUser);
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("https://api.themoviedb.org")
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
+                        Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + documentSnapshot.getLong("idFilm") + "?api_key=03941baf012eb2cd38196f9df8751df6");
+                        call.enqueue(new Callback<DetailedMovie>() {
+                            @Override
+                            public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
+                                detailedMovie = response.body();
+                                filmDavedere.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
+                            }
+
+                            @Override
+                            public void onFailure(Call<DetailedMovie> call, Throwable t) {
+                                Log.e("ERRORE", "caricamento Api non riuscito");
+                            }
+                        });
+                    }
+                }
+            });
+        }).start();
 
         emailTextView.setText(emailText);
         usernameTextView.setText(usernameText);
@@ -186,11 +267,11 @@ public class ProfileFragment extends Fragment{
             }
         });
         try{
-          DocumentSnapshot ds = future.get();
-          if(ds.exists())
-              return ds.getString("username");
-          else
-              return "";
+            DocumentSnapshot ds = future.get();
+            if(ds.exists())
+                return ds.getString("username");
+            else
+                return "";
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
             return "";
@@ -250,6 +331,8 @@ public class ProfileFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), ListeUtenteActivity.class);
+                ListeUtenteActivity.filmDaV = filmDavedere;
+                ListeUtenteActivity.filmPre = filmPreferiti;
                 startActivity(i);
             }
         });
@@ -261,7 +344,7 @@ public class ProfileFragment extends Fragment{
             public void onClick(View view) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if(getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_DENIED){
+                            == PackageManager.PERMISSION_DENIED){
                         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         requestPermissions(permissions, PERMISSION_CODE);
                     }else{

@@ -18,7 +18,6 @@ import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
@@ -56,7 +55,6 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
-        preferitiList = new ArrayList<>();
     }
 
     @Override
@@ -64,7 +62,7 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preferiti, container, false);
         recyclerView = view.findViewById(R.id.film_preferitiFragment_recycleView);
-        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), preferitiList, this, true);
+        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), preferitiList, this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);

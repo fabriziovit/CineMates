@@ -18,7 +18,6 @@ import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
@@ -55,7 +54,6 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
-        daVederelist = new ArrayList<>();
     }
 
     @Override
@@ -63,7 +61,7 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_da_vedere, container, false);
         recyclerView = view.findViewById(R.id.film_davedereFragment_recycleView);
-        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, this, true);
+        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
@@ -80,7 +78,7 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
 
     @Override
     public void OnClickRimuovi(int position){
-        db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(daVederelist.get(position).getId())).delete();
+        db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(daVederelist.get(position).getId())).delete();
         daVederelist.remove(position);
         update();
         Toast.makeText(getActivity(), "Film eliminato dalla lista!", Toast.LENGTH_SHORT).show();

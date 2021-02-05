@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.CineMates.Fragment.DaVedereFragment"
-    android:background="@color/colorBack">
+    android:background="@color/colorPrimary">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/film_davedereFragment_recycleView"

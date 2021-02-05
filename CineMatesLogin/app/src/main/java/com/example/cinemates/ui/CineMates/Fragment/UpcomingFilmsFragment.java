@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.model.ItemFilm;
-import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film;
 import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.List;
 
@@ -24,8 +22,6 @@ public class UpcomingFilmsFragment extends Fragment implements RecycleViewAdapte
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView_Film;
     private List<ItemFilm> filmList;
-    private FirebaseFirestore db;
-    private FirebaseAuth firebaseAuth;
 
     public UpcomingFilmsFragment() {
         // Required empty public constructor
@@ -48,9 +44,6 @@ public class UpcomingFilmsFragment extends Fragment implements RecycleViewAdapte
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-
     }
 
     @Override

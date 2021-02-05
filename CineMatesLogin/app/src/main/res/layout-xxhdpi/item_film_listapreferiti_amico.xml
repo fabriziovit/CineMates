@@ -9,31 +9,10 @@
     android:layout_marginStart="5dp"
     android:adjustViewBounds="true"
     android:orientation="vertical"
-    app:cardBackgroundColor="@color/colorBack"
+    app:cardBackgroundColor="@color/colorPrimary"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
-
-    <TextView
-        android:id="@+id/rimuoviDaLista_TextView_listaPreferiti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="2dp"
-        android:gravity="left"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Rimuovi dalla lista"
-        android:textColor="@color/biancoGhiaccio"
-        android:textSize="12sp" />
-
-    <ImageView
-        android:id="@+id/rimuoviDaLista_ImageView_listaPreferiti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_remove_2"
-        android:layout_gravity="bottom|right"
-        android:layout_marginBottom="2dp"
-        android:layout_marginRight="10dp"/>
 
     <ImageView
         android:id="@+id/locandinaFilm_item_imageView"

@@ -5,7 +5,7 @@
     android:id="@+id/container_preferitiFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBack"
+    android:background="@color/colorPrimary"
     tools:context=".ui.CineMates.Fragment.PreferitiFragment">
 
     <androidx.recyclerview.widget.RecyclerView
