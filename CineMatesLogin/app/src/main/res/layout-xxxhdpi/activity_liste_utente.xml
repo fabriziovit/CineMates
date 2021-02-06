@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBack"
+    tools:context=".ui.CineMates.ListeUtenteActivity">
+
+
+    <ImageView
+        android:id="@+id/backButton_ListeUtente"
+        android:layout_width="55dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/back_icon_foreground" />
+
+    <TextView
+        android:id="@+id/scrittaLogo_ListeUtente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/philosopher"
+        android:text="CineMates"
+        android:textColor="@color/colorIcons"
+        android:textSize="52sp"
+        app:layout_constraintEnd_toStartOf="@+id/homeButton_ListeUtente"
+        app:layout_constraintStart_toEndOf="@+id/backButton_ListeUtente"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/homeButton_ListeUtente"
+        android:layout_width="55dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_ListeUtente"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrittaLogo_ListeUtente"
+        app:tabGravity="fill"
+        app:tabIconTint="@color/colorIcons"
+        app:tabIndicatorColor="@color/colorIcons"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorIcons" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_ListeUtente"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_ListeUtente" />
+</androidx.constraintlayout.widget.ConstraintLayout>
