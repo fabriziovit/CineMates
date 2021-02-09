@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager mCallbackManager;
-    FirebaseFirestore db;
+    private FirebaseFirestore db;
     final static String PREFS_NAME = "AUTH";
 
     @Override

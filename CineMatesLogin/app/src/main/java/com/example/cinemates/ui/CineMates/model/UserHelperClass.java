@@ -6,21 +6,14 @@ import java.util.Objects;
 
 @IgnoreExtraProperties
 public class UserHelperClass {
-    String uid;
-    String email;
-    String username;
-    String imageUrl;
 
-    public UserHelperClass(){
+    private String uid;
+    private String email;
+    private String username;
+    private String imageUrl;
 
-    }
+    public UserHelperClass(){}
 
-    public UserHelperClass(String uid, String email, String username, String imageUrl) {
-        this.uid = uid;
-        this.email = email;
-        this.username = username;
-        this.imageUrl = imageUrl;
-    }
 
     public String getEmail() {
         return email;

@@ -31,7 +31,7 @@ public class RegistratiActivity extends AppCompatActivity {
     private ActivityRegistratiBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    UserHelperClass userHelperClass;
+    private UserHelperClass userHelperClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class RegistratiActivity extends AppCompatActivity {
         });
     }
 
-    public void ControlloUsername(ActivityRegistratiBinding binding) {
+    private void ControlloUsername(ActivityRegistratiBinding binding) {
         binding.usernameRegistratiTextField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

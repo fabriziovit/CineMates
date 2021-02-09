@@ -1,6 +1,7 @@
 package com.example.cinemates.ui.CineMates.model;
 
 public class ReviewModel {
+
     private String uid;
     private String review;
     private int star;

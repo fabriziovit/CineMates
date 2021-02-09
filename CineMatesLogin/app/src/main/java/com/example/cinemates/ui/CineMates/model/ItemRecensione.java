@@ -18,13 +18,6 @@ public class ItemRecensione {
         this.uid = uid;
     }
 
-    public ItemRecensione(String username, String recensione, Bitmap bitmap) {
-        this.username = username;
-        this.recensione = recensione;
-        //this.voto = voto;
-        this.bitmap = bitmap;
-    }
-
     public String getUsername() {
         return username;
     }
