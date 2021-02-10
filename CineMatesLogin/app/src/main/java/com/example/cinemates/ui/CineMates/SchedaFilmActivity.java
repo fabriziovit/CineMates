@@ -67,9 +67,6 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private FirebaseAuth auth;
     private boolean presente;
     private String currUser;
-    private int cont;
-    private int somma;
-    private double mediaPunteggio;
     private int preferiti;
     private int daVedere;
 
@@ -84,8 +81,6 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         setContentView(view);
         recensioniList = new ArrayList<>();
         presente = false;
-        cont = 0;
-        somma = 0;
         preferiti = 0;
         daVedere = 0;
         binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());

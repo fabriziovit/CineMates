@@ -10,8 +10,8 @@ import com.example.cinemates.R;
 
 public class LoadingDialog {
 
-    Activity activity;
-    AlertDialog dialog;
+    private Activity activity;
+    private AlertDialog dialog;
 
     public LoadingDialog(Activity myActivity){
         activity = myActivity;

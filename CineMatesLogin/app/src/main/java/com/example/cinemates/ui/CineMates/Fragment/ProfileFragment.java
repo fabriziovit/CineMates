@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +73,6 @@ public class ProfileFragment extends Fragment{
     private String emailText;
     private FirebaseFirestore db;
     private Button visualizzaPreferiti;
-    private ImageView modifica;
     private CircleImageView circleImageView;
     private FirebaseStorage storage;
     private String curUser;
@@ -119,7 +117,6 @@ public class ProfileFragment extends Fragment{
         TextView emailTextView = view.findViewById(R.id.email_profile_fragment);
         Button modificaCredenzialiBtn = view.findViewById(R.id.modificaCredenziali_button_ProfileFragment);
         visualizzaPreferiti = view.findViewById(R.id.visualizzaListe_button_ProfileFragment);
-        modifica = view.findViewById(R.id.modifica_icon_fragmentProfile);
         curUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         db  = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();

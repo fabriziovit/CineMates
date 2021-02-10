@@ -43,13 +43,13 @@ import Intefaces.UpdateableFragmentListener;
 
 public class NotificheDialog extends DialogFragment implements RecycleViewAdapter_Richieste.OnClickListener, UpdateableFragmentListener {
 
-    Activity activity;
+    private Activity activity;
     private List<ItemRichieste> richiesteList;
-    ImageView chiudiFinestra;
+    private ImageView chiudiFinestra;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
-    RecyclerView recyclerView;
-    RecycleViewAdapter_Richieste recycleViewAdapterRichieste;
+    private RecyclerView recyclerView;
+    private RecycleViewAdapter_Richieste recycleViewAdapterRichieste;
     private String currUser;
     private Dialog dialog;
     private ViewPagerAdapter adapter;

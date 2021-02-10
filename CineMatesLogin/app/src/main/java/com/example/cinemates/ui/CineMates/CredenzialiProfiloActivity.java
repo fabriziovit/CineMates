@@ -25,7 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class CredenzialiProfiloActivity extends AppCompatActivity {
 
     private ActivityCredenzialiProfiloBinding binding;
-    FirebaseFirestore db;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

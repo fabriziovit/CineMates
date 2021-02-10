@@ -1,6 +1,5 @@
 package com.example.cinemates.ui.CineMates;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,8 +37,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
@@ -52,12 +49,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final String TAG = HomeActivity.class.getSimpleName();
     private ActivityHomeBinding binding;
     private ChipNavigationBar bottomNav;
     private FragmentManager fragmentManager;
     private Fragment fragment;
-    private HomeFragment homeFragment;
     private FirebaseFirestore db;
     private PopularFilms popularFilms;
     private UpComingFilms upComingFilms;
@@ -66,14 +61,11 @@ public class HomeActivity extends AppCompatActivity {
     private Handler handler;
     private int userNumber;
     private FirebaseAuth auth;
-    private StorageReference storageRef;
-    private FirebaseStorage storage;
     private Bitmap profilePic;
     private int rapporto;
     private String currUser;
     private ItemUser itemUser;
     private boolean notifiche = false;
-    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +78,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(view);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
         currUser = auth.getCurrentUser().getUid();
         final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 

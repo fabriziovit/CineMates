@@ -32,11 +32,14 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/RegistratiActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/ItemRecensione.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/ItemRecensione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/ReviewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/ReviewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/UserHelperClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/model/UserHelperClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/CredenzialiProfiloActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/CredenzialiProfiloActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ListeUtenteActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/ListeUtenteActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoadingDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoadingDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/SchedaFilmActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/VisualizzaPreferitiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/VisualizzaPreferitiActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,6 +348,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610724350085" />
+    <state x="0" y="0" width="587" height="680" key="find.popup" timestamp="1612967251771">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1612967251771" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1611071244961">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

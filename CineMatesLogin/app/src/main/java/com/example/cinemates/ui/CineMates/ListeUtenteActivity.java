@@ -11,22 +11,17 @@ import com.example.cinemates.ui.CineMates.Fragment.DaVedereFragment;
 import com.example.cinemates.ui.CineMates.Fragment.PreferitiFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ViewPagerAdapter;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 import java.util.Objects;
 
 public class ListeUtenteActivity extends AppCompatActivity {
-    ActivityListeUtenteBinding binding;
+    private ActivityListeUtenteBinding binding;
     private List<ItemFilm> filmPreferiti;
     private List<ItemFilm> filmDavedere;
     public static List<ItemFilm> filmPre;
     public static List<ItemFilm> filmDaV;
     private ViewPagerAdapter adapter;
-    private FirebaseFirestore db;
-    private FirebaseAuth auth;
-    private String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

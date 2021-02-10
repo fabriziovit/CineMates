@@ -18,7 +18,6 @@ import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_ListaPreferiti_Amico;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,8 +38,8 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
     private List<ItemFilm> preferitiList;
     private String username;
     private FirebaseFirestore db;
-    private FirebaseAuth auth;
-    private String currUser;
+    //private FirebaseAuth auth;
+    //private String currUser;
     private List<ItemFilm> searchList;
     private DetailedMovie detailedMovie;
 
@@ -51,8 +50,8 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
         View view = binding.getRoot();
         setContentView(view);
         db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-        currUser = auth.getCurrentUser().getUid();
+        //auth = FirebaseAuth.getInstance();
+        //currUser = auth.getCurrentUser().getUid();
         preferitiList = new ArrayList<>();
         searchList = new ArrayList<>();
 
