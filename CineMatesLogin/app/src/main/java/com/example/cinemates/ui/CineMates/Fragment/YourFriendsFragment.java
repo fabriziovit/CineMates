@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Amici;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
-import com.example.cinemates.ui.CineMates.friends.viewModel.RecycleViewAdapter_Amici;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

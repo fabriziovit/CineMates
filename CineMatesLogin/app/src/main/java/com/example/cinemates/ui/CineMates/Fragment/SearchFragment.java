@@ -43,7 +43,6 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
     private ConstraintLayout constraintLayout;
     private MovieResearch movieResearch;
     private ArrayList<ItemFilm> searchedMovie;
-    private boolean pop = false;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -113,7 +112,6 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
                                     searchedMovie.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
                                             "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
                                     update();
-                                    pop = true;
                                 }
                                 if (searchedMovie.size() == 0)
                                     Toast.makeText(getContext(), "Nessun risultato", Toast.LENGTH_SHORT).show();

@@ -29,7 +29,7 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private String currUser;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
     public DaVedereFragment() {
         // Required empty public constructor

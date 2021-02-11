@@ -18,6 +18,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleViewAdapter_Recensioni.MyViewHolder>{
+
     Context mContext;
     List<ItemRecensione> recensioniList;
     RecycleViewAdapter_Recensioni.OnClickListener mOnClickListener;

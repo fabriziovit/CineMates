@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.friends.viewModel;
+package com.example.cinemates.ui.CineMates.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

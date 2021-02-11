@@ -20,13 +20,11 @@ public class RecycleViewAdapter_Film_ListaPreferiti extends RecyclerView.Adapter
     Context mContext;
     List<ItemFilm> filmList;
     RecycleViewAdapter_Film_ListaPreferiti.OnClickListener mOnClickListener;
-    boolean proprietario;
 
     public RecycleViewAdapter_Film_ListaPreferiti(Context mContext, List<ItemFilm> filmList, RecycleViewAdapter_Film_ListaPreferiti.OnClickListener mOnClickListener){
         this.mContext = mContext;
         this.filmList = filmList;
         this.mOnClickListener = mOnClickListener;
-        this.proprietario = proprietario;
     }
 
     @NonNull

@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.friends.viewModel;
+package com.example.cinemates.ui.CineMates.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ public class RecycleViewAdapter_Utenti extends RecyclerView.Adapter<RecycleViewA
 
     Context mContext;
     List<ItemUser> userList;
-    OnClickListener mOnClickListener;
+    RecycleViewAdapter_Utenti.OnClickListener mOnClickListener;
 
     public RecycleViewAdapter_Utenti(Context mContext, List<ItemUser> userList, OnClickListener mOnClickListener) {
         this.mContext = mContext;
