@@ -24,7 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class CredenzialiProfiloActivity extends AppCompatActivity {
 
-    private ActivityCredenzialiProfiloBinding binding;
+    ActivityCredenzialiProfiloBinding binding;
     private FirebaseFirestore db;
 
     @Override

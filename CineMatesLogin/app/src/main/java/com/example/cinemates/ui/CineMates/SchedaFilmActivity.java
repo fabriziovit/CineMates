@@ -148,6 +148,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
             });
         }).start();
 
+        //controllo lista da vedere
         new Thread(()-> {
             DocumentReference documentReference = db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id));
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

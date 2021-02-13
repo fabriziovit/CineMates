@@ -319,8 +319,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
+    
     private void Accedi(ActivityLoginBinding binding){
         mAuth.signInWithEmailAndPassword(binding.emailLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
