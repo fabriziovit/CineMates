@@ -31,9 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/LoginActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +55,8 @@
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="UML Sequence" />
+        <option value="UML Class" />
       </list>
     </option>
   </component>
@@ -72,6 +72,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-15T14:54:31.108Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -83,7 +84,7 @@
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="PsdUISettings">
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
@@ -300,10 +301,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="438" y="87" key="AndroidProcessChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1609767375678" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1611938461664">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="493" y="164" key="FileChooserDialogImpl" timestamp="1613402800783">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1609259660238" />
+    <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1613402800783" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
     <state width="1876" height="406" key="GridCell.Tab.0.bottom" timestamp="1613401806882">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -329,10 +330,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="221" y="84" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1611676805015" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1610276793017">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1613403354808">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1610276793017" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1613403354808" />
     <state x="517" y="195" key="chooseDestDirectoryDialog" timestamp="1611674204615">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
