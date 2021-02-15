@@ -50,7 +50,7 @@ import java.util.Random;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private static final int RC_SIGN_IN = 1;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager mCallbackManager;
     private FirebaseFirestore db;
@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        db = FirebaseFirestore.getInstance();
 
         RegistratiButton(binding);
         LoginButton(binding);
@@ -75,8 +74,10 @@ public class LoginActivity extends AppCompatActivity {
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         binding.erroreLoginTextView.setVisibility(View.INVISIBLE);
 
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser user = auth.getInstance().getCurrentUser();
 
-        FirebaseUser user = mAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent i = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(i);
@@ -90,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        mAuth = FirebaseAuth.getInstance();
 
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton fbloginButton = binding.fbLoginButton;
@@ -119,7 +118,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     private void LoginButton(ActivityLoginBinding binding) {
@@ -154,7 +152,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d("Accesso", "firebaseAuthWithGoogle:" + account.getId());
@@ -168,16 +165,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
                             Log.d("Accesso", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
                             //controllo se già esiste e se non esiste aggiungo al db
-                            String uid = user.getUid();
+                            String uid = auth.getCurrentUser().getUid();
                             CollectionReference collectionReference = db.collection("users");
                             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -189,13 +184,14 @@ public class LoginActivity extends AppCompatActivity {
                                             break;
                                         }
                                     }
-                                    if(n == 1){
+
+                                    if (n == 1) {
                                         Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                    }else{
-                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    } else {
+                                        FirebaseUser user = auth.getCurrentUser();
                                         if (user != null) {
-                                            String uid = user.getUid();
+                                            String uid = auth.getCurrentUser().getUid();
                                             String username = "";
                                             String email = "";
                                             String photoUrl = null;
@@ -203,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
                                             String numero = random.toString();
                                             for (UserInfo profile : user.getProviderData()) {
                                                 photoUrl = profile.getPhotoUrl().toString();
-                                                username = profile.getDisplayName().replace(" ", ".")+numero;
+                                                username = profile.getDisplayName().replace(" ", ".") + numero;
                                                 email = profile.getEmail();
                                             }
                                             UserHelperClass userHelperClass = new UserHelperClass();
@@ -247,14 +243,13 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("Token", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d("Accesso", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String uid = user.getUid();
+                            String uid = auth.getCurrentUser().getUid();
                             CollectionReference collectionReference = db.collection("users");
                             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -266,14 +261,13 @@ public class LoginActivity extends AppCompatActivity {
                                             break;
                                         }
                                     }
-
                                     if(n == 1){
                                         Toast.makeText(LoginActivity.this, "Accesso Riuscito", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                     }else{
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                         if (user != null) {
-                                            String uid = user.getUid();
+                                            String uid = auth.getCurrentUser().getUid();
                                             String username = "";
                                             String email = "";
                                             String photoUrl = null;
@@ -319,9 +313,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-    
+
     private void Accedi(ActivityLoginBinding binding){
-        mAuth.signInWithEmailAndPassword(binding.emailLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
+        auth.signInWithEmailAndPassword(binding.emailLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
