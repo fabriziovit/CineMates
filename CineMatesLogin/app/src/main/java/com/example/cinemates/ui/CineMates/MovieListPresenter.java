@@ -3,9 +3,9 @@ package com.example.cinemates.ui.CineMates;
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.NowPlayingMovieListModel;
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.PopularMovieListModel;
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.UpComingMovieListModel;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MovieListPresenter implements MovieListContract.Model.OnFinishedListener, MovieListContract.Presenter{
 
@@ -50,18 +50,16 @@ public class MovieListPresenter implements MovieListContract.Model.OnFinishedLis
         nowPlayingMovieListModel.getMovieList(this);
     }
 
-    @Override
-    public void onFinished(List<Movie> movies) {
 
-    }
 
     @Override
-    public void onFinished(List<Movie> popularArrayList, List<Movie> upComingArrayList, List<Movie> nowPlayingArrayList) {
-        movieListView.setDataToRecyclerView(popularArrayList, upComingArrayList, nowPlayingArrayList);
+    public void onFinished(ArrayList<ItemFilm> movies) {
+        movieListView.setDataToRecyclerView(movies);
         if (movieListView != null) {
             movieListView.hideProgress();
         }
     }
+
 
     @Override
     public void onFailure(Throwable t) {

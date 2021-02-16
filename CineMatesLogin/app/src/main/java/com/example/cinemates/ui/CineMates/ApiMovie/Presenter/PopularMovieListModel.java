@@ -4,8 +4,12 @@ import android.util.Log;
 
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
+import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
+import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.MovieListContract;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,8 +28,13 @@ public class PopularMovieListModel implements MovieListContract.Model{
             @Override
             public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {
                 List<Movie> movies = response.body().getResults();
+                ArrayList<ItemFilm> popularList = new ArrayList<>();
                 Log.d(TAG, "Number of movies received: " + movies.size());
-                onFinishedListener.onFinished(movies);
+                for (Movie movie : movies)
+                    popularList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
+                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
+                HomeFragment.filmsPopular = popularList;
+                onFinishedListener.onFinished(popularList);
             }
 
             @Override

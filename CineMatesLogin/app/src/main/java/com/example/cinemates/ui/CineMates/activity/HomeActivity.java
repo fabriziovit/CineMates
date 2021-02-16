@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,17 +14,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityHomeBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiNowPlaying;
-import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiPopular;
-import com.example.cinemates.ui.CineMates.ApiMovie.MoviesApiUpcoming;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.UpComingFilms;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
+import com.example.cinemates.ui.CineMates.MovieListContract;
+import com.example.cinemates.ui.CineMates.MovieListPresenter;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
@@ -42,21 +38,15 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class HomeActivity extends AppCompatActivity{
+public class HomeActivity extends AppCompatActivity implements MovieListContract.View {
     private ActivityHomeBinding binding;
     private ChipNavigationBar bottomNav;
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private FirebaseFirestore db;
-    private PopularFilms popularFilms;
-    private UpComingFilms upComingFilms;
-    private NowPlayingFilms nowPlayingFilms;
+    //private PopularFilms popularFilms;
+    //private UpComingFilms upComingFilms;
+    //private NowPlayingFilms nowPlayingFilms;
     private boolean pop = false;
     private Handler handler;
     private int userNumber;
@@ -66,21 +56,26 @@ public class HomeActivity extends AppCompatActivity{
     private String currUser;
     private ItemUser itemUser;
     private boolean notifiche = false;
+    private MovieListPresenter movieListPresenter;
+    final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ArrayList<ItemFilm> filmsPopular = new ArrayList<>();
-        ArrayList<ItemFilm> filmsUpcoming = new ArrayList<>();
-        ArrayList<ItemFilm> filmsNowplaying = new ArrayList<>();
+        //ArrayList<ItemFilm> filmsPopular = new ArrayList<>();
+        //ArrayList<ItemFilm> filmsUpcoming = new ArrayList<>();
+        //ArrayList<ItemFilm> filmsNowplaying = new ArrayList<>();
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        handler = new Handler();
+        movieListPresenter = new MovieListPresenter(this);
+        movieListPresenter.requestDataFromServer();
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currUser = auth.getCurrentUser().getUid();
 
-        final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
+        //final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
         CollectionReference collectionReference = db.collection("users");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -103,7 +98,7 @@ public class HomeActivity extends AppCompatActivity{
             }
         });
 
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -160,24 +155,23 @@ public class HomeActivity extends AppCompatActivity{
                 Log.e("Errore", "Errore nel caricamento delle api.");
                 pop = true;
             }
-        });
+        });*/
 
         bottomNav =  binding.navHomeMenu;
 
         if(savedInstanceState == null){
             bottomNav.setItemSelected(R.id.main, true);
             fragmentManager = getSupportFragmentManager();
-            loadingDialog.startLoadingDialog();
-            handler = new Handler();
+            /*loadingDialog.startLoadingDialog();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 3000);
+            }, 3000);*/
             new Thread(()-> {
                 while(!pop){}
-                fragment = new HomeFragment(filmsPopular, filmsUpcoming, filmsNowplaying);
+                fragment = new HomeFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_home_container, fragment)
@@ -195,7 +189,6 @@ public class HomeActivity extends AppCompatActivity{
                     case R.id.main:
                         isHome = true;
                         loadingDialog.startLoadingDialog();
-                        handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -205,7 +198,7 @@ public class HomeActivity extends AppCompatActivity{
 
                         new Thread(()-> {
                             while (!pop){}
-                            fragment = new HomeFragment(filmsPopular, filmsUpcoming, filmsNowplaying);
+                            fragment = new HomeFragment();
                             fragmentManager = getSupportFragmentManager();
                             fragmentManager.beginTransaction()
                                     .replace(R.id.fragment_home_container, fragment)
@@ -215,7 +208,6 @@ public class HomeActivity extends AppCompatActivity{
                     case R.id.search:
                         fragment = new SearchFragment();
                         loadingDialog.startLoadingDialog();
-                        handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -226,7 +218,6 @@ public class HomeActivity extends AppCompatActivity{
                     case R.id.profilo:
                         isProfile = true;
                         loadingDialog.startLoadingDialog();
-                        handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -253,7 +244,6 @@ public class HomeActivity extends AppCompatActivity{
                         List<ItemUser> userList = new ArrayList<>();
                         List<ItemFriend> friendList = new ArrayList<>();
                         loadingDialog.startLoadingDialog();
-                        handler = new Handler();
                         String currUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -349,8 +339,27 @@ public class HomeActivity extends AppCompatActivity{
                 }
             }
         });
+    }
 
+    @Override
+    public void showProgress() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void hideProgress() {
+        binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setDataToRecyclerView(List<ItemFilm> movieArrayList) {
+        pop = true;
+    }
+
+    @Override
+    public void onResponseFailure(Throwable throwable) {
+        Log.e("Errore", throwable.getMessage());
+        Toast.makeText(this, "Errore", Toast.LENGTH_LONG).show();
     }
 
 }

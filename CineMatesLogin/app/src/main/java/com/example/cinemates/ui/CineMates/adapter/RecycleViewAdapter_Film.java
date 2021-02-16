@@ -69,7 +69,6 @@ public class RecycleViewAdapter_Film extends RecyclerView.Adapter<RecycleViewAda
         }
     }
 
-
     public interface OnClickListener{
         void OnClick(int position);
     }
