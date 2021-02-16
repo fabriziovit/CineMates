@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.VisualizzaPreferitiActivity">
+    tools:context=".ui.CineMates.activity.VisualizzaPreferitiActivity">
 
 
     <TextView

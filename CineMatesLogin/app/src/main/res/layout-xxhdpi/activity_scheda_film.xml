@@ -5,7 +5,7 @@
     android:id="@+id/container_schedaFilm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CineMates.SchedaFilmActivity"
+    tools:context=".ui.CineMates.activity.SchedaFilmActivity"
     android:background="@color/colorBack">
 
 

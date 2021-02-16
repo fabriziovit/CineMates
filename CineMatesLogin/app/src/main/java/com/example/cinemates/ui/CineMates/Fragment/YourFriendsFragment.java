@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.VisualizzaPreferitiActivity;
+import com.example.cinemates.ui.CineMates.activity.VisualizzaPreferitiActivity;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Amici;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;

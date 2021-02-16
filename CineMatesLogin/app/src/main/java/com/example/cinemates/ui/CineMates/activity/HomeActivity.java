@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -48,7 +48,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity{
     private ActivityHomeBinding binding;
     private ChipNavigationBar bottomNav;
     private FragmentManager fragmentManager;
@@ -79,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currUser = auth.getCurrentUser().getUid();
+
         final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
         CollectionReference collectionReference = db.collection("users");
@@ -351,4 +352,5 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
 }

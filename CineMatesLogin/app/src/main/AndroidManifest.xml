@@ -18,10 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CineMates.ListeUtenteActivity"></activity>
-        <activity android:name=".ui.CineMates.SchedaFilmActivity" />
+        <activity android:name=".ui.CineMates.activity.ListeUtenteActivity"></activity>
+        <activity android:name=".ui.CineMates.activity.SchedaFilmActivity" />
         <activity
-            android:name=".ui.CineMates.SplashActivity"
+            android:name=".ui.CineMates.activity.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CineMates.PasswordDimenticataActivity" />
-        <activity android:name=".ui.CineMates.RegistratiActivity" />
+        <activity android:name=".ui.CineMates.activity.PasswordDimenticataActivity" />
+        <activity android:name=".ui.CineMates.activity.RegistratiActivity" />
         <activity
-            android:name=".ui.CineMates.HomeActivity"
+            android:name=".ui.CineMates.activity.HomeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.CineMates.CredenzialiProfiloActivity" />
-        <activity android:name=".ui.CineMates.VisualizzaPreferitiActivity" />
+        <activity android:name=".ui.CineMates.activity.CredenzialiProfiloActivity" />
+        <activity android:name=".ui.CineMates.activity.VisualizzaPreferitiActivity" />
         <activity
-            android:name=".ui.CineMates.LoginActivity"
+            android:name=".ui.CineMates.activity.LoginActivity"
             android:label="@string/app_name" />
 
         <meta-data

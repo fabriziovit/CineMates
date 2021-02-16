@@ -23,7 +23,7 @@ import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
 import com.example.cinemates.ui.CineMates.ApiMovie.SearchMovieApi;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_SearchFilm;
-import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
+import com.example.cinemates.ui.CineMates.activity.SchedaFilmActivity;
 
 import java.util.ArrayList;
 

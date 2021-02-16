@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.SchedaFilmActivity;
+import com.example.cinemates.ui.CineMates.activity.SchedaFilmActivity;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_ListaPreferiti;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.CineMates.RegistratiActivity">
+    tools:context=".ui.CineMates.activity.RegistratiActivity">
 
     <ScrollView
         android:id="@+id/scrollview_registrati"
