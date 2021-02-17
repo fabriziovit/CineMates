@@ -29,7 +29,6 @@ public class PopularMovieListModel implements MovieListContract.Model{
             public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {
                 List<Movie> movies = response.body().getResults();
                 ArrayList<ItemFilm> popularList = new ArrayList<>();
-                Log.d(TAG, "Number of movies received: " + movies.size());
                 for (Movie movie : movies)
                     popularList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
                             "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));

@@ -22,6 +22,8 @@ import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
+import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+
 public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Film_ListaPreferiti.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -73,7 +75,7 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
     @Override
     public void OnClickScheda(int position) {
         Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra("id", preferitiList.get(position).getId());
+        i.putExtra(KEY_MOVIE_ID, preferitiList.get(position).getId());
         startActivity(i);
     }
 

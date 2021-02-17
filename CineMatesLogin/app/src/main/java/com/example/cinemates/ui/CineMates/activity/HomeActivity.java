@@ -61,9 +61,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //ArrayList<ItemFilm> filmsPopular = new ArrayList<>();
-        //ArrayList<ItemFilm> filmsUpcoming = new ArrayList<>();
-        //ArrayList<ItemFilm> filmsNowplaying = new ArrayList<>();
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -75,7 +72,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
         db = FirebaseFirestore.getInstance();
         currUser = auth.getCurrentUser().getUid();
 
-        //final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
         CollectionReference collectionReference = db.collection("users");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -98,77 +94,19 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
             }
         });
 
-        /*Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        MoviesApiNowPlaying moviesApiNowPlaying = retrofit.create(MoviesApiNowPlaying.class);
-        Call<NowPlayingFilms> callNp = moviesApiNowPlaying.movieList();
-        callNp.enqueue(new Callback<NowPlayingFilms>() {
-            @Override
-            public void onResponse(Call<NowPlayingFilms> call, Response<NowPlayingFilms> response) {
-                HomeActivity.this.nowPlayingFilms = response.body();
-                for (Movie movie : HomeActivity.this.nowPlayingFilms.getResults())
-                    filmsNowplaying.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
-            }
-
-            @Override
-            public void onFailure(Call<NowPlayingFilms> call, Throwable t) {
-                Log.e("Errore", "Errore nel caricamento delle api.");
-            }
-        });
-
-        MoviesApiUpcoming moviesApiUpcoming = retrofit.create(MoviesApiUpcoming.class);
-        Call<UpComingFilms> callUp = moviesApiUpcoming.movieList();
-        callUp.enqueue(new Callback<UpComingFilms>() {
-            @Override
-            public void onResponse(Call<UpComingFilms> call, Response<UpComingFilms> response) {
-                HomeActivity.this.upComingFilms = response.body();
-                for (Movie movie : HomeActivity.this.upComingFilms.getResults())
-                    filmsUpcoming.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
-            }
-
-            @Override
-            public void onFailure(Call<UpComingFilms> call, Throwable t) {
-                Log.e("Errore", "Errore nel caricamento delle api.");
-            }
-        });
-
-
-        MoviesApiPopular moviesApiPopular = retrofit.create(MoviesApiPopular.class);
-        Call<PopularFilms> callPop = moviesApiPopular.movieList();
-        callPop.enqueue(new Callback<PopularFilms>() {
-            @Override
-            public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {
-                HomeActivity.this.popularFilms = response.body();
-                for (Movie movie : HomeActivity.this.popularFilms.getResults())
-                    filmsPopular.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
-                pop = true;
-            }
-
-            @Override
-            public void onFailure(Call<PopularFilms> call, Throwable t) {
-                Log.e("Errore", "Errore nel caricamento delle api.");
-                pop = true;
-            }
-        });*/
 
         bottomNav =  binding.navHomeMenu;
 
         if(savedInstanceState == null){
             bottomNav.setItemSelected(R.id.main, true);
             fragmentManager = getSupportFragmentManager();
-            /*loadingDialog.startLoadingDialog();
+            loadingDialog.startLoadingDialog();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     loadingDialog.dismissDialog();
                 }
-            }, 3000);*/
+            }, 3000);
             new Thread(()-> {
                 while(!pop){}
                 fragment = new HomeFragment();

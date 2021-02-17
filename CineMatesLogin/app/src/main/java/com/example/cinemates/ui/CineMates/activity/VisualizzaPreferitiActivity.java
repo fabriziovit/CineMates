@@ -33,6 +33,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+
 public class VisualizzaPreferitiActivity extends AppCompatActivity implements RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener, UpdateableFragmentListener {
     private ActivityVisualizzaPreferitiBinding binding;
     private List<ItemFilm> preferitiList;
@@ -147,7 +149,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
     @Override
     public void OnClickScheda(int position) {
         Intent i = new Intent(this, SchedaFilmActivity.class);
-        i.putExtra("id", searchList.get(position).getId());
+        i.putExtra(KEY_MOVIE_ID, searchList.get(position).getId());
         startActivity(i);
     }
 

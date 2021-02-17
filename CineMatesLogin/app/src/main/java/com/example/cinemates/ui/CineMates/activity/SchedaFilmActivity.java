@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,13 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.CreditsMovieApi;
-import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.CreditsMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Crew;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.MovieDetailsContract;
+import com.example.cinemates.ui.CineMates.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
 import com.example.cinemates.ui.CineMates.model.PreferitiModel;
@@ -47,17 +45,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SchedaFilmActivity extends AppCompatActivity implements RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
+import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+
+public class SchedaFilmActivity extends AppCompatActivity implements MovieDetailsContract.View, RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
     private ActivitySchedaFilmBinding binding;
     private int id;
-    private DetailedMovie detailedMovie;
-    private CreditsMovie creditsMovie;
     private ArrayList<Genere> generelist;
     private ArrayList<Crew> crewlist;
     private List<ItemRecensione> recensioniList;
@@ -69,6 +62,8 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
     private String currUser;
     private int preferiti;
     private int daVedere;
+    private String movieName;
+    private MovieDetailsPresenter movieDetailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,65 +83,11 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         //Prendo l'id del film dalla scheda da cui provengo
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            id = extras.getInt("id");
+            id = extras.getInt(KEY_MOVIE_ID);
         }
 
-        //Controllo dettagli film
-        new Thread(()-> {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api.themoviedb.org")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            CreditsMovieApi creditsMovieApi = retrofit.create(CreditsMovieApi.class);
-            Call<CreditsMovie> callCredits = creditsMovieApi.creditsMovie("3/movie/" + id + "/credits?api_key=03941baf012eb2cd38196f9df8751df6");
-            callCredits.enqueue(new Callback<CreditsMovie>() {
-                @Override
-                public void onResponse(Call<CreditsMovie> call, Response<CreditsMovie> response) {
-                    creditsMovie = response.body();
-                    crewlist = creditsMovie.getCrew();
-                    for (Crew crew : crewlist) {
-                        if (crew.getJob().equals("Director"))
-                            if (regista == null)
-                                regista = crew.getName();
-                            else
-                                regista = regista + ", " + crew.getName();
-                    }
-                    binding.nomeRegistaFilmSchedaFilmTextView.setText(regista);
-                }
-
-                @Override
-                public void onFailure(Call<CreditsMovie> call, Throwable t) {
-                    Log.e("ERRORE", "caricamento Api non riuscito");
-                }
-            });
-
-            DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
-            Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + id + "?api_key=03941baf012eb2cd38196f9df8751df6");
-            call.enqueue(new Callback<DetailedMovie>() {
-                @Override
-                public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
-                    detailedMovie = response.body();
-                    LayoutInflater inflater = LayoutInflater.from(SchedaFilmActivity.this);
-                    generelist = detailedMovie.getGenere();
-                    for (Genere genere : generelist) {
-                        chip = (Chip) inflater.inflate(R.layout.item_chip, null, false);
-                        chip.setText(genere.getNome());
-                        binding.genereFilmSchedaFilmChipGroup.addView(chip);
-                    }
-                    float voto = detailedMovie.getVote_average()/2;
-                    binding.titoloFIlmSchedaFilm.setText(detailedMovie.getTitle() + " (" + detailedMovie.getRelease_date().substring(0, 4) + ")");
-                    binding.tramaFilmSchedaFilmTextView.setText(detailedMovie.getOverview());
-                    binding.percentualeVotoSchedaFilmTextView.setText(String.format("%.1f", voto));
-                    binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()));
-                }
-
-                @Override
-                public void onFailure(Call<DetailedMovie> call, Throwable t) {
-                    Log.e("ERRORE", "caricamento Api non riuscito");
-                }
-            });
-        }).start();
+        movieDetailsPresenter = new MovieDetailsPresenter(this);
+        movieDetailsPresenter.requestMovieData(id);
 
         //controllo lista da vedere
         new Thread(()-> {
@@ -339,7 +280,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
                 .setNegativeButtonText("Cancella")
                 .setNumberOfStars(5)
                 .setDefaultRating(1)
-                .setTitle("Recensisci "+detailedMovie.getTitle())
+                .setTitle("Recensisci " + movieName)
                 .setDescription("Seleziona il punteggio e scrivi la tua recensione")
                 .setCommentInputEnabled(true)
                 .setStarColor(R.color.colorIcons)
@@ -397,4 +338,45 @@ public class SchedaFilmActivity extends AppCompatActivity implements RecycleView
         }
     }
 
+    @Override
+    public void showProgress() {
+        binding.progressBarSchedaFilm.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        binding.progressBarSchedaFilm.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setDataCredits(String regista) {
+        if(!regista.equals("")){
+            binding.nomeRegistaFilmSchedaFilmTextView.setText(regista);
+        }
+    }
+
+    @Override
+    public void setDataToViews(DetailedMovie movie) {
+        if (movie != null) {
+            float voto = movie.getVote_average() / 2;
+            LayoutInflater inflater = LayoutInflater.from(SchedaFilmActivity.this);
+            movieName = movie.getTitle();
+            binding.titoloFIlmSchedaFilm.setText(movie.getTitle() + " (" + movie.getRelease_date().substring(0, 4) + ")");
+            System.out.println(regista);
+            binding.tramaFilmSchedaFilmTextView.setText(movie.getOverview());
+            binding.percentualeVotoSchedaFilmTextView.setText(String.format("%.1f", voto));
+            binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + movie.getPoster_path()));
+            generelist = movie.getGenere();
+            for (Genere genere : generelist) {
+                chip = (Chip) inflater.inflate(R.layout.item_chip, null, false);
+                chip.setText(genere.getNome());
+                binding.genereFilmSchedaFilmChipGroup.addView(chip);
+            }
+        }
+    }
+
+    @Override
+    public void onResponseFailure (Throwable throwable){
+        Toast.makeText(this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
+    }
 }

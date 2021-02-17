@@ -1,6 +1,7 @@
 package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
 
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.CreditsMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.UpComingFilms;
@@ -16,13 +17,14 @@ public interface ApiInterface {
     Call<PopularFilms> getPopularMovies(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}")
-    Call<Movie> getMovieDetails(@Path("movie_id") int movieId, @Query("api_key") String apiKey, @Query("append_to_response") String credits);
+    Call<DetailedMovie> getMovieDetails(@Path("movie_id") int movieId, @Query("api_key") String apiKey, @Query("append_to_response") String credits);
+
+    @GET("movie/{movie_id}/credits")
+    Call<CreditsMovie> getCreditsMovie(@Path("movie_id") int movieId, @Query("api_key") String apiKey);
 
     @GET("movie/upcoming")
     Call<UpComingFilms> getUpComingMovies(@Query("api_key") String apiKey);
 
     @GET("movie/now_playing")
     Call<NowPlayingFilms> getNowPlayingMovies(@Query("api_key") String apiKey);
-
-
 }

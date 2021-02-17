@@ -34,6 +34,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+
 public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_SearchFilm.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -136,7 +138,7 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
     @Override
     public void OnClick(int position) {
         Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra("id", searchedMovie.get(position).getId());
+        i.putExtra(KEY_MOVIE_ID, searchedMovie.get(position).getId());
         startActivity(i);
     }
 

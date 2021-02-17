@@ -17,6 +17,8 @@ import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.List;
 
+import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+
 public class PopularFilmsFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -65,7 +67,7 @@ public class PopularFilmsFragment extends Fragment implements RecycleViewAdapter
     @Override
     public void OnClick(int position) {
         Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra("id", filmList.get(position).getId());
+        i.putExtra(KEY_MOVIE_ID, filmList.get(position).getId());
         startActivity(i);
     }
 }

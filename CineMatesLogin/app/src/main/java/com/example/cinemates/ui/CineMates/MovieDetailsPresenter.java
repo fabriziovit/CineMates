@@ -1,7 +1,7 @@
 package com.example.cinemates.ui.CineMates;
 
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsModel;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 
 public class MovieDetailsPresenter implements MovieDetailsContract.Presenter, MovieDetailsContract, MovieDetailsContract.Model.OnFinishedListener {
 
@@ -28,12 +28,19 @@ public class MovieDetailsPresenter implements MovieDetailsContract.Presenter, Mo
     }
 
     @Override
-    public void onFinished(Movie movie) {
-
+    public void onFinished(DetailedMovie movie) {
         if(movieDetailView != null){
             movieDetailView.hideProgress();
         }
         movieDetailView.setDataToViews(movie);
+    }
+
+    @Override
+    public void onFinishedCredits(String regista) {
+        if(movieDetailView != null){
+            movieDetailView.hideProgress();
+        }
+        movieDetailView.setDataCredits(regista);
     }
 
     @Override

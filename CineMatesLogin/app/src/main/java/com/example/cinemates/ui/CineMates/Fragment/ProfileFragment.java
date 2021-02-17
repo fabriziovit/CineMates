@@ -142,7 +142,6 @@ public class ProfileFragment extends Fragment{
                             public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
                                 detailedMovie = response.body();
                                 filmPreferiti.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-
                             }
 
                             @Override

@@ -7,11 +7,19 @@
     android:background="@color/colorBack"
     tools:context="com.example.cinemates.ui.CineMates.activity.HomeActivity">
 
-
     <FrameLayout
         android:id="@+id/fragment_home_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    </FrameLayout>
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/nav__home_menu"

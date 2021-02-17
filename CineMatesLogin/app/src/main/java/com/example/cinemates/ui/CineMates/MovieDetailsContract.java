@@ -1,14 +1,14 @@
 package com.example.cinemates.ui.CineMates;
 
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 
 public interface MovieDetailsContract {
 
     interface Model {
 
         interface OnFinishedListener {
-            void onFinished(Movie movie);
-
+            void onFinishedCredits(String regista);
+            void onFinished(DetailedMovie movie);
             void onFailure(Throwable t);
         }
 
@@ -21,7 +21,8 @@ public interface MovieDetailsContract {
 
         void hideProgress();
 
-        void setDataToViews(Movie movie);
+        void setDataToViews(DetailedMovie movie);
+        void setDataCredits(String regista);
 
         void onResponseFailure(Throwable throwable);
     }
