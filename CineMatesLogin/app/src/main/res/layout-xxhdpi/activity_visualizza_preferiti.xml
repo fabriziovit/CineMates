@@ -115,4 +115,17 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <ProgressBar
+        android:id="@+id/progressBar_VisualizzaPreferiti"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:foregroundGravity="center"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar_VisualizzaPreferiti" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

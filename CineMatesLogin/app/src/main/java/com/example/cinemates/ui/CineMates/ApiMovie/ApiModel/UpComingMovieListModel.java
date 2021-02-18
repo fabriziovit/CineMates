@@ -1,12 +1,14 @@
-package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
+package com.example.cinemates.ui.CineMates.ApiMovie.ApiModel;
 
 import android.util.Log;
 
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiClient;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiInterface;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.UpComingFilms;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.MovieListContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
 
 public class UpComingMovieListModel implements MovieListContract.Model {
 
@@ -31,7 +35,7 @@ public class UpComingMovieListModel implements MovieListContract.Model {
                 ArrayList<ItemFilm> upComingList = new ArrayList<>();
                 for (Movie movie : movies)
                     upComingList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
+                            IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
                 HomeFragment.filmsUpcoming = upComingList;
                 onFinishedListener.onFinished(upComingList);
             }

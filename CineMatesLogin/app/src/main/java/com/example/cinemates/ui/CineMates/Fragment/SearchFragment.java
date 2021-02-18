@@ -3,13 +3,13 @@ package com.example.cinemates.ui.CineMates.Fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,33 +18,29 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
-import com.example.cinemates.ui.CineMates.ApiMovie.SearchMovieApi;
-import com.example.cinemates.ui.CineMates.model.ItemFilm;
-import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_SearchFilm;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieResearchContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieResearchPresenter;
 import com.example.cinemates.ui.CineMates.activity.SchedaFilmActivity;
+import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_SearchFilm;
+import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
-public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_SearchFilm.OnClickListener, UpdateableFragmentListener {
+public class SearchFragment extends Fragment implements MovieResearchContract.View, RecycleViewAdapter_Film_SearchFilm.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText searchField;
     private ImageView searchButton;
     private RecyclerView recyclerView;
     private ConstraintLayout constraintLayout;
-    private MovieResearch movieResearch;
+    private ProgressBar progressBar;
     private ArrayList<ItemFilm> searchedMovie;
+    private MovieResearchPresenter movieResearchPresenter;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -62,6 +58,7 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        movieResearchPresenter = new MovieResearchPresenter(this);
     }
 
     @Override
@@ -72,10 +69,10 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
         constraintLayout = view.findViewById(R.id.container_fragment_search);
         searchButton = view.findViewById(R.id.search_button_fragmentSearch);
         recyclerView = view.findViewById(R.id.resultFilm_fragmentSearch);
+        progressBar = view.findViewById(R.id.progressBar_SearchFilm);
 
         searchFilm();
         Keyboard();
-
         return view;
     }
 
@@ -94,37 +91,13 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showProgress();
                 if (searchField.getText().length() != 0) {
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
                     searchField.clearFocus();
                     searchedMovie = new ArrayList<>();
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("https://api.themoviedb.org")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    new Thread(() -> {
-                        SearchMovieApi searchMovieApi = retrofit.create(SearchMovieApi.class);
-                        Call<MovieResearch> call = searchMovieApi.movieList("3/search/movie?api_key=03941baf012eb2cd38196f9df8751df6&query=" + searchField.getText().toString());
-                        call.enqueue(new Callback<MovieResearch>() {
-                            @Override
-                            public void onResponse(Call<MovieResearch> call, Response<MovieResearch> response) {
-                                movieResearch = response.body();
-                                for (Movie movie : movieResearch.getResults()) {
-                                    searchedMovie.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
-                                    update();
-                                }
-                                if (searchedMovie.size() == 0)
-                                    Toast.makeText(getContext(), "Nessun risultato", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onFailure(Call<MovieResearch> call, Throwable t) {
-                                Log.e("Errore", "Errore nel caricamento delle api.");
-                            }
-                        });
-                    }).start();
+                    movieResearchPresenter.requestDataFromServer(searchField.getText().toString());
                     RecycleViewAdapter_Film_SearchFilm recycleViewAdapter_film_searchFilm = new RecycleViewAdapter_Film_SearchFilm(getContext(), searchedMovie, SearchFragment.this);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(gridLayoutManager);
@@ -145,5 +118,26 @@ public class SearchFragment extends Fragment implements RecycleViewAdapter_Film_
     @Override
     public void update() {
         recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setDataToRecyclerView(List<ItemFilm> movieArrayList) {
+        searchedMovie.addAll(movieArrayList);
+        update();
+    }
+
+    @Override
+    public void onResponseFailure(Throwable throwable) {
+        Toast.makeText(getActivity(), "Errore nel caricamento", Toast.LENGTH_LONG).show();
     }
 }

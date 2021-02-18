@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.activity.CredenzialiProfiloActivity;
 import com.example.cinemates.ui.CineMates.activity.ListeUtenteActivity;
 import com.example.cinemates.ui.CineMates.activity.LoginActivity;
@@ -56,15 +56,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
 
-public class ProfileFragment extends Fragment{
+public class ProfileFragment extends Fragment implements MovieDetailsContract.View {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -80,7 +76,7 @@ public class ProfileFragment extends Fragment{
     private static final int PERMISSION_CODE = 1001;
     private List<ItemFilm> filmPreferiti;
     private List<ItemFilm> filmDavedere;
-    private DetailedMovie detailedMovie;
+    private MovieDetailsPresenter movieDetailsPresenter;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -122,7 +118,7 @@ public class ProfileFragment extends Fragment{
         storage = FirebaseStorage.getInstance();
         filmPreferiti = new ArrayList<>();
         filmDavedere = new ArrayList<>();
-
+        movieDetailsPresenter = new MovieDetailsPresenter(this);
 
         new Thread(() -> {
             CollectionReference collectionReference = db.collection("favorites").document(curUser).collection(curUser);
@@ -130,25 +126,8 @@ public class ProfileFragment extends Fragment{
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl("https://api.themoviedb.org")
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
+                        movieDetailsPresenter.requestMovieData(documentSnapshot.getLong("idFilm").intValue(), 1);
 
-                        DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
-                        Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + documentSnapshot.getLong("idFilm") + "?api_key=03941baf012eb2cd38196f9df8751df6");
-                        call.enqueue(new Callback<DetailedMovie>() {
-                            @Override
-                            public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
-                                detailedMovie = response.body();
-                                filmPreferiti.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-                            }
-
-                            @Override
-                            public void onFailure(Call<DetailedMovie> call, Throwable t) {
-                                Log.e("ERRORE", "caricamento Api non riuscito");
-                            }
-                        });
                     }
                 }
             });
@@ -160,25 +139,7 @@ public class ProfileFragment extends Fragment{
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl("https://api.themoviedb.org")
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
-
-                        DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
-                        Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + documentSnapshot.getLong("idFilm") + "?api_key=03941baf012eb2cd38196f9df8751df6");
-                        call.enqueue(new Callback<DetailedMovie>() {
-                            @Override
-                            public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
-                                detailedMovie = response.body();
-                                filmDavedere.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-                            }
-
-                            @Override
-                            public void onFailure(Call<DetailedMovie> call, Throwable t) {
-                                Log.e("ERRORE", "caricamento Api non riuscito");
-                            }
-                        });
+                        movieDetailsPresenter.requestMovieData(documentSnapshot.getLong("idFilm").intValue(), 2);
                     }
                 }
             });
@@ -404,5 +365,40 @@ public class ProfileFragment extends Fragment{
         LoginManager.getInstance().logOut();
         Toast.makeText(getActivity(), "Logout effettuato!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getActivity(), LoginActivity.class));
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void setDataToViews(DetailedMovie movie) {
+        if (movie != null) {
+            filmPreferiti.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
+        }
+    }
+
+
+    @Override
+    public void setDataCredits(String regista) {
+
+    }
+
+    @Override
+    public void setDataLista(DetailedMovie movie) {
+        if (movie != null) {
+            filmDavedere.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
+        }
+    }
+
+    @Override
+    public void onResponseFailure(Throwable throwable) {
+        Toast.makeText(getActivity(), "Errore nel caricamento", Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,8 +1,9 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
 
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.NowPlayingMovieListModel;
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.PopularMovieListModel;
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.UpComingMovieListModel;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiModel.NowPlayingMovieListModel;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiModel.PopularMovieListModel;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiModel.UpComingMovieListModel;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;

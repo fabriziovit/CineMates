@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.ApiMovie.Contract;
 
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 
@@ -9,10 +9,12 @@ public interface MovieDetailsContract {
         interface OnFinishedListener {
             void onFinishedCredits(String regista);
             void onFinished(DetailedMovie movie);
+            void onFinishedLista(DetailedMovie movie);
             void onFailure(Throwable t);
         }
 
         void getMovieDetails(OnFinishedListener onFinishedListener, int movieId);
+        void getMovieDetails(OnFinishedListener onFinishedListener, int movieId, int list);
     }
 
     interface View {
@@ -23,6 +25,7 @@ public interface MovieDetailsContract {
 
         void setDataToViews(DetailedMovie movie);
         void setDataCredits(String regista);
+        void setDataLista(DetailedMovie movie);
 
         void onResponseFailure(Throwable throwable);
     }
@@ -31,5 +34,6 @@ public interface MovieDetailsContract {
         void onDestroy();
 
         void requestMovieData(int movieId);
+        void requestMovieData(int movieId, int list);
     }
 }

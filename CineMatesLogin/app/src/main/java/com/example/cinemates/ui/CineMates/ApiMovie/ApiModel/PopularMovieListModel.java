@@ -1,12 +1,14 @@
-package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
+package com.example.cinemates.ui.CineMates.ApiMovie.ApiModel;
 
 import android.util.Log;
 
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiClient;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiInterface;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.MovieListContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
 
 public class PopularMovieListModel implements MovieListContract.Model{
 
@@ -31,7 +35,7 @@ public class PopularMovieListModel implements MovieListContract.Model{
                 ArrayList<ItemFilm> popularList = new ArrayList<>();
                 for (Movie movie : movies)
                     popularList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(
-                            "https://image.tmdb.org/t/p/w185" + movie.getPoster_path()), movie.getId()));
+                            IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
                 HomeFragment.filmsPopular = popularList;
                 onFinishedListener.onFinished(popularList);
             }

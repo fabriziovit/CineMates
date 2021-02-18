@@ -1,7 +1,8 @@
-package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
+package com.example.cinemates.ui.CineMates.ApiMovie;
 
 import com.example.cinemates.ui.CineMates.ApiMovie.model.CreditsMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.PopularFilms;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.UpComingFilms;
@@ -27,4 +28,7 @@ public interface ApiInterface {
 
     @GET("movie/now_playing")
     Call<NowPlayingFilms> getNowPlayingMovies(@Query("api_key") String apiKey);
+
+    @GET("search/movie")
+    Call<MovieResearch> getMovieFromQuery(@Query("api_key") String apiKey, @Query("query") String query);
 }

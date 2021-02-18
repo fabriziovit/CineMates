@@ -22,7 +22,7 @@ import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
-import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
 public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Film_ListaPreferiti.OnClickListener, UpdateableFragmentListener {
     private static final String ARG_PARAM1 = "param1";

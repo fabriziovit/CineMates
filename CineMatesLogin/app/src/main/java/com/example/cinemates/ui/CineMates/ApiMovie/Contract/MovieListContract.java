@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.ApiMovie.Contract;
 
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 

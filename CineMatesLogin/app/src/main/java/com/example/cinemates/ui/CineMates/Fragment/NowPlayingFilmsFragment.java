@@ -17,7 +17,7 @@ import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.List;
 
-import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
 public class NowPlayingFilmsFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener{
     private static final String ARG_PARAM1 = "param1";

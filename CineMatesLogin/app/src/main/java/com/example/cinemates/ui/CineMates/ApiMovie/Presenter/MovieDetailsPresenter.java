@@ -1,7 +1,8 @@
-package com.example.cinemates.ui.CineMates;
+package com.example.cinemates.ui.CineMates.ApiMovie.Presenter;
 
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsModel;
+import com.example.cinemates.ui.CineMates.ApiMovie.ApiModel.MovieDetailsModel;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
 
 public class MovieDetailsPresenter implements MovieDetailsContract.Presenter, MovieDetailsContract, MovieDetailsContract.Model.OnFinishedListener {
 
@@ -20,11 +21,18 @@ public class MovieDetailsPresenter implements MovieDetailsContract.Presenter, Mo
 
     @Override
     public void requestMovieData(int movieId) {
-
         if(movieDetailView != null){
             movieDetailView.showProgress();
         }
         movieDetailsModel.getMovieDetails(this, movieId);
+    }
+
+    @Override
+    public void requestMovieData(int movieId, int list) {
+        if(movieDetailView != null){
+            movieDetailView.showProgress();
+        }
+        movieDetailsModel.getMovieDetails(this, movieId, list);
     }
 
     @Override
@@ -34,6 +42,15 @@ public class MovieDetailsPresenter implements MovieDetailsContract.Presenter, Mo
         }
         movieDetailView.setDataToViews(movie);
     }
+
+    @Override
+    public void onFinishedLista(DetailedMovie movie) {
+        if(movieDetailView != null){
+            movieDetailView.hideProgress();
+        }
+        movieDetailView.setDataLista(movie);
+    }
+
 
     @Override
     public void onFinishedCredits(String regista) {

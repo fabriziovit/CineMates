@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Crew;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.MovieDetailsContract;
-import com.example.cinemates.ui.CineMates.MovieDetailsPresenter;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
 import com.example.cinemates.ui.CineMates.model.PreferitiModel;
@@ -46,15 +45,14 @@ import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
-import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
+import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
 public class SchedaFilmActivity extends AppCompatActivity implements MovieDetailsContract.View, RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
     private ActivitySchedaFilmBinding binding;
     private int id;
     private ArrayList<Genere> generelist;
-    private ArrayList<Crew> crewlist;
     private List<ItemRecensione> recensioniList;
-    private String regista;
     private Chip chip;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -356,16 +354,20 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
     }
 
     @Override
+    public void setDataLista(DetailedMovie movie) {
+
+    }
+
+    @Override
     public void setDataToViews(DetailedMovie movie) {
         if (movie != null) {
             float voto = movie.getVote_average() / 2;
             LayoutInflater inflater = LayoutInflater.from(SchedaFilmActivity.this);
             movieName = movie.getTitle();
             binding.titoloFIlmSchedaFilm.setText(movie.getTitle() + " (" + movie.getRelease_date().substring(0, 4) + ")");
-            System.out.println(regista);
             binding.tramaFilmSchedaFilmTextView.setText(movie.getOverview());
             binding.percentualeVotoSchedaFilmTextView.setText(String.format("%.1f", voto));
-            binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + movie.getPoster_path()));
+            binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()));
             generelist = movie.getGenere();
             for (Genere genere : generelist) {
                 chip = (Chip) inflater.inflate(R.layout.item_chip, null, false);

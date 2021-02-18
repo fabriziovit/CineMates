@@ -3,7 +3,6 @@ package com.example.cinemates.ui.CineMates.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -12,9 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.cinemates.databinding.ActivityVisualizzaPreferitiBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.DetailedMovieApi;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_ListaPreferiti_Amico;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,15 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.cinemates.ui.CineMates.Constants.KEY_MOVIE_ID;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
+import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
-public class VisualizzaPreferitiActivity extends AppCompatActivity implements RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener, UpdateableFragmentListener {
+public class VisualizzaPreferitiActivity extends AppCompatActivity implements MovieDetailsContract.View, RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener, UpdateableFragmentListener {
     private ActivityVisualizzaPreferitiBinding binding;
     private List<ItemFilm> preferitiList;
     private String username;
@@ -44,6 +40,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
     //private String currUser;
     private List<ItemFilm> searchList;
     private DetailedMovie detailedMovie;
+    private MovieDetailsPresenter movieDetailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +53,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
         //currUser = auth.getCurrentUser().getUid();
         preferitiList = new ArrayList<>();
         searchList = new ArrayList<>();
+        movieDetailsPresenter = new MovieDetailsPresenter(this);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -78,29 +76,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
                                         @Override
                                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                                Retrofit retrofit = new Retrofit.Builder()
-                                                        .baseUrl("https://api.themoviedb.org")
-                                                        .addConverterFactory(GsonConverterFactory.create())
-                                                        .build();
-
-                                                DetailedMovieApi detailedMovieApi = retrofit.create(DetailedMovieApi.class);
-                                                Call<DetailedMovie> call = detailedMovieApi.detailedMovie("3/movie/" + documentSnapshot.getLong("idFilm") + "?api_key=03941baf012eb2cd38196f9df8751df6");
-                                                call.enqueue(new Callback<DetailedMovie>() {
-                                                    @Override
-                                                    public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
-                                                        detailedMovie = response.body();
-                                                        preferitiList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-                                                        searchList.add(new ItemFilm(detailedMovie.getTitle(), ProfileFragment.getBitmapFromdownload("https://image.tmdb.org/t/p/w185" + detailedMovie.getPoster_path()), detailedMovie.getId()));
-                                                        RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
-                                                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                                                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
-                                                    }
-
-                                                    @Override
-                                                    public void onFailure(Call<DetailedMovie> call, Throwable t) {
-                                                        Log.e("ERRORE", "caricamento Api non riuscito");
-                                                    }
-                                                });
+                                                movieDetailsPresenter.requestMovieData(documentSnapshot.getLong("idFilm").intValue());
                                             }
                                         }
                                     });
@@ -202,5 +178,41 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Re
                 }
             }
         });
+    }
+
+    @Override
+    public void showProgress() {
+        binding.progressBarVisualizzaPreferiti.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        binding.progressBarVisualizzaPreferiti.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setDataToViews(DetailedMovie movie) {
+        if(movie != null) {
+            preferitiList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
+            searchList.add(new ItemFilm(movie.getTitle(), ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()), movie.getId()));
+            RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
+            binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+            binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
+        }
+    }
+
+    @Override
+    public void setDataCredits(String regista) {
+
+    }
+
+    @Override
+    public void setDataLista(DetailedMovie movie) {
+
+    }
+
+    @Override
+    public void onResponseFailure(Throwable throwable) {
+        Toast.makeText(this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
     }
 }
