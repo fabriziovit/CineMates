@@ -1,54 +1,33 @@
 package com.example.cinemates.ui.CineMates.activity;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
 import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
-import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.Fragment.InfoFilmFragment;
+import com.example.cinemates.ui.CineMates.Fragment.RecensioniFilmFragment;
+import com.example.cinemates.ui.CineMates.Fragment.ViewPagerAdapter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
-import com.example.cinemates.ui.CineMates.model.PreferitiModel;
-import com.example.cinemates.ui.CineMates.model.ReviewModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
-import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
-import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
-
-public class SchedaFilmActivity extends AppCompatActivity implements MovieDetailsContract.View, RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
+public class SchedaFilmActivity extends AppCompatActivity implements UpdateableFragmentListener, MovieDetailsContract.View, RecycleViewAdapter_Recensioni.OnClickListener, UpdateableFragmentListener, RatingDialogListener {
     private ActivitySchedaFilmBinding binding;
     private int id;
     private ArrayList<Genere> generelist;
@@ -62,6 +41,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
     private int daVedere;
     private String movieName;
     private MovieDetailsPresenter movieDetailsPresenter;
+    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +49,16 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
         binding = ActivitySchedaFilmBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
+        adapter.AddFragment(new InfoFilmFragment(), "Scheda Film");
+        adapter.AddFragment(new RecensioniFilmFragment(), "Recensioni");
+
+        binding.viewPagerSchedaFilm.setAdapter(adapter);
+        binding.tabLayoutSchedaFilm.setupWithViewPager(binding.viewPagerSchedaFilm);
+        binding.tabLayoutSchedaFilm.getTabAt(0).setIcon(R.drawable.ic_info);
+        binding.tabLayoutSchedaFilm.getTabAt(1).setIcon(R.drawable.ic_stella);
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
@@ -76,9 +66,8 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
         presente = false;
         preferiti = 0;
         daVedere = 0;
-        binding.tramaSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        //Prendo l'id del film dalla scheda da cui provengo
+       /* //Prendo l'id del film dalla scheda da cui provengo
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getInt(KEY_MOVIE_ID);
@@ -152,13 +141,14 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
                     }
                 }
             });
-        }).start();
+        }).start();*/
 
-        daVedereClick(binding);
         Keyboard(binding);
         BackButton(binding);
+        update();
+        /*daVedereClick(binding);
         Preferiti(binding);
-        recensioneButton(binding);
+        recensioneButton(binding);*/
     }
 
     private void Keyboard(ActivitySchedaFilmBinding binding) {
@@ -180,8 +170,13 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
         });
     }
 
+    @Override
+    public void update() {
+        adapter.notifyDataSetChanged();
+    }
 
-    private void daVedereClick(ActivitySchedaFilmBinding binding){
+
+    /*private void daVedereClick(ActivitySchedaFilmBinding binding){
         binding.davedereImageViewSchedaFilm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -380,5 +375,5 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
     @Override
     public void onResponseFailure (Throwable throwable){
         Toast.makeText(this, "Errore nel caricamento", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }
