@@ -115,7 +115,7 @@
                 app:layout_constraintWidth_percent="0.36" />
 
             <TextView
-                android:id="@+id/trama_schedaFilm_textView"
+                android:id="@+id/tramaScritta_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -132,7 +132,7 @@
 
             <LinearLayout
                 android:id="@+id/tramaRectangle_schedaFilm"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
@@ -140,12 +140,12 @@
                 android:orientation="vertical"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trama_schedaFilm_textView">
+                app:layout_constraintTop_toBottomOf="@+id/tramaScritta_textView"
+                app:layout_constraintWidth_percent="0.97">
 
                 <TextView
-                    android:id="@+id/tramaFilm_schedaFilm_textView"
+                    android:id="@+id/trama_schedaFilm_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -162,7 +162,7 @@
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/trama_schedaFilm_textView" />
+                    app:layout_constraintTop_toBottomOf="@id/tramaScritta_textView" />
 
             </LinearLayout>
 
@@ -269,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:foregroundGravity="center"
-                app:layout_constraintBottom_toTopOf="@+id/trama_schedaFilm_textView"
+                app:layout_constraintBottom_toTopOf="@+id/tramaScritta_textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

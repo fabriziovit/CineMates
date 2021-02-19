@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivitySchedaFilmBinding;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
 import com.example.cinemates.ui.CineMates.model.PreferitiModel;
@@ -66,17 +66,17 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-        currUser = auth.getCurrentUser().getUid();
         binding = ActivitySchedaFilmBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        currUser = auth.getCurrentUser().getUid();
         recensioniList = new ArrayList<>();
         presente = false;
         preferiti = 0;
         daVedere = 0;
-        binding.tramaFilmSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
+        binding.tramaSchedaFilmTextView.setMovementMethod(new ScrollingMovementMethod());
 
         //Prendo l'id del film dalla scheda da cui provengo
         Bundle extras = getIntent().getExtras();
@@ -365,7 +365,7 @@ public class SchedaFilmActivity extends AppCompatActivity implements MovieDetail
             LayoutInflater inflater = LayoutInflater.from(SchedaFilmActivity.this);
             movieName = movie.getTitle();
             binding.titoloFIlmSchedaFilm.setText(movie.getTitle() + " (" + movie.getRelease_date().substring(0, 4) + ")");
-            binding.tramaFilmSchedaFilmTextView.setText(movie.getOverview());
+            binding.tramaSchedaFilmTextView.setText(movie.getOverview());
             binding.percentualeVotoSchedaFilmTextView.setText(String.format("%.1f", voto));
             binding.locandinaFilmSchedaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()));
             generelist = movie.getGenere();
