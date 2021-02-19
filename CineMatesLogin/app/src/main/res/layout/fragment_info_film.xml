@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout tools:context=".ui.CineMates.Fragment.InfoFilmFragment"
+<androidx.constraintlayout.widget.ConstraintLayout
+    tools:context=".ui.CineMates.Fragment.InfoFilmFragment"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_schedaFilm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

@@ -8,7 +8,7 @@
     tools:context=".ui.CineMates.Fragment.RecensioniFilmFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/recensioneButton_RecensioniFilmFragment"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -31,5 +31,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+        app:layout_constraintTop_toBottomOf="@+id/recensioneButton_RecensioniFilmFragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
