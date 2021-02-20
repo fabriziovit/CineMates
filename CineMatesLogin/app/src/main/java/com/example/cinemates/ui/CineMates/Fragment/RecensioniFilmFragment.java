@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +25,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.shamanland.fab.FloatingActionButton;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
 
@@ -41,12 +41,12 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
     private static final String ARG_PARAM2 = "param2";
     private List<ItemRecensione> recensioniList;
     private boolean presente;
-    private Button recensioneButton;
     private int id;
     private RecyclerView recyclerView;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private String currUser;
+    private FloatingActionButton recensioneButton;
 
     public RecensioniFilmFragment() {
         // Required empty public constructor

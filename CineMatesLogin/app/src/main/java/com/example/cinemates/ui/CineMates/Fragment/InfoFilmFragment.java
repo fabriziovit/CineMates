@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import java.util.ArrayList;
 
@@ -35,10 +37,6 @@ import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_U
 public class InfoFilmFragment extends Fragment implements MovieDetailsContract.View {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ImageView preferitiButton;
-    private ImageView daVedereButton;
-    private int preferiti;
-    private int daVedere;
     private int id;
     private MovieDetailsPresenter movieDetailsPresenter;
     private ProgressBar progressBar;
@@ -54,6 +52,8 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private String currUser;
+    private SparkButton daVedereButton;
+    private SparkButton preferitiButton;
 
     public InfoFilmFragment() {
         // Required empty public constructor
@@ -85,8 +85,8 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info_film, container, false);
         progressBar = view.findViewById(R.id.progressBar_SchedaFilm);
-        preferitiButton = view.findViewById(R.id.aggiungiPreferiti_schefaFilm_imageView);
-        daVedereButton = view.findViewById(R.id.davedere_imageView_schedaFilm);
+        preferitiButton = view.findViewById(R.id.aggiungiPreferiti_SparkButton_schedaFilm);
+        daVedereButton = view.findViewById(R.id.davedere_sparkButton_schedaFilm);
         titoloFilm = view.findViewById(R.id.titoloFIlm_schedaFilm);
         tramaFilm = view.findViewById(R.id.trama_schedaFilm_textView);
         locandinaFilm = view.findViewById(R.id.locandinaFilm_schedaFilm);
@@ -98,8 +98,8 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
         movieDetailsPresenter = new MovieDetailsPresenter(this);
         movieDetailsPresenter.requestMovieData(id);
 
-        preferiti = 0;
-        daVedere = 0;
+        preferitiButton.setChecked(false);
+        daVedereButton.setChecked(false);
 
         //controllo lista da vedere
         new Thread(()-> {
@@ -110,8 +110,7 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
                     if(task.isSuccessful()){
                         DocumentSnapshot document = task.getResult();
                         if(document.exists()){
-                            daVedere = 1;
-                            daVedereButton.setImageResource(R.drawable.ic_davedere);
+                            daVedereButton.setChecked(true);
                         }
                     }
                 }
@@ -127,8 +126,7 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
                     if(task.isSuccessful()){
                         DocumentSnapshot document = task.getResult();
                         if(document.exists()){
-                            preferiti = 1;
-                            preferitiButton.setImageResource(R.drawable.ic_favorite);
+                            preferitiButton.setChecked(true);
                         }
                     }
                 }
@@ -142,9 +140,9 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
     }
 
     private void preferitiClick(){
-        preferitiButton.setOnClickListener(new View.OnClickListener() {
+        preferitiButton.setEventListener(new SparkEventListener() {
             @Override
-            public void onClick(View view) {
+            public void onEvent(ImageView button, boolean buttonState) {
 
                 //Controllo lista preferiti
                 new Thread(()-> {
@@ -155,35 +153,43 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
                             if(task.isSuccessful()){
                                 DocumentSnapshot document = task.getResult();
                                 if(document.exists()){
-                                    preferiti = 1;
-                                    preferitiButton.setImageResource(R.drawable.ic_favorite);
-                                }else
-                                    preferiti = 0;
+                                    preferitiButton.setChecked(true);
+                                }else {
+                                    preferitiButton.setChecked(false);
+                                }
                             }
                         }
                     });
                 }).start();
 
-                if(preferiti == 0){
+                if(buttonState){
                     PreferitiModel preferitiModel = new PreferitiModel(currUser, id);
                     db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id)).set(preferitiModel);
-                    preferitiButton.setImageResource(R.drawable.ic_favorite);
-                    Toast.makeText(getActivity(), "Film aggiunto alla lista preferiti", Toast.LENGTH_SHORT).show();
+                    preferitiButton.setChecked(true);
                 }else{
                     db.collection("favorites").document(currUser).collection(currUser).document(String.valueOf(id)).delete();
-                    preferitiButton.setImageResource(R.drawable.ic_favorite_border);
-                    Toast.makeText(getActivity(), "Film aggiunto alla lista preferiti", Toast.LENGTH_SHORT).show();
+                    preferitiButton.setChecked(false);
                 }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
             }
         });
     }
 
     private void daVedereClick(){
-        daVedereButton.setOnClickListener(new View.OnClickListener() {
+        daVedereButton.setEventListener(new SparkEventListener() {
             @Override
-            public void onClick(View view) {
+            public void onEvent(ImageView button, boolean buttonState) {
 
-                //Controllo lista da vedere
+                //controllo la lista da vedere
                 new Thread(()-> {
                     DocumentReference documentReference = db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id));
                     documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -192,25 +198,33 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
                             if(task.isSuccessful()){
                                 DocumentSnapshot document = task.getResult();
                                 if(document.exists()){
-                                    daVedere = 1;
-                                    daVedereButton.setImageResource(R.drawable.ic_davedere);
-                                }else
-                                    preferiti = 0;
+                                    daVedereButton.setChecked(true);
+                                }else {
+                                    daVedereButton.setChecked(false);
+                                }
                             }
                         }
                     });
                 }).start();
 
-                if(daVedere == 0){
+                if(buttonState){
                     PreferitiModel preferitiModel = new PreferitiModel(currUser, id);
                     db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id)).set(preferitiModel);
-                    daVedereButton.setImageResource(R.drawable.ic_davedere);
-                    Toast.makeText(getActivity(), "Film aggiunto alla lista \"da vedere\"", Toast.LENGTH_SHORT).show();
+                    daVedereButton.setChecked(true);
                 }else{
                     db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(id)).delete();
-                    daVedereButton.setImageResource(R.drawable.ic_davedere_nonpresente);
-                    Toast.makeText(getActivity(), "Film rimosso dalla lista \"da vedere\"", Toast.LENGTH_SHORT).show();
+                    daVedereButton.setChecked(false);
                 }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
             }
         });
     }

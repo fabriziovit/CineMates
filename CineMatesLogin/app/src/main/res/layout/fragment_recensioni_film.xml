@@ -7,30 +7,28 @@
     android:background="@color/colorBack"
     tools:context=".ui.CineMates.Fragment.RecensioniFilmFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/recensioneButton_RecensioniFilmFragment"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/mybutton_radius"
-        android:fontFamily="@font/martel_sans_bold"
-        android:text="Inserisci recensione"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_recensioni_schedaFilm"
         android:layout_width="match_parent"
-        android:layout_height="486dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="580dp"
         android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recensioneButton_RecensioniFilmFragment" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.shamanland.fab.FloatingActionButton
+        android:id="@+id/recensioneButton_RecensioniFilmFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_aggiungi"
+        app:floatingActionButtonColor="@color/biancoGhiaccio"
+        app:floatingActionButtonImplicitElevation="false"
+        app:floatingActionButtonSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleView_recensioni_schedaFilm"
+        app:layout_constraintEnd_toEndOf="@+id/recycleView_recensioni_schedaFilm" />
 </androidx.constraintlayout.widget.ConstraintLayout>

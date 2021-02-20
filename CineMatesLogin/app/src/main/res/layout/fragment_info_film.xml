@@ -19,32 +19,41 @@
         android:fontFamily="@font/martel_sans_bold"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/davedere_imageView_schedaFilm"
+        app:layout_constraintEnd_toStartOf="@+id/davedere_sparkButton_schedaFilm"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.75" />
 
-    <ImageView
-        android:id="@+id/davedere_imageView_schedaFilm"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/davedere_sparkButton_schedaFilm"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toStartOf="@+id/aggiungiPreferiti_schefaFilm_imageView"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/aggiungiPreferiti_SparkButton_schedaFilm"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_davedere_nonpresente" />
+        app:sparkbutton_activeImage="@drawable/ic_davedere"
+        app:sparkbutton_animationSpeed="1.5"
+        app:sparkbutton_iconSize="32dp"
+        app:sparkbutton_inActiveImage="@drawable/ic_davedere_nonpresente"
+        app:sparkbutton_primaryColor="@color/biancoGhiaccio"
+        app:sparkbutton_secondaryColor="@color/colorPrimary" />
 
-    <ImageView
-        android:id="@+id/aggiungiPreferiti_schefaFilm_imageView"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/aggiungiPreferiti_SparkButton_schedaFilm"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorite_border"
-        app:tint="@color/biancoGhiaccio" />
+        app:sparkbutton_activeImage="@drawable/ic_favorite"
+        app:sparkbutton_animationSpeed="1.5"
+        app:sparkbutton_iconSize="32dp"
+        app:sparkbutton_inActiveImage="@drawable/ic_favorite_border"
+        app:sparkbutton_primaryColor="@color/biancoGhiaccio"
+        app:sparkbutton_secondaryColor="@color/colorPrimary" />
 
     <ImageView
         android:id="@+id/locandinaFilm_schedaFilm"
