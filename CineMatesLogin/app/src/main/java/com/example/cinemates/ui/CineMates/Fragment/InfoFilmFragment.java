@@ -1,6 +1,7 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +94,7 @@ public class InfoFilmFragment extends Fragment implements MovieDetailsContract.V
         punteggioVoto = view.findViewById(R.id.percentualeVoto_schedaFilm_TextView);
         chipGroup = view.findViewById(R.id.genereFilm_schedaFilm_chipGroup);
 
+        tramaFilm.setMovementMethod(new ScrollingMovementMethod());
         movieDetailsPresenter = new MovieDetailsPresenter(this);
         movieDetailsPresenter.requestMovieData(id);
 

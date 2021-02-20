@@ -26,8 +26,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_recensioni_schedaFilm"
         android:layout_width="match_parent"
-        android:layout_height="710dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="486dp"
+        android:layout_marginTop="10dp"
+        android:nestedScrollingEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView_fragment_yourfriends"
+    android:id="@+id/container_fragment_yourfriends"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
     tools:context=".ui.CineMates.Fragment.YourFriendsFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_fragment_yourfriends"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/searchBar_fragment_YourFriends"
             android:layout_width="283dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="29dp"
             android:background="@drawable/search_layout"
             android:ems="10"
@@ -39,7 +34,7 @@
             android:id="@+id/searchButton_fragment_YourFriends"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:src="@mipmap/ic_searchbar_foreground"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +43,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleView_fragment_YourFriends"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="358dp"
             android:layout_gravity="bottom"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="3dp"
             android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,4 +53,3 @@
 
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>

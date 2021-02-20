@@ -35,11 +35,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/InfoFilmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/InfoFilmFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/RecensioniFilmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/RecensioniFilmFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/SchedaFilmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/SchedaFilmActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/adapter/RecycleViewAdapter_Recensioni.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/adapter/RecycleViewAdapter_Recensioni.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_scheda_film.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_film.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recensioni_film.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recensioni_film.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_your_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_your_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_recensione.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_recensione.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +83,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-16T21:09:47.002Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-02-20T15:13:05.199Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android-custom-viewC:/Users/gianl/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/chip/Chip.java_SELECTED" value="Chip" />
@@ -295,10 +296,10 @@
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1611229280095" />
     <state x="557" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613581783343" />
-    <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1613750722174">
+    <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1613834188185">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1613750722174" />
+    <state x="93" y="93" width="1095" height="495" key="AVDManager/0.0.1280.680@0.0.1280.680" timestamp="1613834188185" />
     <state x="221" y="96" key="AndroidCreateResourceDirectoryDialog" timestamp="1610983922795">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -318,25 +319,25 @@
     </state>
     <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1613402800783" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
-    <state width="1876" height="276" key="GridCell.Tab.0.bottom" timestamp="1613765707772">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="2" key="GridCell.Tab.0.bottom" timestamp="1613834530816">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1613756672770" />
+    <state width="1236" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1613834530816" />
     <state width="1876" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613765707772" />
-    <state width="1876" height="276" key="GridCell.Tab.0.center" timestamp="1613765707772">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="2" key="GridCell.Tab.0.center" timestamp="1613834530816">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="92" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1613756672770" />
+    <state width="1236" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1613834530816" />
     <state width="1876" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613765707772" />
-    <state width="1876" height="276" key="GridCell.Tab.0.left" timestamp="1613765707772">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="2" key="GridCell.Tab.0.left" timestamp="1613834530816">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="92" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1613756672770" />
+    <state width="1236" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1613834530816" />
     <state width="1876" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613765707772" />
-    <state width="1876" height="276" key="GridCell.Tab.0.right" timestamp="1613765707772">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1236" height="2" key="GridCell.Tab.0.right" timestamp="1613834530816">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1236" height="92" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1613756672770" />
+    <state width="1236" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1613834530816" />
     <state width="1876" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613765707772" />
     <state x="221" y="84" key="IDE.errors.dialog" timestamp="1611676805015">
       <screen x="0" y="0" width="1280" height="680" />

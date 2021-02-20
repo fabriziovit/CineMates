@@ -8,6 +8,7 @@
     tools:context=".ui.CineMates.activity.SchedaFilmActivity"
     android:background="@color/colorBack">
 
+
     <ImageView
         android:id="@+id/backButton_schedaFilm"
         android:layout_width="55dp"
