@@ -3,7 +3,6 @@ package com.example.cinemates.ui.CineMates.ApiMovie.Contract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface MovieListContract {
 
@@ -18,7 +17,6 @@ public interface MovieListContract {
     interface View {
         void showProgress();
         void hideProgress();
-        void setDataToRecyclerView(List<ItemFilm> movieArrayList);
         void onResponseFailure(Throwable throwable);
     }
 

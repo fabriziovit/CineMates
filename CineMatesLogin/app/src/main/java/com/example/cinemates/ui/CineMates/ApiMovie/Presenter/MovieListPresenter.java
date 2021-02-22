@@ -55,7 +55,6 @@ public class MovieListPresenter implements MovieListContract.Model.OnFinishedLis
 
     @Override
     public void onFinished(ArrayList<ItemFilm> movies) {
-        movieListView.setDataToRecyclerView(movies);
         if (movieListView != null) {
             movieListView.hideProgress();
         }

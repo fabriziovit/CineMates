@@ -14,15 +14,14 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityHomeBinding;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
+import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieListPresenter;
 import com.example.cinemates.ui.CineMates.Fragment.FriendsFragment;
 import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.Fragment.SearchFragment;
-import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
-import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieListPresenter;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
-import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -44,10 +43,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private FirebaseFirestore db;
-    //private PopularFilms popularFilms;
-    //private UpComingFilms upComingFilms;
-    //private NowPlayingFilms nowPlayingFilms;
-    private boolean pop = false;
     private Handler handler;
     private int userNumber;
     private FirebaseAuth auth;
@@ -104,17 +99,14 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    fragment = new HomeFragment();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_home_container, fragment)
+                            .commit();
                     loadingDialog.dismissDialog();
                 }
             }, 3000);
-            new Thread(()-> {
-                while(!pop){}
-                fragment = new HomeFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_home_container, fragment)
-                        .commit();
-            }).start();
         }
         bottomNav.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
@@ -130,18 +122,14 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                fragment = new HomeFragment();
+                                fragmentManager = getSupportFragmentManager();
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.fragment_home_container, fragment)
+                                        .commit();
                                 loadingDialog.dismissDialog();
                             }
                         }, 3000);
-
-                        new Thread(()-> {
-                            while (!pop){}
-                            fragment = new HomeFragment();
-                            fragmentManager = getSupportFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_home_container, fragment)
-                                    .commit();
-                        }).start();
                         break;
                     case R.id.search:
                         fragment = new SearchFragment();
@@ -287,11 +275,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
     @Override
     public void hideProgress() {
         binding.progressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void setDataToRecyclerView(List<ItemFilm> movieArrayList) {
-        pop = true;
     }
 
     @Override
