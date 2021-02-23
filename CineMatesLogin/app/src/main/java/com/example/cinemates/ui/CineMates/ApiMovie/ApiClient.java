@@ -16,6 +16,7 @@ public class ApiClient {
      *
      * @return Retrofit object
      */
+
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
