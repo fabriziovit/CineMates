@@ -23,7 +23,7 @@ public class MovieDetailsModel implements MovieDetailsContract.Model {
 
     private final String TAG = "MovieDetailsModel";
     private CreditsMovie creditsMovie;
-    String regista = "";
+    private String regista = "";
 
     @Override
     public void getMovieDetails(OnFinishedListener onFinishedListener, int movieId) {

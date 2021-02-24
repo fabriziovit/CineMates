@@ -31,7 +31,7 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private String currUser;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
 
     public PreferitiFragment() {
