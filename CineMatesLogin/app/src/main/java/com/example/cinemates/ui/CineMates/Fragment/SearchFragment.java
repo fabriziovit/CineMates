@@ -103,6 +103,7 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
                     recyclerView.setLayoutManager(gridLayoutManager);
                     recyclerView.setAdapter(recycleViewAdapter_film_searchFilm);
                 } else
+                    hideProgress();
                     Toast.makeText(getContext(), "Nessun parametro di ricerca!", Toast.LENGTH_SHORT).show();
             }
         });

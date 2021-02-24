@@ -18,7 +18,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.API_KEY;
 import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.LANGUAGE;
 
 public class PopularMovieListModel implements MovieListContract.Model{
 
@@ -27,7 +29,7 @@ public class PopularMovieListModel implements MovieListContract.Model{
     @Override
     public void getMovieList(final MovieListContract.Model.OnFinishedListener onFinishedListener) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<PopularFilms> call = apiService.getPopularMovies(ApiClient.API_KEY);
+        Call<PopularFilms> call = apiService.getPopularMovies(API_KEY, LANGUAGE);
         call.enqueue(new Callback<PopularFilms>() {
             @Override
             public void onResponse(Call<PopularFilms> call, Response<PopularFilms> response) {

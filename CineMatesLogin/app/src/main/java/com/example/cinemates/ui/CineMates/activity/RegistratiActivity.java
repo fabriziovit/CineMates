@@ -26,6 +26,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import static com.example.cinemates.ui.CineMates.util.Constants.DEFAULT_PROFILE_PIC;
+
 
 public class RegistratiActivity extends AppCompatActivity {
     private ActivityRegistratiBinding binding;
@@ -156,7 +158,7 @@ public class RegistratiActivity extends AppCompatActivity {
         userHelperClass.setEmail(email);
         userHelperClass.setUid(uId);
         userHelperClass.setUsername(username);
-        userHelperClass.setImageUrl("https://image.flaticon.com/icons/png/128/1077/1077114.png");
+        userHelperClass.setImageUrl(DEFAULT_PROFILE_PIC);
 
         Friends friends = new Friends();
 

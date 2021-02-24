@@ -16,6 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.API_KEY;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.LANGUAGE;
 import static com.example.cinemates.ui.CineMates.util.Constants.CREDITS;
 
 public class MovieDetailsModel implements MovieDetailsContract.Model {
@@ -29,7 +30,7 @@ public class MovieDetailsModel implements MovieDetailsContract.Model {
         ApiInterface apiInterface =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<CreditsMovie> creditsMovieCall = apiInterface.getCreditsMovie(movieId, API_KEY);
+        Call<CreditsMovie> creditsMovieCall = apiInterface.getCreditsMovie(movieId, API_KEY, LANGUAGE);
         creditsMovieCall.enqueue(new Callback<CreditsMovie>() {
             @Override
             public void onResponse(Call<CreditsMovie> call, Response<CreditsMovie> response) {
@@ -55,7 +56,7 @@ public class MovieDetailsModel implements MovieDetailsContract.Model {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, CREDITS);
+        Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, LANGUAGE, CREDITS);
         call.enqueue(new Callback<DetailedMovie>() {
             @Override
             public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
@@ -77,7 +78,7 @@ public class MovieDetailsModel implements MovieDetailsContract.Model {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
 
-            Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, CREDITS);
+            Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, LANGUAGE, CREDITS);
             call.enqueue(new Callback<DetailedMovie>() {
                 @Override
                 public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {
@@ -96,7 +97,7 @@ public class MovieDetailsModel implements MovieDetailsContract.Model {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
 
-            Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, CREDITS);
+            Call<DetailedMovie> call = apiService.getMovieDetails(movieId, API_KEY, LANGUAGE, CREDITS);
             call.enqueue(new Callback<DetailedMovie>() {
                 @Override
                 public void onResponse(Call<DetailedMovie> call, Response<DetailedMovie> response) {

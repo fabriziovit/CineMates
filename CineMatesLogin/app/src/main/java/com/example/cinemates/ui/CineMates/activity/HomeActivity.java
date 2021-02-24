@@ -89,7 +89,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
             }
         });
 
-
         bottomNav =  binding.navHomeMenu;
 
         if(savedInstanceState == null){

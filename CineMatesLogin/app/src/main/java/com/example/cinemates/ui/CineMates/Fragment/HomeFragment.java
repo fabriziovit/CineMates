@@ -30,12 +30,6 @@ public class HomeFragment extends Fragment{
         // Required empty public constructor
     }
 
-    /*public HomeFragment(ArrayList<ItemFilm> filmsPopular, ArrayList<ItemFilm> filmsUpcoming, ArrayList<ItemFilm> filmsNowplaying){
-        this.filmsPopular = filmsPopular;
-        this.filmsNowplaying = filmsNowplaying;
-        this.filmsUpcoming = filmsUpcoming;
-    }*/
-
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();

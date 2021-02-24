@@ -1,11 +1,10 @@
 package com.example.cinemates.ui.CineMates.ApiMovie.ApiModel;
 
-import com.example.cinemates.ui.CineMates.ApiMovie.ApiClient;
 import com.example.cinemates.ui.CineMates.ApiMovie.ApiInterface;
+import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieResearchContract;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
 import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieResearchContract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;
@@ -14,7 +13,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.API_KEY;
 import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.LANGUAGE;
+import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.getClient;
 import static com.example.cinemates.ui.CineMates.util.Constants.DEFAULT_MOVIE;
 
 public class SearchMovieModel implements MovieResearchContract.Model {
@@ -22,8 +24,8 @@ public class SearchMovieModel implements MovieResearchContract.Model {
 
     @Override
     public void getMovieList(MovieResearchContract.Model.OnFinishedListener onFinihedListener, String query) {
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<MovieResearch> call = apiService.getMovieFromQuery(ApiClient.API_KEY, query);
+        ApiInterface apiService = getClient().create(ApiInterface.class);
+        Call<MovieResearch> call = apiService.getMovieFromQuery(API_KEY, query, LANGUAGE);
         call.enqueue(new Callback<MovieResearch>() {
             @Override
             public void onResponse(Call<MovieResearch> call, Response<MovieResearch> response) {

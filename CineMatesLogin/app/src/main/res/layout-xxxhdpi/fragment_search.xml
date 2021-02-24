@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.SearchFragment" >
+    tools:context=".ui.CineMates.Fragment.SearchFragment"
+    android:soundEffectsEnabled="false">
 
     <TextView
         android:id="@+id/scrittaLogo_fragment_search"
