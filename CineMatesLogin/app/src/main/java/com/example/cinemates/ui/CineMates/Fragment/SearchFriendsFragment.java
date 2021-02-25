@@ -102,8 +102,10 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
     public void OnClick(int position) {
         if(searchList.get(position).getRapporto() == 1){
             Toast.makeText(getActivity(), "Richiesta già inviata!", Toast.LENGTH_SHORT).show();
-        }else if(searchList.get(position).getRapporto() == 2){
+        }else if(searchList.get(position).getRapporto() == 2) {
             Toast.makeText(getActivity(), "Siete già amici!", Toast.LENGTH_SHORT).show();
+        }else if(searchList.get(position).getRapporto() == 3){
+            Toast.makeText(getActivity(), "Richiesta già presente, vai ad accettarla!", Toast.LENGTH_SHORT).show();
         }else{
             String uIdDestinatario = searchList.get(position).getUid();
             String uIdMittente = mAuth.getCurrentUser().getUid();

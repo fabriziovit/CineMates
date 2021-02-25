@@ -87,6 +87,7 @@ public class FriendsFragment extends Fragment{
             public void onClick(View view) {
                 indicatoreNotifica.setVisibility(View.INVISIBLE);
                 final NotificheDialog notificheDialog = new NotificheDialog(getActivity(), friendList, userList, adapter);
+                notificheDialog.setCancelable(false);
                 showDialog(notificheDialog);
             }
         });

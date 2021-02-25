@@ -89,7 +89,6 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
                                         richiesteList.add(new ItemRichieste(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"))));
-                                        //Mostrare pallino notifica nella schermata friends fragment
                                     }
                                 }
                             }
@@ -115,6 +114,7 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
 
     @Override
     public void onClickAccetta(int position) {
+
         new Thread(()-> {
             CollectionReference collectionReference = db.collection("users");
             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -156,7 +156,6 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                     for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                         if (richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))) {
                             String uIdMittente = queryDocumentSnapshot.getString("uid");
-                            ;
                             db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
                             Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
                             richiesteList.remove(position);

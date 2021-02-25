@@ -102,9 +102,10 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
                     recyclerView.setLayoutManager(gridLayoutManager);
                     recyclerView.setAdapter(recycleViewAdapter_film_searchFilm);
-                } else
+                } else {
                     hideProgress();
                     Toast.makeText(getContext(), "Nessun parametro di ricerca!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -135,6 +136,8 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
     public void setDataToRecyclerView(List<ItemFilm> movieArrayList) {
         searchedMovie.addAll(movieArrayList);
         update();
+        if(movieArrayList.size() == 0)
+            Toast.makeText(getContext(), "Nessun film con questo titolo!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

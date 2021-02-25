@@ -52,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
     private ItemUser itemUser;
     private boolean notifiche = false;
     private MovieListPresenter movieListPresenter;
+    public static  List<String> userRichieste;
     final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
     @Override
@@ -66,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currUser = auth.getCurrentUser().getUid();
-
+        userRichieste = new ArrayList<>();
 
         CollectionReference collectionReference = db.collection("users");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -81,6 +82,7 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     notifiche = true;
+                                    userRichieste.add(documentSnapshot.getString("username"));
                                 }
                             }
                         }
@@ -173,9 +175,23 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                if (userList.size() == userNumber - 1) {
+                                    for (int i = 0; i < userList.size(); i++) {
+                                        for (int j = 0; j < friendList.size(); j++) {
+                                            if (friendList.get(j).getUsername() == userList.get(i).getUsername()) {
+                                                userList.get(i).setRapporto(2);
+                                            }
+                                        }
+                                    }
+                                }
+                                fragment = new FriendsFragment(userList, friendList, notifiche);
+                                fragmentManager = getSupportFragmentManager();
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.fragment_home_container, fragment)
+                                        .commit();
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2500);
+                        }, 2750);
 
                         new Thread(()->{
                             CollectionReference collectionReference1 = db.collection("users");
@@ -224,10 +240,20 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                                                             DocumentSnapshot document = task.getResult();
                                                             if (document.exists()) {
                                                                 rapporto = 1;
+                                                                for(String string: userRichieste){
+                                                                    if(documentSnapshot.getString("username").equals(string)){
+                                                                        rapporto = 3;
+                                                                    }
+                                                                }
                                                                 itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"), rapporto);
                                                                 userList.add(itemUser);
                                                             } else {
                                                                 rapporto = 0;
+                                                                for(String string: userRichieste) {
+                                                                    if (documentSnapshot.getString("username").equals(string)) {
+                                                                        rapporto = 3;
+                                                                    }
+                                                                }
                                                                 itemUser = new ItemUser(documentSnapshot.getString("username"), ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"), rapporto);
                                                                 userList.add(itemUser);
                                                             }
@@ -239,20 +265,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                                     }
                                 }
                             });
-                            while (userList.size() != userNumber - 1) { }
-                            for(int i=0;i<userList.size(); i++){
-                                for(int j=0; j<friendList.size();j++) {
-                                    if (friendList.get(j).getUsername() == userList.get(i).getUsername()){
-                                        userList.get(i).setRapporto(2);
-                                    }
-                                }
-                            }
-                            while (userList.size() != userNumber - 1) { }
-                            fragment = new FriendsFragment(userList, friendList, notifiche);
-                            fragmentManager = getSupportFragmentManager();
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_home_container, fragment)
-                                    .commit();
                         }).start();
                         break;
                 }

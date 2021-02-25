@@ -52,7 +52,10 @@ public class RecycleViewAdapter_Utenti extends RecyclerView.Adapter<RecycleViewA
         }else if(userList.get(position).getRapporto() == 1) {
             holder.textView.setText("Richiesta inviata");
             holder.imageView.setImageResource(R.drawable.ic_attendere);
-        } else {
+        }else if(userList.get(position).getRapporto() == 3) {
+            holder.textView.setText("Richiesta già presente");
+            holder.imageView.setImageResource(R.drawable.ic_richiesta_ricevuta);
+        }else {
             holder.textView.setText("Amico");
             holder.imageView.setImageResource(R.drawable.ic_checked);
         }
