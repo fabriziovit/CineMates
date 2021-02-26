@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
         PassDimenticata(binding);
         Keyboard(binding);
         googleButton(binding);
-        //loginButtonByKeyboard(binding);
 
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -132,22 +131,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*private void loginButtonByKeyboard(ActivityLoginBinding binding){
-        binding.passwordLoginTextField.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    if (binding.emailLoginTextField.getText().length() != 0 && binding.passwordLoginTextField.getText().length() != 0)
-                        Accedi(binding);
-                    else
-                        Toast.makeText(LoginActivity.this, "Inserisci email e password per accedere", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
-            }
-        });
-    }*/
 
     private void googleButton(ActivityLoginBinding binding){
         binding.googleLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -331,7 +314,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void Accedi(ActivityLoginBinding binding){
+    public void Accedi(ActivityLoginBinding binding){
         auth.signInWithEmailAndPassword(binding.emailLoginTextField.getText().toString(), binding.passwordLoginTextField.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

@@ -32,21 +32,13 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/FriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/FriendsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/Fragment/SearchFriendsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/activity/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/adapter/RecycleViewAdapter_Utenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/adapter/RecycleViewAdapter_Utenti.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/fragment_da_vedere.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/fragment_da_vedere.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/fragment_preferiti.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/fragment_preferiti.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-xxxhdpi/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_recensione.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_recensione.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/ExampleUnitTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +48,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3a_API_30]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,6 +64,8 @@
         <option value="UML Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
+        <option value="JUnit4 &amp; Mockito" />
       </list>
     </option>
   </component>
@@ -93,7 +87,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android-custom-viewC:/Users/gianl/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/chip/Chip.java_SELECTED" value="Chip" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/example/cinemates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi" />
     <property name="multi-representation-previewC:/Users/gianl/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/chip/Chip.java_selected" value="Custom views" />
     <property name="project.structure.last.edited" value="Suggestions" />
@@ -107,6 +103,13 @@
   <component name="RecentsManager">
     <key name="android.template.1642174434">
       <recent name="com.example.cinemates.ui.CineMates" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.cinemates" />
+      <recent name="com.example.cinemates.ui.CineMates.activity" />
     </key>
     <key name="android.template.1025547182">
       <recent name="com.example.cinemates.ui.CineMates" />
@@ -139,7 +142,23 @@
       <recent name="com.example.cinemates.ui.CineMates.friends" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="LoginActivityTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CineMatesLogin.app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cinemates.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.cinemates" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cinemates.LoginActivityTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -204,6 +223,11 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.LoginActivityTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -260,10 +284,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1609604958091" />
-    <state x="237" y="133" key="#PSD" timestamp="1611152985983">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="158" y="87" key="#PSD" timestamp="1614354624170">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="158" y="87" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1610276850298" />
+    <state x="158" y="87" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1614354624170" />
     <state x="237" y="133" key="#PSD/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611152985983" />
     <state x="371" y="96" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1613754541869">
       <screen x="0" y="0" width="1280" height="680" />
@@ -278,6 +302,10 @@
     </state>
     <state x="510" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1613755536283" />
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613764431090" />
+    <state x="371" y="117" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1614353418022">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="117" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1614353418022" />
     <state x="832" y="437" key="#com.intellij.refactoring.introduceParameter.EnclosingMethodSelectonDialog" timestamp="1609077181212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -320,10 +348,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="438" y="87" key="AndroidProcessChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1609767375678" />
-    <state x="493" y="164" key="FileChooserDialogImpl" timestamp="1613402800783">
+    <state x="493" y="164" key="FileChooserDialogImpl" timestamp="1614357942710">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1613402800783" />
+    <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1614357942710" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
     <state width="1876" height="276" key="GridCell.Tab.0.bottom" timestamp="1614278118444">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -349,19 +377,23 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="221" y="84" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1611676805015" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1613403354808">
+    <state x="142" y="0" key="SettingsEditor" timestamp="1614357947603">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1613403354808" />
-    <state x="517" y="195" key="chooseDestDirectoryDialog" timestamp="1611674204615">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1614357947603" />
+    <state x="517" y="195" key="chooseDestDirectoryDialog" timestamp="1614358027287">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="517" y="195" key="chooseDestDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1611674204615" />
+    <state x="517" y="195" key="chooseDestDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1614358027287" />
     <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1608744728418" />
     <state x="609" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610724350085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1610724350085" />
+    <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1614354701230">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354701230" />
     <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1614208805226">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
