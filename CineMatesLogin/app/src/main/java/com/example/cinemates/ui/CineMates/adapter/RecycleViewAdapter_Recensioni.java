@@ -5,6 +5,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,8 @@ public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleV
         String voto = String.valueOf(recensioniList.get(position).getVoto());
         holder.voto.setText(voto);
         holder.recensione.setText(recensioniList.get(position).getRecensione());
+        if(recensioniList.get(position).isProprietario())
+            holder.eliminaRecensione.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -60,6 +63,7 @@ public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleV
         private CircleImageView circleImageView;
         private TextView recensione;
         private TextView voto;
+        private ImageView eliminaRecensione;
         RecycleViewAdapter_Recensioni.OnClickListener onClickListener;
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Recensioni.OnClickListener onClickListener) {
@@ -69,12 +73,11 @@ public class RecycleViewAdapter_Recensioni extends RecyclerView.Adapter<RecycleV
             circleImageView = itemView.findViewById(R.id.avatarRecensione_item_imageView);
             voto = itemView.findViewById(R.id.votoRecensione_item_textView);
             recensione = itemView.findViewById(R.id.recensioneFilm_item_textView);
+            eliminaRecensione = itemView.findViewById(R.id.eliminaRecensione_RecensioniFragment);
             recensione.setMovementMethod(new ScrollingMovementMethod());
             this.onClickListener = onClickListener;
 
-            username.setOnClickListener(this);
-            circleImageView.setOnClickListener(this);
-
+            eliminaRecensione.setOnClickListener(this);
         }
 
         @Override

@@ -9,6 +9,7 @@ public class ItemRecensione {
     private int voto;
     private Bitmap bitmap;
     private String uid;
+    private boolean proprietario;
 
     public ItemRecensione(String username, String recensione, int voto, Bitmap bitmap, String uid) {
         this.username = username;
@@ -56,5 +57,13 @@ public class ItemRecensione {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public boolean isProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(boolean proprietario) {
+        this.proprietario = proprietario;
     }
 }

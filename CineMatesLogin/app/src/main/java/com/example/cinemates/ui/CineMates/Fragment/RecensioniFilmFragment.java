@@ -1,5 +1,7 @@
 package com.example.cinemates.ui.CineMates.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -98,12 +100,16 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
-                                        if (currUser.equals(documentSnapshot.getString("uid")))
-                                            presente = true;
                                         Bitmap profilePic = ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl"));
                                         String username = documentSnapshot.getString("username");
                                         int voto = document.getLong("star").intValue();
-                                        recensioniList.add(new ItemRecensione(username, document.getString("review"), voto, profilePic, documentSnapshot.getId()));
+                                        ItemRecensione recensione = new ItemRecensione(username, document.getString("review"), voto, profilePic, documentSnapshot.getId());
+                                        if (currUser.equals(documentSnapshot.getString("uid"))) {
+                                            recensione.setProprietario(true);
+                                            presente = true;
+                                            recensioniList.add(0, recensione);
+                                        }else
+                                            recensioniList.add(recensione);
                                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(getActivity(), recensioniList, RecensioniFilmFragment.this);
                                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                         recyclerView.setAdapter(recycleViewAdapterRecensioni);
@@ -183,7 +189,9 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if(task.isSuccessful()){
                         DocumentSnapshot documentSnapshot = task.getResult();
-                        recensioniList.add(new ItemRecensione(documentSnapshot.getString("username"), s, i, ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid")));
+                        ItemRecensione recensione = new ItemRecensione(documentSnapshot.getString("username"), s, i, ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"));
+                        recensione.setProprietario(true);
+                        recensioniList.add(0, recensione);
                         presente = true;
                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(getActivity(), recensioniList, RecensioniFilmFragment.this);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -201,5 +209,29 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
 
     @Override
     public void OnClick(int position) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage("Vuoi davvero rimuovere la recensione al film "+ InfoFilmFragment.movieName +"?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int a) {
+                        db.collection("reviews").document(String.valueOf(id)).collection(String.valueOf(id)).document(currUser).delete();
+                        recensioniList.remove(position);
+                        presente = false;
+                        update();
+                    }
+                });
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int a) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
+
 }
