@@ -3,13 +3,16 @@ package com.example.cinemates.ui.CineMates.Fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -73,6 +76,7 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
 
         searchFilm();
         Keyboard();
+        searchByKeyboard();
         return view;
     }
 
@@ -106,6 +110,32 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
                     hideProgress();
                     Toast.makeText(getContext(), "Nessun parametro di ricerca!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void searchByKeyboard(){
+        searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    showProgress();
+                    if (searchField.getText().length() != 0) {
+                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+                        searchField.clearFocus();
+                        searchedMovie = new ArrayList<>();
+                        movieResearchPresenter.requestDataFromServer(searchField.getText().toString());
+                        RecycleViewAdapter_Film_SearchFilm recycleViewAdapter_film_searchFilm = new RecycleViewAdapter_Film_SearchFilm(getContext(), searchedMovie, SearchFragment.this);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+                        recyclerView.setLayoutManager(gridLayoutManager);
+                        recyclerView.setAdapter(recycleViewAdapter_film_searchFilm);
+                    } else {
+                        hideProgress();
+                        Toast.makeText(getContext(), "Nessun parametro di ricerca!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
             }
         });
     }

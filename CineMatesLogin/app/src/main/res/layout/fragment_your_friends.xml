@@ -9,48 +9,50 @@
     tools:context=".ui.CineMates.Fragment.YourFriendsFragment"
     android:soundEffectsEnabled="false">
 
-        <EditText
-            android:id="@+id/searchBar_fragment_YourFriends"
-            android:layout_width="283dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="29dp"
-            android:background="@drawable/search_layout"
-            android:ems="10"
-            android:fontFamily="@font/martel_sans_bold"
-            android:hint="cerca amici"
-            android:inputType="textPersonName"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="5dp"
-            android:textColorHint="@color/colorPrimary"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@+id/searchButton_fragment_YourFriends"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/searchBar_fragment_YourFriends"
+        android:layout_width="283dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="29dp"
+        android:background="@drawable/search_layout"
+        android:ems="10"
+        android:fontFamily="@font/martel_sans_bold"
+        android:hint="cerca amici"
+        android:inputType="textPersonName"
+        android:imeActionLabel="@android:string/search_go"
+        android:imeOptions="actionSearch"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton_fragment_YourFriends"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/searchButton_fragment_YourFriends"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="25dp"
-            android:src="@mipmap/ic_searchbar_foreground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/searchButton_fragment_YourFriends"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:src="@mipmap/ic_searchbar_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleView_fragment_YourFriends"
-            android:layout_width="match_parent"
-            android:layout_height="358dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="3dp"
-            android:nestedScrollingEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchBar_fragment_YourFriends">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView_fragment_YourFriends"
+        android:layout_width="match_parent"
+        android:layout_height="358dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="3dp"
+        android:nestedScrollingEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar_fragment_YourFriends">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+</androidx.constraintlayout.widget.ConstraintLayout>

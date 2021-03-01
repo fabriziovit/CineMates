@@ -64,6 +64,7 @@
         android:ems="10"
         android:hint="Conferma la password"
         android:inputType="textPassword"
+
         android:textColorHint="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/errorePassword_credenziali_TextView"
         app:layout_constraintEnd_toEndOf="parent"

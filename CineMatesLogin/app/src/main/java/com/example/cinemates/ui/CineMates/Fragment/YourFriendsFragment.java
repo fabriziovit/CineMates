@@ -5,12 +5,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -87,7 +90,8 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
 
         Keyboard();
-        cercaAmici();
+        cercaAmiciButton();
+        cercaAmiciByKeyboard();
         return view;
     }
 
@@ -148,43 +152,59 @@ public class YourFriendsFragment extends Fragment implements RecycleViewAdapter_
         db.collection("friends").document(uidUserAuth).collection(uIdDestinatario).document(uIdDestinatario).delete();
     }
 
-    public void cercaAmici(){
+    public void cercaAmiciButton(){
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchList = new ArrayList<>();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
-                searchBar.clearFocus();
-                String ricerca = searchBar.getText().toString().toLowerCase();
-                if(ricerca.length() != 0) {
-                    for (int i = 0; i < friendList.size(); i++) {
-                        String username = friendList.get(i).getUsername().toLowerCase();
-                        if (username.contains(ricerca)) {
-                            ItemFriend newFriend = new ItemFriend(friendList.get(i).getUsername(), friendList.get(i).getBitmap(), friendList.get(i).getUid());
-                            searchList.add(newFriend);
-                        }
-                    }
-                    if(searchList.size() != 0) {
-                        RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
-                        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
-                        update();
-                    }else{
-                        RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
-                        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
-                        update();
-                        Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    searchList = friendList;
-                    RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
-                    recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
-                    update();
-                    Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+                cercaAmici();
+            }
+        });
+    }
+
+    private void cercaAmici(){
+        searchList = new ArrayList<>();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+        searchBar.clearFocus();
+        String ricerca = searchBar.getText().toString().toLowerCase();
+        if(ricerca.length() != 0) {
+            for (int i = 0; i < friendList.size(); i++) {
+                String username = friendList.get(i).getUsername().toLowerCase();
+                if (username.contains(ricerca)) {
+                    ItemFriend newFriend = new ItemFriend(friendList.get(i).getUsername(), friendList.get(i).getBitmap(), friendList.get(i).getUid());
+                    searchList.add(newFriend);
                 }
+            }
+            if(searchList.size() != 0) {
+                RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
+                recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                update();
+            }else{
+                RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
+                recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                update();
+                Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            searchList = friendList;
+            RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(getContext(), searchList, YourFriendsFragment.this);
+            recyclerView_Amici.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+            update();
+            Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void cercaAmiciByKeyboard(){
+        searchBar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    cercaAmici();
+                }
+                return false;
             }
         });
     }

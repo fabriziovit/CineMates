@@ -2,12 +2,15 @@ package com.example.cinemates.ui.CineMates.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -83,7 +86,8 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         recyclerView_Utenti.setAdapter(recycleViewAdapter);
 
         Keyboard();
-        cercaUtenti();
+        cercaUtentiButton();
+        cercaUtentiByKeyboard();
         return view;
     }
 
@@ -133,45 +137,61 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         }
     }
 
-    public void cercaUtenti(){
+    public void cercaUtentiButton(){
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
-                searchBar.clearFocus();
-                searchList = new ArrayList<>();
-                String ricerca = searchBar.getText().toString().toLowerCase();
-                if(ricerca.length() != 0) {
-                    for (int i = 0; i < userList.size(); i++) {
-                        String username = userList.get(i).getUsername().toLowerCase();
-                        if (username.contains(ricerca)) {
-                            ItemUser userSearch = new ItemUser(userList.get(i).getUsername(), userList.get(i).getBitmap(), userList.get(i).getUid(), userList.get(i).getRapporto());
-                            searchList.add(userSearch);
-                        }
-                    }
-                    if(searchList.size() != 0) {
-                        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
-                        recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        recyclerView_Utenti.setAdapter(recycleViewAdapter);
-                        update();
-                    }else{
-                        RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
-                        recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        recyclerView_Utenti.setAdapter(recycleViewAdapter);
-                        update();
-                        Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    searchList = userList;
-                    RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
-                    recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    recyclerView_Utenti.setAdapter(recycleViewAdapter);
-                    update();
-                    Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
-                }
+                cercaUtenti();
             }
         });
+    }
+
+    private void cercaUtentiByKeyboard(){
+        searchBar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    cercaUtenti();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void cercaUtenti(){
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(constraintLayout.getWindowToken(), 0);
+        searchBar.clearFocus();
+        searchList = new ArrayList<>();
+        String ricerca = searchBar.getText().toString().toLowerCase();
+        if(ricerca.length() != 0) {
+            for (int i = 0; i < userList.size(); i++) {
+                String username = userList.get(i).getUsername().toLowerCase();
+                if (username.contains(ricerca)) {
+                    ItemUser userSearch = new ItemUser(userList.get(i).getUsername(), userList.get(i).getBitmap(), userList.get(i).getUid(), userList.get(i).getRapporto());
+                    searchList.add(userSearch);
+                }
+            }
+            if(searchList.size() != 0) {
+                RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
+                recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView_Utenti.setAdapter(recycleViewAdapter);
+                update();
+            }else{
+                RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
+                recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView_Utenti.setAdapter(recycleViewAdapter);
+                update();
+                Toast.makeText(getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            searchList = userList;
+            RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, SearchFriendsFragment.this);
+            recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView_Utenti.setAdapter(recycleViewAdapter);
+            update();
+            Toast.makeText(getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

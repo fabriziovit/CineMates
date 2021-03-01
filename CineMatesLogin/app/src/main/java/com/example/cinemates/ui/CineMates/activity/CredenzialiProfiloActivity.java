@@ -44,7 +44,6 @@ public class CredenzialiProfiloActivity extends AppCompatActivity {
     }
 
     private void resetButton(ActivityCredenzialiProfiloBinding binding) {
-
         binding.resetCredenzialiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,11 +80,8 @@ public class CredenzialiProfiloActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    if (binding.confermaPassCredenzialiEditText.getText().toString().equals(binding.passwordCredenzialiEditText.getText().toString()))
-                        ;
-                    else {
+                    if (!binding.confermaPassCredenzialiEditText.getText().toString().equals(binding.passwordCredenzialiEditText.getText().toString()))
                         binding.errorePasswordCredenzialiTextView.setVisibility(View.VISIBLE);
-                    }
                 } else {
                     binding.errorePasswordCredenzialiTextView.setVisibility(View.INVISIBLE);
                 }
@@ -183,5 +179,4 @@ public class CredenzialiProfiloActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 }

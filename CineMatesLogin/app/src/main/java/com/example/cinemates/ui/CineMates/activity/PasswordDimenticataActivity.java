@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,8 +33,8 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         BackButton(binding);
         RegistratiButton(binding);
         KeyboardPassDimenticata(binding);
-        ResetPassword(binding);
-
+        ResetPasswordButton(binding);
+        keyListnerRecuperoPassword(binding);
     }
 
     private void BackButton(ActivityPasswordDimenticataBinding binding){
@@ -48,25 +51,43 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void ResetPassword(ActivityPasswordDimenticataBinding binding){
+    private void ResetPasswordButton(ActivityPasswordDimenticataBinding binding){
         binding.recuperaRecuperaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                String emailAddress = binding.emailRecuperaTextField.getText().toString();
+                resetPassword(binding);
+            }
+        });
+    }
 
-                auth.sendPasswordResetEmail(emailAddress)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("Success", "Email sent.");
-                                    startActivity(new Intent(PasswordDimenticataActivity.this, LoginActivity.class));
-                                    Toast.makeText(PasswordDimenticataActivity.this, "Email inviata! Controlla la tua email", Toast.LENGTH_SHORT).show();
-                                }else
-                                    Toast.makeText(PasswordDimenticataActivity.this, "Controlla i dati inseriti", Toast.LENGTH_LONG).show();
-                            }
-                        });
+    private void resetPassword(ActivityPasswordDimenticataBinding binding){
+        if (binding.emailRecuperaTextField.length() != 0) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            String emailAddress = binding.emailRecuperaTextField.getText().toString();
+
+            auth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Success", "Email sent.");
+                                startActivity(new Intent(PasswordDimenticataActivity.this, LoginActivity.class));
+                                Toast.makeText(PasswordDimenticataActivity.this, "Email inviata! Controlla la tua email", Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(PasswordDimenticataActivity.this, "Controlla i dati inseriti", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } else
+            Toast.makeText(PasswordDimenticataActivity.this, "Inserisci una mail", Toast.LENGTH_LONG).show();
+    }
+
+    private void keyListnerRecuperoPassword(ActivityPasswordDimenticataBinding binding){
+        binding.emailRecuperaTextField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    resetPassword(binding);
+                }
+                return false;
             }
         });
     }

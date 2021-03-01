@@ -64,6 +64,7 @@ public class FriendsFragment extends Fragment{
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
         viewPager = view.findViewById(R.id.viewPager_fragment_friends);
         adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+
         if(notifiche)
             indicatoreNotifica.setVisibility(View.VISIBLE);
         else
@@ -74,6 +75,8 @@ public class FriendsFragment extends Fragment{
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
         TabLayout();
         ApriNotifiche();
         update();

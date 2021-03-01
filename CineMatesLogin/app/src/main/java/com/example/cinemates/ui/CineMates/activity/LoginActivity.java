@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -69,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         PassDimenticata(binding);
         Keyboard(binding);
         googleButton(binding);
+        keyListenerLogin(binding);
 
         binding.googleLoginButton.setSize(SignInButton.SIZE_STANDARD);
         binding.passwordDimLoginTextView.setPaintFlags(binding.passwordDimLoginTextView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -128,6 +132,23 @@ public class LoginActivity extends AppCompatActivity {
                     Accedi(binding);
                 else
                     Toast.makeText(LoginActivity.this, "Inserisci email e password per accedere", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void keyListenerLogin(ActivityLoginBinding binding){
+        binding.passwordLoginTextField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    binding.container.clearFocus();
+                    if (binding.emailLoginTextField.getText().length() != 0 && binding.passwordLoginTextField.getText().length() != 0) {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(binding.container.getWindowToken(), 0);
+                        Accedi(binding);
+                    } else
+                        Toast.makeText(LoginActivity.this, "Inserisci email e password per accedere", Toast.LENGTH_SHORT).show();
+                }
+                return false;
             }
         });
     }
