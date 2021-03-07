@@ -52,8 +52,6 @@ public class RecycleViewAdapter_Film_ListaPreferiti_Amico extends RecyclerView.A
 
         private TextView titolo;
         private ImageView filmPic;
-        private ImageView rimuoviDaLista;
-        private TextView rimuoviText;
         RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener onClickListener;
 
         public MyViewHolder(View itemView, RecycleViewAdapter_Film_ListaPreferiti_Amico.OnClickListener onClickListener){

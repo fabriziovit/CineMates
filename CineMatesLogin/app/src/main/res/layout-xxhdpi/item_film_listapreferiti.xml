@@ -45,7 +45,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/profile_pic" />
+        app:srcCompat="@mipmap/movie_default" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

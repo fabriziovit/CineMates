@@ -36,10 +36,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
     private List<ItemFilm> preferitiList;
     private String username;
     private FirebaseFirestore db;
-    //private FirebaseAuth auth;
-    //private String currUser;
     private List<ItemFilm> searchList;
-    private DetailedMovie detailedMovie;
     private MovieDetailsPresenter movieDetailsPresenter;
 
     @Override
@@ -49,8 +46,6 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
         View view = binding.getRoot();
         setContentView(view);
         db = FirebaseFirestore.getInstance();
-        //auth = FirebaseAuth.getInstance();
-        //currUser = auth.getCurrentUser().getUid();
         preferitiList = new ArrayList<>();
         searchList = new ArrayList<>();
         movieDetailsPresenter = new MovieDetailsPresenter(this);
