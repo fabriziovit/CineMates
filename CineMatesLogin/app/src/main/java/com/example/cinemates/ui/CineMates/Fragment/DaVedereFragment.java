@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
     private FirebaseAuth auth;
     private String currUser;
     private RecyclerView recyclerView;
+    private TextView filmVuoti;
 
     public DaVedereFragment() {
         // Required empty public constructor
@@ -63,10 +65,16 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_da_vedere, container, false);
         recyclerView = view.findViewById(R.id.film_davedereFragment_recycleView);
-        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
+        filmVuoti = view.findViewById(R.id.textEdit_listaVuota_daVedere);
+        if(daVederelist.size() == 0){
+            filmVuoti.setVisibility(View.VISIBLE);
+        }else {
+            filmVuoti.setVisibility(View.INVISIBLE);
+            RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, this);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
+        }
 
         return view;
     }
@@ -84,6 +92,10 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
         daVederelist.remove(position);
         update();
         Toast.makeText(getActivity(), "Film eliminato dalla lista!", Toast.LENGTH_SHORT).show();
+        if(daVederelist.size() == 0)
+            filmVuoti.setVisibility(View.VISIBLE);
+        else
+            filmVuoti.setVisibility(View.INVISIBLE);
     }
 
     @Override

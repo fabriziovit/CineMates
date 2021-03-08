@@ -3,8 +3,11 @@ package com.example.cinemates.ui.CineMates.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +41,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
     private FirebaseFirestore db;
     private List<ItemFilm> searchList;
     private MovieDetailsPresenter movieDetailsPresenter;
+    boolean vuoto = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,40 +56,50 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-                username = extras.getString("username");
-                binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("Lista preferiti di "+username);
+            username = extras.getString("username");
+            binding.visualizzaPreferitiTextviewVisualizzaPreferiti.setText("Lista preferiti di "+username);
         }
 
-            new Thread(()-> {
-                CollectionReference collectionReference = db.collection("users");
-                collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            if (username.equals(documentSnapshot.getString("username"))) {
-                                String uid = documentSnapshot.getString("uid");
+        new Thread(()-> {
+            CollectionReference collectionReference = db.collection("users");
+            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        if (username.equals(documentSnapshot.getString("username"))) {
+                            String uid = documentSnapshot.getString("uid");
 
-                                new Thread(() -> {
-                                    CollectionReference collectionReference = db.collection("favorites").document(uid).collection(uid);
-                                    collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            new Thread(() -> {
+                                CollectionReference collectionReference = db.collection("favorites").document(uid).collection(uid);
+                                collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        if (queryDocumentSnapshots.size() == 0) {
+                                            binding.textEditListaVuotaPreferitiAmico.setVisibility(View.VISIBLE);
+                                            binding.searchBarVisualizzaPreferiti.setFocusable(false);
+                                            binding.searchButtonVisualizzaPreferiti.setClickable(false);
+                                        } else{
+                                            binding.searchBarVisualizzaPreferiti.setFocusable(true);
+                                            binding.searchButtonVisualizzaPreferiti.setClickable(true);
+                                            binding.textEditListaVuotaPreferitiAmico.setVisibility(View.INVISIBLE);
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                                 movieDetailsPresenter.requestMovieData(documentSnapshot.getLong("idFilm").intValue());
                                             }
                                         }
-                                    });
-                                }).start();
-                            }
+                                    }
+                                });
+                            }).start();
                         }
                     }
-                });
-            }).start();
+                }
+            });
+        }).start();
 
         Keyboard(binding);
         HomeButton(binding);
         BackButton(binding);
         SearchButton(binding);
+        searchByKeyboard(binding);
     }
 
     private void Keyboard(ActivityVisualizzaPreferitiBinding binding) {
@@ -138,41 +152,57 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
         binding.searchButtonVisualizzaPreferiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchList = new ArrayList<>();
-                InputMethodManager imm = (InputMethodManager) VisualizzaPreferitiActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(binding.containerVisualizzaPreferiti.getWindowToken(), 0);
-                binding.searchBarVisualizzaPreferiti.clearFocus();
-                String ricerca = binding.searchBarVisualizzaPreferiti.getText().toString().toLowerCase();
-                if(ricerca.length() != 0) {
-                    for (int i = 0; i < preferitiList.size(); i++) {
-                        String titolo = preferitiList.get(i).getTitolo().toLowerCase();
-                        if (titolo.contains(ricerca)) {
-                            ItemFilm newFilm = new ItemFilm(preferitiList.get(i).getTitolo(), preferitiList.get(i).getBitmap(), preferitiList.get(i).getId());
-                            searchList.add(newFilm);
-                        }
-                    }
-                    if(searchList.size() != 0) {
-                        RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
-                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
-                        update();
-                    }else{
-                        RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
-                        binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                        binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
-                        update();
-                        Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun film trovato con quel titolo!", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    searchList = preferitiList;
-                    RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
-                    binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
-                    binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
-                    update();
-                    Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
-                }
+                cercaFilm();
             }
         });
+    }
+
+    private void searchByKeyboard(ActivityVisualizzaPreferitiBinding binding){
+        binding.searchBarVisualizzaPreferiti.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    cercaFilm();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void cercaFilm(){
+        searchList = new ArrayList<>();
+        InputMethodManager imm = (InputMethodManager) VisualizzaPreferitiActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(binding.containerVisualizzaPreferiti.getWindowToken(), 0);
+        binding.searchBarVisualizzaPreferiti.clearFocus();
+        String ricerca = binding.searchBarVisualizzaPreferiti.getText().toString().toLowerCase();
+        if(ricerca.length() != 0) {
+            for (int i = 0; i < preferitiList.size(); i++) {
+                String titolo = preferitiList.get(i).getTitolo().toLowerCase();
+                if (titolo.contains(ricerca)) {
+                    ItemFilm newFilm = new ItemFilm(preferitiList.get(i).getTitolo(), preferitiList.get(i).getBitmap(), preferitiList.get(i).getId());
+                    searchList.add(newFilm);
+                }
+            }
+            if(searchList.size() != 0) {
+                RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
+                binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
+                update();
+            }else{
+                RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
+                binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+                binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
+                update();
+                Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun film trovato con quel titolo!", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            searchList = preferitiList;
+            RecycleViewAdapter_Film_ListaPreferiti_Amico recycleViewAdapter_film_listaPreferiti_amico = new RecycleViewAdapter_Film_ListaPreferiti_Amico(VisualizzaPreferitiActivity.this, searchList, VisualizzaPreferitiActivity.this);
+            binding.filmVisualizzaPreferitiRecycleView.setLayoutManager(new GridLayoutManager(VisualizzaPreferitiActivity.this, 2, GridLayoutManager.VERTICAL, false));
+            binding.filmVisualizzaPreferitiRecycleView.setAdapter(recycleViewAdapter_film_listaPreferiti_amico);
+            update();
+            Toast.makeText(VisualizzaPreferitiActivity.this, "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

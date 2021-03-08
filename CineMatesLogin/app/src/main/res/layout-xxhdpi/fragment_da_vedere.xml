@@ -7,6 +7,16 @@
     tools:context=".ui.CineMates.Fragment.DaVedereFragment"
     android:background="@color/colorPrimary">
 
+    <TextView
+        android:id="@+id/textEdit_listaVuota_daVedere"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Non sono presenti film in questa lista."
+        android:textColor="@color/biancoGhiaccio"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/film_davedereFragment_recycleView"
         android:layout_width="match_parent"

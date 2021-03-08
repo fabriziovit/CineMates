@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.activity.VisualizzaPreferitiActivity">
+    tools:context=".ui.CineMates.activity.VisualizzaPreferitiActivity"
+    android:soundEffectsEnabled="false">
 
 
     <TextView
@@ -67,7 +68,8 @@
         android:layout_marginTop="7dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider_VisualizzaPreferiti"
-        app:srcCompat="@mipmap/back_icon_foreground" />
+        app:srcCompat="@mipmap/back_icon_foreground"
+        android:soundEffectsEnabled="false"/>
 
     <EditText
         android:id="@+id/searchBar_VisualizzaPreferiti"
@@ -79,13 +81,14 @@
         android:background="@drawable/search_layout"
         android:ems="10"
         android:fontFamily="@font/martel_sans_bold"
-        android:hint="Ricerca....."
+        android:hint="Cerca Film"
         android:inputType="textPersonName"
+        android:imeOptions="actionSearch"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:paddingRight="15dp"
         android:paddingBottom="5dp"
-        android:textColorHint="@color/colorPrimary"
+        android:textColorHint="@color/hintColorText"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/searchButton_VisualizzaPreferiti"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +104,9 @@
         android:src="@mipmap/ic_searchbar_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchBar_preferitiFragment"
-        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
+        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti"
+        android:soundEffectsEnabled="false"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/film_VisualizzaPreferiti_recycleView"
@@ -111,7 +116,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar_VisualizzaPreferiti">
+        app:layout_constraintTop_toBottomOf="@+id/searchBar_VisualizzaPreferiti"
+        android:soundEffectsEnabled="false">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -126,6 +132,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBar_VisualizzaPreferiti" />
+
+    <TextView
+        android:id="@+id/textEdit_listaVuota_preferitiAmico"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Non sono presenti film in questa lista."
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:visibility="invisible"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

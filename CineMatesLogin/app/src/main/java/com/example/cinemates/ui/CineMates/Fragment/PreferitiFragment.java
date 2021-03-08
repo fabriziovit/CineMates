@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,7 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
     private FirebaseAuth auth;
     private String currUser;
     private RecyclerView recyclerView;
+    private TextView filmVuoti;
 
 
     public PreferitiFragment() {
@@ -64,10 +66,16 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_preferiti, container, false);
         recyclerView = view.findViewById(R.id.film_preferitiFragment_recycleView);
-        RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), preferitiList, this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
+        filmVuoti = view.findViewById(R.id.textEdit_listaVuota_preferiti);
+        if(preferitiList.size() == 0){
+            filmVuoti.setVisibility(View.VISIBLE);
+        }else{
+            filmVuoti.setVisibility(View.INVISIBLE);
+            RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), preferitiList, this);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2 , GridLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
+        }
 
         return view;
     }
@@ -85,6 +93,10 @@ public class PreferitiFragment extends Fragment implements RecycleViewAdapter_Fi
         preferitiList.remove(position);
         update();
         Toast.makeText(getActivity(), "Film eliminato dalla lista!", Toast.LENGTH_SHORT).show();
+        if(preferitiList.size() == 0)
+            filmVuoti.setVisibility(View.VISIBLE);
+        else
+            filmVuoti.setVisibility(View.INVISIBLE);
     }
 
     @Override
