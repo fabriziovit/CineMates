@@ -9,7 +9,6 @@
     tools:context=".ui.CineMates.activity.VisualizzaPreferitiActivity"
     android:soundEffectsEnabled="false">
 
-
     <TextView
         android:id="@+id/scrittaLogo_VisualizzaPreferiti"
         android:layout_width="294dp"
@@ -82,7 +81,7 @@
         android:ems="10"
         android:fontFamily="@font/martel_sans_bold"
         android:hint="Cerca Film"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword"
         android:imeOptions="actionSearch"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
@@ -101,12 +100,11 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="40dp"
+        android:soundEffectsEnabled="false"
         android:src="@mipmap/ic_searchbar_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchBar_preferitiFragment"
-        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti"
-        android:soundEffectsEnabled="false"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/visualizzaPreferiti_Textview_VisualizzaPreferiti" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/film_VisualizzaPreferiti_recycleView"

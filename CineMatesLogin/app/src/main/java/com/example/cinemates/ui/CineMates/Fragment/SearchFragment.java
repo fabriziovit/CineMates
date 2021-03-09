@@ -73,6 +73,7 @@ public class SearchFragment extends Fragment implements MovieResearchContract.Vi
         searchButton = view.findViewById(R.id.search_button_fragmentSearch);
         recyclerView = view.findViewById(R.id.resultFilm_fragmentSearch);
         progressBar = view.findViewById(R.id.progressBar_SearchFilm);
+        searchField.setMovementMethod(null);
 
         searchFilm();
         Keyboard();

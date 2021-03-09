@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.cinemates.databinding.ActivityVisualizzaPreferitiBinding;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
-import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieDetailsContract;
 import com.example.cinemates.ui.CineMates.ApiMovie.Presenter.MovieDetailsPresenter;
+import com.example.cinemates.ui.CineMates.ApiMovie.model.DetailedMovie;
+import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_ListaPreferiti_Amico;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,7 +41,6 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
     private FirebaseFirestore db;
     private List<ItemFilm> searchList;
     private MovieDetailsPresenter movieDetailsPresenter;
-    boolean vuoto = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Mo
         preferitiList = new ArrayList<>();
         searchList = new ArrayList<>();
         movieDetailsPresenter = new MovieDetailsPresenter(this);
+        binding.searchBarVisualizzaPreferiti.setMovementMethod(null);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

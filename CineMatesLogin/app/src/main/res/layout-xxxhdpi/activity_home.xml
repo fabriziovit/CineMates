@@ -29,7 +29,8 @@
         android:background="@color/colorPrimary"
         android:elevation="16dp"
         android:padding="8dp"
-        app:cnb_menuResource="@menu/nav_home_menu">
+        app:cnb_menuResource="@menu/nav_home_menu"
+        android:soundEffectsEnabled="false">
 
     </com.ismaeldivita.chipnavigation.ChipNavigationBar>
 </RelativeLayout>

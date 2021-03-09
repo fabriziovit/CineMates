@@ -84,6 +84,7 @@ public class SearchFriendsFragment extends Fragment implements RecycleViewAdapte
         RecycleViewAdapter_Utenti recycleViewAdapter = new RecycleViewAdapter_Utenti(getContext(), searchList, this);
         recyclerView_Utenti.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView_Utenti.setAdapter(recycleViewAdapter);
+        searchBar.setMovementMethod(null);
 
         Keyboard();
         cercaUtentiButton();

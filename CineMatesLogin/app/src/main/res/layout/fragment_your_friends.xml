@@ -20,7 +20,7 @@
         android:ems="10"
         android:fontFamily="@font/martel_sans_bold"
         android:hint="cerca amici"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword"
         android:imeActionLabel="@android:string/search_go"
         android:imeOptions="actionSearch"
         android:paddingLeft="15dp"

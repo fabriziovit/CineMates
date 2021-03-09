@@ -33,7 +33,7 @@
         android:fontFamily="@font/martel_sans_bold"
         android:gravity="left"
         android:hint="cerca utenti"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword"
         android:imeActionLabel="@android:string/search_go"
         android:imeOptions="actionSearch"
         android:paddingLeft="15dp"
