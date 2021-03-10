@@ -18,6 +18,17 @@
         app:layout_constraintTop_toTopOf="parent">
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/textView_RecensioniVuoti_RecensioniFilm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Non sono presenti recensioni per questo film."
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:visibility="invisible"/>
+
+
     <com.shamanland.fab.FloatingActionButton
         android:id="@+id/recensioneButton_RecensioniFilmFragment"
         android:layout_width="wrap_content"

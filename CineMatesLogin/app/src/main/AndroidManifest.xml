@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cinemates">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.type.watch" />
+    <uses-permission android:name="android.hardware.type.watch" android:required="false"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,8 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CineMates.activity.ListeUtenteActivity"></activity>
-        <activity android:name=".ui.CineMates.activity.SchedaFilmActivity" />
+        <activity android:name=".ui.CineMates.activity.ListeUtenteActivity"/>
+        <activity android:name=".ui.CineMates.activity.SchedaFilmActivity"
+            android:hardwareAccelerated="true"/>
         <activity
             android:name=".ui.CineMates.activity.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -33,7 +33,8 @@
         <activity android:name=".ui.CineMates.activity.RegistratiActivity" />
         <activity
             android:name=".ui.CineMates.activity.HomeActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
+
         <activity android:name=".ui.CineMates.activity.CredenzialiProfiloActivity" />
         <activity android:name=".ui.CineMates.activity.VisualizzaPreferitiActivity" />
         <activity

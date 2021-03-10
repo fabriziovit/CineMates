@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Recensioni;
+import com.example.cinemates.ui.CineMates.model.DataFilmReviewed;
+import com.example.cinemates.ui.CineMates.model.DataReviews;
 import com.example.cinemates.ui.CineMates.model.ItemRecensione;
 import com.example.cinemates.ui.CineMates.model.ReviewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,6 +52,10 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
     private FirebaseAuth auth;
     private String currUser;
     private FloatingActionButton recensioneButton;
+    private int recensioni;
+    private int filmRecensiti;
+    private boolean alreadyRecensito = false;
+    private TextView textViewRecensioneVuota;
 
     public RecensioniFilmFragment() {
         // Required empty public constructor
@@ -84,6 +91,29 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
         recensioneButton = view.findViewById(R.id.recensioneButton_RecensioniFilmFragment);
         recyclerView = view.findViewById(R.id.recycleView_recensioni_schedaFilm);
         recensioniList = new ArrayList<>();
+        textViewRecensioneVuota = view.findViewById(R.id.textView_RecensioniVuoti_RecensioniFilm);
+
+        DocumentReference documentReference = db.collection("data").document("dataFilms");
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    filmRecensiti = document.getLong("nFilmReviewed").intValue();
+                }
+            }
+        });
+
+        DocumentReference documentReference1 = db.collection("data").document("dataReviews");
+        documentReference1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    recensioni = document.getLong("nDataReviews").intValue();
+                }
+            }
+        });
 
         //Controllo recensioni
         new Thread(()-> {
@@ -108,12 +138,16 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
                                             recensione.setProprietario(true);
                                             presente = true;
                                             recensioniList.add(0, recensione);
-                                        }else
+                                        } else
                                             recensioniList.add(recensione);
+                                        textViewRecensioneVuota.setVisibility(View.INVISIBLE);
+                                        alreadyRecensito = true;
                                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(getActivity(), recensioniList, RecensioniFilmFragment.this);
                                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                                         recyclerView.setAdapter(recycleViewAdapterRecensioni);
                                     }
+                                    if(recensioniList.size() == 0)
+                                        textViewRecensioneVuota.setVisibility(View.VISIBLE);
                                 }
                             }
                         });
@@ -172,6 +206,7 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
     public void onPositiveButtonClicked(int i, @NotNull String s) {
         ReviewModel reviewModel = new ReviewModel(currUser, s, i);
         db.collection("reviews").document(String.valueOf(id)).collection(String.valueOf(id)).document(currUser).set(reviewModel);
+        textViewRecensioneVuota.setVisibility(View.INVISIBLE);
         if(presente){
             for(ItemRecensione itemRecensione : recensioniList){
                 if(itemRecensione.getUid().equals(currUser)){
@@ -187,7 +222,7 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         ItemRecensione recensione = new ItemRecensione(documentSnapshot.getString("username"), s, i, ProfileFragment.getBitmapFromdownload(documentSnapshot.getString("imageUrl")), documentSnapshot.getString("uid"));
                         recensione.setProprietario(true);
@@ -196,6 +231,14 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
                         RecycleViewAdapter_Recensioni recycleViewAdapterRecensioni = new RecycleViewAdapter_Recensioni(getActivity(), recensioniList, RecensioniFilmFragment.this);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                         recyclerView.setAdapter(recycleViewAdapterRecensioni);
+                        recensioni++;
+                        DataReviews dataReviews = new DataReviews(recensioni);
+                        db.collection("data").document("dataReviews").set(dataReviews);
+                        if(!alreadyRecensito) {
+                            filmRecensiti++;
+                            DataFilmReviewed dataFilmReviewed = new DataFilmReviewed(filmRecensiti);
+                            db.collection("data").document("dataFilms").set(dataFilmReviewed);
+                        }
                     }
                 }
             });
@@ -220,6 +263,16 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
                         db.collection("reviews").document(String.valueOf(id)).collection(String.valueOf(id)).document(currUser).delete();
                         recensioniList.remove(position);
                         presente = false;
+                        recensioni = recensioni - 1;
+                        DataReviews dataReviews = new DataReviews(recensioni);
+                        db.collection("data").document("dataReviews").set(dataReviews);
+                        if(recensioniList.size() == 0){
+                            filmRecensiti = filmRecensiti - 1;
+                            DataFilmReviewed dataFilmReviewed = new DataFilmReviewed(filmRecensiti);
+                            db.collection("data").document("dataFilms").set(dataFilmReviewed);
+                            alreadyRecensito = false;
+                            textViewRecensioneVuota.setVisibility(View.VISIBLE);
+                        }
                         update();
                     }
                 });
