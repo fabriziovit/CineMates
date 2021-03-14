@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
+import com.example.cinemates.ui.CineMates.presenters.fragments.HomeFragmentPresenter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -22,33 +24,26 @@ public class HomeFragment extends Fragment{
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private HomeFragmentPresenter homeFragmentPresenter;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        homeFragmentPresenter = new HomeFragmentPresenter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         tabLayout = view.findViewById(R.id.tabLayout_fragment_home);
         viewPager = view.findViewById(R.id.viewPager_fragment_home);
         adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
@@ -62,8 +57,6 @@ public class HomeFragment extends Fragment{
         Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.ic_popolare);
         Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.ic_ticket);
         Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.ic_calendario);
-
-        return view;
     }
 
 }

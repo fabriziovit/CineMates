@@ -20,8 +20,6 @@ import java.util.List;
 import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
 
 public class PopularFilmsFragment extends Fragment implements RecycleViewAdapter_Film.OnClickListener{
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView_Film;
     private List<ItemFilm> filmList;
 
@@ -34,15 +32,6 @@ public class PopularFilmsFragment extends Fragment implements RecycleViewAdapter
         this.filmList = filmList;
     }
 
-
-    public static PopularFilmsFragment newInstance(String param1, String param2) {
-        PopularFilmsFragment fragment = new PopularFilmsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

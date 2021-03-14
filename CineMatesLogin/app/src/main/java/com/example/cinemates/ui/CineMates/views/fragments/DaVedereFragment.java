@@ -1,39 +1,33 @@
 package com.example.cinemates.ui.CineMates.views.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.views.activities.SchedaFilmActivity;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Film_ListaPreferiti;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
+import com.example.cinemates.ui.CineMates.presenters.fragments.DaVederePresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-import Intefaces.UpdateableFragmentListener;
-
-import static com.example.cinemates.ui.CineMates.util.Constants.KEY_MOVIE_ID;
-
-public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Film_ListaPreferiti.OnClickListener, UpdateableFragmentListener {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private List<ItemFilm> daVederelist;
-    private FirebaseFirestore db;
-    private FirebaseAuth auth;
-    private String currUser;
-    private RecyclerView recyclerView;
-    private TextView filmVuoti;
+public class DaVedereFragment extends Fragment {
+    public List<ItemFilm> daVederelist;
+    public FirebaseFirestore db;
+    public FirebaseAuth auth;
+    public String currUser;
+    public RecyclerView recyclerView;
+    public TextView filmVuoti;
+    private DaVederePresenter daVederePresenter;
 
     public DaVedereFragment() {
         // Required empty public constructor
@@ -43,63 +37,33 @@ public class DaVedereFragment extends Fragment implements RecycleViewAdapter_Fil
         this.daVederelist = daVederelist;
     }
 
-    public static DaVedereFragment newInstance(String param1, String param2) {
-        DaVedereFragment fragment = new DaVedereFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
+        daVederePresenter = new DaVederePresenter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_da_vedere, container, false);
+        return inflater.inflate(R.layout.fragment_da_vedere, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.film_davedereFragment_recycleView);
         filmVuoti = view.findViewById(R.id.textEdit_listaVuota_daVedere);
-        if(daVederelist.size() == 0){
+        if (daVederelist.size() == 0) {
             filmVuoti.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             filmVuoti.setVisibility(View.INVISIBLE);
-            RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, this);
+            RecycleViewAdapter_Film_ListaPreferiti recycleViewAdapter_film_listaPreferiti = new RecycleViewAdapter_Film_ListaPreferiti(getContext(), daVederelist, daVederePresenter);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(gridLayoutManager);
             recyclerView.setAdapter(recycleViewAdapter_film_listaPreferiti);
         }
-
-        return view;
-    }
-
-    @Override
-    public void OnClickScheda(int position) {
-        Intent i = new Intent(getActivity(), SchedaFilmActivity.class);
-        i.putExtra(KEY_MOVIE_ID, daVederelist.get(position).getId());
-        startActivity(i);
-    }
-
-    @Override
-    public void OnClickRimuovi(int position){
-        db.collection("da vedere").document(currUser).collection(currUser).document(String.valueOf(daVederelist.get(position).getId())).delete();
-        daVederelist.remove(position);
-        update();
-        Toast.makeText(getActivity(), "Film eliminato dalla lista!", Toast.LENGTH_SHORT).show();
-        if(daVederelist.size() == 0)
-            filmVuoti.setVisibility(View.VISIBLE);
-        else
-            filmVuoti.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void update() {
-        recyclerView.getAdapter().notifyDataSetChanged();
     }
 }

@@ -6,30 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.fragment.app.DialogFragment;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cinemates.R;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
-import com.example.cinemates.ui.CineMates.friends.NotificheDialog;
+import com.example.cinemates.ui.CineMates.presenters.fragments.FriendsPresenter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class FriendsFragment extends Fragment{
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private ViewPagerAdapter adapter;
-    private List<ItemUser> userList;
-    private List<ItemFriend> friendList;
-    private ImageView bottoneNotifica;
-    private ImageView indicatoreNotifica;
-    private boolean notifiche;
+    public TabLayout tabLayout;
+    public ViewPager viewPager;
+    public ViewPagerAdapter adapter;
+    public List<ItemUser> userList;
+    public List<ItemFriend> friendList;
+    public ImageView bottoneNotifica;
+    public ImageView indicatoreNotifica;
+    public boolean notifiche;
+    private FriendsPresenter friendsPresenter;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -41,24 +39,20 @@ public class FriendsFragment extends Fragment{
         this.notifiche = notifiche;
     }
 
-    public static FriendsFragment newInstance(String param1, String param2) {
-        FriendsFragment fragment = new FriendsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        friendsPresenter = new FriendsPresenter(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        return inflater.inflate(R.layout.fragment_friends, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         bottoneNotifica = view.findViewById(R.id.notifica_fragment_friends);
         indicatoreNotifica = view.findViewById(R.id.indicatore_notifica_friendsFragment);
         tabLayout = view.findViewById(R.id.tabLayout_fragment_friends);
@@ -77,53 +71,8 @@ public class FriendsFragment extends Fragment{
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
 
-        TabLayout();
-        ApriNotifiche();
-        update();
-
-        return view;
-    }
-
-    public void ApriNotifiche() {
-        bottoneNotifica.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                indicatoreNotifica.setVisibility(View.INVISIBLE);
-                final NotificheDialog notificheDialog = new NotificheDialog(getActivity(), friendList, userList, adapter);
-                notificheDialog.setCancelable(false);
-                showDialog(notificheDialog);
-            }
-        });
-    }
-
-    public void showDialog(DialogFragment dialogFragment) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        dialogFragment.show(fragmentManager, "dialog");
-    }
-
-    public void update(){
-        adapter.update();
-    }
-
-    public void TabLayout(){
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
-                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
-                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                tabLayout.getTabAt(0).setIcon(R.drawable.ic_amici_focused);
-                tabLayout.getTabAt(1).setIcon(R.drawable.ic_addfriends);
-            }
-        });
+        friendsPresenter.TabLayout();
+        friendsPresenter.ApriNotifiche();
+        friendsPresenter.update();
     }
 }
