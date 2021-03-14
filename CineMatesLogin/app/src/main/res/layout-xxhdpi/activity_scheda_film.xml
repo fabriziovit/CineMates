@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.CineMates.views.activities.SchedaFilmActivity"
-    android:background="@color/colorBack">
+    android:background="@color/colorBack"
+    android:soundEffectsEnabled="false"
+    android:clickable="false">
 
     <ImageView
         android:id="@+id/backButton_schedaFilm"
