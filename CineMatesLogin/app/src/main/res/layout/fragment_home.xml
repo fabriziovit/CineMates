@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.HomeFragment">
+    tools:context=".ui.CineMates.views.fragments.HomeFragment">
 
     <TextView
         android:id="@+id/scrittaLogo_fragment_home"

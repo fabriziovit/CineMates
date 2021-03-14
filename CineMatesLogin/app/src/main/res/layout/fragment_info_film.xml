@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    tools:context=".ui.CineMates.Fragment.InfoFilmFragment"
+    tools:context=".ui.CineMates.views.fragments.InfoFilmFragment"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_schedaFilm"

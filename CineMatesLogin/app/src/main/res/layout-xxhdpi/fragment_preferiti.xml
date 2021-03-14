@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".ui.CineMates.Fragment.PreferitiFragment">
+    tools:context=".ui.CineMates.views.fragments.PreferitiFragment">
 
     <TextView
         android:id="@+id/textEdit_listaVuota_preferiti"

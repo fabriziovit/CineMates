@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.RecensioniFilmFragment">
+    tools:context=".ui.CineMates.views.fragments.RecensioniFilmFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView_recensioni_schedaFilm"

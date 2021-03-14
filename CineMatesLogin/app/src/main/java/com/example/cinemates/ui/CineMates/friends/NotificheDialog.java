@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
-import com.example.cinemates.ui.CineMates.Fragment.ViewPagerAdapter;
+import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
+import com.example.cinemates.ui.CineMates.views.fragments.ViewPagerAdapter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Richieste;
 import com.example.cinemates.ui.CineMates.friends.model.Friends;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;

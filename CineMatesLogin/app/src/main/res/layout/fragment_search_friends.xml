@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.SearchFriendsFragment"
+    tools:context=".ui.CineMates.views.fragments.SearchFriendsFragment"
     android:soundEffectsEnabled="false">
 
     <ImageView

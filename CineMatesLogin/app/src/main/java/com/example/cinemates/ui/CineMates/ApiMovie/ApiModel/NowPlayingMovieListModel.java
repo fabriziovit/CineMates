@@ -6,8 +6,8 @@ import com.example.cinemates.ui.CineMates.ApiMovie.ApiClient;
 import com.example.cinemates.ui.CineMates.ApiMovie.ApiInterface;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.NowPlayingFilms;
-import com.example.cinemates.ui.CineMates.Fragment.HomeFragment;
-import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.views.fragments.HomeFragment;
+import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
 import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieListContract;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 

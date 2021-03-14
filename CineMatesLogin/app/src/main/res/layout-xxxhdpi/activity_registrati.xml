@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.CineMates.activity.RegistratiActivity">
+    tools:context=".ui.CineMates.views.activities.RegistratiActivity"
+    android:soundEffectsEnabled="false">
 
     <ScrollView
         android:id="@+id/scrollview_registrati"
@@ -196,7 +197,8 @@
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView" />
+                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView"
+                android:soundEffectsEnabled="false"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

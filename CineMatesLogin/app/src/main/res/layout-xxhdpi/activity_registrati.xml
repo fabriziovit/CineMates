@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0999999"
-    tools:context=".ui.CineMates.activity.RegistratiActivity">
+    tools:context=".ui.CineMates.views.activities.RegistratiActivity"
+    android:soundEffectsEnabled="false">
 
     <ScrollView
         android:id="@+id/scrollview_registrati"
@@ -21,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="735dp"
             android:clickable="true"
-            android:minHeight="735dp">
+            android:minHeight="735dp"
+            android:soundEffectsEnabled="false">
 
             <EditText
                 android:id="@+id/username_registrati_TextField"
@@ -33,7 +35,6 @@
                 android:drawableStart="@drawable/custom_username_icon"
                 android:hint="Inserisci il tuo username"
                 android:inputType="text"
-                android:selectAllOnFocus="true"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/risDisponibilita_registrati_TextView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +196,8 @@
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView" />
+                app:layout_constraintTop_toBottomOf="@+id/ErrorePassword_reg_TextView"
+                android:soundEffectsEnabled="false"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

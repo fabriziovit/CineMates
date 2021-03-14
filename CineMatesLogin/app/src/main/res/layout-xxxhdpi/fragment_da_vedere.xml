@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.CineMates.Fragment.DaVedereFragment"
+    tools:context=".ui.CineMates.views.fragments.DaVedereFragment"
     android:background="@color/colorPrimary">
 
     <TextView

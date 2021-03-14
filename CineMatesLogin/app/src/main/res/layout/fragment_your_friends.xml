@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBack"
-    tools:context=".ui.CineMates.Fragment.YourFriendsFragment"
+    tools:context=".ui.CineMates.views.fragments.YourFriendsFragment"
     android:soundEffectsEnabled="false">
 
     <EditText

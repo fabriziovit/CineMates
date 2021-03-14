@@ -4,7 +4,7 @@ import com.example.cinemates.ui.CineMates.ApiMovie.ApiInterface;
 import com.example.cinemates.ui.CineMates.ApiMovie.Contract.MovieResearchContract;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Movie;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.MovieResearch;
-import com.example.cinemates.ui.CineMates.Fragment.ProfileFragment;
+import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
 import com.example.cinemates.ui.CineMates.model.ItemFilm;
 
 import java.util.ArrayList;

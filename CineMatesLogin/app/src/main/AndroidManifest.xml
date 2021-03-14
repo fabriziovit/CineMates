@@ -17,11 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CineMates.activity.ListeUtenteActivity"/>
-        <activity android:name=".ui.CineMates.activity.SchedaFilmActivity"
+        <activity android:name=".ui.CineMates.views.activities.ListeUtenteActivity"/>
+        <activity android:name=".ui.CineMates.views.activities.SchedaFilmActivity"
             android:hardwareAccelerated="true"/>
         <activity
-            android:name=".ui.CineMates.activity.SplashActivity"
+            android:name=".ui.CineMates.views.activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,16 +29,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CineMates.activity.PasswordDimenticataActivity" />
-        <activity android:name=".ui.CineMates.activity.RegistratiActivity" />
+        <activity android:name=".ui.CineMates.views.activities.PasswordDimenticataActivity" />
+        <activity android:name=".ui.CineMates.views.activities.RegistratiActivity" />
         <activity
-            android:name=".ui.CineMates.activity.HomeActivity"
+            android:name=".ui.CineMates.views.activities.HomeActivity"
             android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".ui.CineMates.activity.CredenzialiProfiloActivity" />
-        <activity android:name=".ui.CineMates.activity.VisualizzaPreferitiActivity" />
+        <activity android:name=".ui.CineMates.views.activities.CredenzialiProfiloActivity" />
+        <activity android:name=".ui.CineMates.views.activities.VisualizzaPreferitiActivity" />
         <activity
-            android:name=".ui.CineMates.activity.LoginActivity"
+            android:name=".ui.CineMates.views.activities.LoginActivity"
             android:label="@string/app_name" />
 
         <meta-data
