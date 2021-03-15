@@ -7,11 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.databinding.ActivityVisualizzaPreferitiBinding;
-import com.example.cinemates.ui.CineMates.model.ItemFilm;
 import com.example.cinemates.ui.CineMates.presenters.activities.VisualizzaPreferitiPresenter;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.List;
 
 import Intefaces.UpdateableFragmentListener;
 
@@ -19,7 +16,6 @@ public class VisualizzaPreferitiActivity extends AppCompatActivity implements Up
     private ActivityVisualizzaPreferitiBinding binding;
     private String username;
     private FirebaseFirestore db;
-    private List<ItemFilm> searchList;
     private VisualizzaPreferitiPresenter visualizzaPreferitiPresenter;
 
     @Override
