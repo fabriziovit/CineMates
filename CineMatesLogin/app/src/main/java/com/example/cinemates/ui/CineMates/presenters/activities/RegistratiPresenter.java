@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.cinemates.R;
 import com.example.cinemates.databinding.ActivityRegistratiBinding;
 import com.example.cinemates.ui.CineMates.friends.model.Friends;
+import com.example.cinemates.ui.CineMates.model.UserHelperClass;
 import com.example.cinemates.ui.CineMates.views.activities.LoginActivity;
 import com.example.cinemates.ui.CineMates.views.activities.RegistratiActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,7 @@ public class RegistratiPresenter {
     private final RegistratiActivity registratiActivity;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private UserHelperClass userHelperClass;
 
     public RegistratiPresenter(RegistratiActivity registratiActivity, FirebaseAuth mAuth, FirebaseFirestore db) {
         this.registratiActivity = registratiActivity;
@@ -121,17 +123,18 @@ public class RegistratiPresenter {
     }
 
     private void DataSet(String email, String username) {
+        userHelperClass = new UserHelperClass();
         FirebaseUser rUser = mAuth.getCurrentUser();
         String uId = rUser.getUid();
-        registratiActivity.userHelperClass.setEmail(email);
-        registratiActivity.userHelperClass.setUid(uId);
-        registratiActivity.userHelperClass.setUsername(username);
-        registratiActivity.userHelperClass.setImageUrl(DEFAULT_PROFILE_PIC);
+        userHelperClass.setEmail(email);
+        userHelperClass.setUid(uId);
+        userHelperClass.setUsername(username);
+        userHelperClass.setImageUrl(DEFAULT_PROFILE_PIC);
 
         Friends friends = new Friends();
 
         db.collection("users")
-                .document(uId).set(registratiActivity.userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                .document(uId).set(userHelperClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d("FIRESTORE", "Task completato!");

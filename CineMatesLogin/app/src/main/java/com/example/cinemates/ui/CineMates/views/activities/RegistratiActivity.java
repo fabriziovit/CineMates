@@ -7,7 +7,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemates.databinding.ActivityRegistratiBinding;
-import com.example.cinemates.ui.CineMates.model.UserHelperClass;
 import com.example.cinemates.ui.CineMates.presenters.activities.RegistratiPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +18,6 @@ public class RegistratiActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private RegistratiPresenter registratiPresenter;
-    public UserHelperClass userHelperClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,6 @@ public class RegistratiActivity extends AppCompatActivity {
         setContentView(view);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        userHelperClass = new UserHelperClass();
 
         registratiPresenter = new RegistratiPresenter(this, mAuth, db);
 
