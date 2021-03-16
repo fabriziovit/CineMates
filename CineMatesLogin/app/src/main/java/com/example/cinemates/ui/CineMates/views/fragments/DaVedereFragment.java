@@ -21,9 +21,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 public class DaVedereFragment extends Fragment {
-    public List<ItemFilm> daVederelist;
-    public FirebaseFirestore db;
-    public FirebaseAuth auth;
+    private List<ItemFilm> daVederelist;
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
     public String currUser;
     public RecyclerView recyclerView;
     public TextView filmVuoti;
@@ -43,7 +43,7 @@ public class DaVedereFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
-        daVederePresenter = new DaVederePresenter(this);
+        daVederePresenter = new DaVederePresenter(this, db, daVederelist);
     }
 
     @Override

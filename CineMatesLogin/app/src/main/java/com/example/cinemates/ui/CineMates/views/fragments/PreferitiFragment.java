@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 
 public class PreferitiFragment extends Fragment {
-    public List<ItemFilm> preferitiList;
+    private List<ItemFilm> preferitiList;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     public String currUser;
@@ -43,7 +43,7 @@ public class PreferitiFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         currUser = auth.getCurrentUser().getUid();
-        preferitiPresenter = new PreferitiPresenter(this, db, auth);
+        preferitiPresenter = new PreferitiPresenter(this, db, preferitiList);
     }
 
     @Override
