@@ -18,24 +18,24 @@ import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.varunest.sparkbutton.SparkEventListener;
+
+import java.util.ArrayList;
 
 import static com.example.cinemates.ui.CineMates.ApiMovie.ApiClient.IMAGE_BASE_URL;
 
 public class InfoFilmPresenter implements MovieDetailsContract.View{
     private final InfoFilmFragment infoFilmFragment;
     private FirebaseFirestore db;
-    private FirebaseAuth auth;
     private MovieDetailsPresenter movieDetailsPresenter;
+    private ArrayList<Genere> generelist;
 
-    public InfoFilmPresenter(InfoFilmFragment infoFilmFragment, FirebaseFirestore db, FirebaseAuth auth) {
+    public InfoFilmPresenter(InfoFilmFragment infoFilmFragment, FirebaseFirestore db) {
         this.infoFilmFragment = infoFilmFragment;
         this.db = db;
-        this.auth = auth;
         init();
     }
 
@@ -98,7 +98,6 @@ public class InfoFilmPresenter implements MovieDetailsContract.View{
                         }
                     });
                 }).start();
-
                 if(buttonState){
                     PreferitiModel preferitiModel = new PreferitiModel(infoFilmFragment.currUser, infoFilmFragment.id);
                     db.collection("favorites").document(infoFilmFragment.currUser).collection(infoFilmFragment.currUser).document(String.valueOf(infoFilmFragment.id)).set(preferitiModel);
@@ -143,7 +142,6 @@ public class InfoFilmPresenter implements MovieDetailsContract.View{
                         }
                     });
                 }).start();
-
                 if(buttonState){
                     PreferitiModel preferitiModel = new PreferitiModel(infoFilmFragment.currUser, infoFilmFragment.id);
                     db.collection("da vedere").document(infoFilmFragment.currUser).collection(infoFilmFragment.currUser).document(String.valueOf(infoFilmFragment.id)).set(preferitiModel);
@@ -186,8 +184,8 @@ public class InfoFilmPresenter implements MovieDetailsContract.View{
             infoFilmFragment.tramaFilm.setText(movie.getOverview());
             infoFilmFragment.punteggioVoto.setText(String.format("%.1f", voto));
             infoFilmFragment.locandinaFilm.setImageBitmap(ProfileFragment.getBitmapFromdownload(IMAGE_BASE_URL + movie.getPoster_path()));
-            infoFilmFragment.generelist = movie.getGenere();
-            for (Genere genere : infoFilmFragment.generelist) {
+            generelist = movie.getGenere();
+            for (Genere genere : generelist) {
                 infoFilmFragment.chip = (Chip) inflater.inflate(R.layout.item_chip, null, false);
                 infoFilmFragment.chip.setText(genere.getNome());
                 infoFilmFragment.chipGroup.addView(infoFilmFragment.chip);

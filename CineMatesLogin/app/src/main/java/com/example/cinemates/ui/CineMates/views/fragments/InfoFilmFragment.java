@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.ApiMovie.model.Genere;
 import com.example.cinemates.ui.CineMates.presenters.fragments.InfoFilmPresenter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -20,12 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.varunest.sparkbutton.SparkButton;
 
-import java.util.ArrayList;
-
 public class InfoFilmFragment extends Fragment  {
     public int id;
     public ProgressBar progressBar;
-    public ArrayList<Genere> generelist;
     public Chip chip;
     public static String movieName;
     public TextView titoloFilm;
@@ -74,7 +70,7 @@ public class InfoFilmFragment extends Fragment  {
         preferitiButton.setChecked(false);
         daVedereButton.setChecked(false);
 
-        infoFilmPresenter = new InfoFilmPresenter(this, db, auth);
+        infoFilmPresenter = new InfoFilmPresenter(this, db);
 
         infoFilmPresenter.preferitiClick();
         infoFilmPresenter.daVedereClick();
