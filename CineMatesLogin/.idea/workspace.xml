@@ -32,8 +32,8 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/InfoFilmPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/InfoFilmPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/InfoFilmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/InfoFilmFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/RecensioniFilmPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/RecensioniFilmPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/RecensioniFilmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/RecensioniFilmFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,26 +348,26 @@
     </state>
     <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1614357942710" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
-    <state width="1876" height="276" key="GridCell.Tab.0.bottom" timestamp="1615754535402">
+    <state width="1876" height="276" key="GridCell.Tab.0.bottom" timestamp="1615918658045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="134" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1614008427477" />
-    <state width="1876" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615754535402" />
-    <state width="1876" height="276" key="GridCell.Tab.0.center" timestamp="1615754535402">
+    <state width="1876" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615918658045" />
+    <state width="1876" height="276" key="GridCell.Tab.0.center" timestamp="1615918658045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="134" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1614008427476" />
-    <state width="1876" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615754535402" />
-    <state width="1876" height="276" key="GridCell.Tab.0.left" timestamp="1615754535402">
+    <state width="1876" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615918658045" />
+    <state width="1876" height="276" key="GridCell.Tab.0.left" timestamp="1615918658045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="134" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1614008427476" />
-    <state width="1876" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615754535402" />
-    <state width="1876" height="276" key="GridCell.Tab.0.right" timestamp="1615754535402">
+    <state width="1876" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615918658045" />
+    <state width="1876" height="276" key="GridCell.Tab.0.right" timestamp="1615918658045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="134" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1614008427477" />
-    <state width="1876" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615754535402" />
+    <state width="1876" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615918658045" />
     <state x="221" y="84" key="IDE.errors.dialog" timestamp="1611676805015">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -389,11 +389,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354701230" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1614208805226">
+    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1615915253295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1612967251771" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1614208805226" />
+    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615915253295" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1611071244961">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

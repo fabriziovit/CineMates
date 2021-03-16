@@ -63,7 +63,7 @@ public class RecensioniFilmFragment extends Fragment implements RatingDialogList
         recensioneButton = view.findViewById(R.id.recensioneButton_RecensioniFilmFragment);
         recyclerView = view.findViewById(R.id.recycleView_recensioni_schedaFilm);
         textViewRecensioneVuota = view.findViewById(R.id.textView_RecensioniVuoti_RecensioniFilm);
-        recensioniFilmPresenter = new RecensioniFilmPresenter(this, db, auth);
+        recensioniFilmPresenter = new RecensioniFilmPresenter(this, db);
 
         recensioniFilmPresenter.recensioneButton();
         return view;

@@ -18,7 +18,6 @@ import com.example.cinemates.ui.CineMates.views.fragments.RecensioniFilmFragment
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,15 +35,14 @@ public class RecensioniFilmPresenter implements UpdateableFragmentListener, Recy
     public int recensioni;
     public int filmRecensiti;
     private FirebaseFirestore db;
-    private FirebaseAuth auth;
+
     public boolean presente;
     public boolean alreadyRecensito = false;
     public List<ItemRecensione> recensioniList;
 
-    public RecensioniFilmPresenter(RecensioniFilmFragment recensioniFilmFragment, FirebaseFirestore db, FirebaseAuth auth) {
+    public RecensioniFilmPresenter(RecensioniFilmFragment recensioniFilmFragment, FirebaseFirestore db) {
         this.recensioniFilmFragment = recensioniFilmFragment;
         this.db = db;
-        this.auth = auth;
         init();
     }
 
