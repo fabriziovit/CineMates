@@ -80,7 +80,19 @@ dependencies {
     implementation 'com.github.varunest:sparkbutton:1.0.6'
     implementation 'com.shamanland:fab:0.0.8'
 
+    testImplementation ( 'org.robolectric:robolectric:4.2.1' ) {
+        exclude group: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents'
+    }
+
+    testImplementation 'org.mockito:mockito-core:2.8.9'
+    testImplementation 'org.powermock:powermock-api-mockito:1.6.2'
+    testImplementation 'org.powermock:powermock-module-junit4-rule-agent:1.6.2'
+    testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.2'
+    testImplementation 'org.powermock:powermock-module-junit4:1.6.2'
+
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

@@ -122,7 +122,7 @@ public class RegistratiPresenter {
                 });
     }
 
-    private void DataSet(String email, String username) {
+    public void DataSet(String email, String username) {
         userHelperClass = new UserHelperClass();
         FirebaseUser rUser = mAuth.getCurrentUser();
         String uId = rUser.getUid();
