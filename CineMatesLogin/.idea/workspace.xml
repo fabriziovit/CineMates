@@ -32,13 +32,9 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/cinemates/ProfileFragmentTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/activities/RegistratiPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/activities/RegistratiPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/stub/ProfileFragment_Stub.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/ProfileFragmentTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +145,27 @@
       <recent name="com.example.cinemates.ui.CineMates.friends" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android JUnit.MovieDetailsModelTest">
+    <configuration name="MovieDetailsModelTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CineMatesApp.app" />
+      <shortenClasspath name="CLASSPATH_FILE" />
+      <useClassPathOnly />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cinemates.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.cinemates.test" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cinemates.test.MovieDetailsModelTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProfileFragmentTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="CineMatesApp.app" />
       <shortenClasspath name="CLASSPATH_FILE" />
@@ -296,64 +312,13 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProfileFragmentTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="CineMatesApp.app" />
-      <option name="TESTING_TYPE" value="2" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="com.example.cinemates.ProfileFragmentTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-      </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.MovieDetailsModelTest" />
         <item itemvalue="Android JUnit.RegistratiPresenterTest" />
         <item itemvalue="Android JUnit.RecensioniFilmFragmentTest" />
         <item itemvalue="Android JUnit.ProfileFragmentTest" />
         <item itemvalue="Android JUnit.ProfileFragmentTest.TC1_CE2" />
-        <item itemvalue="Android Instrumented Tests.ProfileFragmentTest" />
       </list>
     </recent_temporary>
   </component>
@@ -462,11 +427,11 @@
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1611244211064" />
     <state x="71" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613666027672" />
-    <state x="557" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1615214295384">
+    <state x="557" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616091606986">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1611229280095" />
-    <state x="557" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615214295384" />
+    <state x="557" y="135" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616091606986" />
     <state x="93" y="93" width="1095" height="495" key="AVDManager" timestamp="1613834188185">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -490,26 +455,26 @@
     </state>
     <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616077592716" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
-    <state width="1876" height="281" key="GridCell.Tab.0.bottom" timestamp="1616088713685">
+    <state width="1876" height="276" key="GridCell.Tab.0.bottom" timestamp="1616091635170">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616088713685" />
-    <state width="1876" height="281" key="GridCell.Tab.0.center" timestamp="1616088713685">
+    <state width="1876" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616091635170" />
+    <state width="1876" height="276" key="GridCell.Tab.0.center" timestamp="1616091635169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616088713685" />
-    <state width="1876" height="281" key="GridCell.Tab.0.left" timestamp="1616088713685">
+    <state width="1876" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616091635169" />
+    <state width="1876" height="276" key="GridCell.Tab.0.left" timestamp="1616091635169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1616080637929" />
-    <state width="1876" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616088713685" />
-    <state width="1876" height="281" key="GridCell.Tab.0.right" timestamp="1616088713685">
+    <state width="1876" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616091635169" />
+    <state width="1876" height="276" key="GridCell.Tab.0.right" timestamp="1616091635169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616088713685" />
+    <state width="1876" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616091635169" />
     <state width="1876" height="281" key="GridCell.Tab.1.bottom" timestamp="1616088713686">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -534,11 +499,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1614357947603" />
-    <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1616085566330">
+    <state x="776" y="298" key="chooseDestDirectoryDialog" timestamp="1616090085019">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="517" y="195" key="chooseDestDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1616080200569" />
-    <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616085566330" />
+    <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616090085019" />
     <state x="609" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610724350085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -547,11 +512,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616083108458" />
-    <state x="569" y="213" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1616085566333">
+    <state x="682" y="200" width="599" height="405" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1616090085060">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.680@0.0.1280.680" timestamp="1616080200599" />
-    <state x="569" y="213" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616085566333" />
+    <state x="682" y="200" width="599" height="405" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616090085060" />
     <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1616002100660">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
