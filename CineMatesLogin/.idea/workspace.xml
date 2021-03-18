@@ -32,8 +32,7 @@
   <component name="ChangeListManager">
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/RecensioniFilmPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/RecensioniFilmPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/RecensioniFilmFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/RecensioniFilmFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/SearchFriendsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/SearchFriendsPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,11 +309,11 @@
     </state>
     <state x="296" y="290" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1611330984333" />
     <state x="444" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615904002603" />
-    <state x="579" y="321" width="506" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1613494624777">
+    <state x="579" y="321" width="558" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616001991304">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="386" y="210" width="509" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1610021006353" />
-    <state x="579" y="321" width="506" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1613494624777" />
+    <state x="579" y="321" width="558" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616001991304" />
     <state x="71" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1613666027672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -389,11 +388,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354701230" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1615915253295">
+    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1616002100660">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1612967251771" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1615915253295" />
+    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616002100660" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1611071244961">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

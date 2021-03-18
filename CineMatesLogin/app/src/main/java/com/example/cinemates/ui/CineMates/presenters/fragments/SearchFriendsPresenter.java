@@ -50,7 +50,6 @@ public class SearchFriendsPresenter implements RecycleViewAdapter_Utenti.OnClick
         searchFriendsFragment.recyclerView_Utenti.setAdapter(recycleViewAdapter);
     }
 
-
     public void Keyboard() {
         searchFriendsFragment.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
