@@ -11,7 +11,8 @@ public class RecensioniFilmFragmentTest {
     * CE2 = 1=<i >=5
     * CE3 = i>5
     * CE4 = s = null
-    * CE5 = s != null */
+    * CE5 = s != ""
+    * CE6 = s = "" */
 
     @Test
     public void TC1_CE1_CE4(){
@@ -26,8 +27,8 @@ public class RecensioniFilmFragmentTest {
     }
 
     @Test
-    public void TC3_CE3_CE5(){
+    public void TC3_CE3_CE6(){
         RecensioniFilmStub recensioniFilmStub = new RecensioniFilmStub();
-        assertFalse(recensioniFilmStub.onPositiveButtonClickedStub(9, "bellissimo"));
+        assertFalse(recensioniFilmStub.onPositiveButtonClickedStub(9, ""));
     }
 }
