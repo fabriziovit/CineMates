@@ -33,12 +33,11 @@
     <list default="true" id="67efca38-7c82-417d-93a3-ff8523deeb7c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/stub/MovieDetailsModelStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Stub/MovieDetailsModelStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/stub/RecensioniFilmStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Stub/RecensioniFilmStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/stub/RegistratiStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Stub/RegistratiStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/MovieDetailsModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/MovieDetailsModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/RecensioniFilmFragmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/RecensioniFilmFragmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/RegistratiPresenterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/cinemates/test/RegistratiPresenterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/friends/NotificheDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/YourFriendsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/presenters/fragments/YourFriendsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/activities/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/activities/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/SearchFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/SearchFriendsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/YourFriendsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/cinemates/ui/CineMates/views/fragments/YourFriendsFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +48,9 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../CineMatesLogin\exportToHTML" />
+  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -94,7 +96,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="multi-representation-previewC:/Users/gianl/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/chip/Chip.java_selected" value="Custom views" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -454,31 +456,31 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="438" y="87" key="AndroidProcessChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1609767375678" />
-    <state x="493" y="164" key="FileChooserDialogImpl" timestamp="1616077592716">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1616264092309">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="164" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616077592716" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1611938461664" />
-    <state width="1876" height="345" key="GridCell.Tab.0.bottom" timestamp="1616250266566">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616264092309" />
+    <state width="1876" height="345" key="GridCell.Tab.0.bottom" timestamp="1616261799665">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="345" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616250266566" />
-    <state width="1876" height="345" key="GridCell.Tab.0.center" timestamp="1616250266566">
+    <state width="1876" height="345" key="GridCell.Tab.0.bottom/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616261799665" />
+    <state width="1876" height="345" key="GridCell.Tab.0.center" timestamp="1616261799665">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="345" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616250266566" />
-    <state width="1876" height="345" key="GridCell.Tab.0.left" timestamp="1616250266566">
+    <state width="1876" height="345" key="GridCell.Tab.0.center/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616261799665" />
+    <state width="1876" height="345" key="GridCell.Tab.0.left" timestamp="1616261799665">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1616080637929" />
-    <state width="1876" height="345" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616250266566" />
-    <state width="1876" height="345" key="GridCell.Tab.0.right" timestamp="1616250266566">
+    <state width="1876" height="345" key="GridCell.Tab.0.left/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616261799665" />
+    <state width="1876" height="345" key="GridCell.Tab.0.right" timestamp="1616261799665">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1236" height="121" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1616080637930" />
-    <state width="1876" height="345" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616250266566" />
+    <state width="1876" height="345" key="GridCell.Tab.0.right/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616261799665" />
     <state width="1876" height="281" key="GridCell.Tab.1.bottom" timestamp="1616088713686">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -521,11 +523,11 @@
     </state>
     <state x="379" y="139" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1280.680@0.0.1280.680" timestamp="1616080200599" />
     <state x="682" y="200" width="599" height="405" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616249820574" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1616002100660">
+    <state x="450" y="0" width="881" height="1040" key="find.popup" timestamp="1616260488196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" width="587" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1612967251771" />
-    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616002100660" />
+    <state x="450" y="0" width="881" height="1040" key="find.popup/0.0.1920.1040/-768.-267.768.1326@0.0.1920.1040" timestamp="1616260488196" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1611071244961">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

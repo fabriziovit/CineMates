@@ -20,8 +20,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-public class YourFriendsFragment extends Fragment {
-    public RecyclerView recyclerView_Amici;
+import Intefaces.UpdateableFragmentListener;
+
+public class YourFriendsFragment extends Fragment implements UpdateableFragmentListener {
+    private RecyclerView recyclerView_Amici;
     private List<ItemFriend> friendList;
     private List<ItemFriend> searchList;
     public ConstraintLayout constraintLayout;
@@ -31,7 +33,7 @@ public class YourFriendsFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     public ViewPagerAdapter adapter;
     private List<ItemUser> userList;
-    private YourFriendsPresenter yourFriendsPresenter;
+    public YourFriendsPresenter yourFriendsPresenter;
 
     public YourFriendsFragment() {
         // Required empty public constructor
@@ -61,11 +63,16 @@ public class YourFriendsFragment extends Fragment {
         searchBar = view.findViewById(R.id.searchBar_fragment_YourFriends);
         searchButton = view.findViewById(R.id.searchButton_fragment_YourFriends);
         searchBar.setMovementMethod(null);
-        yourFriendsPresenter = new YourFriendsPresenter(this, friendList, searchList, userList, db, firebaseAuth);
+        yourFriendsPresenter = new YourFriendsPresenter(this, friendList, searchList, userList, db, firebaseAuth, recyclerView_Amici);
 
         yourFriendsPresenter.Keyboard();
         yourFriendsPresenter.cercaAmiciButton();
         yourFriendsPresenter.cercaAmiciByKeyboard();
         return view;
+    }
+
+    @Override
+    public void update() {
+        recyclerView_Amici.getAdapter().notifyDataSetChanged();
     }
 }

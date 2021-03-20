@@ -19,7 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-public class SearchFriendsFragment extends Fragment {
+import Intefaces.UpdateableFragmentListener;
+
+public class SearchFriendsFragment extends Fragment implements UpdateableFragmentListener {
     public RecyclerView recyclerView_Utenti;
     private List<ItemUser> userList;
     private List<ItemUser> searchList;
@@ -37,6 +39,7 @@ public class SearchFriendsFragment extends Fragment {
     public SearchFriendsFragment(List<ItemUser> userList){
         this.userList = userList;
         this.searchList = userList;
+
     }
 
     @Override
@@ -61,5 +64,10 @@ public class SearchFriendsFragment extends Fragment {
         searchFriendsPresenter.cercaUtentiButton();
         searchFriendsPresenter.cercaUtentiByKeyboard();
         return view;
+    }
+
+    @Override
+    public void update() {
+        recyclerView_Utenti.getAdapter().notifyDataSetChanged();
     }
 }

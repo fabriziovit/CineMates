@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Amici;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
@@ -33,21 +34,23 @@ public class YourFriendsPresenter implements RecycleViewAdapter_Amici.OnClickLis
     private FirebaseFirestore db;
     private FirebaseAuth firebaseAuth;
     private List<ItemUser> userList;
+    private RecyclerView recyclerView_Amici;
 
-    public YourFriendsPresenter(YourFriendsFragment yourFriendsFragment, List<ItemFriend> friendList, List<ItemFriend> searchList, List<ItemUser> userList, FirebaseFirestore db, FirebaseAuth firebaseAuth) {
+    public YourFriendsPresenter(YourFriendsFragment yourFriendsFragment, List<ItemFriend> friendList, List<ItemFriend> searchList, List<ItemUser> userList, FirebaseFirestore db, FirebaseAuth firebaseAuth, RecyclerView recyclerView_Amici) {
         this.yourFriendsFragment = yourFriendsFragment;
         this.friendList = friendList;
         this.searchList = searchList;
         this.userList = userList;
         this.db = db;
         this.firebaseAuth = firebaseAuth;
+        this.recyclerView_Amici = recyclerView_Amici;
         init();
     }
 
     private void init(){
         RecycleViewAdapter_Amici recycleViewAdapterAmici = new RecycleViewAdapter_Amici(yourFriendsFragment.getContext(), searchList, this);
-        yourFriendsFragment.recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
-        yourFriendsFragment.recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
+        recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
+        recyclerView_Amici.setAdapter(recycleViewAdapterAmici);
     }
 
     public void Keyboard() {
@@ -132,21 +135,21 @@ public class YourFriendsPresenter implements RecycleViewAdapter_Amici.OnClickLis
             }
             if(searchList.size() != 0) {
                 RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(yourFriendsFragment.getContext(), searchList, this);
-                yourFriendsFragment.recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
-                yourFriendsFragment.recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
+                recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
                 update();
             }else{
                 RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(yourFriendsFragment.getContext(), searchList, this);
-                yourFriendsFragment.recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
-                yourFriendsFragment.recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+                recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
+                recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
                 update();
                 Toast.makeText(yourFriendsFragment.getContext(), "Nessun amico trovato con quel nome!", Toast.LENGTH_SHORT).show();
             }
         }else {
             searchList = friendList;
             RecycleViewAdapter_Amici recycleViewAdapter_amici = new RecycleViewAdapter_Amici(yourFriendsFragment.getContext(), searchList, this);
-            yourFriendsFragment.recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
-            yourFriendsFragment.recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
+            recyclerView_Amici.setLayoutManager(new LinearLayoutManager(yourFriendsFragment.getActivity()));
+            recyclerView_Amici.setAdapter(recycleViewAdapter_amici);
             update();
             Toast.makeText(yourFriendsFragment.getContext(), "Nessun parametro di ricerca inserito!", Toast.LENGTH_SHORT).show();
         }
@@ -166,6 +169,6 @@ public class YourFriendsPresenter implements RecycleViewAdapter_Amici.OnClickLis
 
     @Override
     public void update() {
-        yourFriendsFragment.recyclerView_Amici.getAdapter().notifyDataSetChanged();
+        recyclerView_Amici.getAdapter().notifyDataSetChanged();
     }
 }

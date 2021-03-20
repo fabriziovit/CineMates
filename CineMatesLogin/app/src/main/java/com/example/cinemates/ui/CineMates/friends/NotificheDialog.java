@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
-import com.example.cinemates.ui.CineMates.views.fragments.ViewPagerAdapter;
 import com.example.cinemates.ui.CineMates.adapter.RecycleViewAdapter_Richieste;
 import com.example.cinemates.ui.CineMates.friends.model.Friends;
 import com.example.cinemates.ui.CineMates.friends.model.ItemFriend;
 import com.example.cinemates.ui.CineMates.friends.model.ItemRichieste;
 import com.example.cinemates.ui.CineMates.friends.model.ItemUser;
+import com.example.cinemates.ui.CineMates.views.fragments.ProfileFragment;
+import com.example.cinemates.ui.CineMates.views.fragments.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -156,6 +156,10 @@ public class NotificheDialog extends DialogFragment implements RecycleViewAdapte
                     for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                         if (richiesteList.get(position).getUsername().equals(queryDocumentSnapshot.getString("username"))) {
                             String uIdMittente = queryDocumentSnapshot.getString("uid");
+                            for(ItemUser itemUser: userList){
+                                if(uIdMittente.equals(itemUser.getUid()))
+                                    itemUser.setRapporto(0);
+                            }
                             db.collection("friend request").document(uIdMittente).collection(currUser).document(currUser).delete();
                             Toast.makeText(getActivity(), "Richiesta cancellata!", Toast.LENGTH_SHORT).show();
                             richiesteList.remove(position);

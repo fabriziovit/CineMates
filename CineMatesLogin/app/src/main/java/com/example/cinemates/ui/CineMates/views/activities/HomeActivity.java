@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
     private ItemUser itemUser;
     private boolean notifiche = false;
     private MovieListPresenter movieListPresenter;
-    public static  List<String> userRichieste;
+    public static List<String> userRichieste;
     final LoadingDialog loadingDialog = new LoadingDialog(HomeActivity.this);
 
     @Override
@@ -68,28 +68,6 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
         db = FirebaseFirestore.getInstance();
         currUser = auth.getCurrentUser().getUid();
         userRichieste = new ArrayList<>();
-
-        CollectionReference collectionReference = db.collection("users");
-        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid")).collection(currUser).document(currUser);
-                    documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
-                                    notifiche = true;
-                                    userRichieste.add(documentSnapshot.getString("username"));
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        });
 
         bottomNav =  binding.navHomeMenu;
 
@@ -168,8 +146,10 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                         break;
                     case R.id.amici:
                         isFriends = true;
+                        notifiche = false;
                         List<ItemUser> userList = new ArrayList<>();
                         List<ItemFriend> friendList = new ArrayList<>();
+                        userRichieste = new ArrayList<>();
                         loadingDialog.startLoadingDialog();
                         String currUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                         handler.postDelayed(new Runnable() {
@@ -191,7 +171,31 @@ public class HomeActivity extends AppCompatActivity implements MovieListContract
                                         .commit();
                                 loadingDialog.dismissDialog();
                             }
-                        }, 2750);
+                        }, 2800);
+
+                        new Thread(()-> {
+                            CollectionReference collectionReference = db.collection("users");
+                            collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                        DocumentReference documentReference = db.collection("friend request").document(documentSnapshot.getString("uid")).collection(currUser).document(currUser);
+                                        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists()) {
+                                                        notifiche = true;
+                                                        userRichieste.add(documentSnapshot.getString("username"));
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }).start();
 
                         new Thread(()->{
                             CollectionReference collectionReference1 = db.collection("users");
