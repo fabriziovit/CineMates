@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.stub;
+package Stub;
 
 import com.example.cinemates.ui.CineMates.ApiMovie.ApiModel.MovieDetailsModel;
 import com.example.cinemates.ui.CineMates.ApiMovie.model.Crew;

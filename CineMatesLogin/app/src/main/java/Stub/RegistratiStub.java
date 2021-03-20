@@ -1,4 +1,4 @@
-package com.example.cinemates.ui.CineMates.stub;
+package Stub;
 
 import com.example.cinemates.ui.CineMates.model.UserHelperClass;
 import com.example.cinemates.ui.CineMates.views.activities.RegistratiActivity;

@@ -1,10 +1,10 @@
 package com.example.cinemates.test;
 
-import com.example.cinemates.ui.CineMates.stub.MovieDetailsModelStub;
-
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import Stub.MovieDetailsModelStub;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;

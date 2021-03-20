@@ -1,6 +1,6 @@
 package com.example.cinemates.test;
 
-import com.example.cinemates.ui.CineMates.stub.RegistratiStub;
+import Stub.RegistratiStub;
 
 import org.junit.Test;
 

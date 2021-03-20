@@ -1,6 +1,6 @@
 package com.example.cinemates.test;
 
-import com.example.cinemates.ui.CineMates.stub.RecensioniFilmStub;
+import Stub.RecensioniFilmStub;
 
 import org.junit.Test;
 
