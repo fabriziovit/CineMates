@@ -12,6 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/google-services.json
 
 #amplify
 amplify/\#current-cloud-backend
